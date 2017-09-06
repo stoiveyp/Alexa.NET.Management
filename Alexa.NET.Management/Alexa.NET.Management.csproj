@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <Authors>Steven Pears</Authors>
+    <Company />
+    <Description>A .NET Core library for handling Alexa Skills Management API</Description>
+    <PackageLicenseUrl>https://github.com/stoiveyp/Alexa.NET.Management/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/stoiveyp/Alexa.NET.Management/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/stoiveyp/Alexa.NET.Management/</RepositoryUrl>
+    <PackageTags>amazon;alexa;echo;dot;echo dot;skills;management</PackageTags>
+    <Version>1.0.0-alpha</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+</Project>
