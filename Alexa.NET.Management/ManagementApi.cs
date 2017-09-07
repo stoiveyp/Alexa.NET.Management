@@ -3,13 +3,13 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Alexa.NET.Management.Manifests;
+using Refit;
 
 namespace Alexa.NET.Management
 {
-    public class ManagementApi : ISkillManagementApi
+    public class ManagementApi
     {
         private const string V0BaseAddress = "https://api.amazonalexa.com/v0";
-        public IManagementApi Client { get; }
 
         public ManagementApi(string token) : this(new Uri(V0BaseAddress,UriKind.Absolute), token)
         {
@@ -27,11 +27,12 @@ namespace Alexa.NET.Management
 
         public ManagementApi(Uri baseAddress, Func<Task<string>> getToken)
         {
-            Client = Refit.RestService.For<IManagementApi>(new HttpClient(new CustomClientHandler(getToken)) { BaseAddress = baseAddress });
+            Skills = RestService.For<ISkillManagementApi>(new HttpClient(new CustomClientHandler(getToken)) { BaseAddress = baseAddress });
         }
 
-        public ISkillManagementApi Skills => this;
-
-        Task<SkillManifest> ISkillManagementApi.Get(string skillId) => Client.Get(skillId);
+        public ISkillManagementApi Skills {
+            get;
+            set;
+        }
     }
 }
