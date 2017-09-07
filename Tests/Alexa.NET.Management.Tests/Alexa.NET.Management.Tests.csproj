@@ -13,7 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="NewFolder\" />
+    <ProjectReference Include="..\..\Alexa.NET.Management\Alexa.NET.Management.csproj" />
   </ItemGroup>
-
 </Project>

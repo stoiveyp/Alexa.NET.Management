@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Alexa.NET.Management.Manifests
+﻿namespace Alexa.NET.Management.Manifests
 {
-    class CustomSkillManifest
+    public class CustomSkillManifest
     {
+        public SkillManifest Manifest { get; set; }
     }
 }
