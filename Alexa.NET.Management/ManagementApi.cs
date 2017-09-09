@@ -53,29 +53,32 @@ namespace Alexa.NET.Management
 
     public class ApiConverter:JsonConverter
     {
-        private Action<string> Logger { get; }
+        private readonly Dictionary<string, Type> Mapping;
 
-        public ApiConverter(Action<string> logger)
+        public ApiConverter() : this(new Dictionary<string, Type>
         {
-            Logger = logger;
+            {"custom", typeof(CustomApi)},
+            {"flashBriefing", typeof(FlashBriefingApi)},
+            {"video", typeof(VideoApi)},
+            {"smartHome", typeof(SmartHomeApi)},
+            {"householdList", typeof(HouseholdListApi)}
+        }){}
+
+        public ApiConverter(Dictionary<string, Type> mapping)
+        {
+            Mapping = mapping;
         }
+
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             writer.WriteStartObject();
             foreach (var item in (List<IApi>) value)
             {
-                switch (item)
-                {
-                    case FlashBriefingApi flash:
-                        writer.WritePropertyName("flashBriefing");
-                        serializer.Serialize(writer,flash);
-                        break;
-                    case HouseholdListApi house:
-                        writer.WritePropertyName("householdList");
-                        serializer.Serialize(writer,house);
-                        break;
-                }
+                var keyType = item.GetType();
+                var pair = Mapping.First(kvp => kvp.Value == keyType);
+                writer.WritePropertyName(pair.Key);
+                serializer.Serialize(writer,item);
             }
             writer.WriteEndObject();
         }
@@ -83,32 +86,13 @@ namespace Alexa.NET.Management
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             var list = new List<IApi>();
-            while (reader.Read())
+            while (reader.Read() && !string.IsNullOrWhiteSpace(reader.Path))
             {
-                Logger(reader.TokenType.ToString());
-                Logger(reader.Path);
                 reader.Read();
-                switch (reader.Path)
-                {
-                    case "custom":
-                        list.Add(serializer.Deserialize<CustomApi>(reader));
-                        break;
-                    case "flashBriefing":
-                        list.Add(serializer.Deserialize<FlashBriefingApi>(reader));
-                        break;
-                    case "video":
-                        list.Add(serializer.Deserialize<VideoApi>(reader));
-                        break;
-                    case "smartHome":
-                        list.Add(serializer.Deserialize<SmartHomeApi>(reader));
-                        break;
-                    case "householdList":
-                        list.Add(serializer.Deserialize<HouseholdListApi>(reader));
-                        break;
-                }
+                var pair = Mapping[reader.Path];
+                list.Add((IApi)serializer.Deserialize(reader,pair));
             }
 
-            Logger(reader.TokenType.ToString());
             return list;
         }
 

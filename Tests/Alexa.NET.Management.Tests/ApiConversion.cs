@@ -23,7 +23,7 @@ namespace Alexa.NET.Management.Tests
         [Fact]
         public void TestApiConversionSerialize()
         {
-            var converter = new ApiConverter(Output.WriteLine);
+            var converter = new ApiConverter();
             var settings = new JsonSerializerSettings { Converters = new List<JsonConverter>(new[] { converter }) };
             var serializer = JsonSerializer.Create(settings);
 
@@ -38,7 +38,7 @@ namespace Alexa.NET.Management.Tests
         [Fact]
         public void TestApiConversionDeserialize()
         {
-            var converter = new ApiConverter(Output.WriteLine);
+            var converter = new ApiConverter();
             var settings = new JsonSerializerSettings {Converters = new List<JsonConverter>(new[]{converter})};
             var serializer = JsonSerializer.Create(settings);
             var json = new JObject {{"flashBriefing",new JObject() }, { "householdList", new JObject() } };
