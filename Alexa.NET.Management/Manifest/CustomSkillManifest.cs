@@ -1,4 +1,6 @@
-﻿namespace Alexa.NET.Management.Manifests
+﻿using Alexa.NET.Management.Manifest;
+
+namespace Alexa.NET.Management.Manifests
 {
     public class CustomSkillManifest:SkillManifest
     {
