@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using Alexa.NET.Management.Api;
 using Alexa.NET.Management.Internals;
+using Alexa.NET.Management.Skills;
 using Newtonsoft.Json;
 using Xunit;
 
