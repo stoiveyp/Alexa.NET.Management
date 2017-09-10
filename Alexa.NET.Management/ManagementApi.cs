@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.Design.Serialization;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Alexa.NET.Management.Api;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Serialization;
 using Refit;
 
 namespace Alexa.NET.Management
@@ -86,10 +82,10 @@ namespace Alexa.NET.Management
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             var list = new List<IApi>();
-            while (reader.Read() && !string.IsNullOrWhiteSpace(reader.Path))
+            while (reader.Read() && reader.Value != null)
             {
+                var pair = Mapping[reader.Value.ToString()];
                 reader.Read();
-                var pair = Mapping[reader.Path];
                 list.Add((IApi)serializer.Deserialize(reader,pair));
             }
 

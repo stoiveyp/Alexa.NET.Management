@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using Alexa.NET.Management.Manifest;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Alexa.NET.Management.Manifest
+namespace Alexa.NET.Management
 {
     public class SkillManifest
     {
@@ -10,7 +11,7 @@ namespace Alexa.NET.Management.Manifest
         public PublishingInformation PublishingInformation { get; set; }
 
         [JsonProperty("apis")]
-        public Dictionary<string, Api.IApi> Apis { get; set; }
+        public List<Api.IApi> Apis { get; set; }
 
         [JsonProperty("manifestVersion")]
         public string Version { get; set; }

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Alexa.NET.Management.Manifest;
 
 namespace Alexa.NET.Management.Api
 {

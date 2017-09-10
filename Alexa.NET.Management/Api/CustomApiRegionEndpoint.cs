@@ -1,5 +1,4 @@
-﻿using Alexa.NET.Management.Manifest;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace Alexa.NET.Management.Api

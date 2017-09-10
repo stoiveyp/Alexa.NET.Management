@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using Alexa.NET.Management.Manifest;
+﻿using System.Threading.Tasks;
 using Refit;
 
 namespace Alexa.NET.Management
