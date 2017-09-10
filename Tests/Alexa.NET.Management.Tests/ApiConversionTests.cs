@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Alexa.NET.Management.Api;
+using Alexa.NET.Management.Internals;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Xunit;

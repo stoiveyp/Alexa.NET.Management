@@ -3,18 +3,19 @@ using Refit;
 
 namespace Alexa.NET.Management
 {
+    [Headers("Authorization: Bearer")]
     public interface ISkillManagementApi
     {
-        [Get("{skillId}"), Headers("Authorization: Bearer")]
+        [Get("{skillId}")]
         Task<Skill> Get(string skillId);
 
-        [Post("{vendorId}"), Headers("Authorization: Bearer")]
+        [Post("{vendorId}")]
         Task<SkillId> Create(string vendorId, [Body]Skill skill);
 
-        [Put("{skillId}"), Headers("Authorization: Bearer")]
+        [Put("{skillId}")]
         Task<SkillId> Update(string skillId, [Body] Skill skill);
 
-        [Get("{skillId}/status"), Headers("Authorization: Bearer")]
+        [Get("{skillId}/status")]
         Task<SkillStatus> Status(string skillId);
     }
 }
