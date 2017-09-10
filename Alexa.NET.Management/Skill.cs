@@ -5,6 +5,6 @@ namespace Alexa.NET.Management
     public class Skill
     {
         [JsonProperty("skillManifest")]
-        public SkillManifest Manifest { get; set; }
+        public Manifest.SkillManifest Manifest { get; set; }
     }
 }

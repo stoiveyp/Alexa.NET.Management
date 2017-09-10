@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using Alexa.NET.Management.Manifest;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Alexa.NET.Management
+namespace Alexa.NET.Management.Manifest
 {
     public class SkillManifest
     {
