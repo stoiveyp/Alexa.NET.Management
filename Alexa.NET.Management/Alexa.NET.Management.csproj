@@ -13,4 +13,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Refit" Version="4.0.1" />
+  </ItemGroup>
 </Project>
