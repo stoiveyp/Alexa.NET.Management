@@ -13,13 +13,6 @@ namespace Alexa.NET.Management.Tests
 {
     public class ApiConversion
     {
-        private ITestOutputHelper Output { get; }
-
-        public ApiConversion(ITestOutputHelper output)
-        {
-            Output = output;
-        }
-
         [Fact]
         public void TestApiConversionSerialize()
         {
@@ -31,8 +24,7 @@ namespace Alexa.NET.Management.Tests
             var source = JObject.FromObject(list, serializer);
 
             var target = new JObject { { "flashBriefing", JObject.FromObject(new FlashBriefingApi())}, { "householdList", JObject.FromObject(new HouseholdListApi()) } };
-            Output.WriteLine(source.ToString(Formatting.None));
-            Assert.True(JObject.DeepEquals(source,target));
+            Assert.True(JToken.DeepEquals(source,target));
         }
 
         [Fact]
