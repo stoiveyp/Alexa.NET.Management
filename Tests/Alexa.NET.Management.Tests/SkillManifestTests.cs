@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using Alexa.NET.Management.Api;
+using Alexa.NET.Management.Internals;
 using Newtonsoft.Json;
 using Xunit;
 

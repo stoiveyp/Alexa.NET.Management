@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Alexa.NET.Management.Internals;
 using Newtonsoft.Json;
 using Refit;
 
@@ -10,12 +11,12 @@ namespace Alexa.NET.Management
     {
         private const string V0BaseAddress = "https://api.amazonalexa.com/v0";
 
-        public ManagementApi(string token) : this(new Uri(V0BaseAddress,UriKind.Absolute), token)
+        public ManagementApi(string token) : this(new Uri(V0BaseAddress, UriKind.Absolute), token)
         {
 
         }
 
-        public ManagementApi(Func<Task<string>> getToken) : this(new Uri(V0BaseAddress,UriKind.Absolute), getToken)
+        public ManagementApi(Func<Task<string>> getToken) : this(new Uri(V0BaseAddress, UriKind.Absolute), getToken)
         {
 
         }
@@ -33,14 +34,15 @@ namespace Alexa.NET.Management
                     AuthorizationHeaderValueGetter = getToken,
                     JsonSerializerSettings = new JsonSerializerSettings
                     {
-                        Converters = new List<JsonConverter>(new[]{new ApiConverter(null)})
+                        Converters = new List<JsonConverter>(new[] { new ApiConverter(null) })
                     }
                 });
+
+            InteractionModel = new InteractionModelApi(baseAddress, getToken);
         }
 
-        public ISkillManagementApi Skills {
-            get;
-            set;
-        }
+        public ISkillManagementApi Skills { get; set; }
+
+        public IInteractionModelApi InteractionModel { get; set; }
     }
 }

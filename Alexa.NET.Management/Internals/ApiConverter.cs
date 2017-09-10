@@ -4,7 +4,7 @@ using System.Linq;
 using Alexa.NET.Management.Api;
 using Newtonsoft.Json;
 
-namespace Alexa.NET.Management
+namespace Alexa.NET.Management.Internals
 {
     public class ApiConverter:JsonConverter
     {
