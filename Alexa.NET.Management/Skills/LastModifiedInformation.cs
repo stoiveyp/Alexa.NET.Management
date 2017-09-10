@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Alexa.NET.Management
+namespace Alexa.NET.Management.Skills
 {
     public class LastModifiedInformation
     {

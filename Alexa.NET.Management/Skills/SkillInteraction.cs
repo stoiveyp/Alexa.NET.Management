@@ -1,6 +1,6 @@
 ﻿using Alexa.NET.Management.InteractionModel;
 
-namespace Alexa.NET.Management
+namespace Alexa.NET.Management.Skills
 {
     public class SkillInteraction
     {

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Alexa.NET.Management
+namespace Alexa.NET.Management.Skills
 {
     public class Skill
     {

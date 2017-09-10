@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Alexa.NET.Management.Internals;
+using Alexa.NET.Management.Skills;
 
 namespace Alexa.NET.Management
 {
