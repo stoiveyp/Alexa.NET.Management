@@ -3,7 +3,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Alexa.NET.Management.AccountLinking
 {
-    public class AccountLinkRequest
+    public class AccountLinkData
     {
         [JsonProperty("type"),JsonConverter(typeof(StringEnumConverter))]
         public AccountLinkType Type { get; set; }

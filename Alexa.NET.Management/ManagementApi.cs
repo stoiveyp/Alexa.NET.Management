@@ -38,10 +38,7 @@ namespace Alexa.NET.Management
                     }
                 });
 
-            AccountLinking = RestService.For<IAccountLinkingApi>(
-                baseAddress.ToString(),
-                new RefitSettings { AuthorizationHeaderValueGetter = getToken }
-            );
+            AccountLinking = new AccountLinkingApi(baseAddress, getToken);
 
             InteractionModel = new InteractionModelApi(baseAddress, getToken);
         }

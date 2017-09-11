@@ -1,10 +1,10 @@
 ﻿using Newtonsoft.Json;
 
-namespace Alexa.NET.Management
+namespace Alexa.NET.Management.AccountLinking
 {
     public class AccountLinkInformation
     {
         [JsonProperty("accountLinkingResponse")]
-        public AccountLinkResponse Response { get; set; }
+        public AccountLinkData Response { get; set; }
     }
 }
