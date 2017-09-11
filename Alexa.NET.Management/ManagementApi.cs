@@ -38,11 +38,15 @@ namespace Alexa.NET.Management
                     }
                 });
 
+            AccountLinking = new AccountLinkingApi(baseAddress, getToken);
+
             InteractionModel = new InteractionModelApi(baseAddress, getToken);
         }
 
         public ISkillManagementApi Skills { get; set; }
 
         public IInteractionModelApi InteractionModel { get; set; }
+
+        public IAccountLinkingApi AccountLinking { get; set; }
     }
 }
