@@ -39,10 +39,19 @@ namespace Alexa.NET.Management
                 });
 
             InteractionModel = new InteractionModelApi(baseAddress, getToken);
+
+            Vendors = RestService.For<IVendorApi>(
+                baseAddress.ToString(),
+                new RefitSettings
+                {
+                    AuthorizationHeaderValueGetter = getToken
+                });
         }
 
         public ISkillManagementApi Skills { get; set; }
 
         public IInteractionModelApi InteractionModel { get; set; }
+
+        public IVendorApi Vendors { get; set; }
     }
 }
