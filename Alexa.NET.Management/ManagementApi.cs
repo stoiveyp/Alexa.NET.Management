@@ -38,6 +38,8 @@ namespace Alexa.NET.Management
                     }
                 });
 
+            AccountLinking = new AccountLinkingApi(baseAddress, getToken);
+
             InteractionModel = new InteractionModelApi(baseAddress, getToken);
 
             Vendors = RestService.For<IVendorApi>(
@@ -53,5 +55,8 @@ namespace Alexa.NET.Management
         public IInteractionModelApi InteractionModel { get; set; }
 
         public IVendorApi Vendors { get; set; }
+
+        public IAccountLinkingApi AccountLinking { get; set; }
+
     }
 }
