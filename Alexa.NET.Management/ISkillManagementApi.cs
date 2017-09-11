@@ -7,16 +7,16 @@ namespace Alexa.NET.Management
     [Headers("Authorization: Bearer")]
     public interface ISkillManagementApi
     {
-        [Get("{skillId}")]
+        [Get("skills/{skillId}")]
         Task<Skill> Get(string skillId);
 
-        [Post("{vendorId}")]
+        [Post("skills/{vendorId}")]
         Task<SkillId> Create(string vendorId, [Body]Skill skill);
 
-        [Put("{skillId}")]
+        [Put("skills/{skillId}")]
         Task<SkillId> Update(string skillId, [Body] Skill skill);
 
-        [Get("{skillId}/status")]
+        [Get("skills/{skillId}/status")]
         Task<SkillStatus> Status(string skillId);
     }
 }
