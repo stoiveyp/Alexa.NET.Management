@@ -1,3 +1,4 @@
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Alexa.NET.Management.Skills;
 using Refit;
@@ -18,6 +19,12 @@ namespace Alexa.NET.Management
 
         [Get("skills/{skillId}/status")]
         Task<SkillStatus> Status(string skillId);
+
+        [Post("skills/{skillId}/submit")]
+        Task Submit(string skillId);
+
+        [Post("skills/{skillId}/withdraw")]
+        Task Withdraw(string skillId, WithdrawalRequest request);
     }
 }
 
