@@ -1,0 +1,458 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{29BE780E-966D-4789-96A5-75192FD45389}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Alexa.Net.Management.UWP</RootNamespace>
+    <AssemblyName>Alexa.Net.Management.UWP</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.15063.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10586.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <PlatformTarget>ARM</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <PlatformTarget>ARM</PlatformTarget>
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\Alexa.NET.Management\AccountLinking\AccessTokenScheme.cs">
+      <Link>AccountLinking\AccessTokenScheme.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\AccountLinking\AccountLinkData.cs">
+      <Link>AccountLinking\AccountLinkData.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\AccountLinking\AccountLinkInformation.cs">
+      <Link>AccountLinking\AccountLinkInformation.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\AccountLinking\AccountLinkRequest.cs">
+      <Link>AccountLinking\AccountLinkRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\AccountLinking\AccountLinkType.cs">
+      <Link>AccountLinking\AccountLinkType.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\AccountLinking\AccountLinkUpdate.cs">
+      <Link>AccountLinking\AccountLinkUpdate.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Api\Api.cs">
+      <Link>Api\Api.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Api\Category.cs">
+      <Link>Api\Category.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Api\ContentFeedType.cs">
+      <Link>Api\ContentFeedType.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Api\ContentGenre.cs">
+      <Link>Api\ContentGenre.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Api\CustomApi.cs">
+      <Link>Api\CustomApi.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Api\CustomApiRegion.cs">
+      <Link>Api\CustomApiRegion.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Api\CustomApiRegionEndpoint.cs">
+      <Link>Api\CustomApiRegionEndpoint.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Api\FlashBriefingApi.cs">
+      <Link>Api\FlashBriefingApi.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Api\FlashBriefingFeed.cs">
+      <Link>Api\FlashBriefingFeed.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Api\FlashBriefingLocale.cs">
+      <Link>Api\FlashBriefingLocale.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Api\HouseholdListApi.cs">
+      <Link>Api\HouseholdListApi.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Api\SmartHomeApi.cs">
+      <Link>Api\SmartHomeApi.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Api\SslCertificateType.cs">
+      <Link>Api\SslCertificateType.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Api\SupportedLocales.cs">
+      <Link>Api\SupportedLocales.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Api\UpChannel.cs">
+      <Link>Api\UpChannel.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Api\UpdateFrequency.cs">
+      <Link>Api\UpdateFrequency.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Api\VideoApi.cs">
+      <Link>Api\VideoApi.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Api\VideoLocale.cs">
+      <Link>Api\VideoLocale.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Api\VideoRegion.cs">
+      <Link>Api\VideoRegion.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\AuthorizationScopes.cs">
+      <Link>AuthorizationScopes.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Endpoint.cs">
+      <Link>Endpoint.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\IAccountLinkingApi.cs">
+      <Link>IAccountLinkingApi.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\IInteractionModelApi.cs">
+      <Link>IInteractionModelApi.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\InteractionModel\Dialog.cs">
+      <Link>InteractionModel\Dialog.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\InteractionModel\DialogIntent.cs">
+      <Link>InteractionModel\DialogIntent.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\InteractionModel\DialogSlot.cs">
+      <Link>InteractionModel\DialogSlot.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\InteractionModel\DialogSlotPrompts.cs">
+      <Link>InteractionModel\DialogSlotPrompts.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\InteractionModel\DialogSlotValidation.cs">
+      <Link>InteractionModel\DialogSlotValidation.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\InteractionModel\IntentType.cs">
+      <Link>InteractionModel\IntentType.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\InteractionModel\Language.cs">
+      <Link>InteractionModel\Language.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\InteractionModel\Prompt.cs">
+      <Link>InteractionModel\Prompt.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\InteractionModel\Slot.cs">
+      <Link>InteractionModel\Slot.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\InteractionModel\SlotType.cs">
+      <Link>InteractionModel\SlotType.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\InteractionModel\Variation.cs">
+      <Link>InteractionModel\Variation.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\InteractionModel\VariationType.cs">
+      <Link>InteractionModel\VariationType.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Internals\AccountLinkingApi.cs">
+      <Link>Internals\AccountLinkingApi.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Internals\ApiConverter.cs">
+      <Link>Internals\ApiConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Internals\IClientAccountLinkingApi.cs">
+      <Link>Internals\IClientAccountLinkingApi.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Internals\IClientInteractionModelApi.cs">
+      <Link>Internals\IClientInteractionModelApi.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Internals\InteractionModelApi.cs">
+      <Link>Internals\InteractionModelApi.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\ISkillManagementApi.cs">
+      <Link>ISkillManagementApi.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\IVendorApi.cs">
+      <Link>IVendorApi.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\ManagementApi.cs">
+      <Link>ManagementApi.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Manifest\Locale.cs">
+      <Link>Manifest\Locale.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Manifest\Permission.cs">
+      <Link>Manifest\Permission.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Manifest\PrivacyAndCompliance.cs">
+      <Link>Manifest\PrivacyAndCompliance.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Manifest\PrivacyAndCompliantLocale.cs">
+      <Link>Manifest\PrivacyAndCompliantLocale.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Manifest\PublishingInformation.cs">
+      <Link>Manifest\PublishingInformation.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Manifest\SkillManifest.cs">
+      <Link>Manifest\SkillManifest.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Skills\InvocationError.cs">
+      <Link>Skills\InvocationError.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Skills\InvocationMetrics.cs">
+      <Link>Skills\InvocationMetrics.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Skills\InvocationRequest.cs">
+      <Link>Skills\InvocationRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Skills\InvocationResponse.cs">
+      <Link>Skills\InvocationResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Skills\InvocationResult.cs">
+      <Link>Skills\InvocationResult.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Skills\InvocationSkillRequest.cs">
+      <Link>Skills\InvocationSkillRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Skills\InvocationSkillResponse.cs">
+      <Link>Skills\InvocationSkillResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Skills\InvocationStatus.cs">
+      <Link>Skills\InvocationStatus.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Skills\LastModifiedInformation.cs">
+      <Link>Skills\LastModifiedInformation.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Skills\SimulationRequestDevice.cs">
+      <Link>Skills\SimulationRequestDevice.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Skills\SimulationRequestInput.cs">
+      <Link>Skills\SimulationRequestInput.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Skills\Skill.cs">
+      <Link>Skills\Skill.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Skills\SkillExecutionInfo.cs">
+      <Link>Skills\SkillExecutionInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Skills\SkillId.cs">
+      <Link>Skills\SkillId.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Skills\SkillInteraction.cs">
+      <Link>Skills\SkillInteraction.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Skills\SkillStatus.cs">
+      <Link>Skills\SkillStatus.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Skills\SkillStatusState.cs">
+      <Link>Skills\SkillStatusState.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Skills\StatusManifest.cs">
+      <Link>Skills\StatusManifest.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Skills\WithdrawalReason.cs">
+      <Link>Skills\WithdrawalReason.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Skills\WithdrawalRequest.cs">
+      <Link>Skills\WithdrawalRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Vendors\Vendor.cs">
+      <Link>Vendor\Vendor.cs</Link>
+    </Compile>
+    <Compile Include="..\Alexa.NET.Management\Vendors\VendorRole.cs">
+      <Link>Vendor\VendorRole.cs</Link>
+    </Compile>
+    <Compile Include="Alexa.Net\ConfirmationStatus.cs" />
+    <Compile Include="Alexa.Net\Helpers\MixedDateTimeConverter.cs" />
+    <Compile Include="Alexa.Net\Request\Application.cs" />
+    <Compile Include="Alexa.Net\Request\Context.cs" />
+    <Compile Include="Alexa.Net\Request\Device.cs" />
+    <Compile Include="Alexa.Net\Request\Intent.cs" />
+    <Compile Include="Alexa.Net\Request\IntentProperty.cs" />
+    <Compile Include="Alexa.Net\Request\IntentSignature.cs" />
+    <Compile Include="Alexa.Net\Request\Permissions.cs" />
+    <Compile Include="Alexa.Net\Request\Resolution.cs" />
+    <Compile Include="Alexa.Net\Request\ResolutionAuthority.cs" />
+    <Compile Include="Alexa.Net\Request\ResolutionStatus.cs" />
+    <Compile Include="Alexa.Net\Request\ResolutionStatusCode.cs" />
+    <Compile Include="Alexa.Net\Request\ResolutionValue.cs" />
+    <Compile Include="Alexa.Net\Request\ResolutionValueContainer.cs" />
+    <Compile Include="Alexa.Net\Request\Session.cs" />
+    <Compile Include="Alexa.Net\Request\SkillRequest.cs" />
+    <Compile Include="Alexa.Net\Request\Slot.cs" />
+    <Compile Include="Alexa.Net\Request\SupportedInterfaces.cs" />
+    <Compile Include="Alexa.Net\Request\System.cs" />
+    <Compile Include="Alexa.Net\Request\Type\AudioPlayerRequest.cs" />
+    <Compile Include="Alexa.Net\Request\Type\AudioRequestType.cs" />
+    <Compile Include="Alexa.Net\Request\Type\BuiltInIntents.cs" />
+    <Compile Include="Alexa.Net\Request\Type\DialogState.cs" />
+    <Compile Include="Alexa.Net\Request\Type\Error.cs" />
+    <Compile Include="Alexa.Net\Request\Type\ErrorCause.cs" />
+    <Compile Include="Alexa.Net\Request\Type\ErrorType.cs" />
+    <Compile Include="Alexa.Net\Request\Type\IntentRequest.cs" />
+    <Compile Include="Alexa.Net\Request\Type\LaunchRequest.cs" />
+    <Compile Include="Alexa.Net\Request\Type\PlaybackControllerRequest.cs" />
+    <Compile Include="Alexa.Net\Request\Type\PlaybackControllerRequestType.cs" />
+    <Compile Include="Alexa.Net\Request\Type\PlaybackState.cs" />
+    <Compile Include="Alexa.Net\Request\Type\Reason.cs" />
+    <Compile Include="Alexa.Net\Request\Type\Request.cs" />
+    <Compile Include="Alexa.Net\Request\Type\RequestConverter.cs" />
+    <Compile Include="Alexa.Net\Request\Type\SessionEndedRequest.cs" />
+    <Compile Include="Alexa.Net\Request\Type\SystemExceptionRequest.cs" />
+    <Compile Include="Alexa.Net\Request\User.cs" />
+    <Compile Include="Alexa.Net\Response\AskForPermissionsConsentCard.cs" />
+    <Compile Include="Alexa.Net\Response\CardImage.cs" />
+    <Compile Include="Alexa.Net\Response\Directive\AudioItem.cs" />
+    <Compile Include="Alexa.Net\Response\Directive\AudioItemStream.cs" />
+    <Compile Include="Alexa.Net\Response\Directive\AudioPlayerPlayDirective.cs" />
+    <Compile Include="Alexa.Net\Response\Directive\ClearBehavior.cs" />
+    <Compile Include="Alexa.Net\Response\Directive\ClearQueueDirective.cs" />
+    <Compile Include="Alexa.Net\Response\Directive\DialogConfirmIntent.cs" />
+    <Compile Include="Alexa.Net\Response\Directive\DialogConfirmSlot.cs" />
+    <Compile Include="Alexa.Net\Response\Directive\DialogDelegate.cs" />
+    <Compile Include="Alexa.Net\Response\Directive\DialogElicitSlot.cs" />
+    <Compile Include="Alexa.Net\Response\Directive\PlayBehavior.cs" />
+    <Compile Include="Alexa.Net\Response\Directive\StopDirective.cs" />
+    <Compile Include="Alexa.Net\Response\Directive\VideoAppDirective.cs" />
+    <Compile Include="Alexa.Net\Response\Directive\VideoItem.cs" />
+    <Compile Include="Alexa.Net\Response\Directive\VideoItemMetadata.cs" />
+    <Compile Include="Alexa.Net\Response\ICard.cs" />
+    <Compile Include="Alexa.Net\Response\IDirective.cs" />
+    <Compile Include="Alexa.Net\Response\IOutputSpeech.cs" />
+    <Compile Include="Alexa.Net\Response\IResponse.cs" />
+    <Compile Include="Alexa.Net\Response\LinkAccountCard.cs" />
+    <Compile Include="Alexa.Net\Response\PlainTextOutputSpeech.cs" />
+    <Compile Include="Alexa.Net\Response\Reprompt.cs" />
+    <Compile Include="Alexa.Net\Response\RequestedPermission.cs" />
+    <Compile Include="Alexa.Net\Response\Response.cs" />
+    <Compile Include="Alexa.Net\Response\SimpleCard.cs" />
+    <Compile Include="Alexa.Net\Response\SkillResponse.cs" />
+    <Compile Include="Alexa.Net\Response\SsmlOutputSpeech.cs" />
+    <Compile Include="Alexa.Net\Response\Ssml\AmazonEffect.cs" />
+    <Compile Include="Alexa.Net\Response\Ssml\Audio.cs" />
+    <Compile Include="Alexa.Net\Response\Ssml\Break.cs" />
+    <Compile Include="Alexa.Net\Response\Ssml\BreakStrength.cs" />
+    <Compile Include="Alexa.Net\Response\Ssml\Emphasis.cs" />
+    <Compile Include="Alexa.Net\Response\Ssml\EmphasisLevel.cs" />
+    <Compile Include="Alexa.Net\Response\Ssml\ICommonSsml.cs" />
+    <Compile Include="Alexa.Net\Response\Ssml\InterpretAs.cs" />
+    <Compile Include="Alexa.Net\Response\Ssml\IParagraphSsml.cs" />
+    <Compile Include="Alexa.Net\Response\Ssml\ISentenceSsml.cs" />
+    <Compile Include="Alexa.Net\Response\Ssml\ISsml.cs" />
+    <Compile Include="Alexa.Net\Response\Ssml\Namespaces.cs" />
+    <Compile Include="Alexa.Net\Response\Ssml\Paragraph.cs" />
+    <Compile Include="Alexa.Net\Response\Ssml\Phoneme.cs" />
+    <Compile Include="Alexa.Net\Response\Ssml\PhonemeAlphabet.cs" />
+    <Compile Include="Alexa.Net\Response\Ssml\PlainText.cs" />
+    <Compile Include="Alexa.Net\Response\Ssml\Prosody.cs" />
+    <Compile Include="Alexa.Net\Response\Ssml\ProsodyPitch.cs" />
+    <Compile Include="Alexa.Net\Response\Ssml\ProsodyRate.cs" />
+    <Compile Include="Alexa.Net\Response\Ssml\ProsodyVolume.cs" />
+    <Compile Include="Alexa.Net\Response\Ssml\SayAs.cs" />
+    <Compile Include="Alexa.Net\Response\Ssml\Sentence.cs" />
+    <Compile Include="Alexa.Net\Response\Ssml\Speech.cs" />
+    <Compile Include="Alexa.Net\Response\Ssml\Sub.cs" />
+    <Compile Include="Alexa.Net\Response\Ssml\Word.cs" />
+    <Compile Include="Alexa.Net\Response\Ssml\WordRole.cs" />
+    <Compile Include="Alexa.Net\Response\StandardCard.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Properties\Alexa.Net.Management.UWP.rd.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+      <Version>5.4.0</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>10.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Refit">
+      <Version>4.0.1</Version>
+    </PackageReference>
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
