@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Alexa.NET.Management.Skills;
@@ -24,7 +25,10 @@ namespace Alexa.NET.Management
         Task Submit(string skillId);
 
         [Post("skills/{skillId}/withdraw")]
-        Task Withdraw(string skillId, WithdrawalRequest request);
+        Task Withdraw(string skillId, [Body]WithdrawalRequest request);
+
+        [Post("skills/{skillId}/invocations")]
+        Task<InvocationResponse> Invoke(string skillId, [Body]InvocationRequest request);
     }
 }
 
