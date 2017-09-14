@@ -1,8 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.6</TargetFramework>
-    <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
+    <TargetFramework>netstandard1.4</TargetFramework>
     <Authors>Steven Pears</Authors>
     <Company />
     <Description>A .NET Core library for handling Alexa Skills Management API</Description>
@@ -17,7 +16,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Alexa.NET" Version="1.2.0-pre" />
     <PackageReference Include="Refit" Version="4.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Alexa.NET">
+      <HintPath>D:\Users\steve\Source\Repos\alexa-skills-dotnet\Alexa.NET\bin\Release\netstandard1.4\Alexa.NET.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>
