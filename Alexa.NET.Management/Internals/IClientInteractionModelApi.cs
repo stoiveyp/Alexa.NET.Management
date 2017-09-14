@@ -10,16 +10,16 @@ namespace Alexa.NET.Management.Internals
     [Headers("Authorization: Bearer")]
     public interface IClientInteractionModelApi
     {
-        [Get("skills/{skillId}/interactionModel/locales/{locale}")]
+        [Get("/skills/{skillId}/interactionModel/locales/{locale}")]
         Task<SkillInteraction> Get(string skillId, string locale);
 
-        [Head("skills/{skillId}/interactionModel/locales/{locale}")]
+        [Head("/skills/{skillId}/interactionModel/locales/{locale}")]
         Task<HttpResponseMessage> GetTag(string skillId, string locale);
 
-        [Post("skills/{skillId}/interactionModel/locales/{locale}")]
+        [Post("/skills/{skillId}/interactionModel/locales/{locale}")]
         Task Update(string skillId, string locale,[Body]SkillInteraction interaction);
 
-        [Get("skills/{skillId}/interactionModel/locales/{locale}/status")]
+        [Get("/skills/{skillId}/interactionModel/locales/{locale}/status")]
         Task<BuildStatus> Status(string skillId, string locale);
     }
 

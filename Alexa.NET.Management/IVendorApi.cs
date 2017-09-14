@@ -6,6 +6,7 @@ namespace Alexa.NET.Management
     [Headers("Authorization: Bearer")]
     public interface IVendorApi
     {
+        [Get("/vendors")]
         Vendor[] Get();
     }
 }

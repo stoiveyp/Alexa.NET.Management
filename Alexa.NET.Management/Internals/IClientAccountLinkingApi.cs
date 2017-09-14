@@ -10,10 +10,10 @@ namespace Alexa.NET.Management.Internals
     [Headers("Authorization: Bearer")]
     public interface IClientAccountLinkingApi
     {
-        [Get("skills/{skilIid}/accountLinkingClient")]
+        [Get("/skills/{skilIid}/accountLinkingClient")]
         Task<AccountLinkInformation> Get(string skillId);
 
-        [Put("skills/{skillId}/accountLinkingClient")]
+        [Put("/skills/{skillId}/accountLinkingClient")]
         Task Update(string skillId, [Body]AccountLinkUpdate information);
     }
 }
