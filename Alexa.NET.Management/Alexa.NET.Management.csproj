@@ -21,7 +21,7 @@
 
   <ItemGroup>
     <Reference Include="Alexa.NET">
-      <HintPath>D:\Users\steve\Source\Repos\alexa-skills-dotnet\Alexa.NET\bin\Release\netstandard1.4\Alexa.NET.dll</HintPath>
+      <HintPath>..\lib\Alexa.NET.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>
