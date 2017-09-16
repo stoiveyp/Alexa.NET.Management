@@ -20,7 +20,7 @@ namespace Alexa.NET.Management.Internals
 
         private readonly Dictionary<string, Type> Mapping;
 
-        public ApiConverter() : this(DefaultMapping){}
+        public ApiConverter() : this(null){}
 
         public ApiConverter(Dictionary<string, Type> mapping)
         {
