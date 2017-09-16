@@ -1,0 +1,37 @@
+﻿{
+  "skillManifest": {
+    "publishingInformation": {
+      "locales": {
+        "en-US": {
+          "summary": "Pick between two given choices",
+          "examplePhrases": [ "Alexa, ask which one should I pick? the red one or the black one", "Should I pick odds or evens?", "Home-Made or Take-Away?" ],
+          "name": "Which One",
+          "smallIconUri": "https://api.amazonalexa.com/v0/skills/amzn1.ask.skill.5c6dbde6-91dd-4562-b1d1-166542c0e098/images/eyJkIjoiRnBqWjlvNFdqUUk5dGpGQ09Cb3BxYmh0WnVBdXV6VTd3TnYrcGhCaldQTmNySnU0M3pmN3FOdTZmYnpURHVIQ20yNks2ekhqSnhZd2RxVVRkeldvOWh6L21ZVE1jOHBPeXpmVXZvc2xicVNtQU0wYUplUkRwT2tZbXo2Mnh5cHgiLCJpdiI6InZTa3dwNDduaFpxZlUvS21oclJHYUE9PSIsInYiOjF9",
+          "description": "Give two possible options and allow Alexa to pick one of them",
+          "largeIconUri": "https://api.amazonalexa.com/v0/skills/amzn1.ask.skill.5c6dbde6-91dd-4562-b1d1-166542c0e098/images/eyJkIjoiTUpvY3RTSkVvQjJTNzUwSkc3Tlk3V25wZW9WVGVhVUJ2bVkxK1lBRHo2UHo1RmlTS0cxVmFzTlRTbUYzK2tBRWJhTkRsMjV1OG0rS0d2d003K0lFRzgrcUROeXk1SnN3Q05YUUo0UlVUMGRvbXZmNk92VkhueWlBZDNja1lhdExRK2Z4MEZaeXVJY1hHOWh1RU40cW1nPT0iLCJpdiI6IlJrSG84SUVpaW9UT3k4MlMrLy9DTUE9PSIsInYiOjF9"
+        },
+        "en-GB": {
+          "summary": "Pick between two given choices",
+          "examplePhrases": [ "Alexa, ask which one should I pick? the red one or the black one", "Should I pick odds or evens?", "Home-made or take-away?" ],
+          "name": "Which One",
+          "smallIconUri": "https://api.amazonalexa.com/v0/skills/amzn1.ask.skill.5c6dbde6-91dd-4562-b1d1-166542c0e098/images/eyJkIjoiTDRvNURZYlFOemkvZXp5eVJzM2lCc2lydWNQemFabkZodlJlL1M0a2p2Ty9jTEtGeTNTREpNL3NYQjlYSGxaSEY4RkVubzl4NlhzeFlXeGREM0pNaGdmT1hadVVkS2JrT3M3Y0gwQmpmS21WMWZSWHFUL0NOZkVIVmFsMk1ocjkiLCJpdiI6IlkwU1J3UmpXUFF2SXR2a28zbDVCN1E9PSIsInYiOjF9",
+          "description": "Give two possible options and allow Alexa to pick one of them",
+          "largeIconUri": "https://api.amazonalexa.com/v0/skills/amzn1.ask.skill.5c6dbde6-91dd-4562-b1d1-166542c0e098/images/eyJkIjoiTEYxWnNJQWU0V0c0QVVlTDVTb1FOb2VaMGt5eEFHTlNwSWZvQ01VdWo1ODZ0dExwVjFzbGRTUGREcUxsbDRRMGh0U2Z2RDBRdm5LdzJldklyb1BtWUV5aGFwTFUyTFpZK2E1NmZaK0taVllZeTdUSThSanNCd3N4Ry9SUnZIUDV6enBiVmU3QXI0MlBCdGFxTGNGMFNRPT0iLCJpdiI6IndPMVlscVZzZEl4eUFJdVFpMVJwaGc9PSIsInYiOjF9"
+        }
+      },
+      "isAvailableWorldwide": true,
+      "testingInstructions": "Use one of the example phrases, no other details required.",
+      "category": "ORGANIZERS_AND_ASSISTANTS",
+      "distributionCountries": []
+    },
+    "apis": { "custom": { "endpoint": { "uri": "arn:aws:lambda:eu-west-1:802502866407:function:WhichOne" } } },
+    "manifestVersion": "1.0",
+    "privacyAndCompliance": {
+      "allowsPurchases": false,
+      "isExportCompliant": true,
+      "containsAds": false,
+      "isChildDirected": false,
+      "usesPersonalInfo": false
+    }
+  }
+}
