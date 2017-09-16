@@ -1,4 +1,5 @@
-﻿using Alexa.NET.Management.Vendors;
+﻿using System.Threading.Tasks;
+using Alexa.NET.Management.Vendors;
 using Refit;
 
 namespace Alexa.NET.Management
@@ -7,6 +8,6 @@ namespace Alexa.NET.Management
     public interface IVendorApi
     {
         [Get("/vendors")]
-        Vendor[] Get();
+        Task<Vendor[]> Get();
     }
 }
