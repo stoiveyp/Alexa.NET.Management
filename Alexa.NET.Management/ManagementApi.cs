@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading;
 using System.Threading.Tasks;
 using Alexa.NET.Management.Internals;
 using Newtonsoft.Json;
@@ -27,27 +30,22 @@ namespace Alexa.NET.Management
 
         public ManagementApi(Uri baseAddress, Func<Task<string>> getToken)
         {
+            var client = new HttpClient(new NoSchemeAuthenticationHeaderClient(getToken)) {BaseAddress = baseAddress};
             Skills = RestService.For<ISkillManagementApi>(
-                baseAddress.ToString(),
+                client,
                 new RefitSettings
                 {
-                    AuthorizationHeaderValueGetter = getToken,
                     JsonSerializerSettings = new JsonSerializerSettings
                     {
                         Converters = new List<JsonConverter>(new[] { new ApiConverter(null) })
                     }
                 });
 
-            AccountLinking = new AccountLinkingApi(baseAddress, getToken);
+            AccountLinking = new AccountLinkingApi(client);
 
-            InteractionModel = new InteractionModelApi(baseAddress, getToken);
+            InteractionModel = new InteractionModelApi(client);
 
-            Vendors = RestService.For<IVendorApi>(
-                baseAddress.ToString(),
-                new RefitSettings
-                {
-                    AuthorizationHeaderValueGetter = getToken
-                });
+            Vendors = RestService.For<IVendorApi>(client);
         }
 
         public ISkillManagementApi Skills { get; set; }
@@ -58,5 +56,22 @@ namespace Alexa.NET.Management
 
         public IAccountLinkingApi AccountLinking { get; set; }
 
+    }
+
+    public class NoSchemeAuthenticationHeaderClient : DelegatingHandler
+    {
+        private readonly Func<Task<string>> GetToken;
+
+        public NoSchemeAuthenticationHeaderClient(Func<Task<string>> getToken):base(new HttpClientHandler())
+        {
+            GetToken = getToken;
+        }
+
+        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        {
+            var token = await GetToken();
+            request.Headers.TryAddWithoutValidation("Authorization", token);
+            return await base.SendAsync(request, cancellationToken).ConfigureAwait(false);
+        }
     }
 }

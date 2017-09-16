@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Alexa.NET.Management.Skills;
 using Refit;
@@ -9,14 +10,9 @@ namespace Alexa.NET.Management.Internals
     {
         private IClientInteractionModelApi Client { get; }
 
-        public InteractionModelApi(Uri baseAddress, Func<Task<string>> getToken)
+        public InteractionModelApi(HttpClient httpClient)
         {
-            Client = RestService.For<IClientInteractionModelApi>(
-                baseAddress.ToString(),
-                new RefitSettings
-                {
-                    AuthorizationHeaderValueGetter = getToken
-                });
+            Client = RestService.For<IClientInteractionModelApi>(httpClient);
         }
 
         public Task<SkillInteraction> Get(string skillId, string locale)

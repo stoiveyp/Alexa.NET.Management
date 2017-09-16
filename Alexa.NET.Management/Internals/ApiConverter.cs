@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Alexa.NET.Management.Api;
 using Newtonsoft.Json;
@@ -8,20 +9,26 @@ namespace Alexa.NET.Management.Internals
 {
     public class ApiConverter:JsonConverter
     {
-        private readonly Dictionary<string, Type> Mapping;
-
-        public ApiConverter() : this(new Dictionary<string, Type>
+        private static readonly Dictionary<String, Type> DefaultMapping = new Dictionary<string, Type>
         {
             {"custom", typeof(CustomApi)},
             {"flashBriefing", typeof(FlashBriefingApi)},
             {"video", typeof(VideoApi)},
             {"smartHome", typeof(SmartHomeApi)},
             {"householdList", typeof(HouseholdListApi)}
-        }){}
+        };
+
+        private readonly Dictionary<string, Type> Mapping;
+
+        public ApiConverter() : this(DefaultMapping){}
 
         public ApiConverter(Dictionary<string, Type> mapping)
         {
-            Mapping = mapping;
+            Mapping = (mapping ?? new Dictionary<string, Type>());
+            foreach (var kvp in DefaultMapping)
+            {
+                Mapping.Add(kvp.Key,kvp.Value);
+            }
         }
 
 

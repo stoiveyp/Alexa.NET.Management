@@ -4,7 +4,7 @@ using Refit;
 
 namespace Alexa.NET.Management
 {
-    [Headers("Authorization: Bearer")]
+    [Headers("Authorization")]
     public interface IVendorApi
     {
         [Get("/vendors")]

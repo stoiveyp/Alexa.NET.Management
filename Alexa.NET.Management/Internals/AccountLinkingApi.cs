@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Alexa.NET.Management.AccountLinking;
@@ -11,14 +12,9 @@ namespace Alexa.NET.Management.Internals
     {
         private IClientAccountLinkingApi Client { get; }
 
-        public AccountLinkingApi(Uri baseAddress, Func<Task<string>> getToken)
+        public AccountLinkingApi(HttpClient httpClient)
         {
-            Client = RestService.For<IClientAccountLinkingApi>(
-                baseAddress.ToString(),
-                new RefitSettings
-                {
-                    AuthorizationHeaderValueGetter = getToken
-                });
+            Client = RestService.For<IClientAccountLinkingApi>(httpClient);
         }
 
         public async Task<AccountLinkData> Get(string skillId)

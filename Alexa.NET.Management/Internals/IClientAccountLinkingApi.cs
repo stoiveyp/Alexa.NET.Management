@@ -7,7 +7,7 @@ using Refit;
 
 namespace Alexa.NET.Management.Internals
 {
-    [Headers("Authorization: Bearer")]
+    [Headers("Authorization")]
     public interface IClientAccountLinkingApi
     {
         [Get("/skills/{skillId}/accountLinkingClient")]
