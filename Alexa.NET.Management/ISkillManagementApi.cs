@@ -5,7 +5,6 @@ using Refit;
 
 namespace Alexa.NET.Management
 {
-    [Headers("Authorization")]
     public interface ISkillManagementApi
     {
         [Get("/skills/{skillId}")]

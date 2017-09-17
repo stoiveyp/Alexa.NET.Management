@@ -7,7 +7,6 @@ using Refit;
 
 namespace Alexa.NET.Management.Internals
 {
-    [Headers("Authorization")]
     public interface IClientInteractionModelApi
     {
         [Get("/skills/{skillId}/interactionModel/locales/{locale}")]
