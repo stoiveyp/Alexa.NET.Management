@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using Alexa.NET.Management.Api;
 using Alexa.NET.Management.Internals;
+using Alexa.NET.Management.Manifest;
 using Alexa.NET.Management.Skills;
 using Newtonsoft.Json;
 using Xunit;
@@ -27,6 +28,17 @@ namespace Alexa.NET.Management.Tests
             var customApi = manifest.Apis.First() as CustomApi;
             Assert.NotNull(customApi);
             Assert.Equal(customApi.Endpoint.Uri,GlobalCustomEndpoint);
+        }
+
+        [Fact]
+        public void GadgetSupportDeserializesCorrectly()
+        {
+            var support = GetFromFile<GadgetSupport>("Examples/GadgetSupport.json");
+
+            Assert.Equal(GadgetRequirement.Required,support.Requirement);
+            Assert.Equal(1,support.MinPlayers);
+            Assert.Equal(3,support.MaxPlayers);
+            Assert.Equal(4,support.MinButtons);
         }
 
         private T GetFromFile<T>(string path)

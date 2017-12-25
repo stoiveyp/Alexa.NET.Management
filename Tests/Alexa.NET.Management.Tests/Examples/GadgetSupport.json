@@ -1,0 +1,6 @@
+﻿{
+  "requirement": "REQUIRED", // or "OPTIONAL"
+  "numPlayersMin": 1,
+  "numPlayersMax": 3, // or null
+  "minGadgetButtons": 4
+}
