@@ -19,5 +19,8 @@ namespace Alexa.NET.Management.Manifest
 
         [JsonProperty("distributionCountries")]
         public string[] DistributionCountries { get; set; }
+
+        [JsonProperty("gadgetSupport",NullValueHandling = NullValueHandling.Ignore)]
+        public GadgetSupport GadgetSupport { get; set; }
     }
 }
