@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Alexa.NET.Management.Skills;
 using Newtonsoft.Json;
@@ -7,14 +8,15 @@ namespace Alexa.NET.Management
 {
     public interface ISkillManagementApi
     {
-        [Get("/skills/{skillId}")]
-        Task<Skill> Get(string skillId);
+        [Get("/skills/{skillId}/stages/{stage}/manifest")]
+        Task<Skill> Get(string skillId, string stage);
 
         [Post("/skills/{vendorId}")]
         Task<SkillId> Create(string vendorId, [Body]Skill skill);
 
-        [Put("/skills/{skillId}")]
-        Task<SkillId> Update(string skillId, [Body] Skill skill);
+
+        [Put("/skills/{skillId}/stages/{stage}/manifest")]
+        Task<SkillId> Update(string skillId, string stage, [Body] Skill skill);
 
         [Get("/skills/{skillId}/status")]
         Task<SkillStatus> Status(string skillId);

@@ -12,8 +12,7 @@ namespace Alexa.NET.Management
 {
     public class ManagementApi
     {
-        private const string V0BaseAddress = "https://api.amazonalexa.com/v0";
-        private const string V1BaseAddress = "https://api.amazonalexa.com/v1";
+        public const string V1BaseAddress = "https://api.amazonalexa.com/v1";
 
         public ManagementApi(string token) : this(new Uri(V1BaseAddress, UriKind.Absolute), token)
         {
