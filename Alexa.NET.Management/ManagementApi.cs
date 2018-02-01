@@ -13,13 +13,14 @@ namespace Alexa.NET.Management
     public class ManagementApi
     {
         private const string V0BaseAddress = "https://api.amazonalexa.com/v0";
+        private const string V1BaseAddress = "https://api.amazonalexa.com/v1";
 
-        public ManagementApi(string token) : this(new Uri(V0BaseAddress, UriKind.Absolute), token)
+        public ManagementApi(string token) : this(new Uri(V1BaseAddress, UriKind.Absolute), token)
         {
 
         }
 
-        public ManagementApi(Func<Task<string>> getToken) : this(new Uri(V0BaseAddress, UriKind.Absolute), getToken)
+        public ManagementApi(Func<Task<string>> getToken) : this(new Uri(V1BaseAddress, UriKind.Absolute), getToken)
         {
 
         }
