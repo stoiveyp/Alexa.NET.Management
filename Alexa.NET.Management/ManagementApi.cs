@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Alexa.NET.Management.Internals;
@@ -31,15 +32,8 @@ namespace Alexa.NET.Management
         public ManagementApi(Uri baseAddress, Func<Task<string>> getToken)
         {
             var client = new HttpClient(new NoSchemeAuthenticationHeaderClient(getToken)) {BaseAddress = baseAddress};
-            Skills = RestService.For<ISkillManagementApi>(
-                client,
-                new RefitSettings
-                {
-                    JsonSerializerSettings = new JsonSerializerSettings
-                    {
-                        Converters = new List<JsonConverter>(new[] { new ApiConverter(null) })
-                    }
-                });
+
+            Skills = new SkillManagementApi(client);
 
             AccountLinking = new AccountLinkingApi(client);
 

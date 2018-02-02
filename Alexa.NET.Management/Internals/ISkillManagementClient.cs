@@ -1,14 +1,16 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
-using Alexa.NET.Management.Internals;
 using Alexa.NET.Management.Skills;
 using Refit;
 
-namespace Alexa.NET.Management
+namespace Alexa.NET.Management.Internals
 {
-    public interface ISkillManagementApi
+    public interface ISkillManagementClient
     {
-        Task<SkillStatus> Status(string skillId, params string[] resource);
+        [Get("/skills/{skillId}/status")]
+        Task<SkillStatus> Status(string skillId, [Query]SkillResourceContainer container);
 
         [Get("/skills/{skillId}/stages/{stage}/manifest")]
         Task<Skill> Get(string skillId, string stage);
@@ -37,4 +39,3 @@ namespace Alexa.NET.Management
         Task<InvocationResponse> SimulationResult(string skillId, string simulationId);
     }
 }
-
