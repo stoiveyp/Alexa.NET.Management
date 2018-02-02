@@ -6,9 +6,6 @@ namespace Alexa.NET.Management.Skills
 {
     public class LastModifiedInformation
     {
-        [JsonProperty("time")]
-        public DateTime Time { get; set; }
-
         [JsonProperty("status"), JsonConverter(typeof(StringEnumConverter))]
         public SkillStatusState Status { get; set; }
     }

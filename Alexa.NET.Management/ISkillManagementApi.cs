@@ -18,7 +18,7 @@ namespace Alexa.NET.Management
         [Put("/skills/{skillId}/stages/{stage}/manifest")]
         Task<SkillId> Update(string skillId, string stage, [Body] Skill skill);
 
-        [Get("/skills/{skillId}/status")]
+        [Get("/skills/{skillId}/status?resource=manifest&resource=interactionModel")]
         Task<SkillStatus> Status(string skillId);
 
         [Post("/skills/{skillId}/submit")]
