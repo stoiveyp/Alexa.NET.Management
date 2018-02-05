@@ -15,25 +15,20 @@ namespace Alexa.NET.Management.Internals
             Client = RestService.For<IClientInteractionModelApi>(httpClient);
         }
 
-        public Task<SkillInteraction> Get(string skillId, string locale)
+        public Task<SkillInteraction> Get(string skillId, string stage, string locale)
         {
-            return Client.Get(skillId, locale);
+            return Client.Get(skillId, stage, locale);
         }
 
-        public async Task<string> GetTag(string skillId, string locale)
+        public async Task<string> GetTag(string skillId, string stage, string locale)
         {
-            var message = await Client.GetTag(skillId, locale);
+            var message = await Client.GetTag(skillId, stage, locale);
             return message.Headers.ETag.Tag;
         }
 
-        public Task Update(string skillId, string locale, SkillInteraction interaction)
+        public Task Update(string skillId, string locale, string stage, SkillInteraction interaction)
         {
-            return Client.Update(skillId, locale, interaction);
-        }
-
-        public Task<BuildStatus> Status(string skillId, string locale)
-        {
-            return Client.Status(skillId, locale);
+            return Client.Update(skillId, stage, locale, interaction);
         }
     }
 }

@@ -9,32 +9,18 @@ namespace Alexa.NET.Management
     public interface ISkillManagementApi
     {
         Task<SkillStatus> Status(string skillId, params string[] resource);
-
-        [Get("/skills/{skillId}/stages/{stage}/manifest")]
         Task<Skill> Get(string skillId, string stage);
-
-        [Post("/skills/{vendorId}")]
         Task<SkillId> Create(string vendorId, [Body]Skill skill);
-
-
-        [Put("/skills/{skillId}/stages/{stage}/manifest")]
         Task<SkillId> Update(string skillId, string stage, [Body] Skill skill);
-
-        [Post("/skills/{skillId}/submit")]
         Task Submit(string skillId);
-
-        [Post("/skills/{skillId}/withdraw")]
         Task Withdraw(string skillId, [Body]WithdrawalRequest request);
-
-        [Post("/skills/{skillId}/invocations")]
         Task<InvocationResponse> Invoke(string skillId, [Body]InvocationRequest request);
-
-        [Post("/skills/{skillId}/simulations")]
         Task<InvocationResponse> Simulate(string skillId, [Body] SimulationRequest request);
-
-
-        [Get("/skills/{skillId}/simulations/{simulationId}")]
         Task<InvocationResponse> SimulationResult(string skillId, string simulationId);
+        Task<SkillListResponse> List(string vendorId);
+        Task<SkillListResponse> List(string vendorId, params string[] container);
+        Task<SkillListResponse> List(string vendorId, int maxResults);
+        Task<SkillListResponse> List(string vendorId, int maxResults, string nextToken);
     }
 }
 

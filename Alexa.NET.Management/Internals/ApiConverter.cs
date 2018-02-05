@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Alexa.NET.Management.Api;
+using Alexa.NET.Management.Skills;
 using Newtonsoft.Json;
 
 namespace Alexa.NET.Management.Internals
@@ -11,11 +12,11 @@ namespace Alexa.NET.Management.Internals
     {
         private static readonly Dictionary<String, Type> DefaultMapping = new Dictionary<string, Type>
         {
-            {"custom", typeof(CustomApi)},
-            {"flashBriefing", typeof(FlashBriefingApi)},
-            {"video", typeof(VideoApi)},
-            {"smartHome", typeof(SmartHomeApi)},
-            {"householdList", typeof(HouseholdListApi)}
+            {SkillApi.Custom, typeof(CustomApi)},
+            {SkillApi.FlashBriefing, typeof(FlashBriefingApi)},
+            {SkillApi.Video, typeof(VideoApi)},
+            {SkillApi.SmartHome, typeof(SmartHomeApi)},
+            {SkillApi.HouseholdList, typeof(HouseholdListApi)}
         };
 
         private readonly Dictionary<string, Type> Mapping;

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using Alexa.NET.Management.Skills;
 using Newtonsoft.Json;
@@ -11,11 +9,11 @@ namespace Alexa.NET.Management.Internals
 {
     public class SkillManagementApi : ISkillManagementApi
     {
-        private ISkillManagementClient Inner { get; }
+        private IClientSkillManagementApi Inner { get; }
 
         public SkillManagementApi(HttpClient client)
         {
-            Inner = RestService.For<ISkillManagementClient>(
+            Inner = RestService.For<IClientSkillManagementApi>(
                 client,
                 new RefitSettings
                 {
@@ -69,6 +67,26 @@ namespace Alexa.NET.Management.Internals
         public Task<InvocationResponse> SimulationResult(string skillId, string simulationId)
         {
             return Inner.SimulationResult(skillId, simulationId);
+        }
+
+        public Task<SkillListResponse> List(string vendorId)
+        {
+            return Inner.List(vendorId);
+        }
+
+        public Task<SkillListResponse> List(string vendorId, params string[] container)
+        {
+            return Inner.List(vendorId, new SkillIdContainer(container));
+        }
+
+        public Task<SkillListResponse> List(string vendorId, int maxResults)
+        {
+            return Inner.List(vendorId, maxResults);
+        }
+
+        public Task<SkillListResponse> List(string vendorId, int maxResults, string nextToken)
+        {
+            return Inner.List(vendorId, maxResults, nextToken);
         }
     }
 }

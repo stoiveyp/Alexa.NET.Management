@@ -40,7 +40,11 @@ namespace Alexa.NET.Management
             InteractionModel = new InteractionModelApi(client);
 
             Vendors = RestService.For<IVendorApi>(client);
+
+            Enablement = new SkillEnablementApi(client);
         }
+
+        public ISkillEnablementApi Enablement { get; set; }
 
         public ISkillManagementApi Skills { get; set; }
 

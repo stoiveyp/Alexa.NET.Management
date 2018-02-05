@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Alexa.NET.Management.Skills;
 using Refit;
 
 namespace Alexa.NET.Management.Internals
 {
-    public interface ISkillManagementClient
+    public interface IClientSkillManagementApi
     {
         [Get("/skills/{skillId}/status")]
         Task<SkillStatus> Status(string skillId, [Query]SkillResourceContainer container);
@@ -37,5 +34,17 @@ namespace Alexa.NET.Management.Internals
 
         [Get("/skills/{skillId}/simulations/{simulationId}")]
         Task<InvocationResponse> SimulationResult(string skillId, string simulationId);
+
+        [Get("/skills?vendorId={vendorId}")]
+        Task<SkillListResponse> List(string vendorId);
+
+        [Get("/skills?vendorId={vendorId}")]
+        Task<SkillListResponse> List(string vendorId, [Query]SkillIdContainer container);
+
+        [Get("/skills?vendorId={vendorId}")]
+        Task<SkillListResponse> List(string vendorId, int maxResults);
+
+        [Get("/skills?vendorId={vendorId}")]
+        Task<SkillListResponse> List(string vendorId, int maxResults, string nextToken);
     }
 }

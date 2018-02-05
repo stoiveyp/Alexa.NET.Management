@@ -28,5 +28,8 @@ namespace Alexa.NET.Management.AccountLinking
 
         [JsonProperty("acessTokenScheme"),JsonConverter(typeof(StringEnumConverter))]
         public AccessTokenScheme AccessTokenScheme { get; set; }
+
+        [JsonProperty("defaultTokenExpirationInSeconds")]
+        public int DefaultTokenExpirationInSeconds { get; set; }
     }
 }

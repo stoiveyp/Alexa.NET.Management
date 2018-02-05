@@ -1,0 +1,14 @@
+﻿{
+  "skills": [
+    {
+      "lastUpdated": "2017-07-11T19:29:57.120Z",
+      "nameByLocale": {
+        "en-US": "example"
+      },
+      "stage": "DEVELOPMENT",
+      "apis": ["custom"],
+      "publicationStatus": "PUBLISHED",
+      "skillId": "amzn1.ask.skill.6acdbdf8-8420-440e-823e-aaaaaaaabbbb"
+    }
+  ]
+}
