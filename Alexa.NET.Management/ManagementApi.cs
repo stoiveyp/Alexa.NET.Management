@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Alexa.NET.Management.Internals;
@@ -12,14 +13,14 @@ namespace Alexa.NET.Management
 {
     public class ManagementApi
     {
-        private const string V0BaseAddress = "https://api.amazonalexa.com/v0";
+        public const string V1BaseAddress = "https://api.amazonalexa.com/v1";
 
-        public ManagementApi(string token) : this(new Uri(V0BaseAddress, UriKind.Absolute), token)
+        public ManagementApi(string token) : this(new Uri(V1BaseAddress, UriKind.Absolute), token)
         {
 
         }
 
-        public ManagementApi(Func<Task<string>> getToken) : this(new Uri(V0BaseAddress, UriKind.Absolute), getToken)
+        public ManagementApi(Func<Task<string>> getToken) : this(new Uri(V1BaseAddress, UriKind.Absolute), getToken)
         {
 
         }
@@ -31,22 +32,19 @@ namespace Alexa.NET.Management
         public ManagementApi(Uri baseAddress, Func<Task<string>> getToken)
         {
             var client = new HttpClient(new NoSchemeAuthenticationHeaderClient(getToken)) {BaseAddress = baseAddress};
-            Skills = RestService.For<ISkillManagementApi>(
-                client,
-                new RefitSettings
-                {
-                    JsonSerializerSettings = new JsonSerializerSettings
-                    {
-                        Converters = new List<JsonConverter>(new[] { new ApiConverter(null) })
-                    }
-                });
+
+            Skills = new SkillManagementApi(client);
 
             AccountLinking = new AccountLinkingApi(client);
 
             InteractionModel = new InteractionModelApi(client);
 
             Vendors = RestService.For<IVendorApi>(client);
+
+            Enablement = new SkillEnablementApi(client);
         }
+
+        public ISkillEnablementApi Enablement { get; set; }
 
         public ISkillManagementApi Skills { get; set; }
 

@@ -6,6 +6,6 @@ namespace Alexa.NET.Management.Skills
     public class InvocationSkillResponse
     {
         [JsonProperty("body")]
-        public SkillResponse Response { get; set; }
+        public SkillListResponse Response { get; set; }
     }
 }

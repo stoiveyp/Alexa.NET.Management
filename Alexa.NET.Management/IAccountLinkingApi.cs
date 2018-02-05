@@ -9,7 +9,8 @@ namespace Alexa.NET.Management
 {
     public interface IAccountLinkingApi
     {
-        Task<AccountLinkData> Get(string skillId);
+        Task<AccountLinkData> Get(string skillId, string stage);
+        Task<bool> Delete(string skillId);
         Task Update(string skillId, AccountLinkData accountLinkData);
     }
 }

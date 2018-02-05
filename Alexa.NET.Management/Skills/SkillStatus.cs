@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Alexa.NET.Management.Skills
 {
@@ -6,5 +7,8 @@ namespace Alexa.NET.Management.Skills
     {
         [JsonProperty("manifest")]
         public StatusManifest Manifest { get; set; }
+
+        [JsonProperty("interactionModel")]
+        public Dictionary<string,StatusManifest> InteractionModel { get; set; }
     }
 }
