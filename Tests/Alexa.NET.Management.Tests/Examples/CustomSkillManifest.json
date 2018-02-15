@@ -1,5 +1,5 @@
 ﻿{
-  "skillManifest": {
+  "manifest": {
     "publishingInformation": {
       "locales": {
         "en-US": {
@@ -101,4 +101,4 @@
       }
     }
   }
-}
+} 
