@@ -13,10 +13,8 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyVersion>1.0.10.0</AssemblyVersion>
     <FileVersion>1.0.10.0</FileVersion>
-    <PackageReleaseNotes>Now UWP can honour NetStandard 2.0 the package has been updated to NetStandard1.6
-
-This has meant it can now directly reference the Alexa.NET package when dealing with skill invocation.
-</PackageReleaseNotes>
+    <PackageReleaseNotes>Fix issue where skill update incorrectly serialized manifest (included nulls, which caused bad request errors in update API)
+Ensured stage name was set to lowercase when updating skill to stop 404s occurring</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
