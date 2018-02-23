@@ -19,7 +19,8 @@ namespace Alexa.NET.Management.Internals
                 {
                     JsonSerializerSettings = new JsonSerializerSettings
                     {
-                        Converters = new List<JsonConverter>(new[] { new ApiConverter(null) })
+                        Converters = new List<JsonConverter>(new[] { new ApiConverter(null) }),
+                        NullValueHandling = NullValueHandling.Ignore
                     }
                 });
         }
@@ -36,7 +37,7 @@ namespace Alexa.NET.Management.Internals
 
         public Task<SkillId> Update(string skillId, string stage, Skill skill)
         {
-            return Inner.Update(skillId, stage, skill);
+            return Inner.Update(skillId, stage.ToLower(), skill);
         }
 
         public Task<SkillStatus> Status(string skillId, params string[] resources)
