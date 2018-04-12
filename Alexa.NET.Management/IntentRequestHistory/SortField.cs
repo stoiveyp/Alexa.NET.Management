@@ -1,4 +1,4 @@
-﻿namespace Alexa.NET.Management.IntentHistory
+﻿namespace Alexa.NET.Management.IntentRequestHistory
 {
     public static class SortField
     {

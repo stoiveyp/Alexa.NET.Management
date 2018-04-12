@@ -1,3 +1,124 @@
 ﻿{
-
+  "body": {
+    "_links": {
+      "self": {
+        "href": "v1/skills/{skillId}/history/intentRequests?nextToken=VWB111111111&maxResults=5&sortDirection=desc&sortField=intent.confidence.bin&locale=en-US&locale=en-GB&locale=de-DE&intent.confidence.bin=HIGH&intent.confidence.bin=MEDIUM&stage=development&publicationStatus=CERTIFICATION&dialogAct.name=Dialog.ElicitSlot&dialogAct.name=Dialog.ConfirmSlot&intent.slots.name=answer&utteranceText=answer&intent.name=AnswerIntent&interactionType=MODAL"
+      },
+      "next": {
+        "href": "v1/skills/{skillId}/history/intentRequests?nextToken=VXjbbbbbbbbb&maxResults=5&sortDirection=desc&sortField=intent.confidence.bin&locale=en-US&locale=en-GB&locale=de-DE&intent.confidence.bin=HIGH&intent.confidence.bin=MEDIUM&stage=development&publicationStatus=CERTIFICATION&dialogAct.name=Dialog.ElicitSlot&dialogAct.name=Dialog.ConfirmSlot&intent.slots.name=answer&utteranceText=answer&intent.name=AnswerIntent&interactionType=MODAL"
+      }
+    },
+    "nextToken": "VXjbbbbbbbbb",
+    "totalCount": 15,
+    "skillId": "amzn1.ask.skill.12345678-1234-1234-123456789123",
+    "startIndex": 0,
+    "isTruncated": true,
+    "items": [
+      {
+        "dialogAct": {
+          "name": "Dialog.ConfirmSlot"
+        },
+        "intent": {
+          "name": "AnswerIntent",
+          "confidence": {
+            "bin": "HIGH"
+          },
+          "slots": {
+            "answer": {
+              "name": "answer"
+            }
+          }
+        },
+        "locale": "en-GB",
+        "interactionType": "MODAL",
+        "stage": "development",
+        "publicationStatus": "CERTIFICATION",
+        "utteranceText": "the answer is k"
+      },
+      {
+        "dialogAct": {
+          "name": "Dialog.ConfirmSlot"
+        },
+        "intent": {
+          "name": "AnswerIntent",
+          "confidence": {
+            "bin": "HIGH"
+          },
+          "slots": {
+            "answer": {
+              "name": "answer"
+            }
+          }
+        },
+        "locale": "en-GB",
+        "interactionType": "MODAL",
+        "stage": "development",
+        "publicationStatus": "CERTIFICATION",
+        "utteranceText": "ask game trivia the answer is elephant"
+      },
+      {
+        "dialogAct": {
+          "name": "Dialog.ElicitSlot"
+        },
+        "intent": {
+          "name": "AnswerIntent",
+          "confidence": {
+            "bin": "HIGH"
+          },
+          "slots": {
+            "answer": {
+              "name": "answer"
+            }
+          }
+        },
+        "locale": "en-US",
+        "interactionType": "MODAL",
+        "stage": "development",
+        "publicationStatus": "CERTIFICATION",
+        "utteranceText": "the answer is apollo"
+      },
+      {
+        "dialogAct": {
+          "name": "Dialog.ConfirmSlot"
+        },
+        "intent": {
+          "name": "AnswerIntent",
+          "confidence": {
+            "bin": "MEDIUM"
+          },
+          "slots": {
+            "answer": {
+              "name": "answer"
+            }
+          }
+        },
+        "locale": "en-US",
+        "interactionType": "MODAL",
+        "stage": "development",
+        "publicationStatus": "CERTIFICATION",
+        "utteranceText": "the answer is tetris"
+      },
+      {
+        "dialogAct": {
+          "name": "Dialog.ConfirmSlot"
+        },
+        "intent": {
+          "name": "AnswerIntent",
+          "confidence": {
+            "bin": "MEDIUM"
+          },
+          "slots": {
+            "answer": {
+              "name": "answer"
+            }
+          }
+        },
+        "locale": "en-US",
+        "interactionType": "MODAL",
+        "stage": "development",
+        "publicationStatus": "CERTIFICATION",
+        "utteranceText": "the answer is washington d. c."
+      }
+    ]
+  }
 }

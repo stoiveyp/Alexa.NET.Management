@@ -5,7 +5,7 @@ using Alexa.NET.Management.Api;
 using Alexa.NET.Management.Skills;
 using Refit;
 
-namespace Alexa.NET.Management.IntentHistory
+namespace Alexa.NET.Management.IntentRequestHistory
 {
     public class IntentRequestHistoryRequest
     {

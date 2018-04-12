@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace Alexa.NET.Management.IntentHistory
+namespace Alexa.NET.Management.IntentRequestHistory
 {
-    public class IntentRequestHistoryResponse
+    public class IntentRequestHistoryResponseBody
     {
         [JsonProperty("_links")]
         public Dictionary<string, IntentRequestHistoryLink> Links { get; set; }
@@ -24,6 +24,6 @@ namespace Alexa.NET.Management.IntentHistory
         public string IsTruncated { get; set; }
 
         [JsonProperty("items")]
-        public IntentRequestHistoryItem Items { get; set; }
+        public IntentRequestHistoryItem[] Items { get; set; }
     }
 }

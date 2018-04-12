@@ -2,7 +2,7 @@
 using Alexa.NET.Management.Skills;
 using Newtonsoft.Json;
 
-namespace Alexa.NET.Management.IntentHistory
+namespace Alexa.NET.Management.IntentRequestHistory
 {
     public class IntentRequestHistoryItem
     {

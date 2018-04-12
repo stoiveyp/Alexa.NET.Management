@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Alexa.NET.Management.IntentHistory;
+using Alexa.NET.Management.IntentRequestHistory;
 using Refit;
 
 namespace Alexa.NET.Management
