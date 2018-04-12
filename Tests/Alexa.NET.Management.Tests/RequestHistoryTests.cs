@@ -20,13 +20,13 @@ namespace Alexa.NET.Management.Tests
             {
                 var api = new ManagementApi("wibble");
 
-                var request = new IntentHistoryRequest
+                var request = new IntentRequestHistoryRequest
                 {
                     NextToken = "yyy"
                 };
 
 
-                var response = await api.RequestHistory.Get("xxx", request);
+                var response = await api.IntentRequestHistory.Get("xxx", request);
                 Assert.NotNull(response);
             }
             catch (ApiException ex)
@@ -45,14 +45,15 @@ namespace Alexa.NET.Management.Tests
             {
                 var api = new ManagementApi("wibble");
 
-                var request = new IntentHistoryRequest
+                var request = new IntentRequestHistoryRequest
                 {
                     NextToken = "yyy",
-                    Stage = SkillStage.DEVELOPMENT
+                    Stage = SkillStage.DEVELOPMENT,
+                    InteractionType = InteractionType.ONE_SHOT
                 };
 
 
-                var response = await api.RequestHistory.Get("xxx", request);
+                var response = await api.IntentRequestHistory.Get("xxx", request);
                 Assert.NotNull(response);
             }
             catch (ApiException ex)
@@ -60,7 +61,7 @@ namespace Alexa.NET.Management.Tests
                 uri = ex.Uri.PathAndQuery;
             }
 
-            Assert.Equal("/v1/skills/xxx/history/intentRequests?nextToken=yyy&stage=DEVELOPMENT", uri);
+            Assert.Equal("/v1/skills/xxx/history/intentRequests?nextToken=yyy&stage=DEVELOPMENT&interactionType=ONE_SHOT", uri);
         }
     }
 }

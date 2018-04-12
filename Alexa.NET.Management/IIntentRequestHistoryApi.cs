@@ -4,9 +4,9 @@ using Refit;
 
 namespace Alexa.NET.Management
 {
-    public interface IRequestHistoryApi
+    public interface IIntentRequestHistoryApi
     {
         [Get("/skills/{skillId}/history/intentRequests")]
-        Task<IntentHistoryResponse> Get(string skillId, IntentHistoryRequest request);
+        Task<IntentRequestHistoryResponse> Get(string skillId, IntentRequestHistoryRequest request);
     }
 }

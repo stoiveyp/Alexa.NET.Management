@@ -7,7 +7,7 @@ using Refit;
 
 namespace Alexa.NET.Management.IntentHistory
 {
-    public class IntentHistoryRequest
+    public class IntentRequestHistoryRequest
     {
         [AliasAs("nextToken")]
         public string NextToken { get; set; }
