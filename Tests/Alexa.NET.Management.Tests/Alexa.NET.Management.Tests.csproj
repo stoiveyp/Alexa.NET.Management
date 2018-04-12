@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <None Remove="Examples\SkillManifest.json" />
+    <None Remove="Examples\IntentRequestHistoryResponse.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,5 +31,10 @@
     <None Update="Examples\SkillListResponse.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Examples\IntentRequestHistoryResponse.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>
