@@ -13,8 +13,8 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyVersion>1.0.10.0</AssemblyVersion>
     <FileVersion>1.0.10.0</FileVersion>
-    <PackageReleaseNotes>Fix issue where skill update incorrectly serialized manifest (included nulls, which caused bad request errors in update API)
-Ensured stage name was set to lowercase when updating skill to stop 404s occurring</PackageReleaseNotes>
+    <PackageReleaseNotes>Add support for the Intent Request History API
+</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
