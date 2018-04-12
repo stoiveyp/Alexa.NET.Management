@@ -42,7 +42,11 @@ namespace Alexa.NET.Management
             Vendors = RestService.For<IVendorApi>(client);
 
             Enablement = new SkillEnablementApi(client);
+
+            RequestHistory = RestService.For<IRequestHistoryApi>(client);
         }
+
+        public IRequestHistoryApi RequestHistory { get; set; }
 
         public ISkillEnablementApi Enablement { get; set; }
 
