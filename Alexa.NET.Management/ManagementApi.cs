@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Reflection;
-using System.Threading;
 using System.Threading.Tasks;
 using Alexa.NET.Management.Internals;
 using Newtonsoft.Json;
@@ -15,23 +14,41 @@ namespace Alexa.NET.Management
     {
         public const string V1BaseAddress = "https://api.amazonalexa.com/v1";
 
-        public ManagementApi(string token) : this(new Uri(V1BaseAddress, UriKind.Absolute), token)
+        public ManagementApi(string token) : this(new Uri(V1BaseAddress, UriKind.Absolute), token, null)
         {
 
         }
 
-        public ManagementApi(Func<Task<string>> getToken) : this(new Uri(V1BaseAddress, UriKind.Absolute), getToken)
+        public ManagementApi(string token, HttpMessageHandler handler) : this(new Uri(V1BaseAddress, UriKind.Absolute), token, handler)
         {
 
         }
 
-        public ManagementApi(Uri baseAddress, string token) : this(baseAddress, () => Task.FromResult(token))
+        public ManagementApi(Func<Task<string>> getToken) : this(new Uri(V1BaseAddress, UriKind.Absolute), getToken, null)
+        {
+
+        }
+
+        public ManagementApi(Func<Task<string>> getToken, HttpMessageHandler handler) : this(new Uri(V1BaseAddress, UriKind.Absolute), getToken, handler)
+        {
+
+        }
+
+        public ManagementApi(Uri baseAddress, string token) : this(baseAddress, () => Task.FromResult(token), null)
         {
         }
 
-        public ManagementApi(Uri baseAddress, Func<Task<string>> getToken)
+        public ManagementApi(Uri baseAddress, string token, HttpMessageHandler handler) : this(baseAddress, () => Task.FromResult(token), handler)
         {
-            var client = new HttpClient(new NoSchemeAuthenticationHeaderClient(getToken)) {BaseAddress = baseAddress};
+        }
+
+        public ManagementApi(Uri baseAddress, Func<Task<string>> getToken) : this(baseAddress, getToken, null)
+        {
+        }
+
+        public ManagementApi(Uri baseAddress, Func<Task<string>> getToken, HttpMessageHandler handler)
+        {
+            var client = new HttpClient(new NoSchemeAuthenticationHeaderClient(getToken, handler)) { BaseAddress = baseAddress };
 
             Skills = new SkillManagementApi(client);
 
@@ -44,6 +61,8 @@ namespace Alexa.NET.Management
             Enablement = new SkillEnablementApi(client);
 
             IntentRequestHistory = RestService.For<IIntentRequestHistoryApi>(client);
+
+            SkillValidation = new SkillValidationApi(client);
         }
 
         public IIntentRequestHistoryApi IntentRequestHistory { get; set; }
@@ -57,23 +76,6 @@ namespace Alexa.NET.Management
         public IVendorApi Vendors { get; set; }
 
         public IAccountLinkingApi AccountLinking { get; set; }
-
-    }
-
-    public class NoSchemeAuthenticationHeaderClient : DelegatingHandler
-    {
-        private readonly Func<Task<string>> GetToken;
-
-        public NoSchemeAuthenticationHeaderClient(Func<Task<string>> getToken):base(new HttpClientHandler())
-        {
-            GetToken = getToken;
-        }
-
-        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
-        {
-            var token = await GetToken();
-            request.Headers.TryAddWithoutValidation("Authorization", token);
-            return await base.SendAsync(request, cancellationToken).ConfigureAwait(false);
-        }
+        public ISkillValidationApi SkillValidation { get; set; }
     }
 }
