@@ -12,5 +12,8 @@ namespace Alexa.NET.Management.Internals
 
         [Post("/skills/{skillId}/stage/{stage}/validations")]
         Task<SkillValidationResponse> Submit(string skillId, SkillStage stage, [Body]SkillValidationRequest request);
+
+        [Get("/skills/{skillId}/stages/{stage}/validations/{validationId}")]
+        Task<SkillValidationResponse> Get(string skillId, SkillStage stage, string validationId);
     }
 }

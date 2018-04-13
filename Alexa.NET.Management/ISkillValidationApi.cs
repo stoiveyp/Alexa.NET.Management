@@ -8,5 +8,6 @@ namespace Alexa.NET.Management
     {
         Task<SkillValidationResponse> Submit(string skillId, SkillStage stage);
         Task<SkillValidationResponse> Submit(string skillId, SkillStage stage, params string[] locales);
+        Task<SkillValidationResponse> Get(string skillid, SkillStage development, string validationid);
     }
 }

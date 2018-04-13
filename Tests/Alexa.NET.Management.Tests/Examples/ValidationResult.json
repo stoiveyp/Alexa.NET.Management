@@ -1,0 +1,134 @@
+﻿{
+  "id": "11111111-1111-1111-1111-111111111111",
+  "status": "SUCCESSFUL",
+  "result": {
+    "validations": [
+      {
+        "locale": "en-US",
+        "title": "Not enough example phrases provided",
+        "description": "Required: Provide at least 1 example phrase",
+        "status": "SUCCESSFUL",
+        "importance": "REQUIRED"
+      },
+      {
+        "locale": "en-US",
+        "title": "Too many Example Phrases provided",
+        "description": "Please limit your entry to a maximum of 3 example phrases.",
+        "status": "SUCCESSFUL",
+        "importance": "REQUIRED"
+      },
+      {
+        "locale": "en-US",
+        "title": "Example Phrase has duplicate phrases",
+        "description": "Your example phrases must not be duplicates. Please provide unique entries.",
+        "status": "SUCCESSFUL",
+        "importance": "REQUIRED"
+      },
+      {
+        "locale": "en-US",
+        "title": "Example Phrase too short",
+        "description": "Your example phrase does not meet the minimum character limit of 2 characters.",
+        "status": "SUCCESSFUL",
+        "importance": "REQUIRED"
+      },
+      {
+        "locale": "en-US",
+        "title": "Example Phrase exceeds maximum length",
+        "description": "Your example phrase has exceeded the maximum character limit of 200 characters.",
+        "status": "SUCCESSFUL",
+        "importance": "REQUIRED"
+      },
+      {
+        "locale": "en-US",
+        "title": "Example Phrase contains special characters",
+        "description": "Example phrases can only contain apostrophes, quotation marks, question marks, periods, exclamation points, and commas.",
+        "status": "SUCCESSFUL",
+        "importance": "REQUIRED"
+      },
+      {
+        "locale": "en-US",
+        "title": "Example Phrase cannot be blank",
+        "description": "The example phrase may not be left empty. At least one example phrase must exist.",
+        "status": "SUCCESSFUL",
+        "importance": "REQUIRED"
+      },
+      {
+        "locale": "en-US",
+        "title": "Example Phrase must start with Wake Word",
+        "description": "The example phrase must start with a valid wake word. (i.e. Alexa).",
+        "status": "SUCCESSFUL",
+        "importance": "REQUIRED"
+      },
+      {
+        "locale": "en-US",
+        "title": "Example Phrase must contain invocation name",
+        "description": "Your example phrase must contain the invocation name: [reindeer skill].",
+        "status": "FAILED",
+        "importance": "RECOMMENDED"
+      },
+      {
+        "locale": "en-US",
+        "title": "Example Phrase must contain invocation name",
+        "description": "Your example phrase must contain the invocation name: [reindeer skill].",
+        "status": "FAILED",
+        "importance": "RECOMMENDED"
+      },
+      {
+        "locale": "en-US",
+        "title": "Example Phrase too short",
+        "description": "Your example phrase does not meet the minimum character limit of 2 characters.",
+        "status": "SUCCESSFUL",
+        "importance": "REQUIRED"
+      },
+      {
+        "locale": "en-US",
+        "title": "Example Phrase exceeds maximum length",
+        "description": "Your example phrase has exceeded the maximum character limit of 200 characters.",
+        "status": "SUCCESSFUL",
+        "importance": "REQUIRED"
+      },
+      {
+        "locale": "en-US",
+        "title": "Example Phrase contains special characters",
+        "description": "Your example phrase must not contain special characters. However, '[@, !, #, $, %, &, (, ), *, /, :, {, [, ;, |, \\, <, }, ], ^, >, _]' was found.",
+        "status": "SUCCESSFUL",
+        "importance": "REQUIRED"
+      },
+      {
+        "locale": "en-US",
+        "title": "Example Phrase must contain invocation name",
+        "description": "Your example phrase must contain the invocation name: [reindeer skill].",
+        "status": "FAILED",
+        "importance": "RECOMMENDED"
+      },
+      {
+        "locale": "en-US",
+        "title": "Example Phrase too short",
+        "description": "Your example phrase does not meet the minimum character limit of 2 characters.",
+        "status": "SUCCESSFUL",
+        "importance": "REQUIRED"
+      },
+      {
+        "locale": "en-US",
+        "title": "Example Phrase exceeds maximum length",
+        "description": "Your example phrase has exceeded the maximum character limit of 200 characters.",
+        "status": "SUCCESSFUL",
+        "importance": "REQUIRED"
+      },
+      {
+        "locale": "en-US",
+        "title": "Example Phrase contains special characters",
+        "description": "Your example phrase must not contain special characters. However, '[@, !, #, $, %, &, (, ), *, /, :, {, [, ;, |, \\, <, }, ], ^, >, _]' was found.",
+        "status": "SUCCESSFUL",
+        "importance": "REQUIRED"
+      },
+      {
+        "locale": "en-US",
+        "title": "Example Phrase must contain invocation name",
+        "description": "Your example phrase must contain the invocation name: [reindeer skill].",
+        "status": "FAILED",
+        "importance": "RECOMMENDED"
+      }
+    ]
+  }
+}

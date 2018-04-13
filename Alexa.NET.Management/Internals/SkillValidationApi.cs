@@ -25,5 +25,10 @@ namespace Alexa.NET.Management.Internals
             var request = new SkillValidationRequest {Locales = locales};
             return Client.Submit(skillId, stage, request);
         }
+
+        public Task<SkillValidationResponse> Get(string skillId, SkillStage stage, string validationId)
+        {
+            return Client.Get(skillId, stage, validationId);
+        }
     }
 }
