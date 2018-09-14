@@ -5,6 +5,9 @@ namespace Alexa.NET.Management.AccountLinking
 {
     public class AccountLinkData
     {
+        [JsonProperty("skipOnEnablement")]
+        public bool SkipOnEnablement { get; set; }
+
         [JsonProperty("type"),JsonConverter(typeof(StringEnumConverter))]
         public AccountLinkType Type { get; set; }
 
