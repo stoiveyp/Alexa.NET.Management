@@ -94,6 +94,63 @@ namespace Alexa.NET.Management.Tests
             Assert.Equal("https://url-to-privacy-policy/",privacy.Locales["en-US"].PrivacyPolicyUrl);
 
         }
+
+        [Fact]
+        public void ConsumableGeneratesCorrectly()
+        {
+            var usPublish = new LocalePublishingInformation
+            {
+                Name = "Five-hint pack",
+                SmallIcon = new Uri("https://small-icon-uri", UriKind.Absolute).ToString(),
+                LargeIcon = new Uri("https://large-icon-uri", UriKind.Absolute).ToString(),
+                Summary = "Five hints you can use if you get stuck on a question.",
+                Description = "The five-hint pack gives you five hints you can use any time you can't answer a question. You can use your hints at any point in the game.",
+                ExamplePhrases = new List<string>
+                {
+                    "Alexa, buy hints",
+                    "Alexa, give me a hint"
+                },
+                Keywords = new List<string> { "games" },
+                CustomProductPrompts = new CustomProductPrompts
+                {
+                    PurchasePromptDescription = "{PREMIUM_CONTENT_TITLE} provides you with five hints you can use at any time.",
+                    BoughtCardDescription = "Use your hints in the {PREMIUM_CONTENT_TITLE} when you don't know an answer by asking Alexa to use a hint."
+                }
+            };
+
+            var sub = new ConsumableProduct
+            {
+                ReferenceName = "five_hint_pack",
+                PublishingInformation = new PublishingInformation
+                {
+                    DistributionCountries = new[] { "US" }.ToList(),
+                    Locales = new Dictionary<string, LocalePublishingInformation>
+                    {
+                        {"en-US",usPublish}
+                    },
+                    AmazonMarketplace = new MarketplacePricing
+                    {
+                        ReleaseDateUtc = DateTime.Parse("2018-10-01T01:25Z").ToUniversalTime(),
+                        DefaultPriceListing = new PriceListing
+                        {
+                            Price = (decimal)0.99,
+                            CurrencyCode = "USD"
+                        }
+                    },
+                    TaxInformation = new TaxInformation(TaxCategory.Software)
+                },
+                PrivacyAndCompliance = new PrivacyAndCompliance
+                {
+                    Locales = new Dictionary<string, LocalePrivacyAndCompliance>
+                    {
+                        {"en-US",new LocalePrivacyAndCompliance(new Uri("https://url-to-privacy-policy").ToString())}
+                    }
+                },
+                TestingInstructions = "Start a game. When asked a question, ask Alexa for a hint.",
+                PurchasableState = PurchasableState.Purchasable
+            };
+            Assert.True(Utility.CompareJson(sub, "Consumable.json"));
+        }
     }
 
 }

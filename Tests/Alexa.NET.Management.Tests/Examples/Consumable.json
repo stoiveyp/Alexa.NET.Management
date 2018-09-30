@@ -6,8 +6,8 @@
     "locales": {
       "en-US": {
         "name": "Five-hint pack",
-        "smallIconUri": "small-icon-uri",
-        "largeIconUri": "large-icon-uri",
+        "smallIconUri": "https://small-icon-uri/",
+        "largeIconUri": "https://large-icon-uri/",
         "summary": "Five hints you can use if you get stuck on a question.",
         "description": "The five-hint pack gives you five hints you can use any time you can't answer a question. You can use your hints at any point in the game.",
         "examplePhrases": [
@@ -28,7 +28,7 @@
     ],
     "pricing": {
       "amazon.com": {
-        "releaseDate": "2018-10-01T01:25Z",
+        "releaseDate": "2018-10-01T01:25:00Z",
         "defaultPriceListing": {
           "price": 0.99,
           "currency": "USD"
@@ -42,7 +42,7 @@
   "privacyAndCompliance": {
     "locales": {
       "en-US": {
-        "privacyPolicyUrl": "url-to-privacy-policy"
+        "privacyPolicyUrl": "https://url-to-privacy-policy/"
       }
     }
   },
