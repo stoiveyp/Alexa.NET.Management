@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Alexa.NET.Management.InSkillProduct
 {
-    public class Entitlement:Product
+    public class ConsumableProduct:Product
     {
+        public override string Type => "CONSUMABLE";
     }
 }

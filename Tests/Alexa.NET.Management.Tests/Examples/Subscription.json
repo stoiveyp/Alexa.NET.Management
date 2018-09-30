@@ -10,8 +10,8 @@
     "locales": {
       "en-US": {
         "name": "Treasure Finders Plus",
-        "smallIconUri": "small-icon-uri",
-        "largeIconUri": "large-icon-uri",
+        "smallIconUri": "https://small-icon-uri/",
+        "largeIconUri": "https://large-icon-uri/",
         "summary": "1 new members-only adventure each month + over 10 previously released adventures.",
         "description": "Get access to a new adventure each month for members only, along with a growing collection of over 10 previously released members-only adventures. Includes Crystal Catchers, The Light Stone, The Dark Pool, The Cave Fish, Long Way Down and more.",
         "examplePhrases": [
@@ -32,7 +32,7 @@
     ],
     "pricing": {
       "amazon.com": {
-        "releaseDate": "2018-12-28T01:25Z",
+        "releaseDate": "2018-12-28T01:25:00Z",
         "defaultPriceListing": {
           "price": 1.99,
           "currency": "USD"
@@ -46,7 +46,7 @@
   "privacyAndCompliance": {
     "locales": {
       "en-US": {
-        "privacyPolicyUrl": "url-to-privacy-policy"
+        "privacyPolicyUrl": "https://url-to-privacy-policy/"
       }
     }
   },

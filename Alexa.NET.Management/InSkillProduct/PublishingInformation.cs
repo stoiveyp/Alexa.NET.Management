@@ -7,10 +7,10 @@ namespace Alexa.NET.Management.InSkillProduct
     public class PublishingInformation
     {
         [JsonProperty("locales")]
-        public Dictionary<string, LocalePublishingInformation> Locales { get; } = new Dictionary<string, LocalePublishingInformation>();
+        public Dictionary<string, LocalePublishingInformation> Locales { get; set; } = new Dictionary<string, LocalePublishingInformation>();
 
         [JsonProperty("distributionCountries")]
-        public string DistributionCountries { get; set; }
+        public List<string> DistributionCountries { get; set; } = new List<string>();
 
         [JsonProperty("pricing")]
         public Dictionary<string,MarketplacePricing> Pricing { get; set; }
@@ -30,6 +30,7 @@ namespace Alexa.NET.Management.InSkillProduct
             }
             set
             {
+                Pricing = Pricing ?? new Dictionary<string, MarketplacePricing>();
                 if (Pricing.ContainsKey("amazon.com"))
                 {
                     Pricing.Remove("amazon.com");

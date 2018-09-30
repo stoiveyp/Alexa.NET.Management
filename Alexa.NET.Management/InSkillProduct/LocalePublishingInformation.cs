@@ -16,10 +16,10 @@ namespace Alexa.NET.Management.InSkillProduct
         public string Description { get; set; }
 
         [JsonProperty("smallIconUri")]
-        public Uri SmallIcon { get; set; }
+        public string SmallIcon { get; set; }
 
         [JsonProperty("largeIconUri")]
-        public Uri LargeIcon { get; set; }
+        public string LargeIcon { get; set; }
 
         [JsonProperty("examplePhrases")]
         public List<string> ExamplePhrases { get; set; } = new List<string>();

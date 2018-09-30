@@ -7,7 +7,14 @@ namespace Alexa.NET.Management.InSkillProduct
 {
     public class LocalePrivacyAndCompliance
     {
+        public LocalePrivacyAndCompliance() { }
+
+        public LocalePrivacyAndCompliance(string privacyPolicyUrl)
+        {
+            PrivacyPolicyUrl = privacyPolicyUrl;
+        }
+
         [JsonProperty("privacyPolicyUrl")]
-        public Uri PrivacyPolicyUrl { get; set; }
+        public string PrivacyPolicyUrl { get; set; }
     }
 }

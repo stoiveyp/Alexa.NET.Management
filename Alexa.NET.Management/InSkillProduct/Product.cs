@@ -9,6 +9,9 @@ namespace Alexa.NET.Management.InSkillProduct
             Version = "1.0";
         }
 
+        [JsonProperty("type")]
+        public abstract string Type { get; }
+
         [JsonProperty("version")]
         public string Version { get; }
 

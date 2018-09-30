@@ -4,8 +4,8 @@ using System.Text;
 
 namespace Alexa.NET.Management.InSkillProduct
 {
-    public class Subscription:Product
+    public class EntitlementProduct:Product
     {
-        public SubscriptionInformation SubscriptionInformation { get; set; }
+        public override string Type => "ENTITLEMENT";
     }
 }

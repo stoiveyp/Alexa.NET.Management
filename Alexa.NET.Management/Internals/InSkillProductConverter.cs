@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Alexa.NET.Management.InSkillProduct
+namespace Alexa.NET.Management.Internals
 {
-    public class Consumable:Product
+    class InSkillProductConverter
     {
     }
 }
