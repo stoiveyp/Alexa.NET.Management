@@ -4,6 +4,9 @@ namespace Alexa.NET.Management.InSkillProduct
 {
     public abstract class Product
     {
+        public const string EntitlementType = "ENTITLEMENT";
+        public const string SubscriptionType = "SUBSCRIPTION";
+        public const string ConsumableType = "CONSUMABLE";
         protected Product()
         {
             Version = "1.0";

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Alexa.NET.Management.InSkillProduct;
+using Alexa.NET.Management.Internals;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Xunit;
 
 namespace Alexa.NET.Management.Tests
@@ -208,6 +211,22 @@ namespace Alexa.NET.Management.Tests
             };
             Assert.True(Utility.CompareJson(sub, "Entitlement.json"));
 
+        }
+
+        [Fact]
+        public void ConverterGeneratesProduct()
+        {
+            var entitlement = Utility.ExampleFileContent<EntitlementProduct>("Entitlement.json");
+            var subscription = Utility.ExampleFileContent<SubscriptionProduct>("Subscription.json");
+            var consumable = Utility.ExampleFileContent<ConsumableProduct>("Consumable.json");
+
+            var serializer = new JsonSerializerSettings {Converters = new List<JsonConverter> {new ProductConverter()}};
+            var array = new Product[]{entitlement,subscription,consumable};
+            var output = JsonConvert.SerializeObject(array,serializer);
+            var newArray = JsonConvert.DeserializeObject<Product[]>(output, serializer);
+            Assert.IsType<EntitlementProduct>(newArray[0]);
+            Assert.IsType<SubscriptionProduct>(newArray[1]);
+            Assert.IsType<ConsumableProduct>(newArray[2]);
         }
     }
 

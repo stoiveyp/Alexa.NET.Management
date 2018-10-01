@@ -6,6 +6,6 @@ namespace Alexa.NET.Management.InSkillProduct
 {
     public class ConsumableProduct:Product
     {
-        public override string Type => "CONSUMABLE";
+        public override string Type => ConsumableType;
     }
 }

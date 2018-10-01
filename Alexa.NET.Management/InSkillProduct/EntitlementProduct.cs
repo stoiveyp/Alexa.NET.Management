@@ -6,6 +6,6 @@ namespace Alexa.NET.Management.InSkillProduct
 {
     public class EntitlementProduct:Product
     {
-        public override string Type => "ENTITLEMENT";
+        public override string Type => EntitlementType;
     }
 }

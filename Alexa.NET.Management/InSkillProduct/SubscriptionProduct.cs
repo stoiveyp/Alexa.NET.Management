@@ -9,7 +9,7 @@ namespace Alexa.NET.Management.InSkillProduct
     {
         [JsonProperty("subscriptionInformation")]
         public SubscriptionInformation SubscriptionInformation { get; set; }
-        public override string Type => "SUBSCRIPTION";
+        public override string Type => SubscriptionType;
 
     }
 }
