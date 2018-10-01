@@ -151,6 +151,64 @@ namespace Alexa.NET.Management.Tests
             };
             Assert.True(Utility.CompareJson(sub, "Consumable.json"));
         }
+
+        [Fact]
+        public void EntitlementGeneratesCorrectly()
+        {
+            var usPublish = new LocalePublishingInformation
+            {
+                Name = "Cave Quest",
+                SmallIcon = new Uri("https://small-icon-uri", UriKind.Absolute).ToString(),
+                LargeIcon = new Uri("https://large-icon-uri", UriKind.Absolute).ToString(),
+                Summary = "5 new adventures for your collection",
+                Description = "The Cave Quest expansion pack includes 5 brand new adventures for your collection. Venture into even deeper and darker caves with Emerald and her friends, and collect up to 30 unique treasures. Adventures will automatically be playable once you've completed your purchase, and you can play them as often as you'd like.",
+                ExamplePhrases = new List<string>
+                {
+                    "Alexa, play cave quest",
+                    "Alexa, buy cave quest"
+                },
+                Keywords = new List<string> { "Games" },
+                CustomProductPrompts = new CustomProductPrompts
+                {
+                    PurchasePromptDescription = "{PREMIUM_CONTENT_TITLE} includes 5 new adventures with Emerald and her friends.",
+                    BoughtCardDescription = "Enjoy {PREMIUM_CONTENT_TITLE} by asking Alexa to play cave quest."
+                }
+            };
+
+            var sub = new EntitlementProduct
+            {
+                ReferenceName = "cave_quest",
+                PublishingInformation = new PublishingInformation
+                {
+                    DistributionCountries = new[] { "US" }.ToList(),
+                    Locales = new Dictionary<string, LocalePublishingInformation>
+                    {
+                        {"en-US",usPublish}
+                    },
+                    AmazonMarketplace = new MarketplacePricing
+                    {
+                        ReleaseDateUtc = DateTime.Parse("2018-01-28T01:25Z").ToUniversalTime(),
+                        DefaultPriceListing = new PriceListing
+                        {
+                            Price = (decimal)1.99,
+                            CurrencyCode = "USD"
+                        }
+                    },
+                    TaxInformation = new TaxInformation(TaxCategory.Software)
+                },
+                PrivacyAndCompliance = new PrivacyAndCompliance
+                {
+                    Locales = new Dictionary<string, LocalePrivacyAndCompliance>
+                    {
+                        {"en-US",new LocalePrivacyAndCompliance(new Uri("https://url-to-privacy-policy").ToString())}
+                    }
+                },
+                TestingInstructions = "Ask Alexa if she has any new adventures",
+                PurchasableState = PurchasableState.Purchasable
+            };
+            Assert.True(Utility.CompareJson(sub, "Entitlement.json"));
+
+        }
     }
 
 }
