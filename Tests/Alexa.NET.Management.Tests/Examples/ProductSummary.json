@@ -1,0 +1,30 @@
+{
+  "type": "SUBSCRIPTION",
+  "productId": "string",
+  "referenceName": "string",
+  "lastUpdated": "2018-09-20T04:13:02.326Z",
+  "nameByLocale": {
+    "additionalProp1": "string",
+    "additionalProp2": "string",
+    "additionalProp3": "string"
+  },
+  "status": "INCOMPLETE",
+  "stage": "development",
+  "editableState": "EDITABLE",
+  "purchasableState": "PURCHASABLE",
+  "_links": {
+    "self": {
+      "href": "https://string"
+    }
+  },
+  "pricing": {
+    "amazon.com": {
+      "releaseDate": "2018-09-20T04:13:02.326Z",
+      "defaultPriceListing": {
+        "price": 0,
+        "primeMemberPrice": 0,
+        "currency": "USD"
+      }
+    }
+  }
+}

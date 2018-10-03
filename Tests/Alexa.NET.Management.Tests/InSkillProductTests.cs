@@ -228,6 +228,19 @@ namespace Alexa.NET.Management.Tests
             Assert.IsType<SubscriptionProduct>(newArray[1]);
             Assert.IsType<ConsumableProduct>(newArray[2]);
         }
+
+        [Fact]
+        public void ProductSummaryDeserializesCorrectly()
+        {
+            var summary = Utility.ExampleFileContent<ProductSummary>("ProductSummary.json");
+            Assert.Equal(Product.SubscriptionType,summary.Type);
+            Assert.Equal("string",summary.ProductId);
+            Assert.Equal("string", summary.ReferenceName);
+            Assert.Equal(DateTime.Parse("2018-09-20T04:13:02.326Z").ToUniversalTime(), summary.LastUpdated);
+            Assert.Equal(3,summary.NameByLocale.Count);
+            Assert.Equal(ProductStatus.INCOMPLETE,summary.Status);
+
+        }
     }
 
 }
