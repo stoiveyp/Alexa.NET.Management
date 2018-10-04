@@ -60,7 +60,7 @@ namespace Alexa.NET.Management
 
             SkillValidation = new SkillValidationApi(client);
 
-            InSkillProducts = RestService.For<IInSkillProductApi>(client);
+            InSkillProducts = new InProductSkillsApi(client);
         }
 
         public IIntentRequestHistoryApi IntentRequestHistory { get; set; }

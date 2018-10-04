@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Alexa.NET.Management.Api;
 using Alexa.NET.Management.InSkillProduct;
 using Alexa.NET.Management.Internals;
+using Alexa.NET.Management.Validation;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Xunit;
@@ -240,6 +244,19 @@ namespace Alexa.NET.Management.Tests
             Assert.Equal(3,summary.NameByLocale.Count);
             Assert.Equal(ProductStatus.INCOMPLETE,summary.Status);
 
+        }
+
+        [Fact]
+        public async Task ProductSummaryApiRequest()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal("/v1/inSkillProducts/string/stages/DEVELOPMENT/summary", req.RequestUri.PathAndQuery);
+            }, Utility.ExampleFileContent<ProductSummary>("ProductSummary.json")));
+
+            var response = await management.InSkillProducts.GetSummary("string", SkillStage.DEVELOPMENT);
+            Assert.NotNull(response);
         }
     }
 

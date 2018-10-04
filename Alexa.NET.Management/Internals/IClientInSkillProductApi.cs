@@ -4,9 +4,9 @@ using Alexa.NET.Management.Api;
 using Alexa.NET.Management.InSkillProduct;
 using Refit;
 
-namespace Alexa.NET.Management
+namespace Alexa.NET.Management.Internals
 {
-    public interface IInSkillProductApi
+    public interface IClientInSkillProductApi
     {
         [Get("/inSkillProducts/{productId}/stages/{stage}")]
         Task<Product> Get(string productId, SkillStage stage);
@@ -21,16 +21,16 @@ namespace Alexa.NET.Management
         Task<Product> Update(string productId, SkillStage stage, [Body]Product product);
 
         [Delete("/inSkillProducts/{productId}/stages/{stage}")]
-        Task<bool> Delete(string productId, SkillStage stage);
+        Task<HttpResponseMessage> Delete(string productId, SkillStage stage);
 
         [Get("inSkillProducts")]
-        Task<ProductListResponse> Get();
+        Task<ProductListResponse> GetList();
 
         [Get("inSkillProducts")]
-        Task<ProductListResponse> Get(int maxResults, GetInSkillProductFilters filters = null);
+        Task<ProductListResponse> GetList(int maxResults, SkillStage? stage = null, ProductStatus? status = null, string type = null, bool? isAssociatedWithSkill = null);
 
         [Get("inSkillProducts")]
-        Task<ProductListResponse> Get(int maxResults, string nextToken, GetInSkillProductFilters filters = null);
+        Task<ProductListResponse> GetList(int maxResults, string nextToken, SkillStage? stage = null, ProductStatus? status = null, string type = null, bool? isAssociatedWithSkill = null);
 
         [Get("skills/{skillId}/stages/{stage}/inSkillProducts")]
         Task<ProductListResponse> GetSkillProducts(string skillId, SkillStage stage);
@@ -39,7 +39,7 @@ namespace Alexa.NET.Management
         Task<ProductListResponse> GetSkillProducts(string skillId, SkillStage stage, int maxResults);
 
         [Get("skills/{skillId}/stages/{stage}/inSkillProducts")]
-        Task<ProductListResponse> GetSkillProducts(string skillId, SkillStage stage, int maxResults, string nextToken);
+        Task<ProductListResponse> GetSkillProducts(string skillId, SkillStage stage, int maxResults, string nexToken);
 
         [Get("inSkillProducts/{productId}/stages/{stage}/skills")]
         Task<RelatedSkillResponse> GetProductSkills(string productId, SkillStage stage);
@@ -51,12 +51,12 @@ namespace Alexa.NET.Management
         Task<RelatedSkillResponse> GetProductSkills(string productId, SkillStage stage, int maxResults, string nextToken);
 
         [Get("inSkillProducts/{productId}/skills/{skillId}")]
-        Task<bool> Associate(string productId, string skillId);
+        Task<HttpResponseMessage> Associate(string productId, string skillId);
 
         [Put("inSkillProducts/{productId}/skills/{skillId}")]
-        Task<bool> Disassociate(string productId, string skillId);
+        Task<HttpResponseMessage> Disassociate(string productId, string skillId);
 
         [Delete("inSkillProducts/{productId}/stages/DEVELOPMENT/entitlement")]
-        Task<bool> ResetDeveloperEntitlement(string productId);
+        Task<HttpResponseMessage> ResetDeveloperEntitlement(string productId);
     }
 }
