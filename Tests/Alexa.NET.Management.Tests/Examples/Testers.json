@@ -1,0 +1,12 @@
+{
+  "testers": [
+    {
+      "emailId": "string",
+      "associationDate": "2018-09-26T07:32:37.589Z",
+      "isReminderAllowed": true,
+      "invitationStatus": "ACCEPTED"
+    }
+  ],
+  "isTruncated": true,
+  "nextToken": "string"
+}
