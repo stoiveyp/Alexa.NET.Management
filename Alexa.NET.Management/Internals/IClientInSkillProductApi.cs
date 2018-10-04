@@ -23,40 +23,40 @@ namespace Alexa.NET.Management.Internals
         [Delete("/inSkillProducts/{productId}/stages/{stage}")]
         Task<HttpResponseMessage> Delete(string productId, SkillStage stage);
 
-        [Get("inSkillProducts")]
+        [Get("/inSkillProducts")]
         Task<ProductListResponse> GetList();
 
-        [Get("inSkillProducts")]
+        [Get("/inSkillProducts")]
         Task<ProductListResponse> GetList(int maxResults, SkillStage? stage = null, ProductStatus? status = null, string type = null, bool? isAssociatedWithSkill = null);
 
-        [Get("inSkillProducts")]
+        [Get("/inSkillProducts")]
         Task<ProductListResponse> GetList(int maxResults, string nextToken, SkillStage? stage = null, ProductStatus? status = null, string type = null, bool? isAssociatedWithSkill = null);
 
-        [Get("skills/{skillId}/stages/{stage}/inSkillProducts")]
+        [Get("/skills/{skillId}/stages/{stage}/inSkillProducts")]
         Task<ProductListResponse> GetSkillProducts(string skillId, SkillStage stage);
 
-        [Get("skills/{skillId}/stages/{stage}/inSkillProducts")]
+        [Get("/skills/{skillId}/stages/{stage}/inSkillProducts")]
         Task<ProductListResponse> GetSkillProducts(string skillId, SkillStage stage, int maxResults);
 
-        [Get("skills/{skillId}/stages/{stage}/inSkillProducts")]
+        [Get("/skills/{skillId}/stages/{stage}/inSkillProducts")]
         Task<ProductListResponse> GetSkillProducts(string skillId, SkillStage stage, int maxResults, string nexToken);
 
-        [Get("inSkillProducts/{productId}/stages/{stage}/skills")]
+        [Get("/inSkillProducts/{productId}/stages/{stage}/skills")]
         Task<RelatedSkillResponse> GetProductSkills(string productId, SkillStage stage);
 
-        [Get("inSkillProducts/{productId}/stages/{stage}/skills")]
+        [Get("/inSkillProducts/{productId}/stages/{stage}/skills")]
         Task<RelatedSkillResponse> GetProductSkills(string productId, SkillStage stage, int maxResults);
 
-        [Get("inSkillProducts/{productId}/stages/{stage}/skills")]
+        [Get("/inSkillProducts/{productId}/stages/{stage}/skills")]
         Task<RelatedSkillResponse> GetProductSkills(string productId, SkillStage stage, int maxResults, string nextToken);
 
-        [Get("inSkillProducts/{productId}/skills/{skillId}")]
+        [Get("/inSkillProducts/{productId}/skills/{skillId}")]
         Task<HttpResponseMessage> Associate(string productId, string skillId);
 
-        [Put("inSkillProducts/{productId}/skills/{skillId}")]
+        [Put("/inSkillProducts/{productId}/skills/{skillId}")]
         Task<HttpResponseMessage> Disassociate(string productId, string skillId);
 
-        [Delete("inSkillProducts/{productId}/stages/DEVELOPMENT/entitlement")]
+        [Delete("/inSkillProducts/{productId}/stages/DEVELOPMENT/entitlement")]
         Task<HttpResponseMessage> ResetDeveloperEntitlement(string productId);
     }
 }
