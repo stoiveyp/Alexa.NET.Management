@@ -1,0 +1,51 @@
+{
+  "version": "1.0",
+  "type": "CONSUMABLE",
+  "referenceName": "five_hint_pack",
+  "publishingInformation": {
+    "locales": {
+      "en-US": {
+        "name": "Five-hint pack",
+        "smallIconUri": "https://small-icon-uri/",
+        "largeIconUri": "https://large-icon-uri/",
+        "summary": "Five hints you can use if you get stuck on a question.",
+        "description": "The five-hint pack gives you five hints you can use any time you can't answer a question. You can use your hints at any point in the game.",
+        "examplePhrases": [
+          "Alexa, buy hints",
+          "Alexa, give me a hint"
+        ],
+        "keywords": [
+          "games"
+        ],
+        "customProductPrompts": {
+          "purchasePromptDescription": "{PREMIUM_CONTENT_TITLE} provides you with five hints you can use at any time.",
+          "boughtCardDescription": "Use your hints in the {PREMIUM_CONTENT_TITLE} when you don't know an answer by asking Alexa to use a hint."
+        }
+      }
+    },
+    "distributionCountries": [
+      "US"
+    ],
+    "pricing": {
+      "amazon.com": {
+        "releaseDate": "2018-10-01T01:25:00Z",
+        "defaultPriceListing": {
+          "price": 0.99,
+          "currency": "USD"
+        }
+      }
+    },
+    "taxInformation": {
+      "category": "SOFTWARE"
+    }
+  },
+  "privacyAndCompliance": {
+    "locales": {
+      "en-US": {
+        "privacyPolicyUrl": "https://url-to-privacy-policy/"
+      }
+    }
+  },
+  "testingInstructions": "Start a game. When asked a question, ask Alexa for a hint.",
+  "purchasableState": "PURCHASABLE"
+}

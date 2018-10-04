@@ -1,0 +1,51 @@
+{
+  "version": "1.0",
+  "type": "ENTITLEMENT",
+  "referenceName": "cave_quest",
+  "publishingInformation": {
+    "locales": {
+      "en-US": {
+        "name": "Cave Quest",
+        "smallIconUri": "https://small-icon-uri/",
+        "largeIconUri": "https://large-icon-uri/",
+        "summary": "5 new adventures for your collection",
+        "description": "The Cave Quest expansion pack includes 5 brand new adventures for your collection. Venture into even deeper and darker caves with Emerald and her friends, and collect up to 30 unique treasures. Adventures will automatically be playable once you've completed your purchase, and you can play them as often as you'd like.",
+        "examplePhrases": [
+          "Alexa, play cave quest",
+          "Alexa, buy cave quest"
+        ],
+        "keywords": [
+          "Games"
+        ],
+        "customProductPrompts": {
+          "purchasePromptDescription": "{PREMIUM_CONTENT_TITLE} includes 5 new adventures with Emerald and her friends.",
+          "boughtCardDescription": "Enjoy {PREMIUM_CONTENT_TITLE} by asking Alexa to play cave quest."
+        }
+      }
+    },
+    "distributionCountries": [
+      "US"
+    ],
+    "pricing": {
+      "amazon.com": {
+        "releaseDate": "2018-01-28T01:25:00Z",
+        "defaultPriceListing": {
+          "price": 1.99,
+          "currency": "USD"
+        }
+      }
+    },
+    "taxInformation": {
+      "category": "SOFTWARE"
+    }
+  },
+  "privacyAndCompliance": {
+    "locales": {
+      "en-US": {
+        "privacyPolicyUrl": "https://url-to-privacy-policy/"
+      }
+    }
+  },
+  "testingInstructions": "Ask Alexa if she has any new adventures",
+  "purchasableState": "PURCHASABLE"
+}

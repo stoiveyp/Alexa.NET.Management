@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Reflection;
 using System.Threading.Tasks;
 using Alexa.NET.Management.Internals;
-using Newtonsoft.Json;
 using Refit;
 
 namespace Alexa.NET.Management
@@ -63,6 +59,8 @@ namespace Alexa.NET.Management
             IntentRequestHistory = RestService.For<IIntentRequestHistoryApi>(client);
 
             SkillValidation = new SkillValidationApi(client);
+
+            InSkillProducts = new InProductSkillsApi(client);
         }
 
         public IIntentRequestHistoryApi IntentRequestHistory { get; set; }
@@ -77,5 +75,7 @@ namespace Alexa.NET.Management
 
         public IAccountLinkingApi AccountLinking { get; set; }
         public ISkillValidationApi SkillValidation { get; set; }
+
+        public IInSkillProductApi InSkillProducts { get; set; }
     }
 }

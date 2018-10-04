@@ -1,0 +1,55 @@
+{
+  "version": "1.0",
+  "type": "SUBSCRIPTION",
+  "referenceName": "treasure_finders_plus",
+  "subscriptionInformation": {
+    "subscriptionPaymentFrequency": "MONTHLY",
+    "subscriptionTrialPeriodDays": 7
+  },
+  "publishingInformation": {
+    "locales": {
+      "en-US": {
+        "name": "Treasure Finders Plus",
+        "smallIconUri": "https://small-icon-uri/",
+        "largeIconUri": "https://large-icon-uri/",
+        "summary": "1 new members-only adventure each month + over 10 previously released adventures.",
+        "description": "Get access to a new adventure each month for members only, along with a growing collection of over 10 previously released members-only adventures. Includes Crystal Catchers, The Light Stone, The Dark Pool, The Cave Fish, Long Way Down and more.",
+        "examplePhrases": [
+          "Alexa, open treasure finders plus",
+          "Alexa, play with treasure finders plus"
+        ],
+        "keywords": [
+          "Games"
+        ],
+        "customProductPrompts": {
+          "purchasePromptDescription": "{PREMIUM_CONTENT_TITLE} includes access to all of our current adventures and a new one each month.",
+          "boughtCardDescription": "Enjoy {PREMIUM_CONTENT_TITLE}! Ask for a list of adventures to explore your purchase.."
+        }
+      }
+    },
+    "distributionCountries": [
+      "US"
+    ],
+    "pricing": {
+      "amazon.com": {
+        "releaseDate": "2018-12-28T01:25:00Z",
+        "defaultPriceListing": {
+          "price": 1.99,
+          "currency": "USD"
+        }
+      }
+    },
+    "taxInformation": {
+      "category": "SOFTWARE"
+    }
+  },
+  "privacyAndCompliance": {
+    "locales": {
+      "en-US": {
+        "privacyPolicyUrl": "https://url-to-privacy-policy/"
+      }
+    }
+  },
+  "testingInstructions": "Sample testing instructions.",
+  "purchasableState": "PURCHASABLE"
+}
