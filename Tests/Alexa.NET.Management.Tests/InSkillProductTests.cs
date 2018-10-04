@@ -285,6 +285,19 @@ namespace Alexa.NET.Management.Tests
             var response = await management.InSkillProducts.Disassociate("product", "skill");
             Assert.True(response);
         }
+
+        [Fact]
+        public async Task ResetEntitlementBenefits()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            {
+                Assert.Equal(HttpMethod.Delete, req.Method);
+                Assert.Equal("/v1/inSkillProducts/product/stages/DEVELOPMENT/entitlement", req.RequestUri.PathAndQuery);
+            }, new JObject(), HttpStatusCode.NoContent));
+
+            var response = await management.InSkillProducts.ResetDeveloperEntitlement("product");
+            Assert.True(response);
+        }
     }
 
 }
