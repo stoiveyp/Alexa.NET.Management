@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Alexa.NET.Management.Api;
@@ -257,6 +258,32 @@ namespace Alexa.NET.Management.Tests
 
             var response = await management.InSkillProducts.GetSummary("string", SkillStage.DEVELOPMENT);
             Assert.NotNull(response);
+        }
+
+        [Fact]
+        public async Task AssociateApiRequest()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            {
+                Assert.Equal(HttpMethod.Put, req.Method);
+                Assert.Equal("/v1/inSkillProducts/product/skills/skill", req.RequestUri.PathAndQuery);
+            }, new JObject(),HttpStatusCode.NoContent));
+
+            var response = await management.InSkillProducts.Associate("product","skill");
+            Assert.True(response);
+        }
+
+        [Fact]
+        public async Task DisassociateApiRequest()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            {
+                Assert.Equal(HttpMethod.Delete, req.Method);
+                Assert.Equal("/v1/inSkillProducts/product/skills/skill", req.RequestUri.PathAndQuery);
+            },new JObject(), HttpStatusCode.NoContent));
+
+            var response = await management.InSkillProducts.Disassociate("product", "skill");
+            Assert.True(response);
         }
     }
 

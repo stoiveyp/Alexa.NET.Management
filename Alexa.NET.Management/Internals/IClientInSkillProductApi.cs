@@ -50,10 +50,10 @@ namespace Alexa.NET.Management.Internals
         [Get("/inSkillProducts/{productId}/stages/{stage}/skills")]
         Task<RelatedSkillResponse> GetProductSkills(string productId, SkillStage stage, int maxResults, string nextToken);
 
-        [Get("/inSkillProducts/{productId}/skills/{skillId}")]
+        [Put("/inSkillProducts/{productId}/skills/{skillId}")]
         Task<HttpResponseMessage> Associate(string productId, string skillId);
 
-        [Put("/inSkillProducts/{productId}/skills/{skillId}")]
+        [Delete("/inSkillProducts/{productId}/skills/{skillId}")]
         Task<HttpResponseMessage> Disassociate(string productId, string skillId);
 
         [Delete("/inSkillProducts/{productId}/stages/DEVELOPMENT/entitlement")]
