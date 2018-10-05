@@ -27,13 +27,13 @@ namespace Alexa.NET.Management
 
         Task<BetaTestersResponse> Testers(string skillId, int maxResults, string nextToken);
 
-        Task<bool> AddTesters(string skillId, string[] emails);
+        Task<bool> AddTesters(string skillId, IEnumerable<string> emails);
 
-        Task<bool> RemoveTesters(string skillId, string[] emails);
+        Task<bool> RemoveTesters(string skillId, IEnumerable<string> emails);
 
-        Task<bool> SendReminders(string skillId, string[] emails);
+        Task<bool> SendReminders(string skillId, IEnumerable<string> emails);
 
-        Task<bool> RequestFeedback(string skillId, string[] emails);
+        Task<bool> RequestFeedback(string skillId, IEnumerable<string> emails);
 
     }
 }

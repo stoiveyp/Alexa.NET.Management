@@ -11,7 +11,7 @@ namespace Alexa.NET.Management.Internals
     public interface IClientSkillBetaApi
     {
         [Post("/skills/{skillId}/betaTest")]
-        Task<Uri> Create(string skillId, BetaTestRequest request);
+        Task<HttpResponseMessage> Create(string skillId, BetaTestRequest request);
 
         [Get("/skills/{skillId}/betaTest")]
         Task<BetaTest> Get(string skillId);
