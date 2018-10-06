@@ -14,7 +14,7 @@ namespace Alexa.NET.Management.InSkillProduct
         public string NextToken { get; set; }
 
         [JsonProperty("isTruncated")]
-        public string IsTruncated { get; set; }
+        public bool IsTruncated { get; set; }
 
         [JsonProperty("associatedSkillIds")]
         public string[] AssociatedSkillIds { get; set; }

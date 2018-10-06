@@ -21,7 +21,7 @@ namespace Alexa.NET.Management.IntentRequestHistory
         public string StartIndex { get; set; }
 
         [JsonProperty("isTruncated")]
-        public string IsTruncated { get; set; }
+        public bool IsTruncated { get; set; }
 
         [JsonProperty("items")]
         public IntentRequestHistoryItem[] Items { get; set; }

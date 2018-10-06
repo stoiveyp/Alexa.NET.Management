@@ -38,7 +38,7 @@ namespace Alexa.NET.Management.Internals
 
         public async Task<bool> Update(string skillId, string feedbackEmail)
         {
-            var response = await Client.Create(skillId, new BetaTestRequest { FeedbackEmail = feedbackEmail });
+            var response = await Client.Update(skillId, new BetaTestRequest { FeedbackEmail = feedbackEmail });
             return response.StatusCode == HttpStatusCode.NoContent;
         }
 

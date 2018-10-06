@@ -8,7 +8,7 @@ namespace Alexa.NET.Management.Beta
         public string NextToken { get; set; }
 
         [JsonProperty("isTruncated")]
-        public string IsTruncated { get; set; }
+        public bool IsTruncated { get; set; }
 
         [JsonProperty("testers")]
         public Tester[] Testers { get; set; }
