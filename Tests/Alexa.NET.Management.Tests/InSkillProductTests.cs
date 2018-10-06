@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Alexa.NET.Management.Api;
 using Alexa.NET.Management.InSkillProduct;
 using Alexa.NET.Management.Internals;
-using Alexa.NET.Management.Validation;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Xunit;
