@@ -12,5 +12,8 @@ namespace Alexa.NET.Management.Internals
     {
         [Post("/skills/uploads")]
         Task<HttpResponseMessage> CreateUpload();
+
+        [Post("/skills/imports")]
+        Task<HttpResponseMessage> CreatePackage(CreatePackageRequest request);
     }
 }
