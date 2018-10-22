@@ -69,5 +69,27 @@ namespace Alexa.NET.Management.Tests
             var management = new ManagementApi("xxx", new ActionHandler(req => Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK))));
             await Assert.ThrowsAsync<InvalidOperationException>(() => management.Package.CreatePackage("xxx",UploadPath));
         }
+
+        [Fact]
+        public async Task CreatePackageThrowsOnNullVendorId()
+        {
+            var management = new ManagementApi("xxx");
+            await Assert.ThrowsAsync<ArgumentNullException>(() => management.Package.CreatePackage(null, "test"));
+        }
+
+        [Fact]
+        public async Task CreatePackageThrowsOnNullLocation()
+        {
+            var management = new ManagementApi("xxx");
+            await Assert.ThrowsAsync<ArgumentNullException>(() => management.Package.CreatePackage("vendor", null));
+        }
+
+        [Fact]
+        public async Task CreatePackageThrowsOnNullRequest()
+        {
+            var management = new ManagementApi("xxx");
+            await Assert.ThrowsAsync<ArgumentNullException>(() => management.Package.CreatePackage(null));
+        }
+
     }
 }

@@ -41,11 +41,26 @@ namespace Alexa.NET.Management.Internals
 
         public Task<Uri> CreatePackage(string vendorId, string location)
         {
+            if (string.IsNullOrWhiteSpace(vendorId))
+            {
+                throw new ArgumentNullException(nameof(vendorId));
+            }
+
+            if (string.IsNullOrWhiteSpace(location))
+            {
+                throw new ArgumentNullException(nameof(location));
+            }
+
             return CreatePackage(new CreatePackageRequest {VendorId = vendorId, Location = location});
         }
 
         public async Task<Uri> CreatePackage(CreatePackageRequest request)
         {
+            if (request == null)
+            {
+                throw new ArgumentNullException(nameof(request));
+            }
+
             var response = await Client.CreatePackage(request);
 
             if (response.StatusCode != HttpStatusCode.Accepted)
