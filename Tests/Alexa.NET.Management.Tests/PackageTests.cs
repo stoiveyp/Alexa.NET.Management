@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using Alexa.NET.Management.Internals;
-using Newtonsoft.Json;
+using Alexa.NET.Management.Package;
 using Xunit;
 
 namespace Alexa.NET.Management.Tests
@@ -18,6 +13,19 @@ namespace Alexa.NET.Management.Tests
         {
             var client = new ManagementApi("xxx");
             Assert.NotNull(client.Package);
+        }
+
+        [Fact]
+        public async Task UploadUrlWorksAsExpected()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            {
+                Assert.Equal(HttpMethod.Post, req.Method);
+                Assert.Equal("/v1/skills/uploads", req.RequestUri.PathAndQuery);
+            }, Utility.ExampleFileContent<PackageUploadMetadata>("PackageUpload.json")));
+            var response = await management.Package.CreateUpload();
+            Assert.Equal("https://aws.amazon.com/someabsolutepath",response.UploadUri.ToString());
+            Assert.Equal("2018-10-11T19:28:34.5250000Z",response.ExpiresAt.ToUniversalTime().ToString("O"));
         }
     }
 }
