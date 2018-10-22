@@ -80,14 +80,14 @@ namespace Alexa.NET.Management.Tests
         [Fact]
         public async Task GetTesters()
         {
-            var management = new ManagementApi("xxx",new ActionHandler(async req =>
+            var management = new ManagementApi("xxx",new ActionHandler(req =>
             {
                 Assert.Equal(HttpMethod.Get,req.Method);
                 Assert.Equal("/v1/skills/skillId/betaTest/testers",req.RequestUri.PathAndQuery);
 
                 var content = Utility.ExampleFileContent("Testers.json");
                 var responseMessage = new HttpResponseMessage(HttpStatusCode.OK) {Content = new StringContent(content)};
-                return responseMessage;
+                return Task.FromResult(responseMessage);
             }));
 
             var response = await management.Beta.Testers("skillId");

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Alexa.NET.Management.Package;
@@ -10,6 +11,6 @@ namespace Alexa.NET.Management.Internals
     public interface IClientSkillPackageApi
     {
         [Post("/skills/uploads")]
-        Task<PackageUploadMetadata> CreateUpload();
+        Task<HttpResponseMessage> CreateUpload();
     }
 }
