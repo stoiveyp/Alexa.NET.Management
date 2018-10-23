@@ -13,7 +13,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyVersion>1.0.10.0</AssemblyVersion>
     <FileVersion>1.0.10.0</FileVersion>
-    <PackageReleaseNotes>Add InSkillProduct API support</PackageReleaseNotes>
+    <PackageReleaseNotes>Add Package API Support</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
