@@ -91,5 +91,40 @@ namespace Alexa.NET.Management.Tests
             await Assert.ThrowsAsync<ArgumentNullException>(() => management.Package.CreatePackage(null));
         }
 
+        [Fact]
+        public async Task CreateSkillPackageThrowsOnNullSkill()
+        {
+            var management = new ManagementApi("xxx");
+            await Assert.ThrowsAsync<ArgumentNullException>(() => management.Package.CreateSkillPackage(null,"location"));
+        }
+
+        [Fact]
+        public async Task CreateSkillPackageThrowsOnNullLocation()
+        {
+            var management = new ManagementApi("xxx");
+            await Assert.ThrowsAsync<ArgumentNullException>(() => management.Package.CreateSkillPackage("skillid", ""));
+        }
+
+        [Fact]
+        public async Task CreateSkillPackageCallsCorrectly()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Post, req.Method);
+                Assert.Equal("/v1/skills/skillid/imports", req.RequestUri.PathAndQuery);
+
+                var requestObject =
+                    JsonConvert.DeserializeObject<CreateSkillPackageRequest>(await req.Content.ReadAsStringAsync());
+
+                Assert.Equal(UploadPath, requestObject.Location);
+
+                var message = new HttpResponseMessage(HttpStatusCode.Accepted);
+                message.Headers.Location = new Uri("/v1/skills/skillid/imports/importId", UriKind.Relative);
+                return message;
+            }));
+            var response = await management.Package.CreateSkillPackage("skillid", UploadPath);
+            Assert.NotNull(response);
+            Assert.Equal("/v1/skills/skillid/imports/importId", response.ToString());
+        }
     }
 }

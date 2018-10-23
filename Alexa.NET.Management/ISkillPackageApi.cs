@@ -9,7 +9,9 @@ namespace Alexa.NET.Management
     public interface ISkillPackageApi
     {
         Task<PackageUploadMetadata> CreateUpload();
-        Task<Uri> CreatePackage(string vendorId, string uploadPath);
+        Task<Uri> CreatePackage(string vendorId, string location);
         Task<Uri> CreatePackage(CreatePackageRequest request);
+
+        Task<Uri> CreateSkillPackage(string skillId, string location);
     }
 }

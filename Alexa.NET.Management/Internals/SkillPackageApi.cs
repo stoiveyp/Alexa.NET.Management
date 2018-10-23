@@ -62,20 +62,41 @@ namespace Alexa.NET.Management.Internals
             }
 
             var response = await Client.CreatePackage(request);
+            return await AcceptedLocationOrError(response);
+        }
 
-            if (response.StatusCode != HttpStatusCode.Accepted)
+        public async Task<Uri> CreateSkillPackage(string skillId, string location)
+        {
+            if (string.IsNullOrWhiteSpace(skillId))
             {
-                var body = string.Empty;
-                if (response.Content != null)
-                {
-                    body = await response.Content.ReadAsStringAsync();
-                }
-
-                throw new InvalidOperationException(
-                    $"Expected Status Code 201. Received {(int)response.StatusCode}. Response Body: {body}");
+                throw new ArgumentNullException(nameof(skillId));
             }
 
-            return response.Headers.Location;
+            if (string.IsNullOrWhiteSpace(location))
+            {
+                throw new ArgumentNullException(nameof(location));
+            }
+
+            var message = await Client.CreateSkillPackage(skillId, new CreateSkillPackageRequest {Location = location});
+            return await AcceptedLocationOrError(message);
+        }
+
+        private async Task<Uri> AcceptedLocationOrError(HttpResponseMessage response)
+        {
+            if (response.StatusCode == HttpStatusCode.Accepted)
+            {
+                return response.Headers.Location;
+            }
+
+            var body = string.Empty;
+            if (response.Content != null)
+            {
+                body = await response.Content.ReadAsStringAsync();
+            }
+
+            throw new InvalidOperationException(
+                $"Expected Status Code 202. Received {(int)response.StatusCode}. Response Body: {body}");
+
         }
     }
 }

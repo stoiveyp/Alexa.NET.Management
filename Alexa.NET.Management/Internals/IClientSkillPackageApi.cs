@@ -8,6 +8,7 @@ using Refit;
 
 namespace Alexa.NET.Management.Internals
 {
+    //https://developer.amazon.com/docs/smapi/skill-package-api-reference.html
     public interface IClientSkillPackageApi
     {
         [Post("/skills/uploads")]
@@ -15,5 +16,8 @@ namespace Alexa.NET.Management.Internals
 
         [Post("/skills/imports")]
         Task<HttpResponseMessage> CreatePackage(CreatePackageRequest request);
+
+        [Post("/skills/{skillId}/imports")]
+        Task<HttpResponseMessage> CreateSkillPackage(string skillId,CreateSkillPackageRequest request);
     }
 }
