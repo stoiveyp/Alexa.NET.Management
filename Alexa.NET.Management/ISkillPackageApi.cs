@@ -18,5 +18,7 @@ namespace Alexa.NET.Management
         Task<ImportStatusResponse> SkillPackageStatus(string importId);
 
         Task<Uri> CreateExportRequest(string skillId, SkillStage stage);
+
+        Task<ExportStatusResponse> ExportStatus(string exportId);
     }
 }

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using Alexa.NET.Management.Api;
 using Alexa.NET.Management.Package;
@@ -101,6 +99,16 @@ namespace Alexa.NET.Management.Internals
 
             var message = await Client.CreateExportRequest(skillId, stage);
             return await AcceptedLocationOrError(message);
+        }
+
+        public Task<ExportStatusResponse> ExportStatus(string exportId)
+        {
+            if (string.IsNullOrWhiteSpace(exportId))
+            {
+                throw new ArgumentNullException(nameof(exportId));
+            }
+
+            return Client.ExportStatus(exportId);
         }
 
         private async Task<Uri> AcceptedLocationOrError(HttpResponseMessage response)

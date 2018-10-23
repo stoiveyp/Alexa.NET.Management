@@ -26,5 +26,8 @@ namespace Alexa.NET.Management.Internals
 
         [Post("/skills/{skillId}/stages/{stage}/exports")]
         Task<HttpResponseMessage> CreateExportRequest(string skillId, SkillStage stage);
+
+        [Get("/skills/exports/{exportId}")]
+        Task<ExportStatusResponse> ExportStatus(string exportId);
     }
 }

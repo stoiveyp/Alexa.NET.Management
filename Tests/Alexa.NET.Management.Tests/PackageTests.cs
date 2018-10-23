@@ -4,7 +4,6 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Alexa.NET.Management.Api;
-using Alexa.NET.Management.Internals;
 using Alexa.NET.Management.Package;
 using Newtonsoft.Json;
 using Xunit;
@@ -180,6 +179,28 @@ namespace Alexa.NET.Management.Tests
         {
             var management = new ManagementApi("xxx");
             await Assert.ThrowsAsync<ArgumentNullException>(() => management.Package.CreateExportRequest(null, SkillStage.DEVELOPMENT));
+        }
+
+        [Fact]
+        public async Task ExportStatusCallsCorrectly()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal("/v1/skills/exports/exportid", req.RequestUri.PathAndQuery);
+            },Utility.ExampleFileContent<ExportStatusResponse>("ExportStatusResponse.json")));
+
+            var response = await management.Package.ExportStatus("exportid");
+            Assert.NotNull(response);
+
+            Assert.Equal(ExportStatus.FAILED,response.Status);
+        }
+
+        [Fact]
+        public async Task ExportStatusThrowsNullSkillId()
+        {
+            var management = new ManagementApi("xxx");
+            await Assert.ThrowsAsync<ArgumentNullException>(() => management.Package.ExportStatus(null));
         }
     }
 }
