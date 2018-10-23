@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Alexa.NET.Management.Api;
 using Alexa.NET.Management.Package;
 using Newtonsoft.Json;
 using Refit;
@@ -78,6 +79,27 @@ namespace Alexa.NET.Management.Internals
             }
 
             var message = await Client.CreateSkillPackage(skillId, new CreateSkillPackageRequest {Location = location});
+            return await AcceptedLocationOrError(message);
+        }
+
+        public Task<ImportStatusResponse> SkillPackageStatus(string importId)
+        {
+            if (string.IsNullOrWhiteSpace(importId))
+            {
+                throw new ArgumentNullException(nameof(importId));
+            }
+
+            return Client.SkillPackageStatus(importId);
+        }
+
+        public async Task<Uri> CreateExportRequest(string skillId, SkillStage stage)
+        {
+            if (string.IsNullOrWhiteSpace(skillId))
+            {
+                throw new ArgumentNullException(nameof(skillId));
+            }
+
+            var message = await Client.CreateExportRequest(skillId, stage);
             return await AcceptedLocationOrError(message);
         }
 

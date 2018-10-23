@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Alexa.NET.Management.Api;
 using Alexa.NET.Management.Internals;
 using Alexa.NET.Management.Package;
 using Newtonsoft.Json;
@@ -148,6 +149,37 @@ namespace Alexa.NET.Management.Tests
 
             Assert.Equal("error 1",resource.Errors.First().Message);
             Assert.Equal("warning 1",resource.Warnings.First().Message);
+        }
+
+        [Fact]
+        public async Task ImportStatusThrowsOnNullImportId()
+        {
+            var managementApi = new ManagementApi("xxx");
+            await Assert.ThrowsAsync<ArgumentNullException>(() => managementApi.Package.SkillPackageStatus(null));
+        }
+
+        [Fact]
+        public async Task CreateExportRequestCallsCorrectly()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Post, req.Method);
+                Assert.Equal("/v1/skills/skillid/stages/DEVELOPMENT/exports", req.RequestUri.PathAndQuery);
+
+                var message = new HttpResponseMessage(HttpStatusCode.Accepted);
+                message.Headers.Location = new Uri("/v1/skills/skillid/imports/importId", UriKind.Relative);
+                return message;
+            }));
+            var response = await management.Package.CreateExportRequest("skillid", SkillStage.DEVELOPMENT);
+            Assert.NotNull(response);
+            Assert.Equal("/v1/skills/skillid/imports/importId", response.ToString());
+        }
+
+        [Fact]
+        public async Task CreateExportRequestThrowsNullSkillId()
+        {
+            var management = new ManagementApi("xxx");
+            await Assert.ThrowsAsync<ArgumentNullException>(() => management.Package.CreateExportRequest(null, SkillStage.DEVELOPMENT));
         }
     }
 }
