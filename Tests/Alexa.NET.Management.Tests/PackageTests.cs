@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -125,6 +126,28 @@ namespace Alexa.NET.Management.Tests
             var response = await management.Package.CreateSkillPackage("skillid", UploadPath);
             Assert.NotNull(response);
             Assert.Equal("/v1/skills/skillid/imports/importId", response.ToString());
+        }
+
+        [Fact]
+        public void ImportStatusDeserializesCorrectly()
+        {
+            var importStatus = Utility.ExampleFileContent<ImportStatusResponse>("ImportStatus.json");
+            Assert.Equal(ImportStatus.FAILED,importStatus.Status);
+            Assert.NotNull(importStatus.Skill);
+
+            var skill = importStatus.Skill;
+            Assert.Equal("abc123",skill.SkillId);
+            Assert.Equal("eTagAbc!23",skill.ETag);
+            Assert.Single(skill.Resources);
+
+            var resource = skill.Resources.First();
+            Assert.Equal("resourceId",resource.Name);
+            Assert.Equal(ResourceStatus.FAILED,resource.Status);
+            Assert.Single(resource.Errors);
+            Assert.Single(resource.Warnings);
+
+            Assert.Equal("error 1",resource.Errors.First().Message);
+            Assert.Equal("warning 1",resource.Warnings.First().Message);
         }
     }
 }

@@ -1,0 +1,23 @@
+{
+  "status": "FAILED",
+  "skill": {
+    "skillId": "abc123",
+    "eTag": "eTagAbc!23",
+    "resources": [
+      {
+        "name": "resourceId",
+        "status": "FAILED",
+        "errors": [
+          {
+            "message": "error 1"
+          }
+        ],
+        "warnings": [
+          {
+            "message": "warning 1"
+          }
+        ]
+      }
+    ]
+  }
+}
