@@ -13,7 +13,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyVersion>1.0.10.0</AssemblyVersion>
     <FileVersion>1.0.10.0</FileVersion>
-    <PackageReleaseNotes>Add Package API Support</PackageReleaseNotes>
+    <PackageReleaseNotes>Added childrens categories (thanks yadavvineet!)</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
