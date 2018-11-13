@@ -7,6 +7,9 @@ namespace Alexa.NET.Management.InteractionModel
         [JsonProperty("name")]
         public string Name { get; set; }
 
+        [JsonProperty("confirmationRequired")]
+        public bool ConfirmationRequired { get; set; }
+
         [JsonProperty("slots")]
         public DialogSlot[] Slots { get; set; }
     }

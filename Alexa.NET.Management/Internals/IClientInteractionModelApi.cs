@@ -10,7 +10,7 @@ namespace Alexa.NET.Management.Internals
     public interface IClientInteractionModelApi
     {
         [Get("/skills/{skillId}/stages/{stage}/interactionModel/locales/{locale}")]
-        Task<SkillInteraction> Get(string skillId, string stage, string locale);
+        Task<SkillInteractionResponse> Get(string skillId, string stage, string locale);
 
         [Head("/skills/{skillId}/stages/{stage}/interactionModel/locales/{locale}")]
         Task<HttpResponseMessage> GetTag(string skillId, string stage, string locale);

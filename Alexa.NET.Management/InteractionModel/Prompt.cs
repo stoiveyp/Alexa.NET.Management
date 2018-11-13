@@ -7,7 +7,7 @@ namespace Alexa.NET.Management.InteractionModel
         [JsonProperty("id")]
         public string Id { get; set; }
 
-        [JsonProperty("variations")]
+        [JsonProperty("variations", NullValueHandling = NullValueHandling.Ignore)]
         public Variation[] Variations { get; set; }
     }
 }

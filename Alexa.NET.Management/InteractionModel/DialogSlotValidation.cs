@@ -2,10 +2,11 @@ using Newtonsoft.Json;
 
 namespace Alexa.NET.Management.InteractionModel
 {
-    public class DialogSlotValidation
+    [JsonConverter(typeof(DialogSlotValidationConverter))]
+    public abstract class DialogSlotValidation
     {
         [JsonProperty("type")]
-        public string Type { get; set; }
+        public abstract string Type { get; }
 
         [JsonProperty("prompt")]
         public string Prompt { get; set; }

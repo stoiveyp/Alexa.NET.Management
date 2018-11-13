@@ -10,7 +10,7 @@ namespace Alexa.NET.Management.InteractionModel
         [JsonProperty("type")]
         public string Type { get; set; }
 
-        [JsonProperty("samples")]
+        [JsonProperty("samples",NullValueHandling = NullValueHandling.Ignore)]
         public string[] Samples { get; set; }
     }
 }
