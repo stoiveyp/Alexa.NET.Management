@@ -13,3 +13,15 @@ var skillDetail = manager.Skills.Get(skillId);
 var skillPublishingInformation = skillDetail.Manifest.PublishingInformation.Locales.First().Value;
 var skillName = skillPublishingInformation.Name;
 ```
+
+### Get Vendors
+```csharp
+var manager = new ManagementApi(amazonLoginAccessToken);
+var vendors = await manager.Vendors.Get()
+```
+
+### Create Skill Beta & Add Tester
+```csharp
+var beta = await manager.Beta.Create(skillId,"feedbackemail@example.com")
+await manager.Beta.AddTesters(skillId,new[]{"test1@example.com","test2@example.com"})
+```
