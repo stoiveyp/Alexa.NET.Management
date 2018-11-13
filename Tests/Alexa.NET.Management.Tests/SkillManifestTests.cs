@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using Alexa.NET.Management.Api;
+using Alexa.NET.Management.InteractionModel.ValidationRules;
 using Alexa.NET.Management.Internals;
 using Alexa.NET.Management.Manifest;
 using Alexa.NET.Management.Skills;
@@ -39,6 +40,21 @@ namespace Alexa.NET.Management.Tests
             Assert.Equal(1,support.MinPlayers);
             Assert.Equal(3,support.MaxPlayers);
             Assert.Equal(4,support.MinButtons);
+        }
+
+        [Fact]
+        public void InteractionModelDeserializesCorrectly()
+        {
+            var model = GetFromFile<SkillInteractionResponse>("Examples/InteractionModel.json");
+            var slotType = model.InteractionModel.Language.SlotTypes.First(st => st.Name == "TechNottsEvent");
+            Assert.Equal("tech-nottingham",slotType.Values.First().Id);
+
+            var dialogIntent = model.InteractionModel.Dialog.Intents.First();
+            Assert.Equal(dialogIntent.Name, "NextSpecificEvent");
+            Assert.Equal(true,dialogIntent.ConfirmationRequired);
+            var firstSlot = dialogIntent.Slots.First();
+            Assert.IsType<HasEntityResolutionMatch>(firstSlot.Validations.Skip(1).First());
+            Assert.IsType<IsNotInSet>(firstSlot.Validations.First());
         }
 
         private T GetFromFile<T>(string path)

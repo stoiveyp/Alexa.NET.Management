@@ -10,10 +10,10 @@ namespace Alexa.NET.Management.InteractionModel
         [JsonProperty("invocationName")]
         public string InvocationName { get; set; }
 
-        [JsonProperty("types")]
-        public SlotType[] SlotTypes { get; set; }
-
         [JsonProperty("intents")]
         public IntentType[] IntentTypes { get; set; }
+
+        [JsonProperty("types",NullValueHandling = NullValueHandling.Ignore)]
+        public SlotType[] SlotTypes { get; set; }
     }
 }

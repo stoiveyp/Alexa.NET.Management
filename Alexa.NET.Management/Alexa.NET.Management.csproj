@@ -13,7 +13,8 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyVersion>1.0.10.0</AssemblyVersion>
     <FileVersion>1.0.10.0</FileVersion>
-    <PackageReleaseNotes>Added support for skill simulation session mode</PackageReleaseNotes>
+    <PackageReleaseNotes>Slot Validation Support
+Small interaction model improvements in regard to optional fields</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

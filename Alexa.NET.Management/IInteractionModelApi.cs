@@ -6,7 +6,7 @@ namespace Alexa.NET.Management
 {
     public interface IInteractionModelApi
     {
-        Task<SkillInteraction> Get(string skillId, string stage, string locale);
+        Task<SkillInteractionResponse> Get(string skillId, string stage, string locale);
 
         Task<string> GetTag(string skillId, string stage, string locale);
 

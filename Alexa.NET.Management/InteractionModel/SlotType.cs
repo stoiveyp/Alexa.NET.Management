@@ -8,6 +8,6 @@ namespace Alexa.NET.Management.InteractionModel
         public string Name { get; set; }
 
         [JsonProperty("values")]
-        public string[] Values { get; set; }
+        public SlotTypeValue[] Values { get; set; }
     }
 }
