@@ -7,6 +7,9 @@ namespace Alexa.NET.Management.InteractionModel
         [JsonProperty("name")]
         public string Name { get; set; }
 
+        [JsonProperty("type")]
+        public string Type { get; set; }
+
         [JsonProperty("elicitationRequired",NullValueHandling = NullValueHandling.Ignore)]
         public bool ElicitationRequired { get; set; }
 
