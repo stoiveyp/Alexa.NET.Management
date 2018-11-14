@@ -5,7 +5,7 @@
         public const string ReadSkills = "alexa::ask:skills:read";
         public const string ReadWriteSkills = "alexa::ask:skills:readwrite";
         public const string ReadModels = "alexa::ask:models:read";
-        public const string ReadWriteModels = "alexa::models:readwrite";
+        public const string ReadWriteModels = "alexa::ask:models:readwrite";
         public const string TestingSkills = "alexa::ask:skills:test";
     }
 }
