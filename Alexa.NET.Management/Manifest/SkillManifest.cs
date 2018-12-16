@@ -82,6 +82,7 @@ namespace Alexa.NET.Management.Manifest
         SKILL_ACCOUNT_LINKED,
         ITEMS_CREATED,
         ITEMS_UPDATED,
-        ITEMS_DELETED
+        ITEMS_DELETED,
+        SKILL_PROACTIVE_SUBSCRIPTION_CHANGED
     }
 }
