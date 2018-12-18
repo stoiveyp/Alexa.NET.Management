@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Alexa.NET.Management.Internals;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -10,7 +11,7 @@ namespace Alexa.NET.Management.Manifest
         [JsonProperty("publishingInformation")]
         public PublishingInformation PublishingInformation { get; set; }
 
-        [JsonProperty("apis")]
+        [JsonProperty("apis"),JsonConverter(typeof(ApiConverter))]
         public List<Api.IApi> Apis { get; set; }
 
         [JsonProperty("manifestVersion")]
