@@ -15,7 +15,7 @@ namespace Alexa.NET.Management.Internals
 
         public SkillPackageApi(HttpClient client)
         {
-            Client = RestService.For<IClientSkillPackageApi>(client);
+            Client = RestService.For<IClientSkillPackageApi>(client,ManagementRefitSettings.Create());
         }
 
         public async Task<PackageUploadMetadata> CreateUpload()

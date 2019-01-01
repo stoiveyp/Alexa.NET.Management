@@ -8,7 +8,9 @@ namespace Alexa.NET.Management.Package
         [JsonProperty("location")]
         public Uri Location { get; set; }
 
-        [JsonProperty("expiresAt")]
+        [JsonProperty("expiresAt"),JsonConverter(typeof(MixedDateTimeConverter))]
         public DateTime ExpiresAt { get; set; }
     }
+
+
 }

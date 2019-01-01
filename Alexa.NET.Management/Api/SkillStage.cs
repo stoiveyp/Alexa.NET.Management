@@ -6,7 +6,9 @@ namespace Alexa.NET.Management.Api
 {
     public enum SkillStage
     {
+        [EnumMember(Value="development")]
         DEVELOPMENT,
+        [EnumMember(Value="live")]
         LIVE
     }
 }
