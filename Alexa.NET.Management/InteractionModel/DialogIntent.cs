@@ -12,5 +12,8 @@ namespace Alexa.NET.Management.InteractionModel
 
         [JsonProperty("slots")]
         public DialogSlot[] Slots { get; set; }
+
+        [JsonProperty("prompts")]
+        public IntentPrompt Prompts { get; set; }
     }
 }
