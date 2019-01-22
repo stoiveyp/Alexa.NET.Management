@@ -13,7 +13,9 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyVersion>1.0.10.0</AssemblyVersion>
     <FileVersion>1.0.10.0</FileVersion>
-    <PackageReleaseNotes>Fix export package calls</PackageReleaseNotes>
+    <PackageReleaseNotes>Add support for intent prompts (thank you Gavin!)
+Add intent delegation strategy support
+Update null value handling to more closely match docs</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
