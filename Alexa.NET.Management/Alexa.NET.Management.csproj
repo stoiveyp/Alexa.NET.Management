@@ -13,9 +13,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyVersion>1.0.10.0</AssemblyVersion>
     <FileVersion>1.0.10.0</FileVersion>
-    <PackageReleaseNotes>ProactiveEvents API Support
-- Publication in Events
-- PermissionNames helper class</PackageReleaseNotes>
+    <PackageReleaseNotes>Fix export package calls</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
