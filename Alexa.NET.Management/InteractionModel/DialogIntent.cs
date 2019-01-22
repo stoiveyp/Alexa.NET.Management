@@ -13,7 +13,7 @@ namespace Alexa.NET.Management.InteractionModel
         [JsonProperty("slots")]
         public DialogSlot[] Slots { get; set; }
 
-        [JsonProperty("prompts")]
+        [JsonProperty("prompts", NullValueHandling = NullValueHandling.Ignore)]
         public IntentPrompt Prompts { get; set; }
     }
 }
