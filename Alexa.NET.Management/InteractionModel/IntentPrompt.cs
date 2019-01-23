@@ -7,7 +7,7 @@ namespace Alexa.NET.Management.InteractionModel
 {
     public class IntentPrompt
     {
-        [JsonProperty("confirmation")]
+        [JsonProperty("confirmation", NullValueHandling = NullValueHandling.Ignore)]
         public string ConfirmationPrompt { get; set; }
     }
 }
