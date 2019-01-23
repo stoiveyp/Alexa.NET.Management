@@ -13,9 +13,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyVersion>1.0.10.0</AssemblyVersion>
     <FileVersion>1.0.10.0</FileVersion>
-    <PackageReleaseNotes>Add support for intent prompts (thank you Gavin!)
-Add intent delegation strategy support
-Update null value handling to more closely match docs</PackageReleaseNotes>
+    <PackageReleaseNotes>Improve slot prompt handling (thanks Gavin!)</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
