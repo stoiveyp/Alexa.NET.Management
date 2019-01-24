@@ -8,10 +8,10 @@ namespace Alexa.NET.Management.Skills
         [JsonProperty("languageModel")]
         public Language Language { get; set; }
 
-        [JsonProperty("dialog")]
+        [JsonProperty("dialog",NullValueHandling = NullValueHandling.Ignore)]
         public Dialog Dialog { get; set; }
 
-        [JsonProperty("prompts")]
+        [JsonProperty("prompts", NullValueHandling = NullValueHandling.Ignore)]
         public Prompt[] Prompts { get; set; }
     }
 }

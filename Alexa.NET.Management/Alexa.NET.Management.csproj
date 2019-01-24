@@ -13,7 +13,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyVersion>1.0.10.0</AssemblyVersion>
     <FileVersion>1.0.10.0</FileVersion>
-    <PackageReleaseNotes>Improve slot prompt handling (thanks Gavin!)</PackageReleaseNotes>
+    <PackageReleaseNotes>Small changes to null handling in SkillInteraction &amp; SlotType values</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

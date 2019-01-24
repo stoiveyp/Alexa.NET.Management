@@ -7,7 +7,7 @@ namespace Alexa.NET.Management.InteractionModel
         [JsonProperty("value")]
         public string Value { get; set; }
 
-        [JsonProperty("synonyms")]
+        [JsonProperty("synonyms", NullValueHandling = NullValueHandling.Ignore)]
         public string[] Synonyms { get; set; }
     }
 }
