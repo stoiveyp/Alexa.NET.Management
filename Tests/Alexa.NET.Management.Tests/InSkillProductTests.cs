@@ -252,7 +252,7 @@ namespace Alexa.NET.Management.Tests
             var management = new ManagementApi("xxx", new ActionHandler(req =>
             {
                 Assert.Equal(HttpMethod.Get, req.Method);
-                Assert.Equal("/v1/inSkillProducts/string/stages/DEVELOPMENT/summary", req.RequestUri.PathAndQuery);
+                Assert.Equal("/v1/inSkillProducts/string/stages/development/summary", req.RequestUri.PathAndQuery);
             }, Utility.ExampleFileContent<ProductSummary>("ProductSummary.json")));
 
             var response = await management.InSkillProducts.GetSummary("string", SkillStage.DEVELOPMENT);
@@ -291,7 +291,7 @@ namespace Alexa.NET.Management.Tests
             var management = new ManagementApi("xxx", new ActionHandler(req =>
             {
                 Assert.Equal(HttpMethod.Delete, req.Method);
-                Assert.Equal("/v1/inSkillProducts/product/stages/DEVELOPMENT/entitlement", req.RequestUri.PathAndQuery);
+                Assert.Equal("/v1/inSkillProducts/product/stages/development/entitlement", req.RequestUri.PathAndQuery);
             }, new JObject(), HttpStatusCode.NoContent));
 
             var response = await management.InSkillProducts.ResetDeveloperEntitlement("product");

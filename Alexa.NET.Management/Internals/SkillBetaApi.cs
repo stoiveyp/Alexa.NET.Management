@@ -15,7 +15,7 @@ namespace Alexa.NET.Management.Internals
 
         public SkillBetaApi(HttpClient httpClient)
         {
-            Client = RestService.For<IClientSkillBetaApi>(httpClient);
+            Client = RestService.For<IClientSkillBetaApi>(httpClient, ManagementRefitSettings.Create());
         }
 
         public async Task<Uri> Create(string skillId, string feedbackEmail)

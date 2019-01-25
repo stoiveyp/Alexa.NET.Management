@@ -163,7 +163,7 @@ namespace Alexa.NET.Management.Tests
             var management = new ManagementApi("xxx", new ActionHandler(async req =>
             {
                 Assert.Equal(HttpMethod.Post, req.Method);
-                Assert.Equal("/v1/skills/skillid/stages/DEVELOPMENT/exports", req.RequestUri.PathAndQuery);
+                Assert.Equal("/v1/skills/skillid/stages/development/exports", req.RequestUri.PathAndQuery);
 
                 var message = new HttpResponseMessage(HttpStatusCode.Accepted);
                 message.Headers.Location = new Uri("/v1/skills/skillid/imports/importId", UriKind.Relative);

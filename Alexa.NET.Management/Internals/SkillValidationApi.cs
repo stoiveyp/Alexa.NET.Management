@@ -12,7 +12,7 @@ namespace Alexa.NET.Management.Internals
 
         public SkillValidationApi(HttpClient httpClient)
         {
-            Client = Client = RestService.For<IClientSkillValidationApi>(httpClient);
+            Client = Client = RestService.For<IClientSkillValidationApi>(httpClient, ManagementRefitSettings.Create());
         }
 
         public Task<SkillValidationResponse> Submit(string skillId, SkillStage stage)
