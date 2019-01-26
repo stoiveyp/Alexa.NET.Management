@@ -89,5 +89,20 @@ namespace Alexa.NET.Management.Internals
         {
             return Inner.List(vendorId, maxResults, nextToken);
         }
+
+        public Task<CertificationListResponse> ListCertification(string skillId)
+        {
+            return Inner.ListCertification(skillId);
+        }
+
+        public Task<CertificationListResponse> ListCertification(string skillId, int maxResults)
+        {
+            return Inner.ListCertification(skillId, maxResults);
+        }
+
+        public Task<CertificationListResponse> ListCertification(string skillId, int maxResults, string nextToken)
+        {
+            return Inner.ListCertification(skillId, maxResults, nextToken);
+        }
     }
 }

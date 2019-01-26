@@ -21,6 +21,9 @@ namespace Alexa.NET.Management
         Task<SkillListResponse> List(string vendorId, params string[] container);
         Task<SkillListResponse> List(string vendorId, int maxResults);
         Task<SkillListResponse> List(string vendorId, int maxResults, string nextToken);
+        Task<CertificationListResponse> ListCertification(string skillId);
+        Task<CertificationListResponse> ListCertification(string skillId, int maxResults);
+        Task<CertificationListResponse> ListCertification(string skillId, int maxResults, string nextToken);
     }
 }
 
