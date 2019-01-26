@@ -16,7 +16,7 @@ namespace Alexa.NET.Management.Internals
 
         public InProductSkillsApi(HttpClient httpClient)
         {
-            Client = RestService.For<IClientInSkillProductApi>(httpClient);
+            Client = RestService.For<IClientInSkillProductApi>(httpClient,ManagementRefitSettings.Create());
         }
 
         public Task<Product> Get(string productId, SkillStage stage)

@@ -17,7 +17,7 @@ namespace Alexa.NET.Management
 
     public class DefaultWithEnumUrlParamFormatter : DefaultUrlParameterFormatter
     {
-        public string Format(object value, ParameterInfo parameterInfo)
+        public override string Format(object value, ParameterInfo parameterInfo)
         {
             if (value is SkillStage stage)
             {

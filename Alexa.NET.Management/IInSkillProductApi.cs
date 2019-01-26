@@ -56,7 +56,7 @@ namespace Alexa.NET.Management
         [Put("inSkillProducts/{productId}/skills/{skillId}")]
         Task<bool> Disassociate(string productId, string skillId);
 
-        [Delete("inSkillProducts/{productId}/stages/DEVELOPMENT/entitlement")]
+        [Delete("inSkillProducts/{productId}/stages/development/entitlement")]
         Task<bool> ResetDeveloperEntitlement(string productId);
     }
 }

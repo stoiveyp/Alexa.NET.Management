@@ -19,7 +19,7 @@ namespace Alexa.NET.Management.Tests
             var management = new ManagementApi("xxx", new ActionHandler(req =>
             {
                 Assert.Equal(HttpMethod.Post,req.Method);
-                Assert.Equal("/v1/skills/skillid/stage/DEVELOPMENT/validations",req.RequestUri.PathAndQuery);
+                Assert.Equal("/v1/skills/skillid/stage/development/validations",req.RequestUri.PathAndQuery);
             },new SkillValidationResponse()));
             var response = await management.SkillValidation.Submit("skillid", SkillStage.DEVELOPMENT);
             Assert.NotNull(response);
@@ -31,7 +31,7 @@ namespace Alexa.NET.Management.Tests
             var management = new ManagementApi("xxx", new ActionHandler(async req =>
             {
                 Assert.Equal(HttpMethod.Post, req.Method);
-                Assert.Equal("/v1/skills/skillid/stage/DEVELOPMENT/validations", req.RequestUri.PathAndQuery);
+                Assert.Equal("/v1/skills/skillid/stage/development/validations", req.RequestUri.PathAndQuery);
                 Assert.NotNull(req.Content);
                 var response = JsonConvert.DeserializeObject<SkillValidationRequest>(await req.Content.ReadAsStringAsync());
                 Assert.Single(response.Locales);
@@ -55,7 +55,7 @@ namespace Alexa.NET.Management.Tests
             var api = new ManagementApi("xxx",new ActionHandler(req =>
             {
                 Assert.Equal(HttpMethod.Post,req.Method);
-                Assert.Equal("/v1/skills/skillid/stage/DEVELOPMENT/validations", req.RequestUri.PathAndQuery);
+                Assert.Equal("/v1/skills/skillid/stage/development/validations", req.RequestUri.PathAndQuery);
             },JsonConvert.DeserializeObject<SkillValidationResponse>(File.ReadAllText("Examples/InProgressValidation.json"))));
             var task = await api.SkillValidation.Submit("skillid", SkillStage.DEVELOPMENT);
             Assert.Equal("33333333-3333-3333-3333-333333333333", task.Id);
@@ -69,7 +69,7 @@ namespace Alexa.NET.Management.Tests
             var api = new ManagementApi("xxx", new ActionHandler(req =>
             {
                 Assert.Equal(HttpMethod.Get,req.Method);
-                Assert.Equal("/v1/skills/skillid/stages/DEVELOPMENT/validations/validationid",req.RequestUri.PathAndQuery);
+                Assert.Equal("/v1/skills/skillid/stages/development/validations/validationid",req.RequestUri.PathAndQuery);
             },new SkillValidationResponse()));
             var task = await api.SkillValidation.Get("skillid",SkillStage.DEVELOPMENT,"validationid");
             Assert.NotNull(task);
@@ -81,7 +81,7 @@ namespace Alexa.NET.Management.Tests
             var api = new ManagementApi("xxx", new ActionHandler(req =>
             {
                 Assert.Equal(HttpMethod.Get, req.Method);
-                Assert.Equal("/v1/skills/skillid/stages/DEVELOPMENT/validations/validationid", req.RequestUri.PathAndQuery);
+                Assert.Equal("/v1/skills/skillid/stages/development/validations/validationid", req.RequestUri.PathAndQuery);
             }, GetFromFile<SkillValidationResponse>("Examples/ValidationResult.json")));
             var task = await api.SkillValidation.Get("skillid", SkillStage.DEVELOPMENT, "validationid");
             

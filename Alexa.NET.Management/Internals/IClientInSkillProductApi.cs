@@ -56,7 +56,7 @@ namespace Alexa.NET.Management.Internals
         [Delete("/inSkillProducts/{productId}/skills/{skillId}")]
         Task<HttpResponseMessage> Disassociate(string productId, string skillId);
 
-        [Delete("/inSkillProducts/{productId}/stages/DEVELOPMENT/entitlement")]
+        [Delete("/inSkillProducts/{productId}/stages/development/entitlement")]
         Task<HttpResponseMessage> ResetDeveloperEntitlement(string productId);
     }
 }

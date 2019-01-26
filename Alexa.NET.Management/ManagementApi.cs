@@ -65,6 +65,8 @@ namespace Alexa.NET.Management
             Beta = new SkillBetaApi(client);
 
             Package = new SkillPackageApi(client);
+
+            UtteranceProfiler = new SkillUtteranceProfilerApi(client);
         }
 
         public IIntentRequestHistoryApi IntentRequestHistory { get; set; }
@@ -78,6 +80,7 @@ namespace Alexa.NET.Management
         public IVendorApi Vendors { get; set; }
 
         public IAccountLinkingApi AccountLinking { get; set; }
+
         public ISkillValidationApi SkillValidation { get; set; }
 
         public IInSkillProductApi InSkillProducts { get; set; }
@@ -85,5 +88,7 @@ namespace Alexa.NET.Management
         public IBetaTestApi Beta { get; set; }
 
         public ISkillPackageApi Package { get; set; }
+
+        public IUtteranceProfilerApi UtteranceProfiler { get; set; }
     }
 }

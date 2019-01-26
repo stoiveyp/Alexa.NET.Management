@@ -1,0 +1,67 @@
+﻿{
+  "sessionEnded": true,
+  "selectedIntent": {
+    "name": "chosenIntent",
+    "confirmationStatus": "NONE",
+    "slots": {
+      "slotName": {
+        "name": "string",
+        "value": "string",
+        "confirmationStatus": "NONE",
+        "resolutions": {
+          "resolutionsPerAuthority": [
+            {
+              "authority": "string",
+              "status": {
+                "code": "ER_SUCCESS_MATCH"
+              },
+              "values": [
+                {
+                  "name": "string",
+                  "id": "string"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  "consideredIntents": [
+    {
+      "name": "removedIntent",
+      "confirmationStatus": "NONE",
+      "slots": {
+        "slotName": {
+          "name": "string",
+          "value": "string",
+          "confirmationStatus": "NONE",
+          "resolutions": {
+            "resolutionsPerAuthority": [
+              {
+                "authority": "string",
+                "status": {
+                  "code": "ER_SUCCESS_MATCH"
+                },
+                "values": [
+                  {
+                    "name": "string",
+                    "id": "string"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "multiTurn": {
+    "dialogAct": {
+      "type": "Dialog.ElicitSlot",
+      "targetSlot": "designatedSlot"
+    },
+    "token": "tokenabc",
+    "prompt": "promptdef"
+  }
+}
