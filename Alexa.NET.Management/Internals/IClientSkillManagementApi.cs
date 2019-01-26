@@ -15,7 +15,6 @@ namespace Alexa.NET.Management.Internals
         [Post("/skills/{vendorId}")]
         Task<SkillId> Create(string vendorId, [Body]Skill skill);
 
-
         [Put("/skills/{skillId}/stages/{stage}/manifest")]
         Task<SkillId> Update(string skillId, string stage, [Body] Skill skill);
 
@@ -31,7 +30,6 @@ namespace Alexa.NET.Management.Internals
         [Post("/skills/{skillId}/simulations")]
         Task<InvocationResponse> Simulate(string skillId, [Body] SimulationRequest request);
 
-
         [Get("/skills/{skillId}/simulations/{simulationId}")]
         Task<InvocationResponse> SimulationResult(string skillId, string simulationId);
 
@@ -46,5 +44,20 @@ namespace Alexa.NET.Management.Internals
 
         [Get("/skills?vendorId={vendorId}")]
         Task<SkillListResponse> List(string vendorId, int maxResults, string nextToken);
+
+        [Get("/skills/{skillId}/certifications")]
+        Task<CertificationListResponse> ListCertification(string skillId);
+
+        [Get("/skills/{skillId}/certifications")]
+        Task<CertificationListResponse> ListCertification(string skillId, int maxResults);
+
+        [Get("/skills/{skillId}/certifications")]
+        Task<CertificationListResponse> ListCertification(string skillId, int maxResults, string nextToken);
+
+        [Get("/skills/{skillId}/certifications/{certificationId}")]
+        Task<Certification> Certification(string skillId, string certificationId);
+
+        [Get("/skills/{skillId}/certifications/{certificationId}")]
+        Task<Certification> Certification(string skillId, string certificationId, [Header("Accept-Language")]string locale);
     }
 }

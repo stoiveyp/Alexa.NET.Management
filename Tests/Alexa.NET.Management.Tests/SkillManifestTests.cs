@@ -23,7 +23,7 @@ namespace Alexa.NET.Management.Tests
         [Fact]
         public void TestCustomSkillManifest()
         {
-            var manifest = GetFromFile<Skill>("Examples/CustomSkillManifest.json").Manifest;
+            var manifest = Utility.ExampleFileContent<Skill>("CustomSkillManifest.json").Manifest;
             Assert.Equal(manifest.Apis.Count,1);
 
             var customApi = manifest.Apis.First() as CustomApi;
@@ -34,7 +34,7 @@ namespace Alexa.NET.Management.Tests
         [Fact]
         public void GadgetSupportDeserializesCorrectly()
         {
-            var support = GetFromFile<GadgetSupport>("Examples/GadgetSupport.json");
+            var support = Utility.ExampleFileContent<GadgetSupport>("GadgetSupport.json");
 
             Assert.Equal(GadgetRequirement.Required,support.Requirement);
             Assert.Equal(1,support.MinPlayers);
@@ -45,7 +45,7 @@ namespace Alexa.NET.Management.Tests
         [Fact]
         public void InteractionModelDeserializesCorrectly()
         {
-            var model = GetFromFile<SkillInteractionContainer>("Examples/InteractionModel.json");
+            var model = Utility.ExampleFileContent<SkillInteractionContainer>("InteractionModel.json");
             var slotType = model.InteractionModel.Language.SlotTypes.First(st => st.Name == "TechNottsEvent");
             Assert.Equal("tech-nottingham",slotType.Values.First().Id);
 
@@ -55,14 +55,6 @@ namespace Alexa.NET.Management.Tests
             var firstSlot = dialogIntent.Slots.First();
             Assert.IsType<HasEntityResolutionMatch>(firstSlot.Validations.Skip(1).First());
             Assert.IsType<IsNotInSet>(firstSlot.Validations.First());
-        }
-
-        private T GetFromFile<T>(string path)
-        {
-            using (var reader = new JsonTextReader(File.OpenText(path)))
-            {
-                return Serializer.Deserialize<T>(reader);
-            }
         }
     }
 }

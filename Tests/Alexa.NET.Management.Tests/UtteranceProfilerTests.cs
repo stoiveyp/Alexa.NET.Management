@@ -44,22 +44,12 @@ namespace Alexa.NET.Management.Tests
         [Fact]
         public void ResponseIsCorrect()
         {
-            var response = GetFromFile<UtteranceProfilerResponse>("Examples/UtteranceProfilerResponse.json");
+            var response = Utility.ExampleFileContent<UtteranceProfilerResponse>("UtteranceProfilerResponse.json");
             Assert.True(response.SessionEnded);
             Assert.Equal("chosenIntent",response.SelectedIntent.Name);
             Assert.Equal("removedIntent",response.ConsideredIntents.First().Name);
             Assert.Equal("tokenabc",response.MultiTurn.Token);
             Assert.Equal("Dialog.ElicitSlot",response.MultiTurn.DialogAct.Type);
-        }
-
-        public JsonSerializer Serializer = JsonSerializer.Create(new JsonSerializerSettings());
-
-        private T GetFromFile<T>(string path)
-        {
-            using (var reader = new JsonTextReader(File.OpenText(path)))
-            {
-                return Serializer.Deserialize<T>(reader);
-            }
         }
     }
 }

@@ -57,7 +57,7 @@ namespace Alexa.NET.Management.Tests
         [Fact]
         public void ResponseDeserializesProperly()
         {
-            var response = GetFromFile<IntentRequestHistoryResponse>("Examples/IntentRequestHistoryResponse.json");
+            var response = Utility.ExampleFileContent<IntentRequestHistoryResponse>("IntentRequestHistoryResponse.json");
             var body = response.Body;
 
             Assert.NotNull(body);
@@ -74,13 +74,5 @@ namespace Alexa.NET.Management.Tests
         }
 
         private readonly JsonSerializer Serializer = JsonSerializer.Create(new JsonSerializerSettings());
-
-        private T GetFromFile<T>(string path)
-        {
-            using (var reader = new JsonTextReader(File.OpenText(path)))
-            {
-                return Serializer.Deserialize<T>(reader);
-            }
-        }
     }
 }

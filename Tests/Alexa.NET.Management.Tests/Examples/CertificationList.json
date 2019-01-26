@@ -1,0 +1,25 @@
+﻿{
+  "_links": {
+    "self": {
+      "href": "string"
+    },
+    "next": {
+      "href": "string"
+    }
+  },
+  "isTruncated": false,
+  "nextToken": "string",
+  "totalCount": 1,
+  "items": [
+    {
+      "id": "string",
+      "status": "IN_PROGRESS",
+      "skillSubmissionTimestamp": "2019-01-06T05:26:02.430Z",
+      "reviewTrackingInfo": {
+        "estimatedCompletionTimestamp": "2019-01-06T05:26:02.430Z",
+        "actualCompletionTimestamp": "2019-01-06T05:26:02.430Z",
+        "lastUpdated": "2019-01-06T05:26:02.430Z"
+      }
+    }
+  ]
+}
