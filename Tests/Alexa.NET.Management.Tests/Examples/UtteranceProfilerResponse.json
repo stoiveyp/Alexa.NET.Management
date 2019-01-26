@@ -59,9 +59,9 @@
   "multiTurn": {
     "dialogAct": {
       "type": "Dialog.ElicitSlot",
-      "targetSlot": "string"
+      "targetSlot": "designatedSlot"
     },
-    "token": "string",
-    "prompt": "string"
+    "token": "tokenabc",
+    "prompt": "promptdef"
   }
 }

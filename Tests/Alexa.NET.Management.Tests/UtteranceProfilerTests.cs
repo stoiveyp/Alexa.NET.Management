@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -44,7 +45,11 @@ namespace Alexa.NET.Management.Tests
         public void ResponseIsCorrect()
         {
             var response = GetFromFile<UtteranceProfilerResponse>("Examples/UtteranceProfilerResponse.json");
-
+            Assert.True(response.SessionEnded);
+            Assert.Equal("chosenIntent",response.SelectedIntent.Name);
+            Assert.Equal("removedIntent",response.ConsideredIntents.First().Name);
+            Assert.Equal("tokenabc",response.MultiTurn.Token);
+            Assert.Equal("Dialog.ElicitSlot",response.MultiTurn.DialogAct.Type);
         }
 
         public JsonSerializer Serializer = JsonSerializer.Create(new JsonSerializerSettings());
