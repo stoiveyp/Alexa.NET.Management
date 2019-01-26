@@ -104,5 +104,15 @@ namespace Alexa.NET.Management.Internals
         {
             return Inner.ListCertification(skillId, maxResults, nextToken);
         }
+
+        public Task<Certification> Certification(string skillId, string certificationId)
+        {
+            return Inner.Certification(skillId, certificationId);
+        }
+
+        public Task<Certification> Certification(string skillId, string certificationId, string locale)
+        {
+            return Inner.Certification(skillId, certificationId, locale);
+        }
     }
 }

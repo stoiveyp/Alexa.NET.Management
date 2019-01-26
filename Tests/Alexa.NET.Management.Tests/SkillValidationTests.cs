@@ -56,7 +56,7 @@ namespace Alexa.NET.Management.Tests
             {
                 Assert.Equal(HttpMethod.Post,req.Method);
                 Assert.Equal("/v1/skills/skillid/stage/development/validations", req.RequestUri.PathAndQuery);
-            },JsonConvert.DeserializeObject<SkillValidationResponse>(File.ReadAllText("Examples/InProgressValidation.json"))));
+            }, Utility.ExampleFileContent<SkillValidationResponse>("InProgressValidation.json")));
             var task = await api.SkillValidation.Submit("skillid", SkillStage.DEVELOPMENT);
             Assert.Equal("33333333-3333-3333-3333-333333333333", task.Id);
             Assert.Equal(ValidationStatus.IN_PROGRESS,task.Status);
@@ -82,7 +82,7 @@ namespace Alexa.NET.Management.Tests
             {
                 Assert.Equal(HttpMethod.Get, req.Method);
                 Assert.Equal("/v1/skills/skillid/stages/development/validations/validationid", req.RequestUri.PathAndQuery);
-            }, GetFromFile<SkillValidationResponse>("Examples/ValidationResult.json")));
+            }, Utility.ExampleFileContent<SkillValidationResponse>("ValidationResult.json")));
             var task = await api.SkillValidation.Get("skillid", SkillStage.DEVELOPMENT, "validationid");
             
             Assert.Equal("11111111-1111-1111-1111-111111111111",task.Id);
@@ -92,16 +92,6 @@ namespace Alexa.NET.Management.Tests
             Assert.NotNull(task.Result.Validations);
 
             Assert.Equal(18,task.Result.Validations.Length);
-        }
-
-        private readonly JsonSerializer Serializer = JsonSerializer.Create(new JsonSerializerSettings());
-
-        private T GetFromFile<T>(string path)
-        {
-            using (var reader = new JsonTextReader(File.OpenText(path)))
-            {
-                return Serializer.Deserialize<T>(reader);
-            }
         }
     }
 }

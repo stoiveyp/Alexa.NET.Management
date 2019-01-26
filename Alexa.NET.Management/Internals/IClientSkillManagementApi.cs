@@ -53,5 +53,11 @@ namespace Alexa.NET.Management.Internals
 
         [Get("/skills/{skillId}/certifications")]
         Task<CertificationListResponse> ListCertification(string skillId, int maxResults, string nextToken);
+
+        [Get("/skills/{skillId}/certifications/{certificationId}")]
+        Task<Certification> Certification(string skillId, string certificationId);
+
+        [Get("/skills/{skillId}/certifications/{certificationId}")]
+        Task<Certification> Certification(string skillId, string certificationId, [Header("Accept-Language")]string locale);
     }
 }

@@ -1,0 +1,32 @@
+﻿{
+  "id": "string",
+  "status": "IN_PROGRESS",
+  "skillSubmissionTimestamp": "2019-01-06T21:54:09.730Z",
+  "reviewTrackingInfo": {
+    "estimatedCompletionTimestamp": "2019-01-06T21:54:09.730Z",
+    "actualCompletionTimestamp": "2019-01-06T21:54:09.730Z",
+    "lastUpdated": "2019-01-06T21:54:09.730Z",
+    "estimationUpdates": [
+      {
+        "originalEstimatedCompletionTimestamp": "2019-01-06T21:54:09.730Z",
+        "revisedEstimatedCompletionTimestamp": "2019-01-06T21:54:09.730Z",
+        "reason": "string"
+      }
+    ]
+  },
+  "result": {
+    "distributionInfo": {
+      "publishedCountries": [
+        "string"
+      ],
+      "publicationFailures": [
+        {
+          "reason": "string",
+          "countries": [
+            "string"
+          ]
+        }
+      ]
+    }
+  }
+}

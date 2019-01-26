@@ -18,7 +18,7 @@ namespace Alexa.NET.Management.Skills
         public string NextToken { get; set; }
 
         [JsonProperty("totalCount")]
-        public string TotalCount { get; set; }
+        public int TotalCount { get; set; }
 
         [JsonProperty("items")]
         public CertificationSummary[] Items { get; set; }
