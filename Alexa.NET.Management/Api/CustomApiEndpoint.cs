@@ -11,7 +11,7 @@ namespace Alexa.NET.Management.Api
         [JsonProperty("uri")]
         public string Uri { get; set; }
 
-        [JsonProperty("sslCertificateType"), JsonConverter(typeof(StringEnumConverter)), NullValueHandling.Ignore]
+        [JsonProperty("sslCertificateType", NullValueHandling = NullValueHandling.Ignore), JsonConverter(typeof(StringEnumConverter))]
         public SslCertificateType? SslCertificateType { get; set; }
     }
 }
