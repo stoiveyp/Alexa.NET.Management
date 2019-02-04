@@ -4,7 +4,7 @@ namespace Alexa.NET.Management.Skills
 {
     public class SkillId
     {
-        [JsonProperty("skill_id")]
+        [JsonProperty("skillId")]
         public string Id { get; set; }
     }
 }
