@@ -12,8 +12,8 @@ namespace Alexa.NET.Management.Internals
         [Get("/skills/{skillId}/stages/{stage}/manifest")]
         Task<Skill> Get(string skillId, string stage);
 
-        [Post("/skills/{vendorId}")]
-        Task<SkillId> Create(string vendorId, [Body]Skill skill);
+        [Post("/skills")]
+        Task<SkillId> Create([Body] SkillCreateRequest request);
 
         [Put("/skills/{skillId}/stages/{stage}/manifest")]
         Task<SkillId> Update(string skillId, string stage, [Body] Skill skill);

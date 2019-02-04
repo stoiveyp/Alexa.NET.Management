@@ -32,7 +32,7 @@ namespace Alexa.NET.Management.Internals
 
         public Task<SkillId> Create(string vendorId, Skill skill)
         {
-            return Inner.Create(vendorId, skill);
+            return Inner.Create(new SkillCreateRequest {VendorId=vendorId, Manifest=skill.Manifest });
         }
 
         public Task<SkillId> Update(string skillId, string stage, Skill skill)
