@@ -12,5 +12,6 @@
         public const string ReadAlexaLists = "alexa::household:lists:read";
         public const string WriteAlexaLists = "alexa::household:lists:write";
         public const string SendNotifications = "alexa::devices:all:notifications:write";
+        public const string WriteHealthProfile = "alexa::health:profile:write";
     }
 }

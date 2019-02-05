@@ -7,5 +7,6 @@
         public const string Video = "video";
         public const string SmartHome = "smartHome";
         public const string HouseholdList = "householdList";
+        public const string Health = "health";
     }
 }

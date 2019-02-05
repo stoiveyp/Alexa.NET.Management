@@ -15,7 +15,8 @@ namespace Alexa.NET.Management.Internals
             {SkillApi.FlashBriefing, typeof(FlashBriefingApi)},
             {SkillApi.Video, typeof(VideoApi)},
             {SkillApi.SmartHome, typeof(SmartHomeApi)},
-            {SkillApi.HouseholdList, typeof(HouseholdListApi)}
+            {SkillApi.HouseholdList, typeof(HouseholdListApi)},
+            {SkillApi.Health, typeof(HealthApi) }
         };
 
         private readonly Dictionary<string, Type> Mapping;
