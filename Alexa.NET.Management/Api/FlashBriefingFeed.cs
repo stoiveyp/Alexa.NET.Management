@@ -26,7 +26,7 @@ namespace Alexa.NET.Management.Api
         [JsonProperty("contentType"), JsonConverter(typeof(StringEnumConverter))]
         public ContentFeedType ContentType { get; set; }
 
-        [JsonProperty("uri")]
+        [JsonProperty("url")]
         public string Uri { get; set; }
     }
 }
