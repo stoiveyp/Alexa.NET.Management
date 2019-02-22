@@ -2,6 +2,7 @@
 {
     public enum UpdateFrequency
     {
+        HOURLY,
         DAILY,
         WEEKLY,
         MONTHLY
