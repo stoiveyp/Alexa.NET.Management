@@ -4,7 +4,6 @@
     {
         HOURLY,
         DAILY,
-        WEEKLY,
-        MONTHLY
+        WEEKLY
     }
 }
