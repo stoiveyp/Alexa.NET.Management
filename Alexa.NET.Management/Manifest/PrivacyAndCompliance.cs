@@ -20,7 +20,7 @@ namespace Alexa.NET.Management.Manifest
         [JsonProperty("containsAds")]
         public bool ContainsAds { get; set; }
 
-        [JsonProperty("locale")]
+        [JsonProperty("locales")]
         public Dictionary<string,PrivacyAndCompliantLocale> Locales { get; set; }
     }
 }
