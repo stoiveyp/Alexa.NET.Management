@@ -5,7 +5,7 @@ namespace Alexa.NET.Management.Manifest
 {
     public class PrivacyAndCompliance
     {
-        [JsonProperty("allowPurchases")]
+        [JsonProperty("allowsPurchases")]
         public bool AllowPurchases { get; set; } 
 
         [JsonProperty("usesPersonalInfo")]
