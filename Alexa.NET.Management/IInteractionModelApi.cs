@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Alexa.NET.Management.Internals;
+using Alexa.NET.Management.InteractionModel;
 using Alexa.NET.Management.Skills;
 
 namespace Alexa.NET.Management
@@ -11,5 +11,15 @@ namespace Alexa.NET.Management
         Task<string> GetTag(string skillId, string stage, string locale);
 
         Task Update(string skillId, string stage, string locale, SkillInteractionContainer interaction);
+
+        Task<InteractionModelVersionsResponse> Versions(string skillId, string locale);
+
+        Task<InteractionModelVersionsResponse> Versions(string skillId, string locale, SortDirection sortDirection);
+
+        Task<InteractionModelVersionsResponse> Versions(string skillId, string locale, string nextToken, int maxResults);
+
+        Task<InteractionModelVersionsResponse> Versions(string skillId, string locale, SortDirection sortDirection, string nextToken, int maxResults);
+
+        Task<SkillModelVersion> Version(string skillId, string locale, string version);
     }
 }

@@ -1,0 +1,28 @@
+{
+  "_links": {
+    "self": {
+      "href": "/v1/skills/amzn1.ask.skill.c694ef3e-f0b2-41e7-aab2-000000000000/stages/development/interactionModel/locales/en_GB/versions?maxResults=null&nextToken=null&sortField=null&sortDirection=null"
+    }
+  },
+  "isTruncated": false,
+  "skillModelVersions": [
+    {
+      "_links": {
+        "self": {
+          "href": "/v1/skills/amzn1.ask.skill.c694ef3e-f0b2-41e7-aab2-000000000000/stages/development/interactionModel/locales/en_GB/versions/2"
+        }
+      },
+      "creationTime": "2019-04-04T07:45:13.495Z",
+      "version": "2"
+    },
+    {
+      "_links": {
+        "self": {
+          "href": "/v1/skills/amzn1.ask.skill.c694ef3e-f0b2-41e7-aab2-000000000000/stages/development/interactionModel/locales/en_GB/versions/1"
+        }
+      },
+      "creationTime": "2019-04-04T07:44:07.851Z",
+      "version": "1"
+    }
+  ]
+}

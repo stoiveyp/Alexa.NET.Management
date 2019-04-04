@@ -32,6 +32,19 @@ namespace Alexa.NET.Management
                 }
             }
 
+            if (value is SortDirection sortDirection)
+            {
+                if (sortDirection == SortDirection.Ascending)
+                {
+                    return "asc";
+                }
+
+                if (sortDirection == SortDirection.Descending)
+                {
+                    return "desc";
+                }
+            }
+
             return base.Format(value, parameterInfo);
         }
     }

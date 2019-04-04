@@ -1,10 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using Alexa.NET.Management.Api;
+using Alexa.NET.Management.InteractionModel;
 using Alexa.NET.Management.InteractionModel.ValidationRules;
 using Alexa.NET.Management.Internals;
 using Alexa.NET.Management.Manifest;
+using Alexa.NET.Management.Package;
 using Alexa.NET.Management.Skills;
 using Newtonsoft.Json;
 using Xunit;
@@ -55,6 +61,51 @@ namespace Alexa.NET.Management.Tests
             var firstSlot = dialogIntent.Slots.First();
             Assert.IsType<HasEntityResolutionMatch>(firstSlot.Validations.Skip(1).First());
             Assert.IsType<IsNotInSet>(firstSlot.Validations.First());
+        }
+
+        [Fact]
+        public async Task VersionsWorksAsExpected()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal("/v1/skills/skillid/stages/development/interactionModel/locales/en-GB/versions?sortDirection=asc&nextToken=wibble&maxResults=10", req.RequestUri.PathAndQuery);
+
+                var message = new HttpResponseMessage(HttpStatusCode.OK);
+                message.Content = new StringContent(Utility.ExampleFileContent("InteractionModelVersions.json"));
+                return Task.FromResult(message);
+            }));
+            var response =
+                await management.InteractionModel.Versions("skillid", "en-GB", SortDirection.Ascending, "wibble", 10);
+            Assert.NotNull(response);
+            Assert.Equal(2,response.SkillModelVersionsSummary.Length);
+            var summary = response.SkillModelVersionsSummary.First();
+            Assert.Equal(summary.Version,"2");
+            Assert.Equal(DateTime.Parse("2019-04-04T07:45:13.495Z").ToUniversalTime(), summary.CreationTime);
+            var link = Assert.Single(summary.Links);
+            Assert.Equal("self",link.Key);
+            Assert.Equal(
+                "/v1/skills/amzn1.ask.skill.c694ef3e-f0b2-41e7-aab2-000000000000/stages/development/interactionModel/locales/en_GB/versions/2",
+                link.Value.Href);
+        }
+
+        [Fact]
+        public async Task VersionWorksAsExpected()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal("/v1/skills/skillid/stages/development/interactionModel/locales/en-GB/versions/2",req.RequestUri.PathAndQuery);
+
+                var message = new HttpResponseMessage(HttpStatusCode.OK);
+                message.Content = new StringContent(Utility.ExampleFileContent("InteractionModelVersion.json"));
+                return Task.FromResult(message);
+            }));
+            var response =
+                await management.InteractionModel.Version("skillid", "en-GB","2");
+            Assert.NotNull(response);
+            Assert.Equal("2", response.Version);
+            Assert.NotNull(response.InteractionModel);
         }
     }
 }
