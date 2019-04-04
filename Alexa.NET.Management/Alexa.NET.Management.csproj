@@ -14,7 +14,7 @@
     <AssemblyVersion>1.0.10.0</AssemblyVersion>
     <FileVersion>1.0.10.0</FileVersion>
     <PackageReleaseNotes>Add skill manifest versions to Management.InteractionModel</PackageReleaseNotes>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageLicenseFile>..\LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
