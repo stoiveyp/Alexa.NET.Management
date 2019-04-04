@@ -160,14 +160,14 @@ namespace Alexa.NET.Management.Tests
         [Fact]
         public async Task CreateExportRequestCallsCorrectly()
         {
-            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
             {
                 Assert.Equal(HttpMethod.Post, req.Method);
                 Assert.Equal("/v1/skills/skillid/stages/development/exports", req.RequestUri.PathAndQuery);
 
                 var message = new HttpResponseMessage(HttpStatusCode.Accepted);
                 message.Headers.Location = new Uri("/v1/skills/skillid/imports/importId", UriKind.Relative);
-                return message;
+                return Task.FromResult(message);
             }));
             var response = await management.Package.CreateExportRequest("skillid", SkillStage.DEVELOPMENT);
             Assert.NotNull(response);
