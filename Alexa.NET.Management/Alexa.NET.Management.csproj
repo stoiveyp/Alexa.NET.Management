@@ -5,7 +5,7 @@
     <Authors>Steven Pears</Authors>
     <Company />
     <Description>A .NET Core library for handling Alexa Skills Management API</Description>
-    <PackageLicenseUrl>https://github.com/stoiveyp/Alexa.NET.Management/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/stoiveyp/Alexa.NET.Management/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/stoiveyp/Alexa.NET.Management/</RepositoryUrl>
     <PackageTags>amazon;alexa;echo;dot;echo dot;skills;management</PackageTags>
@@ -13,11 +13,19 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyVersion>1.0.10.0</AssemblyVersion>
     <FileVersion>1.0.10.0</FileVersion>
-    <PackageReleaseNotes>Update to skill manifest mapping (thank you again shinya-terasaki!)</PackageReleaseNotes>
+    <PackageReleaseNotes>Add skill manifest versions</PackageReleaseNotes>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Alexa.NET" Version="1.5.1" />
     <PackageReference Include="Refit" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\stoiveyp\Alexa.NET.Management\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 </Project>

@@ -13,7 +13,7 @@ namespace Alexa.NET.Management.Internals
 
         public InteractionModelApi(HttpClient httpClient)
         {
-            Client = RestService.For<IClientInteractionModelApi>(httpClient);
+            Client = RestService.For<IClientInteractionModelApi>(httpClient,ManagementRefitSettings.Create());
         }
 
         public Task<SkillInteractionContainer> Get(string skillId, string stage, string locale)
