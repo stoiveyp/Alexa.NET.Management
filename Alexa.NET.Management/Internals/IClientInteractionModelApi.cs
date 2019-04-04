@@ -1,8 +1,7 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
+using Alexa.NET.Management.InteractionModel;
 using Alexa.NET.Management.Skills;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using Refit;
 
 namespace Alexa.NET.Management.Internals
@@ -16,19 +15,23 @@ namespace Alexa.NET.Management.Internals
         Task<HttpResponseMessage> GetTag(string skillId, string stage, string locale);
 
         [Put("/skills/{skillId}/stages/{stage}/interactionModel/locales/{locale}")]
-        Task Update(string skillId, string stage, string locale,[Body]SkillInteractionContainer interaction);
-    }
+        Task Update(string skillId, string stage, string locale, [Body]SkillInteractionContainer interaction);
 
-    public class BuildStatus
-    {
-        [JsonProperty("status"),JsonConverter(typeof(StringEnumConverter))]
-        public BuildStatusState Status { get; set; }
-    }
+        [Get("/skills/{skillId}/stages/{stage}/interactionModel/locales/{locale}/versions")]
+        Task<InteractionModelVersionsResponse> Versions(string skillId, string stage, string locale);
 
-    public enum BuildStatusState
-    {
-        IN_PROGRESS,
-        SUCCESS,
-        FAILED
+        [Get("/skills/{skillId}/stages/{stage}/interactionModel/locales/{locale}/versions")]
+        Task<InteractionModelVersionsResponse> Versions(string skillId, string stage, string locale, SortDirection sortDirection);
+
+        [Get("/skills/{skillId}/stages/{stage}/interactionModel/locales/{locale}/versions")]
+        Task<InteractionModelVersionsResponse> Versions(string skillId, string stage, string locale, string nextToken, int maxResults);
+
+        [Get("/skills/{skillId}/stages/{stage}/interactionModel/locales/{locale}/versions")]
+        Task<InteractionModelVersionsResponse> Versions(string skillId, string stage, string locale, SortDirection sortDirection, string nextToken, int maxResults);
+
+        [Get("/skills/{skillId}/stages/{stage}/interactionModel/locales/{locale}/versions/{version}")]
+        Task<SkillModelVersion> Version(string skillId, string stage, string locale, string version);
+
+
     }
 }

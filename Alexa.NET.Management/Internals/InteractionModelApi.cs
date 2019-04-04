@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Alexa.NET.Management.InteractionModel;
 using Alexa.NET.Management.Skills;
 using Refit;
 
@@ -29,6 +30,32 @@ namespace Alexa.NET.Management.Internals
         public Task Update(string skillId, string stage, string locale, SkillInteractionContainer interaction)
         {
             return Client.Update(skillId, stage, locale, interaction);
+        }
+
+        public Task<InteractionModelVersionsResponse> Versions(string skillId, string stage, string locale)
+        {
+            return Client.Versions(skillId, stage, locale);
+        }
+
+        public Task<InteractionModelVersionsResponse> Versions(string skillId, string stage, string locale, SortDirection sortDirection)
+        {
+            return Client.Versions(skillId, stage, locale, sortDirection);
+        }
+
+        public Task<InteractionModelVersionsResponse> Versions(string skillId, string stage, string locale, string nextToken, int maxResults)
+        {
+            return Client.Versions(skillId, stage, locale, nextToken, maxResults);
+        }
+
+        public Task<InteractionModelVersionsResponse> Versions(string skillId, string stage, string locale, SortDirection sortDirection, string nextToken,
+            int maxResults)
+        {
+            return Client.Versions(skillId, stage, locale, sortDirection, nextToken, maxResults);
+        }
+
+        public Task<SkillModelVersion> Version(string skillId, string stage, string locale, string version)
+        {
+            return Client.Version(skillId, stage, locale, version);
         }
     }
 }
