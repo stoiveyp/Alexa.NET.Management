@@ -17,20 +17,20 @@ namespace Alexa.NET.Management.Internals
         [Put("/skills/{skillId}/stages/{stage}/interactionModel/locales/{locale}")]
         Task Update(string skillId, string stage, string locale, [Body]SkillInteractionContainer interaction);
 
-        [Get("/skills/{skillId}/stages/{stage}/interactionModel/locales/{locale}/versions")]
-        Task<InteractionModelVersionsResponse> Versions(string skillId, string stage, string locale);
+        [Get("/skills/{skillId}/stages/development/interactionModel/locales/{locale}/versions")]
+        Task<InteractionModelVersionsResponse> Versions(string skillId, string locale);
 
-        [Get("/skills/{skillId}/stages/{stage}/interactionModel/locales/{locale}/versions")]
-        Task<InteractionModelVersionsResponse> Versions(string skillId, string stage, string locale, SortDirection sortDirection);
+        [Get("/skills/{skillId}/stages/development/interactionModel/locales/{locale}/versions")]
+        Task<InteractionModelVersionsResponse> Versions(string skillId, string locale, SortDirection sortDirection);
 
-        [Get("/skills/{skillId}/stages/{stage}/interactionModel/locales/{locale}/versions")]
-        Task<InteractionModelVersionsResponse> Versions(string skillId, string stage, string locale, string nextToken, int maxResults);
+        [Get("/skills/{skillId}/stages/development/interactionModel/locales/{locale}/versions")]
+        Task<InteractionModelVersionsResponse> Versions(string skillId, string locale, string nextToken, int maxResults);
 
-        [Get("/skills/{skillId}/stages/{stage}/interactionModel/locales/{locale}/versions")]
-        Task<InteractionModelVersionsResponse> Versions(string skillId, string stage, string locale, SortDirection sortDirection, string nextToken, int maxResults);
+        [Get("/skills/{skillId}/stages/development/interactionModel/locales/{locale}/versions")]
+        Task<InteractionModelVersionsResponse> Versions(string skillId, string locale, SortDirection sortDirection, string nextToken, int maxResults);
 
-        [Get("/skills/{skillId}/stages/{stage}/interactionModel/locales/{locale}/versions/{version}")]
-        Task<SkillModelVersion> Version(string skillId, string stage, string locale, string version);
+        [Get("/skills/{skillId}/stages/development/interactionModel/locales/{locale}/versions/{version}")]
+        Task<SkillModelVersion> Version(string skillId, string locale, string version);
 
 
     }

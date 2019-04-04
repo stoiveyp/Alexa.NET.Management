@@ -12,14 +12,14 @@ namespace Alexa.NET.Management
 
         Task Update(string skillId, string stage, string locale, SkillInteractionContainer interaction);
 
-        Task<InteractionModelVersionsResponse> Versions(string skillId, string stage, string locale);
+        Task<InteractionModelVersionsResponse> Versions(string skillId, string locale);
 
-        Task<InteractionModelVersionsResponse> Versions(string skillId, string stage, string locale, SortDirection sortDirection);
+        Task<InteractionModelVersionsResponse> Versions(string skillId, string locale, SortDirection sortDirection);
 
-        Task<InteractionModelVersionsResponse> Versions(string skillId, string stage, string locale, string nextToken, int maxResults);
+        Task<InteractionModelVersionsResponse> Versions(string skillId, string locale, string nextToken, int maxResults);
 
-        Task<InteractionModelVersionsResponse> Versions(string skillId, string stage, string locale, SortDirection sortDirection, string nextToken, int maxResults);
+        Task<InteractionModelVersionsResponse> Versions(string skillId, string locale, SortDirection sortDirection, string nextToken, int maxResults);
 
-        Task<SkillModelVersion> Version(string skillId, string stage, string locale, string version);
+        Task<SkillModelVersion> Version(string skillId, string locale, string version);
     }
 }

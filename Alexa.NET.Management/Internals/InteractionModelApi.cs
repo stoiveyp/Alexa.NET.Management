@@ -32,30 +32,30 @@ namespace Alexa.NET.Management.Internals
             return Client.Update(skillId, stage, locale, interaction);
         }
 
-        public Task<InteractionModelVersionsResponse> Versions(string skillId, string stage, string locale)
+        public Task<InteractionModelVersionsResponse> Versions(string skillId, string locale)
         {
-            return Client.Versions(skillId, stage, locale);
+            return Client.Versions(skillId, locale);
         }
 
-        public Task<InteractionModelVersionsResponse> Versions(string skillId, string stage, string locale, SortDirection sortDirection)
+        public Task<InteractionModelVersionsResponse> Versions(string skillId, string locale, SortDirection sortDirection)
         {
-            return Client.Versions(skillId, stage, locale, sortDirection);
+            return Client.Versions(skillId, locale, sortDirection);
         }
 
-        public Task<InteractionModelVersionsResponse> Versions(string skillId, string stage, string locale, string nextToken, int maxResults)
+        public Task<InteractionModelVersionsResponse> Versions(string skillId, string locale, string nextToken, int maxResults)
         {
-            return Client.Versions(skillId, stage, locale, nextToken, maxResults);
+            return Client.Versions(skillId, locale, nextToken, maxResults);
         }
 
-        public Task<InteractionModelVersionsResponse> Versions(string skillId, string stage, string locale, SortDirection sortDirection, string nextToken,
+        public Task<InteractionModelVersionsResponse> Versions(string skillId, string locale, SortDirection sortDirection, string nextToken,
             int maxResults)
         {
-            return Client.Versions(skillId, stage, locale, sortDirection, nextToken, maxResults);
+            return Client.Versions(skillId, locale, sortDirection, nextToken, maxResults);
         }
 
-        public Task<SkillModelVersion> Version(string skillId, string stage, string locale, string version)
+        public Task<SkillModelVersion> Version(string skillId, string locale, string version)
         {
-            return Client.Version(skillId, stage, locale, version);
+            return Client.Version(skillId, locale, version);
         }
     }
 }
