@@ -66,14 +66,14 @@ namespace Alexa.NET.Management.Tests
         [Fact]
         public async Task VersionsWorksAsExpected()
         {
-            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
             {
                 Assert.Equal(HttpMethod.Get, req.Method);
                 Assert.Equal("/v1/skills/skillid/stages/development/interactionModel/locales/en-GB/versions?sortDirection=asc&nextToken=wibble&maxResults=10", req.RequestUri.PathAndQuery);
 
                 var message = new HttpResponseMessage(HttpStatusCode.OK);
                 message.Content = new StringContent(Utility.ExampleFileContent("InteractionModelVersions.json"));
-                return message;
+                return Task.FromResult(message);
             }));
             var response =
                 await management.InteractionModel.Versions("skillid", "en-GB", SortDirection.Ascending, "wibble", 10);
@@ -92,14 +92,14 @@ namespace Alexa.NET.Management.Tests
         [Fact]
         public async Task VersionWorksAsExpected()
         {
-            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
             {
                 Assert.Equal(HttpMethod.Get, req.Method);
                 Assert.Equal("/v1/skills/skillid/stages/development/interactionModel/locales/en-GB/versions/2",req.RequestUri.PathAndQuery);
 
                 var message = new HttpResponseMessage(HttpStatusCode.OK);
                 message.Content = new StringContent(Utility.ExampleFileContent("InteractionModelVersion.json"));
-                return message;
+                return Task.FromResult(message);
             }));
             var response =
                 await management.InteractionModel.Version("skillid", "en-GB","2");
