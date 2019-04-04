@@ -1,0 +1,172 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "tech nottingham",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.MoreIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateSettingsIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NextIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.PageDownIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.PageUpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.PreviousIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.ScrollDownIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.ScrollLeftIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.ScrollRightIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.ScrollUpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "MissionStatement",
+          "samples": [ "what's your mission statement", "who are you", "what are you", "what do you do", "who they are", "what's the tech nottingham mission statement", "tell me the tech nottingham mission statement", "mission statement" ]
+        },
+        {
+          "name": "NextEvent",
+          "slots": [
+            {
+              "name": "event",
+              "type": "TechNottsEvent"
+            }
+          ],
+          "samples": [ "When's the next event", "Whats coming up", "What's the next event", "Is there event coming up soon", "about their next event" ]
+        },
+        {
+          "name": "NextSpecificEvent",
+          "slots": [
+            {
+              "name": "event",
+              "type": "TechNottsEvent"
+            }
+          ],
+          "samples": [ "when's the next {event}", "when's the next {event} event", "is there a {event} coming up soon", "about the next {event}", "about the next {event} event", "what's the next {event}", "what's the next {event} event", "ask tech nottingham about {event}", "ask tech Nottingham about their next {event} event", "ask tech Nottingham about the next {event}", "about {event}", "when's {event} on", "ask tech nottingham whens the next {event}", "ask tech nottingham whens the next {event} events" ]
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        }
+      ],
+      "types": [
+        {
+          "values": [
+            {
+              "id": "tech-nottingham",
+              "name": {
+                "value": "Tech Nottingham",
+                "synonyms": [ "tech notts", "tech nott", "tek notts", "tek nott" ]
+              }
+            },
+            {
+              "id": "tech-on-toast",
+              "name": {
+                "value": "Tech On Toast",
+                "synonyms": [ "techrom toast", "teckrom toast" ]
+              }
+            },
+            {
+              "id": "women-in-tech-nottingham",
+              "name": {
+                "value": "Women in Tech",
+                "synonyms": [ "Women in Technology", "women in", "women" ]
+              }
+            },
+            {
+              "id": "nott-tuesday",
+              "name": {
+                "value": "Notts Tuesday",
+                "synonyms": [ "Nott Tuesday", "knot tuesday", "knots tuesday", "not tuesday", "knock tuesday", "knocks tuesday" ]
+              }
+            }
+          ],
+          "name": "TechNottsEvent"
+        }
+      ]
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "NextSpecificEvent",
+          "confirmationRequired": true,
+          "slots": [
+            {
+              "name": "event",
+              "type": "TechNottsEvent",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": { "elicitation": "Elicit.Intent-NextSpecificEvent.IntentSlot-event" },
+              "validations": [
+                {
+                  "type": "isNotInSet",
+                  "prompt": "Slot.Validation.732783665450.1021749810162.1251889105792",
+                  "values": [
+                    "the sun",
+                    "our sun",
+                    "sun"
+                  ]
+                },
+                {
+                  "type": "hasEntityResolutionMatch",
+                  "prompt": "Slot.Validation.722668100550.1421087061194.1198477460217"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Intent-NextSpecificEvent.IntentSlot-event",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "What event do you want to know about?"
+          },
+          {
+            "type": "PlainText",
+            "value": "Which event would you like details for?"
+          }
+        ]
+      }
+    ]
+  },
+  "version": "2"
+}
