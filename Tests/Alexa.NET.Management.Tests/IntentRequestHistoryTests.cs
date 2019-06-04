@@ -39,13 +39,13 @@ namespace Alexa.NET.Management.Tests
         {
             var api = new ManagementApi("wibble", new ActionHandler(req =>
             {
-                Assert.Equal("/v1/skills/xxx/history/intentRequests?nextToken=yyy&stage=DEVELOPMENT&interactionType=ONE_SHOT", req.RequestUri.PathAndQuery);
+                Assert.Equal("/v1/skills/xxx/history/intentRequests?nextToken=yyy&stage=development&interactionType=ONE_SHOT", req.RequestUri.PathAndQuery);
             }, new IntentRequestHistoryResponse()));
 
             var request = new IntentRequestHistoryRequest
             {
                 NextToken = "yyy",
-                Stage = SkillStage.DEVELOPMENT,
+                Stage = SkillStage.development,
                 InteractionType = InteractionType.ONE_SHOT
             };
 

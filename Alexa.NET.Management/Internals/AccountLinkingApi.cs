@@ -26,15 +26,13 @@ namespace Alexa.NET.Management.Internals
 
         public async Task<bool> Delete(string skillId)
         {
-            var response = await Client.Delete(skillId, SkillStage.DEVELOPMENT.ToString());
+            var response = await Client.Delete(skillId, SkillStage.development.ToString());
             return response.StatusCode == HttpStatusCode.NoContent;
         }
 
         public Task Update(string skillId, AccountLinkData accountLinkData)
         {
-            return Client.Update(skillId, SkillStage.DEVELOPMENT.ToString(), new AccountLinkUpdate { Data = accountLinkData });
+            return Client.Update(skillId, SkillStage.development.ToString(), new AccountLinkUpdate { Data = accountLinkData });
         }
-
-
     }
 }
