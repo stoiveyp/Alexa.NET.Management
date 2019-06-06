@@ -4,6 +4,6 @@
     {
         IN_PROGRESS,
         FAILED,
-        SUCCESSFUL
+        SUCCEEDED
     }
 }
