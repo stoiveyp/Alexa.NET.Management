@@ -9,11 +9,11 @@
     <PackageProjectUrl>https://github.com/stoiveyp/Alexa.NET.Management/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/stoiveyp/Alexa.NET.Management/</RepositoryUrl>
     <PackageTags>amazon;alexa;echo;dot;echo dot;skills;management</PackageTags>
-    <Version>2.14.0</Version>
+    <Version>2.14.1</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyVersion>2.14.0</AssemblyVersion>
     <FileVersion>2.14.0</FileVersion>
-    <PackageReleaseNotes>Add skill manifest versions to Management.InteractionModel</PackageReleaseNotes>
+    <PackageReleaseNotes>Update SkillStatusState from SUCCESSFUL to the correct SUCCEEDED (thanks @ssorc3!)</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
