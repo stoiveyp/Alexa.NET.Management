@@ -24,7 +24,7 @@ Major version bump due to breaking contract changes in SkillStage changes</Packa
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\stoiveyp\Alexa.NET.Management\LICENSE">
+    <None Include="../LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
