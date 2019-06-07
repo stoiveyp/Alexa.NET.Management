@@ -9,11 +9,12 @@
     <PackageProjectUrl>https://github.com/stoiveyp/Alexa.NET.Management/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/stoiveyp/Alexa.NET.Management/</RepositoryUrl>
     <PackageTags>amazon;alexa;echo;dot;echo dot;skills;management</PackageTags>
-    <Version>2.14.1</Version>
+    <Version>3.0.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>2.14.0</AssemblyVersion>
-    <FileVersion>2.14.0</FileVersion>
-    <PackageReleaseNotes>Update SkillStatusState from SUCCESSFUL to the correct SUCCEEDED (thanks @ssorc3!)</PackageReleaseNotes>
+    <AssemblyVersion>3.0.0</AssemblyVersion>
+    <FileVersion>3.0.0</FileVersion>
+    <PackageReleaseNotes>Replace use of strings with SkillStage to ensure correct casing with calls reliant on skill stage (thanks @gberk!)
+Major version bump due to breaking contract changes in SkillStage changes</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
@@ -23,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\stoiveyp\Alexa.NET.Management\LICENSE">
+    <None Include="../LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>

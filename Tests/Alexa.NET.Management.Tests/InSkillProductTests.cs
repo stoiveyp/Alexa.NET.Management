@@ -255,7 +255,7 @@ namespace Alexa.NET.Management.Tests
                 Assert.Equal("/v1/inSkillProducts/string/stages/development/summary", req.RequestUri.PathAndQuery);
             }, Utility.ExampleFileContent<ProductSummary>("ProductSummary.json")));
 
-            var response = await management.InSkillProducts.GetSummary("string", SkillStage.development);
+            var response = await management.InSkillProducts.GetSummary("string", SkillStage.Development);
             Assert.NotNull(response);
         }
 

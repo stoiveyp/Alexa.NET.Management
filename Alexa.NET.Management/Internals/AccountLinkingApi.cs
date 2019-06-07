@@ -19,20 +19,20 @@ namespace Alexa.NET.Management.Internals
             Client = RestService.For<IClientAccountLinkingApi>(httpClient);
         }
 
-        public async Task<AccountLinkData> Get(string skillId, string stage)
+        public async Task<AccountLinkData> Get(string skillId, SkillStage stage)
         {
             return (await Client.Get(skillId, stage)).Response;
         }
 
         public async Task<bool> Delete(string skillId)
         {
-            var response = await Client.Delete(skillId, SkillStage.development.ToString());
+            var response = await Client.Delete(skillId, SkillStage.Development);
             return response.StatusCode == HttpStatusCode.NoContent;
         }
 
         public Task Update(string skillId, AccountLinkData accountLinkData)
         {
-            return Client.Update(skillId, SkillStage.development.ToString(), new AccountLinkUpdate { Data = accountLinkData });
+            return Client.Update(skillId, SkillStage.Development, new AccountLinkUpdate { Data = accountLinkData });
         }
     }
 }

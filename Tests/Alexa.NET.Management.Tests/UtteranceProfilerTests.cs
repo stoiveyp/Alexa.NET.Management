@@ -20,7 +20,7 @@ namespace Alexa.NET.Management.Tests
                 Assert.Equal(HttpMethod.Post, req.Method);
                 Assert.Equal("/v1/skills/skillId/stages/development/interactionModel/locales/en-GB/profileNlu", req.RequestUri.PathAndQuery);
             }, new UtteranceProfilerResponse()));
-            await management.UtteranceProfiler.Analyze("skillId", SkillStage.development, "en-GB", "test");
+            await management.UtteranceProfiler.Analyze("skillId", SkillStage.Development, "en-GB", "test");
         }
 
         [Fact]
@@ -38,7 +38,7 @@ namespace Alexa.NET.Management.Tests
                     Content = new StringContent(JsonConvert.SerializeObject(new UtteranceProfilerResponse()))
                 };
             }));
-            await management.UtteranceProfiler.Analyze("skillId", SkillStage.development, "en-GB", "test", "test2");
+            await management.UtteranceProfiler.Analyze("skillId", SkillStage.Development, "en-GB", "test", "test2");
         }
 
         [Fact]

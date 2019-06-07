@@ -56,7 +56,7 @@ namespace Alexa.NET.Management
 
             Enablement = new SkillEnablementApi(client);
 
-            IntentRequestHistory = RestService.For<IIntentRequestHistoryApi>(client);
+            IntentRequestHistory = new IntentRequestHistoryApi(client);
 
             SkillValidation = new SkillValidationApi(client);
 
