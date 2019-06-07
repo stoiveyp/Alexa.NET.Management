@@ -45,7 +45,7 @@ namespace Alexa.NET.Management.Tests
             var request = new IntentRequestHistoryRequest
             {
                 NextToken = "yyy",
-                Stage = SkillStage.development,
+                Stage = SkillStage.Development,
                 InteractionType = InteractionType.ONE_SHOT
             };
 

@@ -20,19 +20,19 @@ namespace Alexa.NET.Management.Internals
 
         public async Task<bool> Enable(string skillId)
         {
-            var response = await Client.Enable(skillId, SkillStage.development.ToString());
+            var response = await Client.Enable(skillId, SkillStage.Development);
             return response.StatusCode == HttpStatusCode.NoContent;
         }
 
         public async Task<bool> CheckEnablement(string skillId)
         {
-            var response = await Client.Enable(skillId, SkillStage.development.ToString());
+            var response = await Client.Enable(skillId, SkillStage.Development);
             return response.StatusCode == HttpStatusCode.NoContent;
         }
 
         public async Task<bool> Disable(string skillId)
         {
-            var response = await Client.Disable(skillId, SkillStage.development.ToString());
+            var response = await Client.Disable(skillId, SkillStage.Development);
             return response.StatusCode == HttpStatusCode.NoContent;
         }
     }
