@@ -21,7 +21,7 @@ namespace Alexa.NET.Management.Tests
                 Assert.Equal(HttpMethod.Post,req.Method);
                 Assert.Equal("/v1/skills/skillid/stage/development/validations",req.RequestUri.PathAndQuery);
             },new SkillValidationResponse()));
-            var response = await management.SkillValidation.Submit("skillid", SkillStage.DEVELOPMENT);
+            var response = await management.SkillValidation.Submit("skillid", SkillStage.development);
             Assert.NotNull(response);
         }
 
@@ -37,7 +37,7 @@ namespace Alexa.NET.Management.Tests
                 Assert.Single(response.Locales);
                 Assert.Equal("en-GB", response.Locales.First());
             }, new SkillValidationResponse()));
-            var task = await management.SkillValidation.Submit("skillid", SkillStage.DEVELOPMENT, SupportedLocales.EnglishUnitedKingdom);
+            var task = await management.SkillValidation.Submit("skillid", SkillStage.development, SupportedLocales.EnglishUnitedKingdom);
             Assert.NotNull(task);
         }
 
@@ -57,7 +57,7 @@ namespace Alexa.NET.Management.Tests
                 Assert.Equal(HttpMethod.Post,req.Method);
                 Assert.Equal("/v1/skills/skillid/stage/development/validations", req.RequestUri.PathAndQuery);
             }, Utility.ExampleFileContent<SkillValidationResponse>("InProgressValidation.json")));
-            var task = await api.SkillValidation.Submit("skillid", SkillStage.DEVELOPMENT);
+            var task = await api.SkillValidation.Submit("skillid", SkillStage.development);
             Assert.Equal("33333333-3333-3333-3333-333333333333", task.Id);
             Assert.Equal(ValidationStatus.IN_PROGRESS,task.Status);
             Assert.Null(task.Result);
@@ -71,7 +71,7 @@ namespace Alexa.NET.Management.Tests
                 Assert.Equal(HttpMethod.Get,req.Method);
                 Assert.Equal("/v1/skills/skillid/stages/development/validations/validationid",req.RequestUri.PathAndQuery);
             },new SkillValidationResponse()));
-            var task = await api.SkillValidation.Get("skillid",SkillStage.DEVELOPMENT,"validationid");
+            var task = await api.SkillValidation.Get("skillid",SkillStage.development,"validationid");
             Assert.NotNull(task);
         }
 
@@ -83,7 +83,7 @@ namespace Alexa.NET.Management.Tests
                 Assert.Equal(HttpMethod.Get, req.Method);
                 Assert.Equal("/v1/skills/skillid/stages/development/validations/validationid", req.RequestUri.PathAndQuery);
             }, Utility.ExampleFileContent<SkillValidationResponse>("ValidationResult.json")));
-            var task = await api.SkillValidation.Get("skillid", SkillStage.DEVELOPMENT, "validationid");
+            var task = await api.SkillValidation.Get("skillid", SkillStage.development, "validationid");
             
             Assert.Equal("11111111-1111-1111-1111-111111111111",task.Id);
             Assert.Equal(ValidationStatus.SUCCESSFUL,task.Status);

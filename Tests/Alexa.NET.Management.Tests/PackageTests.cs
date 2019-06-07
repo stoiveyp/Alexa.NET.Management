@@ -169,7 +169,7 @@ namespace Alexa.NET.Management.Tests
                 message.Headers.Location = new Uri("/v1/skills/skillid/imports/importId", UriKind.Relative);
                 return Task.FromResult(message);
             }));
-            var response = await management.Package.CreateExportRequest("skillid", SkillStage.DEVELOPMENT);
+            var response = await management.Package.CreateExportRequest("skillid", SkillStage.development);
             Assert.NotNull(response);
             Assert.Equal("/v1/skills/skillid/imports/importId", response.ToString());
         }
@@ -178,7 +178,7 @@ namespace Alexa.NET.Management.Tests
         public async Task CreateExportRequestThrowsNullSkillId()
         {
             var management = new ManagementApi("xxx");
-            await Assert.ThrowsAsync<ArgumentNullException>(() => management.Package.CreateExportRequest(null, SkillStage.DEVELOPMENT));
+            await Assert.ThrowsAsync<ArgumentNullException>(() => management.Package.CreateExportRequest(null, SkillStage.development));
         }
 
         [Fact]

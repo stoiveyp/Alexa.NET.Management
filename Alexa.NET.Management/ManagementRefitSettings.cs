@@ -21,12 +21,12 @@ namespace Alexa.NET.Management
         {
             if (value is SkillStage stage)
             {
-                if (stage == SkillStage.DEVELOPMENT)
+                if (stage == SkillStage.development)
                 {
                     return "development";
                 }
 
-                if (stage == SkillStage.LIVE)
+                if (stage == SkillStage.live)
                 {
                     return "live";
                 }
