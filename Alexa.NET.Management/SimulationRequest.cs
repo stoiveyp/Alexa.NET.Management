@@ -12,6 +12,6 @@ namespace Alexa.NET.Management
         public SimulationRequestInput Input { get; set; }
 
         [JsonProperty("device")]
-        private SimulationRequestDevice Device { get; set; }
+        public SimulationRequestDevice Device { get; set; }
     }
 }

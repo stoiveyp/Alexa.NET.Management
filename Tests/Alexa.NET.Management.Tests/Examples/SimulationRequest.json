@@ -1,0 +1,11 @@
+{
+  "session": {
+    "mode": "FORCE_NEW_SESSION"
+  },
+  "input": {
+    "content": "test content"
+  },
+  "device": {
+    "locale": "en-GB"
+  }
+}

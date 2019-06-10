@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace Alexa.NET.Management.Skills
 {
-    internal class SimulationRequestDevice
+    public class SimulationRequestDevice
     {
         [JsonProperty("locale")]
         public string Locale { get; set; }
