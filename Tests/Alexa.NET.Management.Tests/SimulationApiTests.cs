@@ -19,5 +19,23 @@ namespace Alexa.NET.Management.Tests
             };
             Assert.True(Utility.CompareJson(request, "SimulationRequest.json"));
         }
+
+        [Fact]
+        public void InProgressResponseDeserializesCorrectly()
+        {
+            var inProgress = Utility.ExampleFileContent<SimulationResponse>("SimulationResponseProgress.json");
+            Assert.Equal(InvocationStatus.InProgress,inProgress.Status);
+            Assert.Null(inProgress.Result);
+        }
+
+        [Fact]
+        public void CompletedResponseDeserializesCorrectly()
+        {
+            var complete = Utility.ExampleFileContent<SimulationResponse>("SimulationResponseComplete.json");
+            Assert.Equal(InvocationStatus.SuccessFul,complete.Status);
+            Assert.Null(complete.Result.Error);
+            Assert.NotNull(complete.Result.AlexaExecutionInfo);
+            Assert.NotNull(complete.Result.SkillExecutionInfo);
+        }
     }
 }

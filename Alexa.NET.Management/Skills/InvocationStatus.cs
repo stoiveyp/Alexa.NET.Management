@@ -1,8 +1,14 @@
+using System.Runtime.Serialization;
+
 namespace Alexa.NET.Management.Skills
 {
     public enum InvocationStatus
     {
-        SUCCESSFUL,
-        FAILED
+        [EnumMember(Value="SUCCESSFUL")]
+        SuccessFul,
+        [EnumMember(Value="FAILED")]
+        Failed,
+        [EnumMember(Value="IN_PROGRESS")]
+        InProgress
     }
 }

@@ -1,0 +1,71 @@
+{
+"id": "34b178945-6ec3-1749-a123-3cbd123456ab",
+  "status": "SUCCESSFUL",
+  "result": {
+    "alexaExecutionInfo": {
+      "alexaResponses": [
+        {
+          "type":"Speech",
+          "content":{
+            "caption":"hello world"
+          }
+        }
+      ]
+    },
+    "skillExecutionInfo": {
+      "invocationRequest": {
+        "endpoint": "arn:aws:lambda:us-east-1:123456789:function:HelloWorld",
+        "body": {
+          "version": "1.0",
+          "session": {
+            "new": true,
+            "sessionId": "aaf7b112-434c-11e7-2563-6bbd1672c748",
+            "application": {
+              "applicationId": "amzn1.ask.skill.12345678-12d1-5b2b-a012-1d1f33311123"
+            },
+            "attributes": {},
+            "user": {
+              "userId": "amzn1.ask.account.12345ABCDEFGH"
+            }
+          },
+          "context": {
+            "System": {
+              "application": {
+                "applicationId": "amzn1.ask.skill.12345678-12d1-5b2b-a012-1d1f33311123"
+              },
+              "user": {
+                "userId": "amzn1.ask.account.12345ABCDEFGH"
+              }
+            }
+          },
+          "request": {
+            "type": "IntentRequest",
+            "requestId": "c03faf54-684d-11e7-6249-6bbd1825c634",
+            "timestamp": "2017-08-14T04:20:20Z",
+            "locale": "en-US",
+            "intent": {
+              "name": "SayHello"
+            }
+          }
+        }
+      },
+      "invocationResponse": {
+        "body": {
+          "version": "1.0",
+          "sessionAttributes": {},
+          "response": {
+            "outputSpeech": {
+              "type": "PlainText",
+              "text": "hello, world"
+            },
+            "shouldEndSession": true
+          }
+        }
+      },
+      "metrics": {
+        "skillExecutionTimeInMilliseconds": 100
+      }
+    },
+    "error": null
+  }
+}
