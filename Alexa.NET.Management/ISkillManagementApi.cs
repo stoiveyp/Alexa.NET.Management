@@ -15,8 +15,8 @@ namespace Alexa.NET.Management
         Task Submit(string skillId);
         Task Withdraw(string skillId, [Body]WithdrawalRequest request);
         Task<InvocationResponse> Invoke(string skillId, [Body]InvocationRequest request);
-        Task<InvocationResponse> Simulate(string skillId, [Body] SimulationRequest request);
-        Task<InvocationResponse> SimulationResult(string skillId, string simulationId);
+        Task<SimulationResponse> Simulate(string skillId, [Body] SimulationRequest request);
+        Task<SimulationResponse> SimulationResult(string skillId, string simulationId);
         Task<SkillListResponse> List(string vendorId);
         Task<SkillListResponse> List(string vendorId, params string[] container);
         Task<SkillListResponse> List(string vendorId, int maxResults);

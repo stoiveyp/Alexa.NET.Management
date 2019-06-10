@@ -28,10 +28,10 @@ namespace Alexa.NET.Management.Internals
         Task<InvocationResponse> Invoke(string skillId, [Body]InvocationRequest request);
 
         [Post("/skills/{skillId}/simulations")]
-        Task<InvocationResponse> Simulate(string skillId, [Body] SimulationRequest request);
+        Task<SimulationResponse> Simulate(string skillId, [Body] SimulationRequest request);
 
         [Get("/skills/{skillId}/simulations/{simulationId}")]
-        Task<InvocationResponse> SimulationResult(string skillId, string simulationId);
+        Task<SimulationResponse> SimulationResult(string skillId, string simulationId);
 
         [Get("/skills?vendorId={vendorId}")]
         Task<SkillListResponse> List(string vendorId);
