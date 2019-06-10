@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using Alexa.NET.Management.Skills;
+using Alexa.NET.Response;
 using Newtonsoft.Json;
 using Refit;
 
@@ -60,12 +61,12 @@ namespace Alexa.NET.Management.Internals
             return Inner.Invoke(skillId, request);
         }
 
-        public Task<InvocationResponse> Simulate(string skillId, SimulationRequest request)
+        public Task<SimulationResponse> Simulate(string skillId, SimulationRequest request)
         {
             return Inner.Simulate(skillId, request);
         }
 
-        public Task<InvocationResponse> SimulationResult(string skillId, string simulationId)
+        public Task<SimulationResponse> SimulationResult(string skillId, string simulationId)
         {
             return Inner.SimulationResult(skillId, simulationId);
         }
