@@ -16,7 +16,7 @@ namespace Alexa.NET.Management.Internals
 
         public AccountLinkingApi(HttpClient httpClient)
         {
-            Client = RestService.For<IClientAccountLinkingApi>(httpClient);
+            Client = RestService.For<IClientAccountLinkingApi>(httpClient, ManagementRefitSettings.Create());
         }
 
         public async Task<AccountLinkData> Get(string skillId, SkillStage stage)

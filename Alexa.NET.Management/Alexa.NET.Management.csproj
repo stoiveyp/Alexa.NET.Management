@@ -13,7 +13,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyVersion>3.0.3</AssemblyVersion>
     <FileVersion>3.0.3</FileVersion>
-    <PackageReleaseNotes>Update reference to Alexa.NET in order to fix simulation API response</PackageReleaseNotes>
+    <PackageReleaseNotes>Update to ensure all API calls honor SkillStage settings</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 

@@ -15,7 +15,7 @@ namespace Alexa.NET.Management.Internals
 
         public SkillEnablementApi(HttpClient httpClient)
         {
-            Client = RestService.For<IClientSkillEnablementApi>(httpClient);
+            Client = RestService.For<IClientSkillEnablementApi>(httpClient, ManagementRefitSettings.Create());
         }
 
         public async Task<bool> Enable(string skillId)

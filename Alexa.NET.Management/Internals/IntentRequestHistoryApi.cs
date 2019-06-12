@@ -12,7 +12,7 @@ namespace Alexa.NET.Management.Internals
     {
         public IntentRequestHistoryApi(HttpClient httpClient)
         {
-            Client = RestService.For<IClientIntentRequestHistoryApi>(httpClient);
+            Client = RestService.For<IClientIntentRequestHistoryApi>(httpClient, ManagementRefitSettings.Create());
         }
 
         public IClientIntentRequestHistoryApi Client { get; set; }

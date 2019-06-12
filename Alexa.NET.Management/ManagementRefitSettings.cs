@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Alexa.NET.Management.Api;
+using Newtonsoft.Json;
 using Refit;
 
 namespace Alexa.NET.Management
@@ -11,6 +12,15 @@ namespace Alexa.NET.Management
             return new RefitSettings
             {
                 UrlParameterFormatter = new DefaultWithEnumUrlParamFormatter()
+            };
+        }
+
+        public static RefitSettings Create(JsonSerializerSettings settings)
+        {
+            return new RefitSettings
+            {
+                UrlParameterFormatter = new DefaultWithEnumUrlParamFormatter(),
+                JsonSerializerSettings = settings
             };
         }
     }

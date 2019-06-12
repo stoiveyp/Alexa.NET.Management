@@ -15,15 +15,12 @@ namespace Alexa.NET.Management.Internals
         public SkillManagementApi(HttpClient client)
         {
             Inner = RestService.For<IClientSkillManagementApi>(
-                client,
-                new RefitSettings
+                client, ManagementRefitSettings.Create(
+                new JsonSerializerSettings
                 {
-                    JsonSerializerSettings = new JsonSerializerSettings
-                    {
-                        Converters = new List<JsonConverter>(new[] { new ApiConverter(null) }),
-                        NullValueHandling = NullValueHandling.Ignore
-                    }
-                });
+                    Converters = new List<JsonConverter>(new[] { new ApiConverter(null) }),
+                    NullValueHandling = NullValueHandling.Ignore
+                }));
         }
 
         public Task<Skill> Get(string skillId, string stage)
@@ -33,7 +30,7 @@ namespace Alexa.NET.Management.Internals
 
         public Task<SkillId> Create(string vendorId, Skill skill)
         {
-            return Inner.Create(new SkillCreateRequest {VendorId=vendorId, Manifest=skill.Manifest });
+            return Inner.Create(new SkillCreateRequest { VendorId = vendorId, Manifest = skill.Manifest });
         }
 
         public Task<SkillId> Update(string skillId, string stage, Skill skill)

@@ -52,7 +52,7 @@ namespace Alexa.NET.Management
 
             InteractionModel = new InteractionModelApi(client);
 
-            Vendors = RestService.For<IVendorApi>(client);
+            Vendors = RestService.For<IVendorApi>(client,ManagementRefitSettings.Create());
 
             Enablement = new SkillEnablementApi(client);
 
