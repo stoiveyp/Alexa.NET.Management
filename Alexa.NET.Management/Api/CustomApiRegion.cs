@@ -5,6 +5,6 @@ namespace Alexa.NET.Management.Api
     public class CustomApiRegion
     {
         [JsonProperty("endpoint")]
-        public CustomApiEndpoint Endpoint { get; set; }
+        public Endpoint Endpoint { get; set; }
     }
 }

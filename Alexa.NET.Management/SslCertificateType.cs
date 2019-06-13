@@ -1,4 +1,4 @@
-﻿namespace Alexa.NET.Management.Api
+﻿namespace Alexa.NET.Management
 {
     public enum SslCertificateType
     {
