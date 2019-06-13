@@ -35,6 +35,7 @@ namespace Alexa.NET.Management.Tests
             var customApi = manifest.Apis.First() as CustomApi;
             Assert.NotNull(customApi);
             Assert.Equal(customApi.Endpoint.Uri,GlobalCustomEndpoint);
+            Assert.Equal(SslCertificateType.Trusted,customApi.Regions["NA"].Endpoint.SslCertificateType);
         }
 
         [Fact]
