@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Alexa.NET.Management.Api;
 using Alexa.NET.Management.InteractionModel;
 using Alexa.NET.Management.Skills;
 using Refit;
@@ -16,18 +17,18 @@ namespace Alexa.NET.Management.Internals
             Client = RestService.For<IClientInteractionModelApi>(httpClient,ManagementRefitSettings.Create());
         }
 
-        public Task<SkillInteractionContainer> Get(string skillId, string stage, string locale)
+        public Task<SkillInteractionContainer> Get(string skillId, SkillStage stage, string locale)
         {
             return Client.Get(skillId, stage, locale);
         }
 
-        public async Task<string> GetTag(string skillId, string stage, string locale)
+        public async Task<string> GetTag(string skillId, SkillStage stage, string locale)
         {
             var message = await Client.GetTag(skillId, stage, locale);
             return message.Headers.ETag.Tag;
         }
 
-        public Task Update(string skillId, string stage, string locale, SkillInteractionContainer interaction)
+        public Task Update(string skillId, SkillStage stage, string locale, SkillInteractionContainer interaction)
         {
             return Client.Update(skillId, stage, locale, interaction);
         }

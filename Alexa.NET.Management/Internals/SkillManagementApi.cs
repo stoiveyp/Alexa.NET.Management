@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Alexa.NET.Management.Api;
 using Alexa.NET.Management.Skills;
 using Alexa.NET.Response;
 using Newtonsoft.Json;
@@ -23,7 +24,7 @@ namespace Alexa.NET.Management.Internals
                 }));
         }
 
-        public Task<Skill> Get(string skillId, string stage)
+        public Task<Skill> Get(string skillId, SkillStage stage)
         {
             return Inner.Get(skillId, stage);
         }
@@ -33,9 +34,9 @@ namespace Alexa.NET.Management.Internals
             return Inner.Create(new SkillCreateRequest { VendorId = vendorId, Manifest = skill.Manifest });
         }
 
-        public Task<SkillId> Update(string skillId, string stage, Skill skill)
+        public Task<SkillId> Update(string skillId, SkillStage stage, Skill skill)
         {
-            return Inner.Update(skillId, stage.ToLower(), skill);
+            return Inner.Update(skillId, stage, skill);
         }
 
         public Task<SkillStatus> Status(string skillId, params string[] resources)

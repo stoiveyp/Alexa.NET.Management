@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Alexa.NET.Management.Api;
 using Alexa.NET.Management.Internals;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -39,7 +40,7 @@ namespace Alexa.NET.Management.Manifest
         public Subscription[] Subscriptions { get; set; }
 
         [JsonProperty("regions", NullValueHandling = NullValueHandling.Ignore)]
-        public Dictionary<string, Endpoint> Regions { get; set; }
+        public Dictionary<string, CustomApiRegion> Regions { get; set; }
     }
 
     public class Publication

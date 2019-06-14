@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Alexa.NET.Management.Api;
 using Alexa.NET.Management.Skills;
 using Refit;
 
@@ -10,13 +11,13 @@ namespace Alexa.NET.Management.Internals
         Task<SkillStatus> Status(string skillId, [Query]SkillResourceContainer container);
 
         [Get("/skills/{skillId}/stages/{stage}/manifest")]
-        Task<Skill> Get(string skillId, string stage);
+        Task<Skill> Get(string skillId, SkillStage stage);
 
         [Post("/skills")]
         Task<SkillId> Create([Body] SkillCreateRequest request);
 
         [Put("/skills/{skillId}/stages/{stage}/manifest")]
-        Task<SkillId> Update(string skillId, string stage, [Body] Skill skill);
+        Task<SkillId> Update(string skillId, SkillStage stage, [Body] Skill skill);
 
         [Post("/skills/{skillId}/submit")]
         Task Submit(string skillId);
