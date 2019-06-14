@@ -53,6 +53,15 @@ namespace Alexa.NET.Management.Internals
             return Inner.Withdraw(skillId, request);
         }
 
+        public Task<UnpublishResponse> Unpublish(string skillId, UnpublishType type, UnpublishReason reason)
+        {
+            return Inner.Unpublish(skillId, new UnpublishRequest
+            {
+                Type = type,
+                Reason = reason
+            });
+        }
+
         public Task<InvocationResponse> Invoke(string skillId, InvocationRequest request)
         {
             return Inner.Invoke(skillId, request);

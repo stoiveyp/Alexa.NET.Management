@@ -14,6 +14,7 @@ namespace Alexa.NET.Management
         Task<SkillId> Update(string skillId, string stage, [Body] Skill skill);
         Task Submit(string skillId);
         Task Withdraw(string skillId, [Body]WithdrawalRequest request);
+        Task<UnpublishResponse> Unpublish(string skillId, UnpublishType type, UnpublishReason reason);
         Task<InvocationResponse> Invoke(string skillId, [Body]InvocationRequest request);
         Task<SimulationResponse> Simulate(string skillId, [Body] SimulationRequest request);
         Task<SimulationResponse> SimulationResult(string skillId, string simulationId);

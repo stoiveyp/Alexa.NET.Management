@@ -24,6 +24,9 @@ namespace Alexa.NET.Management.Internals
         [Post("/skills/{skillId}/withdraw")]
         Task Withdraw(string skillId, [Body]WithdrawalRequest request);
 
+        [Post("/skills/{skillId}/unpublish")]
+        Task<UnpublishResponse> Unpublish(string skillId, [Body] UnpublishRequest request);
+
         [Post("/skills/{skillId}/invocations")]
         Task<InvocationResponse> Invoke(string skillId, [Body]InvocationRequest request);
 
