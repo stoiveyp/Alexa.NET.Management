@@ -14,3 +14,4 @@ namespace Alexa.NET.Management.Skills
         public string Message { get; set; }
     }
 }
+

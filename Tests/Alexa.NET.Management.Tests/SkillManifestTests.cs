@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Alexa.NET.Management.Api;
-using Alexa.NET.Management.InteractionModel;
 using Alexa.NET.Management.InteractionModel.ValidationRules;
 using Alexa.NET.Management.Internals;
 using Alexa.NET.Management.Manifest;
-using Alexa.NET.Management.Package;
 using Alexa.NET.Management.Skills;
 using Newtonsoft.Json;
 using Xunit;

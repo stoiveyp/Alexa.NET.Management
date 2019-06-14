@@ -22,7 +22,7 @@ namespace Alexa.NET.Management.Tests
             var response = Utility.ExampleFileContent<SkillListResponse>("SkillListResponse.json");
             var skill = response.Skills.First();
             Assert.Equal("amzn1.ask.skill.6acdbdf8-8420-440e-823e-aaaaaaaabbbb", skill.SkillId);
-            Assert.Equal(PublicationStatus.PUBLISHED,skill.Status);
+            Assert.Equal(PublicationStatus.Published,skill.Status);
             Assert.Equal(SkillStage.Development,skill.Stage);
         }
     }
