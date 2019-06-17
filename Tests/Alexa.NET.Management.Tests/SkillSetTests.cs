@@ -19,13 +19,13 @@ namespace Alexa.NET.Management.Tests
             var skillsets = SkillSet.From(skill2dev, skill1, skill2live).ToArray();
             Assert.Equal(2, skillsets.Length);
 
-            var skill1set = skillsets.First(s => s.SkillId == "skill1");
-            Assert.NotNull(skill1set.Development);
-            Assert.Null(skill1set.Live);
+            var skill1set = skillsets.First(s => s.ID == "skill1");
+            Assert.Equal(SkillStage.Development,skill1set.Development.Stage);
+            Assert.Null(skill1set.Live.Stage);
 
-            var skill2set = skillsets.First(s => s.SkillId == "skill2");
-            Assert.NotNull(skill2set.Development);
-            Assert.NotNull(skill2set.Live);
+            var skill2set = skillsets.First(s => s.ID == "skill2");
+            Assert.Equal(SkillStage.Development,skill2set.Development.Stage);
+            Assert.Equal(SkillStage.Live,skill2set.Live.Stage);
         }
 
         [Fact]
@@ -43,6 +43,51 @@ namespace Alexa.NET.Management.Tests
             };
             var skillSet = SkillSet.From(skill1).First();
             Assert.Equal("british",skillSet.Name);
+        }
+
+        [Fact]
+        public void PreferredLocaleReturnsValue()
+        {
+            var skill1 = new SkillSummary
+            {
+                SkillId = "skill1",
+                Stage = SkillStage.Development,
+                NameByLocale = new Dictionary<string, string>
+                {
+                    {"de-DE","german"},
+                    {"en-GB","british"}
+                }
+            };
+            var skillSet = SkillSet.From(new SkillSetOptions("en-GB"),skill1).First();
+            Assert.Equal("british", skillSet.Name);
+        }
+
+        [Fact]
+        public void EmptyContextHandlesSummary()
+        {
+            var context = SkillSetContext.Empty();
+            Assert.Equal(string.Empty,context.ID);
+            Assert.Equal(string.Empty,context.Name);
+            Assert.False(context.Stage.HasValue);
+        }
+
+        [Fact]
+        public void ContextHandlesSummary()
+        {
+            var skill1 = new SkillSummary
+            {
+                SkillId = "skill1",
+                Stage = SkillStage.Development,
+                NameByLocale = new Dictionary<string, string>
+                {
+                    {"de-DE","german"},
+                    {"en-GB","british"}
+                }
+            };
+            var skillSet = SkillSet.From(new SkillSetOptions("en-GB"), skill1).First();
+            Assert.Equal("british",skillSet.CurrentContext.Name);
+            Assert.Equal("skill1", skillSet.CurrentContext.ID);
+            Assert.Equal(SkillStage.Development,skillSet.CurrentContext.Stage);
         }
     }
 }

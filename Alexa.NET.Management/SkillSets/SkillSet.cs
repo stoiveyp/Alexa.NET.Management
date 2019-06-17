@@ -6,15 +6,25 @@ using Alexa.NET.Management.Skills;
 
 namespace Alexa.NET.Management.SkillSets
 {
-    public class SkillSet
+    public class SkillSet:ISkillSetSummary
     {
-        public SkillSummary Development { get; }
-        public SkillSummary Live { get; }
+        public ISkillSetContext Development { get; }
+        public ISkillSetContext Live { get; }
 
         public SkillSetOptions Options { get; }
 
-        public string Name => Options.GetKeyByPreferredLocale(Development.NameByLocale,d => d.First().Value);
+        public string ID => CurrentContext.ID;
 
+        public string Name => CurrentContext.Name;
+
+        public SkillStage? Stage { get; private set; }
+
+        public void SetCurrentStage(SkillStage stage)
+        {
+            Stage = stage;
+        }
+
+        public ISkillSetContext CurrentContext => Stage == SkillStage.Development ? Development : Live;
 
         private SkillSet(IEnumerable<SkillSummary> summaries, SkillSetOptions options)
         {
@@ -24,16 +34,20 @@ namespace Alexa.NET.Management.SkillSets
             {
                 if (summary.Stage == SkillStage.Development)
                 {
-                    Development = summary;
+                    Development = new SkillSetContext(summary,Options);
+                    Stage = SkillStage.Development;
                 }
                 else
                 {
-                    Live = summary;
+                    Live = new SkillSetContext(summary,Options);
                 }
             }
-        }
 
-        public string SkillId => Development.SkillId;
+            if (Live == null)
+            {
+                Live = SkillSetContext.Empty();
+            }
+        }
 
         public static IEnumerable<SkillSet> From(params SkillSummary[] summaries)
         {
@@ -44,27 +58,6 @@ namespace Alexa.NET.Management.SkillSets
         {
             var skillSetOptions = options ?? new SkillSetOptions();
             return summaries.GroupBy(s => s.SkillId).Select(g => new SkillSet(g, skillSetOptions));
-        }
-    }
-
-    public class SkillSetOptions
-    {
-        public SkillSetOptions()
-        {
-            PreferredLocales = new[] {"en-US"};
-        }
-
-        public string[] PreferredLocales { get; set; }
-
-        public T GetKeyByPreferredLocale<T>(Dictionary<string, T> set, Func<Dictionary<string,T>,T> defaultLocale) where T:class
-        {
-            var preferred = GetByPreferredLocale(set, (d, l) => d.ContainsKey(l) ? d[l] : null);
-            return preferred ?? defaultLocale(set);
-        }
-
-        public T GetByPreferredLocale<TSet, T>(TSet set, Func<TSet, string, T> getByLocale)
-        {
-            return PreferredLocales.Select(l => getByLocale(set, l)).FirstOrDefault(r => r != null);
         }
     }
 }

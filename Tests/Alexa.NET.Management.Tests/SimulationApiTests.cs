@@ -32,7 +32,7 @@ namespace Alexa.NET.Management.Tests
         public void CompletedResponseDeserializesCorrectly()
         {
             var complete = Utility.ExampleFileContent<SimulationResponse>("SimulationResponseComplete.json");
-            Assert.Equal(InvocationStatus.SuccessFul,complete.Status);
+            Assert.Equal(InvocationStatus.Successful,complete.Status);
             Assert.Null(complete.Result.Error);
             Assert.NotNull(complete.Result.AlexaExecutionInfo);
             Assert.NotNull(complete.Result.SkillExecutionInfo);
