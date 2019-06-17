@@ -16,7 +16,7 @@ namespace Alexa.NET.Management.Tests
             var skill2dev = new SkillSummary { SkillId = "skill2", Stage = SkillStage.Development };
             var skill2live = new SkillSummary { SkillId = "skill2", Stage = SkillStage.Live };
 
-            var skillsets = SkillSet.From(skill2dev, skill1, skill2live).ToArray();
+            var skillsets = SkillSet.From(null,skill2dev, skill1, skill2live).ToArray();
             Assert.Equal(2, skillsets.Length);
 
             var skill1set = skillsets.First(s => s.ID == "skill1");
@@ -41,7 +41,7 @@ namespace Alexa.NET.Management.Tests
                     {"de-DE","german"}
                 }
             };
-            var skillSet = SkillSet.From(skill1).First();
+            var skillSet = SkillSet.From(null,skill1).First();
             Assert.Equal("british",skillSet.Name);
         }
 
@@ -58,7 +58,7 @@ namespace Alexa.NET.Management.Tests
                     {"en-GB","british"}
                 }
             };
-            var skillSet = SkillSet.From(new SkillSetOptions("en-GB"),skill1).First();
+            var skillSet = SkillSet.From(null,new SkillSetOptions("en-GB"),skill1).First();
             Assert.Equal("british", skillSet.Name);
         }
 
@@ -84,7 +84,7 @@ namespace Alexa.NET.Management.Tests
                     {"en-GB","british"}
                 }
             };
-            var skillSet = SkillSet.From(new SkillSetOptions("en-GB"), skill1).First();
+            var skillSet = SkillSet.From(null,new SkillSetOptions("en-GB"), skill1).First();
             Assert.Equal("british",skillSet.CurrentContext.Name);
             Assert.Equal("skill1", skillSet.CurrentContext.ID);
             Assert.Equal(SkillStage.Development,skillSet.CurrentContext.Stage);

@@ -26,7 +26,7 @@ namespace Alexa.NET.Management.SkillSets
 
         public ISkillSetContext CurrentContext => Stage == SkillStage.Development ? Development : Live;
 
-        private SkillSet(IEnumerable<SkillSummary> summaries, SkillSetOptions options)
+        private SkillSet(ManagementApi api, IEnumerable<SkillSummary> summaries, SkillSetOptions options)
         {
             Options = options ?? new SkillSetOptions();
 
@@ -34,12 +34,12 @@ namespace Alexa.NET.Management.SkillSets
             {
                 if (summary.Stage == SkillStage.Development)
                 {
-                    Development = new SkillSetContext(summary,Options);
+                    Development = new SkillSetContext(api, summary,Options);
                     Stage = SkillStage.Development;
                 }
                 else
                 {
-                    Live = new SkillSetContext(summary,Options);
+                    Live = new SkillSetContext(api, summary,Options);
                 }
             }
 
@@ -49,15 +49,15 @@ namespace Alexa.NET.Management.SkillSets
             }
         }
 
-        public static IEnumerable<SkillSet> From(params SkillSummary[] summaries)
+        public static IEnumerable<SkillSet> From(ManagementApi api, params SkillSummary[] summaries)
         {
-            return From(null, summaries);
+            return From(api, null, summaries);
         }
 
-        public static IEnumerable<SkillSet> From(SkillSetOptions options,params SkillSummary[] summaries)
+        public static IEnumerable<SkillSet> From(ManagementApi api, SkillSetOptions options,params SkillSummary[] summaries)
         {
             var skillSetOptions = options ?? new SkillSetOptions();
-            return summaries.GroupBy(s => s.SkillId).Select(g => new SkillSet(g, skillSetOptions));
+            return summaries.GroupBy(s => s.SkillId).Select(g => new SkillSet(api, g, skillSetOptions));
         }
     }
 }
