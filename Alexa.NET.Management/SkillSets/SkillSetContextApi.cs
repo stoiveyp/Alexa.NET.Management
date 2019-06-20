@@ -1,12 +1,12 @@
 ﻿namespace Alexa.NET.Management.SkillSets
 {
-    public class SkillSetContextApi : ISkillSetApi
+    public class SkillSetContextApi:ISkillSetContextApi
     {
-        private readonly ManagementApi _managementApi;
-
-        public SkillSetContextApi(ManagementApi api)
+        public SkillSetContextApi(ManagementApi api, SkillSetContext context)
         {
-            _managementApi = api;
+            Simulation = new SkillSetContextSimulationApi(api, context);
         }
+
+        public ISkillSetContextSimulationApi Simulation { get; }
     }
 }

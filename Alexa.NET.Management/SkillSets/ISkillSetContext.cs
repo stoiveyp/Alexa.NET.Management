@@ -2,6 +2,8 @@
 {
     public interface ISkillSetContext:ISkillSetSummary
     {
-        ISkillSetApi Api { get; }
+        ISkillSetContextApi ContextApi { get; }
+
+        string[] Locales { get;  }
     }
 }

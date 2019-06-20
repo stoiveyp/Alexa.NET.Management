@@ -8,7 +8,7 @@ namespace Alexa.NET.Management.SkillSets
     {
         public SkillSetContext(ManagementApi api, SkillSummary summary, SkillSetOptions options)
         {
-            Api = new SkillSetContextApi(api);
+            ContextApi = new SkillSetContextApi(api,this);
             Summary = summary;
             Options = options;
         }
@@ -22,7 +22,7 @@ namespace Alexa.NET.Management.SkillSets
 
         public SkillSummary Summary { get; set; }
 
-        public ISkillSetApi Api { get; }
+        public ISkillSetContextApi ContextApi { get; }
 
         public static ISkillSetContext Empty()
         {
