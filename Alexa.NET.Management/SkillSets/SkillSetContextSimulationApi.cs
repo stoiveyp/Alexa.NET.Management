@@ -5,39 +5,39 @@ namespace Alexa.NET.Management.SkillSets
 {
     public class SkillSetContextSimulationApi : ISkillSetContextSimulationApi
     {
-        private ManagementApi _api;
-        private SkillSetContext _context;
-        public SkillSetContextSimulationApi(ManagementApi api, SkillSetContext context)
+        private readonly ManagementApi _api;
+        private readonly SkillSetContext _context;
+        public string Locale { get; }
+        public SkillSetContextSimulationApi(ManagementApi api, SkillSetContext context, string locale)
         {
             _api = api;
             _context = context;
+            Locale = locale;
         }
 
-        private string SessionId { get; set; }
-
-        Task<SimulationResult> NewSession(string locale, string message)
+        public Task<SimulationResult> NewSession(string message)
         {
-            return SendMessage(locale, message, SimulationSession.ForceNewSession);
+            return SendMessage(message, SimulationSession.ForceNewSession);
         }
 
-        Task<SimulationResult> SendNextMessage(string locale, string message)
+        public Task<SimulationResult> SendNextMessage(string message)
         {
-            return SendMessage(locale, message, SimulationSession.Default);
+            return SendMessage(message, SimulationSession.Default);
         }
 
-        private async Task<SimulationResult> SendMessage(string locale, string message, SimulationSession session)
+        private async Task<SimulationResult> SendMessage(string message, SimulationSession session)
         {
             var response = await _api.Skills.Simulate(_context.ID, new SimulationRequest
             {
                 Device = new SimulationRequestDevice
                 {
-                    Locale = locale
+                    Locale = Locale
                 },
                 Input = new SimulationRequestInput
                 {
                     Content = message
                 },
-                Session = SimulationSession.ForceNewSession
+                Session = session
             });
 
             if (response.Status == InvocationStatus.InProgress)

@@ -48,17 +48,7 @@ namespace Alexa.NET.Management.Tests
         [Fact]
         public void PreferredLocaleReturnsValue()
         {
-            var skill1 = new SkillSummary
-            {
-                SkillId = "skill1",
-                Stage = SkillStage.Development,
-                NameByLocale = new Dictionary<string, string>
-                {
-                    {"de-DE","german"},
-                    {"en-GB","british"}
-                }
-            };
-            var skillSet = SkillSet.From(null,new SkillSetOptions("en-GB"),skill1).First();
+            var skillSet = GetSkillSetWithPreferredLocale("en-GB");
             Assert.Equal("british", skillSet.Name);
         }
 
@@ -74,20 +64,57 @@ namespace Alexa.NET.Management.Tests
         [Fact]
         public void ContextHandlesSummary()
         {
+            var skillSet = GetSkillSetWithPreferredLocale("en-GB");
+            Assert.Equal("british",skillSet.CurrentContext.Name);
+            Assert.Equal("skill1", skillSet.CurrentContext.ID);
+            Assert.Equal(SkillStage.Development,skillSet.CurrentContext.Stage);
+        }
+
+        [Fact]
+        public void ContextHandlesLocales()
+        {
+            var skillSet = GetSkillSetWithPreferredLocale("en-GB");
+            Assert.Equal(2,skillSet.CurrentContext.Locales.Length);
+        }
+
+        [Fact]
+        public void SimulationApiWrapsContextAndLocale()
+        {
+            var skillSet = GetSkillSetWithPreferredLocale("en-GB");
+            var simulation = skillSet.CurrentContext.Api.Simulation("en-GB");
+            Assert.Equal("en-GB",simulation.Locale);
+        }
+
+        [Fact]
+        public void SimulationApiSupportsDevelopment()
+        {
+            var devSkillSet = GetSkillSetWithPreferredLocale("en-GB");
+            Assert.True(devSkillSet.CurrentContext.Api.SimulationSupported);
+            Assert.NotNull(devSkillSet.CurrentContext.Api.Simulation("en-GB"));
+        }
+
+        [Fact]
+        public void SimulationApiDoesntSupportsDevelopment()
+        {
+            var devSkillSet = GetSkillSetWithPreferredLocale("en-GB",SkillStage.Live);
+            Assert.False(devSkillSet.CurrentContext.Api.SimulationSupported);
+            Assert.Throws<InvalidStageException>(() => devSkillSet.CurrentContext.Api.Simulation("en-GB"));
+        }
+
+
+        private SkillSet GetSkillSetWithPreferredLocale(string locale, SkillStage stage = SkillStage.Development)
+        {
             var skill1 = new SkillSummary
             {
                 SkillId = "skill1",
-                Stage = SkillStage.Development,
+                Stage = stage,
                 NameByLocale = new Dictionary<string, string>
                 {
                     {"de-DE","german"},
                     {"en-GB","british"}
                 }
             };
-            var skillSet = SkillSet.From(null,new SkillSetOptions("en-GB"), skill1).First();
-            Assert.Equal("british",skillSet.CurrentContext.Name);
-            Assert.Equal("skill1", skillSet.CurrentContext.ID);
-            Assert.Equal(SkillStage.Development,skillSet.CurrentContext.Stage);
+            return SkillSet.From(null, new SkillSetOptions(locale), skill1).First();
         }
     }
 }

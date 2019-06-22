@@ -2,6 +2,7 @@
 {
     public interface ISkillSetContextApi
     {
-        ISkillSetContextSimulationApi Simulation { get; }
+        bool SimulationSupported { get; }
+        ISkillSetContextSimulationApi Simulation(string locale);
     }
 }
