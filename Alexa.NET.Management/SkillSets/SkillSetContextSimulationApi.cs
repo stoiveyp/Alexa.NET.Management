@@ -6,13 +6,13 @@ namespace Alexa.NET.Management.SkillSets
     public class SkillSetContextSimulationApi : ISkillSetContextSimulationApi
     {
         private readonly ManagementApi _api;
-        private readonly SkillSetContext _context;
+        private readonly SkillSetLocale _locale;
+
         public string Locale { get; }
-        public SkillSetContextSimulationApi(ManagementApi api, SkillSetContext context, string locale)
+        public SkillSetContextSimulationApi(ManagementApi api, SkillSetLocale locale)
         {
             _api = api;
-            _context = context;
-            Locale = locale;
+            _locale = locale;
         }
 
         public Task<SimulationResult> NewSession(string message)
@@ -27,7 +27,7 @@ namespace Alexa.NET.Management.SkillSets
 
         private async Task<SimulationResult> SendMessage(string message, SimulationSession session)
         {
-            var response = await _api.Skills.Simulate(_context.ID, new SimulationRequest
+            var response = await _api.Skills.Simulate(_locale.SkillID, new SimulationRequest
             {
                 Device = new SimulationRequestDevice
                 {
@@ -42,7 +42,7 @@ namespace Alexa.NET.Management.SkillSets
 
             if (response.Status == InvocationStatus.InProgress)
             {
-                var secondResponse = await _api.Skills.SimulationResult(_context.ID, response.Id);
+                var secondResponse = await _api.Skills.SimulationResult(_locale.SkillID, response.Id);
                 return secondResponse.Result;
             }
 

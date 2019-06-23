@@ -8,14 +8,14 @@ namespace Alexa.NET.Management.SkillSets
 {
     public class SkillSet:ISkillSetSummary
     {
-        public ISkillSetContext Development { get; }
-        public ISkillSetContext Live { get; }
+        public ISkillSetStage Development { get; }
+        public ISkillSetStage Live { get; }
 
         public SkillSetOptions Options { get; }
 
-        public string ID => CurrentContext.ID;
+        public string ID => CurrentStage.ID;
 
-        public string Name => CurrentContext.Name;
+        public string Name => CurrentStage.Name;
 
         public SkillStage? Stage { get; private set; }
 
@@ -24,7 +24,7 @@ namespace Alexa.NET.Management.SkillSets
             Stage = stage;
         }
 
-        public ISkillSetContext CurrentContext => Stage == SkillStage.Development ? Development : Live;
+        public ISkillSetStage CurrentStage => Stage == SkillStage.Development ? Development : Live;
 
         private SkillSet(ManagementApi api, IEnumerable<SkillSummary> summaries, SkillSetOptions options)
         {
@@ -34,18 +34,18 @@ namespace Alexa.NET.Management.SkillSets
             {
                 if (summary.Stage == SkillStage.Development)
                 {
-                    Development = new SkillSetContext(api, summary,Options);
+                    Development = new SkillSetStage(api, summary,Options);
                     Stage = SkillStage.Development;
                 }
                 else
                 {
-                    Live = new SkillSetContext(api, summary,Options);
+                    Live = new SkillSetStage(api, summary,Options);
                 }
             }
 
             if (Live == null)
             {
-                Live = SkillSetContext.Empty();
+                Live = SkillSetStage.Empty();
             }
         }
 

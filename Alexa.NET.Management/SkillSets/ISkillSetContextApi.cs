@@ -1,8 +1,8 @@
 ﻿namespace Alexa.NET.Management.SkillSets
 {
-    public interface ISkillSetContextApi
+    public interface ISkillSetLocaleApi
     {
         bool SimulationSupported { get; }
-        ISkillSetContextSimulationApi Simulation(string locale);
+        ISkillSetContextSimulationApi Simulation { get; }
     }
 }

@@ -3,25 +3,28 @@ using Alexa.NET.Management.Api;
 
 namespace Alexa.NET.Management.SkillSets
 {
-    public class SkillSetContextApi:ISkillSetContextApi
+    public class SkillSetLocaleApi: ISkillSetLocaleApi
     {
         private ManagementApi _api;
-        private SkillSetContext _context;
+        private SkillSetLocale _locale;
 
-        public SkillSetContextApi(ManagementApi api, SkillSetContext context)
+        public SkillSetLocaleApi(SkillSetLocale skillSetLocale, ManagementApi api)
         {
             _api = api;
-            _context = context;
+            _locale = skillSetLocale;
         }
 
-        public bool SimulationSupported => _context.Stage.HasValue && _context.Stage == SkillStage.Development;
-        public ISkillSetContextSimulationApi Simulation(string locale)
-        {
-            if (!SimulationSupported)
+        public bool SimulationSupported => _locale.Stage.Stage.HasValue && _locale.Stage.Stage == SkillStage.Development;
+        public ISkillSetContextSimulationApi Simulation {
+            get
             {
-                throw new InvalidStageException("Simulation API must be run against the development stage");
+                if (!SimulationSupported)
+                {
+                    throw new InvalidStageException("Simulation API must be run against the development stage");
+                }
+
+                return new SkillSetContextSimulationApi(_api, _locale);
             }
-            return new SkillSetContextSimulationApi(_api,_context,locale);
         }
     }
 }

@@ -4,13 +4,13 @@ using Alexa.NET.Management.Skills;
 
 namespace Alexa.NET.Management.SkillSets
 {
-    public class SkillSetContext: ISkillSetContext
+    public class SkillSetStage: ISkillSetStage
     {
-        public SkillSetContext(ManagementApi api, SkillSummary summary, SkillSetOptions options)
+        public SkillSetStage(ManagementApi api, SkillSummary summary, SkillSetOptions options)
         {
-            Api = new SkillSetContextApi(api,this);
             Summary = summary;
             Options = options;
+            Locales = Summary?.NameByLocale?.Keys.Select(l => new SkillSetLocale(api, this, l)).ToArray();
         }
 
         public string ID => Summary == null ? string.Empty : Summary.SkillId;
@@ -22,12 +22,11 @@ namespace Alexa.NET.Management.SkillSets
 
         public SkillSummary Summary { get; set; }
 
-        public ISkillSetContextApi Api { get; }
-        public string[] Locales => Summary?.NameByLocale?.Keys.ToArray() ?? new string[]{};
+        public SkillSetLocale[] Locales { get; }
 
-        public static ISkillSetContext Empty()
+        public static ISkillSetStage Empty()
         {
-            return new SkillSetContext(null, null,null);
+            return new SkillSetStage(null, null,null);
         }
     }
 }
