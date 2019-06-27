@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Alexa.NET.Management.Api;
 using Alexa.NET.Management.Skills;
@@ -91,6 +92,19 @@ namespace Alexa.NET.Management.Tests
             var locale = GetSkillSetLocale("en-GB",SkillStage.Live);
             Assert.False(locale.Api.SimulationSupported);
             Assert.Throws<InvalidStageException>(() => locale.Api.Simulation);
+        }
+
+        [Fact]
+        public void VerifyLocaleComparer()
+        {
+            var options = new SkillSetOptions("en-GB","en-US","de-DE");
+            var unordered = new[] {"en-IN","de-DE", "en-AU", "en-GB", "en-US"};
+            var ordered = unordered.OrderBy(l => l,options).ToArray();
+            Assert.Equal("en-GB",ordered[0]);
+            Assert.Equal("en-US", ordered[1]);
+            Assert.Equal("de-DE", ordered[2]);
+            Assert.Equal("en-AU", ordered[3]);
+            Assert.Equal("en-IN", ordered[4]);
         }
 
 

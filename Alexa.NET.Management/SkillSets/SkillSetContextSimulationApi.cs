@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Alexa.NET.Management.Skills;
 
 namespace Alexa.NET.Management.SkillSets
@@ -8,30 +9,40 @@ namespace Alexa.NET.Management.SkillSets
         private readonly ManagementApi _api;
         private readonly SkillSetLocale _locale;
 
-        public string Locale { get; }
         public SkillSetContextSimulationApi(ManagementApi api, SkillSetLocale locale)
         {
             _api = api;
             _locale = locale;
         }
 
-        public Task<SimulationResult> NewSession(string message)
+        public Task<SimulationResponse> NewSession(string message)
         {
             return SendMessage(message, SimulationSession.ForceNewSession);
         }
 
-        public Task<SimulationResult> SendNextMessage(string message)
+        public Task<SimulationResponse> SendNextMessage(string message)
         {
             return SendMessage(message, SimulationSession.Default);
         }
 
-        private async Task<SimulationResult> SendMessage(string message, SimulationSession session)
+        public async Task<SimulationResult> WaitForResult(SimulationResponse response, int pollSeconds)
         {
-            var response = await _api.Skills.Simulate(_locale.SkillID, new SimulationRequest
+            while (response.Status == InvocationStatus.InProgress)
+            {
+                await Task.Delay(TimeSpan.FromSeconds(pollSeconds));
+                response = await _api.Skills.SimulationResult(_locale.SkillID, response.Id);
+            }
+
+            return response.Result;
+        }
+
+        private Task<SimulationResponse> SendMessage(string message, SimulationSession session)
+        {
+            return _api.Skills.Simulate(_locale.SkillID, new SimulationRequest
             {
                 Device = new SimulationRequestDevice
                 {
-                    Locale = Locale
+                    Locale = _locale.Locale
                 },
                 Input = new SimulationRequestInput
                 {
@@ -39,14 +50,6 @@ namespace Alexa.NET.Management.SkillSets
                 },
                 Session = session
             });
-
-            if (response.Status == InvocationStatus.InProgress)
-            {
-                var secondResponse = await _api.Skills.SimulationResult(_locale.SkillID, response.Id);
-                return secondResponse.Result;
-            }
-
-            return response.Result;
         }
     }
 }

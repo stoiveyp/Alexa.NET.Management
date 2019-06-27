@@ -5,8 +5,9 @@ namespace Alexa.NET.Management.SkillSets
 {
     public interface ISkillSetContextSimulationApi
     {
-        string Locale { get; }
-        Task<SimulationResult> NewSession(string message);
-        Task<SimulationResult> SendNextMessage(string message);
+        Task<SimulationResponse> NewSession(string message);
+        Task<SimulationResponse> SendNextMessage(string message);
+
+        Task<SimulationResult> WaitForResult(SimulationResponse response, int pollSeconds);
     }
 }

@@ -10,7 +10,7 @@ namespace Alexa.NET.Management.SkillSets
         {
             Summary = summary;
             Options = options;
-            Locales = Summary?.NameByLocale?.Keys.Select(l => new SkillSetLocale(api, this, l)).ToArray();
+            Locales = Summary?.NameByLocale?.Keys.OrderBy(l => l,options).Select(l => new SkillSetLocale(api, this, l)).ToArray();
         }
 
         public string ID => Summary == null ? string.Empty : Summary.SkillId;
