@@ -13,11 +13,8 @@ namespace Alexa.NET.Management.Api
 
         [JsonProperty("interfaces")]
         public CustomApiInterface[] Interfaces { get; set; }
-    }
 
-    public class CustomApiInterface
-    {
-        [JsonProperty("type")]
-        public string Type { get; set; }
+        [JsonProperty("tasks",NullValueHandling = NullValueHandling.Ignore)]
+        public CustomApiTask[] Tasks { get; set; }
     }
 }
