@@ -5,7 +5,7 @@ namespace Alexa.NET.Management.Skills
     public enum InvocationStatus
     {
         [EnumMember(Value="SUCCESSFUL")]
-        SuccessFul,
+        Successful,
         [EnumMember(Value="FAILED")]
         Failed,
         [EnumMember(Value="IN_PROGRESS")]
