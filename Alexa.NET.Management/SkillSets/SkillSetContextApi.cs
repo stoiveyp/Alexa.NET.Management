@@ -26,5 +26,7 @@ namespace Alexa.NET.Management.SkillSets
                 return new SkillSetContextSimulationApi(_api, _locale);
             }
         }
+
+        public ISkillSetContextManifestApi Manifest => new SkillSetContextManifestApi(_api, _locale);
     }
 }

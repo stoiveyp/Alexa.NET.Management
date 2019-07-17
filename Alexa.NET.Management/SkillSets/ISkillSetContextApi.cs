@@ -4,5 +4,7 @@
     {
         bool SimulationSupported { get; }
         ISkillSetContextSimulationApi Simulation { get; }
+
+        ISkillSetContextManifestApi Manifest { get; }
     }
 }
