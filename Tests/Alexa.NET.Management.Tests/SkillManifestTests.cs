@@ -34,6 +34,8 @@ namespace Alexa.NET.Management.Tests
             Assert.Equal(customApi.Endpoint.Uri,GlobalCustomEndpoint);
             Assert.Equal(SslCertificateType.Trusted,customApi.Regions["NA"].Endpoint.SslCertificateType);
             Assert.Equal("arn:aws:lambda:us-east-1:040623927470:function:sampleSkill",manifest.Events.Regions.First().Value.Endpoint.Uri);
+            var task = Assert.Single(customApi.Tasks);
+            Assert.Equal("AMAZON.PrintPDF",task.Name);
         }
 
         [Fact]
