@@ -1,5 +1,4 @@
-﻿using Microsoft.Net.Http.Headers;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace Alexa.NET.Management.Skills

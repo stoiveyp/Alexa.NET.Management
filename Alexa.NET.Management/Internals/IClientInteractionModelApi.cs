@@ -28,7 +28,7 @@ namespace Alexa.NET.Management.Internals
         Task<InteractionModelVersionsResponse> Versions(string skillId, string locale, string nextToken, int maxResults);
 
         [Get("/skills/{skillId}/stages/development/interactionModel/locales/{locale}/versions")]
-        Task<InteractionModelVersionsResponse> Versions(string skillId, string locale, [Query]SortDirection sortDirection, string nextToken, int maxResults);
+        Task<InteractionModelVersionsResponse> Versions(string skillId, string locale, SortDirection sortDirection, string nextToken, int maxResults);
 
         [Get("/skills/{skillId}/stages/development/interactionModel/locales/{locale}/versions/{version}")]
         Task<SkillModelVersion> Version(string skillId, string locale, string version);

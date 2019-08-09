@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.6</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Steven Pears</Authors>
     <Company />
     <Description>A .NET Core library for handling Alexa Skills Management API</Description>
@@ -9,17 +9,16 @@
     <PackageProjectUrl>https://github.com/stoiveyp/Alexa.NET.Management/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/stoiveyp/Alexa.NET.Management/</RepositoryUrl>
     <PackageTags>amazon;alexa;echo;dot;echo dot;skills;management</PackageTags>
-    <Version>3.3.1</Version>
+    <Version>3.4.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>3.3.1</AssemblyVersion>
-    <FileVersion>3.3.1</FileVersion>
-    <PackageReleaseNotes>Add Hindi (IN) to supported locales</PackageReleaseNotes>
+    <PackageReleaseNotes>Move to NetStandard 2.0
+Update Alexa references</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Alexa.NET" Version="1.6.3" />
-    <PackageReference Include="Refit" Version="4.5.6" />
+    <PackageReference Include="Alexa.NET" Version="1.8.0" />
+    <PackageReference Include="Refit" Version="4.7.9" />
   </ItemGroup>
 
   <ItemGroup>
