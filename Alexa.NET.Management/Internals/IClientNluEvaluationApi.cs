@@ -24,5 +24,8 @@ namespace Alexa.NET.Management.Internals
 
         [Get("/skills/{skillId}/nluAnnotationSets/{annotationId}/properties")]
         Task<AnnotationSetProperties> GetProperties(string skillId, string annotationId);
+
+        [Delete("/skills/{skillId}/nluAnnotationSets/{annotationId}")]
+        Task<HttpResponseMessage> Delete(string skillId, string annotationId);
     }
 }

@@ -22,5 +22,6 @@ namespace Alexa.NET.Management
         Task Rename(string skillId, string annotationId, string name);
 
         Task<AnnotationSetProperties> GetProperties(string skillId, string annotationId);
+        Task Delete(string skillId, string annotationId);
     }
 }

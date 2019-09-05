@@ -73,6 +73,24 @@ namespace Alexa.NET.Management.Internals
             return result;
         }
 
+        public async Task Delete(string skillId, string annotationId)
+        {
+            var response = await Client.Delete(skillId, annotationId);
+
+            if (response.StatusCode != HttpStatusCode.NoContent)
+            {
+
+                var body = string.Empty;
+                if (response.Content != null)
+                {
+                    body = await response.Content.ReadAsStringAsync();
+                }
+
+                throw new InvalidOperationException(
+                    $"Expected Status Code 204. Received {(int)response.StatusCode}. Response Body: {body}");
+            }
+        }
+
         private async Task<CreateAnnotationSetResponse> Create(string skillId, CreateRequest request)
         {
             var response = await Client.Create(skillId, request);

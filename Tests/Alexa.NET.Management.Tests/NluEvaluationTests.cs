@@ -122,7 +122,18 @@ namespace Alexa.NET.Management.Tests
             Assert.Equal("fromjson",result.Name);
             Assert.Equal(0,result.NumberOfEntries);
             Assert.Equal("en-GB", result.Locale);
+        }
 
+        [Fact]
+        public async Task DeleteCreatesCorrectRequestAndResponse()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            {
+                Assert.Equal(HttpMethod.Delete, req.Method);
+                Assert.Equal("/v1/skills/skillId/nluAnnotationSets/abcdef", req.RequestUri.PathAndQuery);
+            }, HttpStatusCode.NoContent));
+
+            await management.NluEvaluation.Delete("skillId", "abcdef");
         }
 
     }
