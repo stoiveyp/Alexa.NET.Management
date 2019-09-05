@@ -10,7 +10,7 @@ using Refit;
 
 namespace Alexa.NET.Management.Internals
 {
-    public class NluEvaluationApi:INluEvaluationApi
+    public class NluEvaluationApi : INluEvaluationApi
     {
         private IClientNluEvaluationApi Client { get; }
 
@@ -19,38 +19,63 @@ namespace Alexa.NET.Management.Internals
             Client = RestService.For<IClientNluEvaluationApi>(httpClient, ManagementRefitSettings.Create());
         }
 
-        public Task<CreateAnnotationSetResponse> CreateAnnotationSet(string skillId, string locale, string name)
+        public Task<CreateAnnotationSetResponse> Create(string skillId, string locale, string name)
         {
-            return CreateAnnotationSet(skillId, new CreateAnnotationSetRequest
+            return Create(skillId, new CreateRequest
             {
                 Locale = locale,
                 Name = name
             });
         }
 
-        public Task<AnnotationSetsResponse> AnnotationSets(string skillId, string locale = null, int? maxResults = null)
+        public Task<ListResponse> List(string skillId, string locale = null, int? maxResults = null)
         {
-            return AnnotationSets(skillId, null, locale, maxResults);
+            return List(skillId, null, locale, maxResults);
         }
 
-        public Task<AnnotationSetsResponse> AnnotationSets(string skillId, string nextToken, string locale = null, int? maxResults = null)
+        public Task<ListResponse> List(string skillId, string nextToken, string locale = null, int? maxResults = null)
         {
-            return Client.AnnotationSets(skillId, locale, maxResults, nextToken);
+            return Client.List(skillId, locale, maxResults, nextToken);
         }
 
-        public Task<AnnotationSet> GetAnnotationSet(string skillId, string annotationId)
+        public Task<AnnotationSet> Get(string skillId, string annotationId)
         {
-            return Client.AnnotationSet(skillId, annotationId, "application/json");
+            return Client.Get(skillId, annotationId, "application/json");
         }
 
-        public Task UpdateAnnotationSet(string skillId, string annotationId, AnnotationSet set)
+        public Task Update(string skillId, string annotationId, AnnotationSet set)
         {
-            return Client.UpdateAnnotationSet(skillId, annotationId, set);
+            return Client.Update(skillId, annotationId, set);
         }
 
-        public async Task<CreateAnnotationSetResponse> CreateAnnotationSet(string skillId, CreateAnnotationSetRequest request)
+        public async Task Rename(string skillId, string annotationId, string name)
         {
-            var response = await Client.CreateAnnotationSet(skillId, request);
+            var response = await Client.Rename(skillId, annotationId, new UpdatePropertiesRequest { Name = name });
+
+            if (response.StatusCode != HttpStatusCode.Created)
+            {
+
+                var body = string.Empty;
+                if (response.Content != null)
+                {
+                    body = await response.Content.ReadAsStringAsync();
+                }
+
+                throw new InvalidOperationException(
+                    $"Expected Status Code 201. Received {(int)response.StatusCode}. Response Body: {body}");
+            }
+        }
+
+        public async Task<AnnotationSetProperties> GetProperties(string skillId, string annotationId)
+        {
+            var result = await Client.GetProperties(skillId, annotationId);
+            result.AnnotationId = annotationId;
+            return result;
+        }
+
+        private async Task<CreateAnnotationSetResponse> Create(string skillId, CreateRequest request)
+        {
+            var response = await Client.Create(skillId, request);
 
             var body = string.Empty;
             if (response.Content != null)

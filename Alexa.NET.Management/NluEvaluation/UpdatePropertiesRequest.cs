@@ -5,11 +5,8 @@ using Newtonsoft.Json;
 
 namespace Alexa.NET.Management.NluEvaluation
 {
-    public class CreateAnnotationSetRequest
+    internal class UpdatePropertiesRequest
     {
-        [JsonProperty("locale")]
-        public string Locale { get; set; }
-
         [JsonProperty("name")]
         public string Name { get; set; }
     }

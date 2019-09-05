@@ -5,10 +5,10 @@ using Newtonsoft.Json;
 
 namespace Alexa.NET.Management.NluEvaluation
 {
-    public class AnnotationSetsResponse
+    public class ListResponse
     {
         [JsonProperty("annotationSets")]
-        public AnnotationSetSummary[] AnnotationSets { get; set; }
+        public AnnotationSetProperties[] AnnotationSets { get; set; }
 
         [JsonProperty("paginationContext")]
         public PaginationContext PaginationContext { get; set; }
