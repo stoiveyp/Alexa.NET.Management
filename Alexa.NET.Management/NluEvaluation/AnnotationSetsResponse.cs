@@ -8,7 +8,7 @@ namespace Alexa.NET.Management.NluEvaluation
     public class AnnotationSetsResponse
     {
         [JsonProperty("annotationSets")]
-        public AnnotationSet[] AnnotationSets { get; set; }
+        public AnnotationSetSummary[] AnnotationSets { get; set; }
 
         [JsonProperty("paginationContext")]
         public PaginationContext PaginationContext { get; set; }

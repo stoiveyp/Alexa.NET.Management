@@ -1,23 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using Newtonsoft.Json;
 
 namespace Alexa.NET.Management.NluEvaluation
 {
     public class AnnotationSet
     {
-        [JsonProperty("locale")]
-        public string Locale { get; set; }
-
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        [JsonProperty("numberOfEntries")]
-        public int NumberOfEntries { get; set; }
-
-        [JsonProperty("updatedTimestamp")]
-        public DateTime UpdatedTimestamp { get; set; }
-
-        [JsonProperty("annotationId")]
-        public string AnnotationId { get; set; }
+        [JsonProperty("data")]
+        public Annotation[] Data { get; set; }
     }
 }

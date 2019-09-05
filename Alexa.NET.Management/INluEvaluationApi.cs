@@ -13,5 +13,8 @@ namespace Alexa.NET.Management
         Task<AnnotationSetsResponse> AnnotationSets(string skillId, string locale = null, int? maxResults = null);
 
         Task<AnnotationSetsResponse> AnnotationSets(string skillId, string nextToken, string locale = null, int? maxResults = null);
+
+        Task<AnnotationSet> GetAnnotationSet(string skillId, string annotationId);
+        Task UpdateAnnotationSet(string skillId, string annotationId, AnnotationSet set);
     }
 }
