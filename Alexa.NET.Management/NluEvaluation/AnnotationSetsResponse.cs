@@ -10,6 +10,9 @@ namespace Alexa.NET.Management.NluEvaluation
         [JsonProperty("annotationSets")]
         public AnnotationSet[] AnnotationSets { get; set; }
 
+        [JsonProperty("paginationContext")]
+        public PaginationContext PaginationContext { get; set; }
+
         [JsonProperty("_links")]
         public Dictionary<string, ApiLink> Links { get; set; }
     }

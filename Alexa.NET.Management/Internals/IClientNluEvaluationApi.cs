@@ -10,10 +10,7 @@ namespace Alexa.NET.Management.Internals
         [Post("/skills/{skillId}/nluAnnotationSets")]
         Task<HttpResponseMessage> CreateAnnotationSet(string skillId, CreateAnnotationSetRequest request);
 
-        [Post("/skills/{skillId}/nluAnnotationSets")]
-        Task<AnnotationSetsResponse> AnnotationSets(string skillId);
-
-        [Post("/skills/{skillId}/nluAnnotationSets")]
-        Task<AnnotationSetsResponse> AnnotationSets(string skillId, string locale, int maxResults, string nextToken);
+        [Get("/skills/{skillId}/nluAnnotationSets")]
+        Task<AnnotationSetsResponse> AnnotationSets(string skillId, string locale = null, int? maxResults = null, string nextToken = null);
     }
 }

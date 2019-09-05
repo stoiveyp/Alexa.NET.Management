@@ -28,6 +28,16 @@ namespace Alexa.NET.Management.Internals
             });
         }
 
+        public Task<AnnotationSetsResponse> AnnotationSets(string skillId, string locale = null, int? maxResults = null)
+        {
+            return AnnotationSets(skillId, null, locale, maxResults);
+        }
+
+        public Task<AnnotationSetsResponse> AnnotationSets(string skillId, string nextToken, string locale = null, int? maxResults = null)
+        {
+            return Client.AnnotationSets(skillId, locale, maxResults, nextToken);
+        }
+
         public async Task<CreateAnnotationSetResponse> CreateAnnotationSet(string skillId, CreateAnnotationSetRequest request)
         {
             var response = await Client.CreateAnnotationSet(skillId, request);

@@ -42,5 +42,24 @@ namespace Alexa.NET.Management.Tests
             Assert.Equal("http://test.com/example",setresponse.Location.ToString());
             Assert.Equal("abcdef",setresponse.Id);
         }
+
+        [Fact]
+        public async Task AnnotationSetCreatesCorrectRequestAndResponse()
+        {
+            var locale = "en-GB";
+            var name = "testSet";
+
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal("/v1/skills/skillId/nluAnnotationSets?locale=en-GB&maxResults=2", req.RequestUri.PathAndQuery);
+            },Utility.ExampleFileContent<AnnotationSetsResponse>("AnnotationSetResponse.json")));
+
+            var response = await management.NluEvaluation.AnnotationSets("skillId", "en-GB", 2);
+            var set = Assert.Single(response.AnnotationSets);
+            Assert.Equal("fromjson",set.Name);
+            Assert.Equal(0,set.NumberOfEntries);
+            Assert.Equal("en-GB",set.Locale);
+        }
     }
 }
