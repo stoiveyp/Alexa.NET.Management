@@ -6,7 +6,7 @@ namespace Alexa.NET.Management.InteractionModel
     public class InteractionModelVersionsResponse
     {
         [JsonProperty("_links")]
-        public Dictionary<string, InteractionModelVersionLink> Links { get; set; }
+        public Dictionary<string, ApiLink> Links { get; set; }
 
         [JsonProperty("nextToken")]
         public string NextToken { get; set; }

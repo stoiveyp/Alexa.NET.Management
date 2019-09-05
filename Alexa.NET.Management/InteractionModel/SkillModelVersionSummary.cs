@@ -16,6 +16,6 @@ namespace Alexa.NET.Management.InteractionModel
         public string Description { get; set; }
 
         [JsonProperty("_links")]
-        public Dictionary<string, InteractionModelVersionLink> Links { get; set; }
+        public Dictionary<string, ApiLink> Links { get; set; }
     }
 }

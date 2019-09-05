@@ -9,7 +9,7 @@ namespace Alexa.NET.Management.Skills
     public class CertificationListResponse
     {
         [JsonProperty("_links")]
-        public Dictionary<string, CertificationLink> Links { get; set; }
+        public Dictionary<string, ApiLink> Links { get; set; }
 
         [JsonProperty("isTruncated")]
         public bool IsTruncated { get; set; }

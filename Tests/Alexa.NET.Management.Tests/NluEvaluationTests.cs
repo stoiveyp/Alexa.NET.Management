@@ -15,7 +15,7 @@ namespace Alexa.NET.Management.Tests
     public class NluEvaluationTests
     {
         [Fact]
-        public async Task CreateEvaluationSetGeneratesCorrectRequest()
+        public async Task CreateEvaluationSetGeneratesCorrectRequestAndResponse()
         {
             var locale = "en-GB";
             var name = "testSet";

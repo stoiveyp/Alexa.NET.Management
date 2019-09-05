@@ -34,7 +34,7 @@ namespace Alexa.NET.Management.InSkillProduct
         public string PurchasableState { get; set; }
 
         [JsonProperty("_links")]
-        public Dictionary<string,InProductLink> Links { get; set; }
+        public Dictionary<string, ApiLink> Links { get; set; }
 
         [JsonProperty("nameByLocale")]
         public Dictionary<string,string> NameByLocale { get; set; }

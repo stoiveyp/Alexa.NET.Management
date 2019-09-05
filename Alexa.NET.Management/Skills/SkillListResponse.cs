@@ -8,7 +8,7 @@ namespace Alexa.NET.Management.Skills
     public class SkillListResponse
     {
         [JsonProperty("_links")]
-        public Dictionary<string,SkillSummaryLink> Links { get; set; }
+        public Dictionary<string, ApiLink> Links { get; set; }
 
         [JsonProperty("isTruncated")]
         public bool IsTruncated { get; set; }

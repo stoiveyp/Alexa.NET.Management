@@ -6,7 +6,7 @@ namespace Alexa.NET.Management.IntentRequestHistory
     public class IntentRequestHistoryResponseBody
     {
         [JsonProperty("_links")]
-        public Dictionary<string, IntentRequestHistoryLink> Links { get; set; }
+        public Dictionary<string, ApiLink> Links { get; set; }
 
         [JsonProperty("nextToken")]
         public string NextToken { get; set; }
