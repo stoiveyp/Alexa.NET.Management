@@ -20,7 +20,7 @@ namespace Alexa.NET.Management
             return new RefitSettings
             {
                 UrlParameterFormatter = new DefaultWithEnumUrlParamFormatter(),
-                JsonSerializerSettings = settings
+                ContentSerializer = new JsonContentSerializer(settings)
             };
         }
     }

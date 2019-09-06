@@ -68,7 +68,9 @@ namespace Alexa.NET.Management
 
             UtteranceProfiler = new SkillUtteranceProfilerApi(client);
 
-            NluEvaluation = new NluEvaluationApi(client);
+            Nlu = new NluApiContainer(
+                new NluAnnotationSetApi(client),
+                new NluEvaluationApi(client));
         }
 
         public IIntentRequestHistoryApi IntentRequestHistory { get; set; }
@@ -93,6 +95,6 @@ namespace Alexa.NET.Management
 
         public IUtteranceProfilerApi UtteranceProfiler { get; set; }
 
-        public INluEvaluationApi NluEvaluation { get; set; }
+        public NluApiContainer Nlu { get; set; }
     }
 }

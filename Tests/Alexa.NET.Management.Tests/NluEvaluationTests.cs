@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Alexa.NET.Management.NluEvaluation;
+using Alexa.NET.Management.Api;
+using Alexa.NET.Management.Nlu.Evaluation;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Xunit;
@@ -13,22 +13,21 @@ namespace Alexa.NET.Management.Tests
     public class NluEvaluationTests
     {
         [Fact]
-        public async Task CreateGeneratesCorrectRequestAndResponse()
+        public async Task StartEvaluationCreatesCorrectRequestAndResponse()
         {
             var locale = "en-GB";
-            var name = "testSet";
 
             var management = new ManagementApi("xxx", new ActionHandler(async req =>
             {
                 Assert.Equal(HttpMethod.Post, req.Method);
-                Assert.Equal("/v1/skills/skillId/nluAnnotationSets", req.RequestUri.PathAndQuery);
+                Assert.Equal("/v1/skills/skillId/nluEvaluations", req.RequestUri.PathAndQuery);
                 var requestcontent = await req.Content.ReadAsStringAsync();
-                var request = JsonConvert.DeserializeObject<CreateRequest>(requestcontent);
+                var request = JsonConvert.DeserializeObject<CreateEvaluationRequest>(requestcontent);
                 Assert.Equal(locale, request.Locale);
-                Assert.Equal(name, request.Name);
+                Assert.Equal(SkillStage.Development, request.Stage);
 
                 var json = new JObject(new JProperty("id", "abcdef")).ToString();
-                var response = new HttpResponseMessage(HttpStatusCode.Created)
+                var response = new HttpResponseMessage(HttpStatusCode.OK)
                 {
                     Content = new StringContent(json)
                 };
@@ -36,105 +35,32 @@ namespace Alexa.NET.Management.Tests
                 return response;
             }));
 
-            var setresponse = await management.NluEvaluation.Create("skillId", locale, name);
+            var setresponse = await management.Nlu.Evaluations.Create("skillId",SkillStage.Development,locale,"abcdef");
             Assert.Equal("http://test.com/example", setresponse.Location.ToString());
             Assert.Equal("abcdef", setresponse.Id);
         }
 
         [Fact]
-        public async Task ListCreatesCorrectRequestAndResponse()
-        {
-            var locale = "en-GB";
-            var name = "testSet";
-
-            var management = new ManagementApi("xxx", new ActionHandler(async req =>
-            {
-                Assert.Equal(HttpMethod.Get, req.Method);
-                Assert.Equal("/v1/skills/skillId/nluAnnotationSets?locale=en-GB&maxResults=2", req.RequestUri.PathAndQuery);
-            }, Utility.ExampleFileContent<ListResponse>("AnnotationSetResponse.json")));
-
-            var response = await management.NluEvaluation.List("skillId", "en-GB", 2);
-            var set = Assert.Single(response.AnnotationSets);
-            Assert.Equal("fromjson", set.Name);
-            Assert.Equal(0, set.NumberOfEntries);
-            Assert.Equal("en-GB", set.Locale);
-        }
-
-        [Fact]
-        public async Task UpdateCreatesCorrectRequestAndResponse()
+        public async Task ListEvaluationCreatesCorrectRequestAndResponse()
         {
             var management = new ManagementApi("xxx", new ActionHandler(async req =>
             {
-                Assert.Equal(HttpMethod.Post, req.Method);
-                Assert.Equal("/v1/skills/skillId/nluAnnotationSets/fromjson/annotations", req.RequestUri.PathAndQuery);
-                var content = await req.Content.ReadAsStringAsync();
-                var response = JsonConvert.DeserializeObject<AnnotationSet>(content);
-                Assert.True(Utility.CompareJson(response,"AnnotationSet.json", "referenceTimestamp"));
-            }));
-
-            await management.NluEvaluation.Update("skillId", "fromjson",
-                Utility.ExampleFileContent<AnnotationSet>("AnnotationSet.json"));
-        }
-
-        [Fact]
-        public async Task GetCreatesCorrectRequestAndResponse()
-        {
-            var management = new ManagementApi("xxx", new ActionHandler(req =>
-            {
                 Assert.Equal(HttpMethod.Get, req.Method);
-                Assert.Equal("application/json",req.Headers.Accept.First().MediaType);
-                Assert.Equal("/v1/skills/skillId/nluAnnotationSets/fromjson/annotations", req.RequestUri.PathAndQuery);
-            }, Utility.ExampleFileContent<AnnotationSet>("AnnotationSet.json")));
+                Assert.Equal("/v1/skills/skillId/nluEvaluations?stage=development&maxResults=2", req.RequestUri.PathAndQuery);
 
-            var result = await management.NluEvaluation.Get("skillId", "fromjson");
-            Assert.Equal(5, result.Data.Length);
-            var annotation = result.Data.First();
-        }
 
-        [Fact]
-        public async Task RenameCreatesCorrectRequestAndResponse()
-        {
-            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            },Utility.ExampleFileContent<ListEvaluationResponse>("ListEvaluation.json")));
+
+            var listresponse = await management.Nlu.Evaluations.List("skillId",new ListEvaulationFilters
             {
-                Assert.Equal(HttpMethod.Put, req.Method);
-                Assert.Equal("/v1/skills/skillId/nluAnnotationSets/abcdef/properties", req.RequestUri.PathAndQuery);
+                MaxResults = 2,
+                Stage = SkillStage.Development
+            });
 
-                var content = await req.Content.ReadAsStringAsync();
-                var contentjson = JObject.Parse(content);
-                Assert.Equal("newjson", contentjson.Value<string>("name"));
+            Assert.Equal(2,listresponse.Links.Count);
+            Assert.Equal("string",listresponse.PaginationContext.NextToken);
+            var evaulation = Assert.Single(listresponse.Evaluations);
 
-            },HttpStatusCode.Created));
-
-            await management.NluEvaluation.Rename("skillId", "abcdef","newjson");
         }
-
-        [Fact]
-        public async Task GetPropertiesCreatesCorrectRequestAndResponse()
-        {
-            var management = new ManagementApi("xxx", new ActionHandler(req =>
-            {
-                Assert.Equal(HttpMethod.Get, req.Method);
-                Assert.Equal("/v1/skills/skillId/nluAnnotationSets/abcdef/properties", req.RequestUri.PathAndQuery);
-            }, Utility.ExampleFileContent<AnnotationSetProperties>("AnnotationSetProperties.json")));
-
-            var result = await management.NluEvaluation.GetProperties("skillId", "abcdef");
-            Assert.Equal("abcdef", result.AnnotationId);
-            Assert.Equal("fromjson",result.Name);
-            Assert.Equal(0,result.NumberOfEntries);
-            Assert.Equal("en-GB", result.Locale);
-        }
-
-        [Fact]
-        public async Task DeleteCreatesCorrectRequestAndResponse()
-        {
-            var management = new ManagementApi("xxx", new ActionHandler(req =>
-            {
-                Assert.Equal(HttpMethod.Delete, req.Method);
-                Assert.Equal("/v1/skills/skillId/nluAnnotationSets/abcdef", req.RequestUri.PathAndQuery);
-            }, HttpStatusCode.NoContent));
-
-            await management.NluEvaluation.Delete("skillId", "abcdef");
-        }
-
     }
 }

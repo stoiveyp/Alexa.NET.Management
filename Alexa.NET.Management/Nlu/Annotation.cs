@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace Alexa.NET.Management.NluEvaluation
+namespace Alexa.NET.Management.Nlu.AnnotationSet
 {
     public class Annotation
     {

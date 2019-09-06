@@ -1,27 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using Alexa.NET.Management.NluEvaluation;
+﻿using System.Threading.Tasks;
+using Alexa.NET.Management.Api;
+using Alexa.NET.Management.Nlu.Evaluation;
 
 namespace Alexa.NET.Management
 {
     public interface INluEvaluationApi
     {
-        Task<CreateAnnotationSetResponse> Create(string skillId, string locale, string name);
+        Task<CreateEvaluationResponse> Create(string skillid, SkillStage stage, string locale, string annotationId);
 
-        Task<ListResponse> List(string skillId, string locale = null, int? maxResults = null);
+        Task<ListEvaluationResponse> List(string skillId, ListEvaulationFilters filters = null);
 
-        Task<ListResponse> List(string skillId, string nextToken, string locale = null, int? maxResults = null);
-
-        Task<AnnotationSet> Get(string skillId, string annotationId);
-
-        Task Update(string skillId, string annotationId, AnnotationSet set);
-
-        Task Rename(string skillId, string annotationId, string name);
-
-        Task<AnnotationSetProperties> GetProperties(string skillId, string annotationId);
-        Task Delete(string skillId, string annotationId);
+        Task<ListEvaluationResponse> List(string skillId, string nextToken, ListEvaulationFilters filters = null);
     }
 }

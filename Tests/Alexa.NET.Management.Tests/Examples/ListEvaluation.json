@@ -1,0 +1,29 @@
+{
+  "paginationContext": {
+    "nextToken": "string"
+  },
+  "_links": {
+    "self": {
+      "href": "string"
+    },
+    "next": {
+      "href": "string"
+    }
+  },
+  "evaluations": [
+    {
+      "startTimestamp": "2019-08-12T18:41:09.684Z",
+      "endTimestamp": "2019-08-12T18:41:09.684Z",
+      "status": "string",
+      "errorMessage": "string",
+      "inputs": {
+        "locale": "string",
+        "stage": "development",
+        "source": {
+          "annotationId": "string"
+        }
+      },
+      "id": "string"
+    }
+  ]
+}
