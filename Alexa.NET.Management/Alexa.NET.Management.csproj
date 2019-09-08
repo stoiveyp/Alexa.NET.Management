@@ -17,8 +17,8 @@ Update Alexa references</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Alexa.NET" Version="1.8.0" />
-    <PackageReference Include="Refit" Version="4.7.9" />
+    <PackageReference Include="Alexa.NET" Version="1.8.2" />
+    <PackageReference Include="Refit" Version="4.7.51" />
   </ItemGroup>
 
   <ItemGroup>
