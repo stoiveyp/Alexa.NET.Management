@@ -3,7 +3,6 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Alexa.NET.Management.Api;
-using Alexa.NET.Management.Nlu;
 using Alexa.NET.Management.Nlu.Evaluation;
 using Newtonsoft.Json.Linq;
 using Refit;
@@ -24,15 +23,31 @@ namespace Alexa.NET.Management.Internals
             return Create(skillId, new CreateEvaluationRequest(stage, locale, annotationId));
         }
 
-        public Task<ListEvaluationResponse> List(string skillId, ListEvaulationFilters filters = default(ListEvaulationFilters))
+        public Task<ListEvaluationResponse> List(string skillId, ListEvaulationFilters filters = default)
         {
-            return List(skillId, string.Empty, filters);
+            return List(skillId, null, filters);
         }
 
-        public Task<ListEvaluationResponse> List(string skillId, string nextToken, ListEvaulationFilters filters = default(ListEvaulationFilters))
+        public Task<ListEvaluationResponse> List(string skillId, string nextToken, ListEvaulationFilters filters = default)
         {
             return Client.List(skillId, nextToken, filters?.Locale, filters?.Stage, filters?.AnnotationId,
                 filters?.MaxResults);
+        }
+
+        public Task<EvaluationStatus> Get(string skillId, string evaluationId)
+        {
+            return Client.Get(skillId, evaluationId);
+        }
+
+        public Task<EvaluationResults> Results(string skillId, string evaluationId, EvaluationResultRequest request = default)
+        {
+            return Results(skillId, evaluationId, null, request);
+        }
+
+        public Task<EvaluationResults> Results(string skillId, string evaluationId, string nextToken, EvaluationResultRequest request = default)
+        {
+            return Client.Results(skillId, evaluationId, nextToken, request?.SortField, request?.Status,
+                request?.ActualIntentName, request?.ExpectedIntentName, request?.MaxResults);
         }
 
         private async Task<CreateEvaluationResponse> Create(string skillId, CreateEvaluationRequest request)

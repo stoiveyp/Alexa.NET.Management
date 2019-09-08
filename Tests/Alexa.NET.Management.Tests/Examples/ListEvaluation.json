@@ -4,10 +4,10 @@
   },
   "_links": {
     "self": {
-      "href": "string"
+      "href": "https://test.com"
     },
     "next": {
-      "href": "string"
+      "href": "https://test.com"
     }
   },
   "evaluations": [

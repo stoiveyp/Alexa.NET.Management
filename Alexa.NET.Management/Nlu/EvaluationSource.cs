@@ -1,4 +1,6 @@
-﻿namespace Alexa.NET.Management.Nlu
+﻿using Newtonsoft.Json;
+
+namespace Alexa.NET.Management.Nlu
 {
     public class EvaluationSource
     {
@@ -9,6 +11,7 @@
             AnnotationId = annotationId;
         }
 
+        [JsonProperty("annotationId")]
         public string AnnotationId { get; set; }
     }
 }

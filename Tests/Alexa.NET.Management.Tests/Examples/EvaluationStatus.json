@@ -1,0 +1,18 @@
+{
+  "startTimestamp": "2019-08-12T18:46:31.674Z",
+  "endTimestamp": "2019-08-12T18:46:31.674Z",
+  "status": "string",
+  "errorMessage": "string",
+  "inputs": {
+    "locale": "en-GB",
+    "stage": "development",
+    "source": {
+      "annotationId": "abcdef"
+    }
+  },
+  "_links": {
+    "results": {
+      "href": "https://test.com"
+    }
+  }
+}

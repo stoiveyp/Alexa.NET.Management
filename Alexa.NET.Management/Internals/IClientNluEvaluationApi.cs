@@ -13,5 +13,16 @@ namespace Alexa.NET.Management.Internals
 
         [Get("/skills/{skillId}/nluEvaluations")]
         Task<ListEvaluationResponse> List(string skillId, string nextToken, string locale, SkillStage? stage, string annotationId, int? maxResults);
+
+        [Get("/skills/{skillId}/nluEvaluations/{evaluationId}")]
+        Task<EvaluationStatus> Get(string skillId, string evaluationId);
+
+        [Get("/skills/{skillId}/nluEvaluations/{evaluationId}/results")]
+        Task<EvaluationResults> Results(string skillId, string evaluationId, string nextToken, 
+            [AliasAs("sort.field")]EvaluationSortField? requestSortField, 
+            TestCaseStatus? testCaseStatus,
+            string actualIntentName, 
+            string expectedIntentName, 
+            int? maxResults);
     }
 }

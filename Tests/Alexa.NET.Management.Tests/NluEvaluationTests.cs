@@ -57,9 +57,41 @@ namespace Alexa.NET.Management.Tests
                 Stage = SkillStage.Development
             });
 
-            Assert.Equal(2,listresponse.Links.Count);
-            Assert.Equal("string",listresponse.PaginationContext.NextToken);
-            var evaulation = Assert.Single(listresponse.Evaluations);
+            Assert.True(Utility.CompareJson(listresponse,"ListEvaluation.json","startTimestamp","endTimestamp"));
+
+        }
+
+        [Fact]
+        public async Task GetEvaluationCreatesCorrectRequestAndResponse()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal("/v1/skills/skillId/nluEvaluations/abcdef", req.RequestUri.PathAndQuery);
+
+
+            }, Utility.ExampleFileContent<EvaluationStatus>("EvaluationStatus.json")));
+
+            var status = await management.Nlu.Evaluations.Get("skillId", "abcdef");
+
+            Assert.True(Utility.CompareJson(status, "EvaluationStatus.json", "startTimestamp", "endTimestamp"));
+
+        }
+
+        [Fact]
+        public async Task ResultsEvaluationCreatesCorrectRequestAndResponse()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal("/v1/skills/skillId/nluEvaluations/abcdef/results", req.RequestUri.PathAndQuery);
+
+
+            }, Utility.ExampleFileContent<EvaluationStatus>("EvaluationResults.json")));
+
+            var status = await management.Nlu.Evaluations.Results("skillId", "abcdef");
+
+            Assert.True(Utility.CompareJson(status, "EvaluationStatus.json", "referenceTimestamp"));
 
         }
     }
