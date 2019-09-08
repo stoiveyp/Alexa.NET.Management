@@ -28,6 +28,7 @@ namespace Alexa.NET.Management.Skills
         [JsonProperty("skillId")]
         public string SkillId { get; set; }
 
-        [JsonProperty("_links")] public Dictionary<string, SkillSummaryLink> Links { get; set; }
+        [JsonProperty("_links")]
+        public Dictionary<string, ApiLink> Links { get; set; }
     }
 }

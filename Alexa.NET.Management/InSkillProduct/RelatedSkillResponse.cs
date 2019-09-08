@@ -8,7 +8,7 @@ namespace Alexa.NET.Management.InSkillProduct
     public class RelatedSkillResponse
     {
         [JsonProperty("_links")]
-        public Dictionary<string, InProductLink> Links { get; set; }
+        public Dictionary<string, ApiLink> Links { get; set; }
 
         [JsonProperty("nextToken")]
         public string NextToken { get; set; }

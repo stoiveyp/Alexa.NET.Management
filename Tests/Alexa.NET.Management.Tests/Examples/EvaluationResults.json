@@ -1,0 +1,71 @@
+{
+  "paginationContext": {
+    "nextToken": "string",
+    "totalCount": "2"
+  },
+  "_links": {
+    "self": {
+      "href": "string"
+    },
+    "next": {
+      "href": "string"
+    }
+  },
+  "totalFailed": 0,
+  "testCases": [
+    {
+      "status": "PASSED",
+      "inputs": {
+        "utterance": "string",
+        "referenceTimestamp": "2019-08-12T18:46:31.674Z"
+      },
+      "actual": {
+        "domain": "string",
+        "intent": {
+          "name": "string",
+          "confirmationStatus": "NONE",
+          "slots": {
+            "slot1": {
+              "name": "string",
+              "value": "string",
+              "confirmationStatus": "NONE",
+              "resolutions": {
+                "resolutionsPerAuthority": [
+                  {
+                    "authority": "string",
+                    "status": {
+                      "code": "ER_SUCCESS_MATCH"
+                    },
+                    "values": [
+                      {
+                        "value": {
+                          "name": "string",
+                          "id": "string"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "expected": [
+        {
+          "domain": "string",
+          "intent": {
+            "confirmationStatus": "NONE",
+            "name": "string",
+            "slots": {
+              "slot1": {
+                "name": "slot1", 
+                "value": "string"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

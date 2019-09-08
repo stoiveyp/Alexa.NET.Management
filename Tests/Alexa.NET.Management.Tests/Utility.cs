@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -11,13 +12,69 @@ namespace Alexa.NET.Management.Tests
     {
         private const string ExamplesPath = "Examples";
 
-        public static bool CompareJson(object actual, string expectedFile)
+        public static bool CompareJson(object actual, string expectedFile, params string[] exclude)
         {
             var actualJObject = JObject.FromObject(actual);
             var expected = File.ReadAllText(Path.Combine(ExamplesPath, expectedFile));
             var expectedJObject = JObject.Parse(expected);
-            Console.WriteLine(actualJObject);
-            return JToken.DeepEquals(expectedJObject, actualJObject);
+
+            foreach (var item in exclude)
+            {
+                RemoveFrom(actualJObject, item);
+                RemoveFrom(expectedJObject, item);
+            }
+
+            var result = JToken.DeepEquals(expectedJObject, actualJObject);
+
+            if (!result)
+            {
+                OutputTrimEqual(expectedJObject, actualJObject);
+            }
+
+            return result;
+        }
+
+        private static void OutputTrimEqual(JObject expectedJObject, JObject actualJObject, bool output = true)
+        {
+            foreach (var prop in actualJObject.Properties().ToArray())
+            {
+                if (JToken.DeepEquals(actualJObject[prop.Name], expectedJObject[prop.Name]))
+                {
+                    actualJObject.Remove(prop.Name);
+                    expectedJObject.Remove(prop.Name);
+                }
+            }
+
+            foreach (var prop in actualJObject.Properties().Where(p => p.Value is JObject).Select(p => new{name=p.Name,value=p.Value as JObject}).ToArray())
+            {
+                OutputTrimEqual(prop.value,expectedJObject[prop.name].Value<JObject>(),false);
+            }
+
+            if (output)
+            {
+                Console.WriteLine(expectedJObject.ToString());
+                Console.WriteLine(actualJObject.ToString());
+            }
+        }
+
+        private static void RemoveFrom(JObject exclude, string item)
+        {
+            if (exclude.ContainsKey(item))
+            {
+                exclude.Remove(item);
+            }
+
+            foreach (var prop in exclude.Properties().Where(p => p.Value is JObject).Select(p => p.Value)
+                .Cast<JObject>())
+            {
+                RemoveFrom(prop, item);
+            }
+
+            foreach (var prop in exclude.Properties().Where(p => p.Value is JArray).Select(p => p.Value).Cast<JArray>().SelectMany(a => a.Children())
+                .Cast<JObject>())
+            {
+                RemoveFrom(prop, item);
+            }
         }
 
         public static T ExampleFileContent<T>(string expectedFile)
