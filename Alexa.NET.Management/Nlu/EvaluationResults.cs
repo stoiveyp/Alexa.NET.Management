@@ -35,6 +35,6 @@ namespace Alexa.NET.Management.Nlu.Evaluation
         public TestCaseResult Actual { get; set; }
 
         [JsonProperty("expected")]
-        public TestCaseResult Expected { get; set; }
+        public TestCaseResult[] Expected { get; set; }
     }
 }

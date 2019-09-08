@@ -12,7 +12,7 @@ namespace Alexa.NET.Management
 
         Task<ListEvaluationResponse> List(string skillId, string nextToken, ListEvaulationFilters filters = null);
 
-        Task<EvaluationStatus> Get(string skillId, string evaluationId);
+        Task<EvaluationStatusWithLinks> Get(string skillId, string evaluationId);
 
         Task<EvaluationResults> Results(string skillId, string evaluationId, EvaluationResultRequest request = default);
         Task<EvaluationResults> Results(string skillId, string evaluationId, string nextToken, EvaluationResultRequest request = default);

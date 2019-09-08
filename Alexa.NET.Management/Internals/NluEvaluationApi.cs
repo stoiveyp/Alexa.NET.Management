@@ -34,7 +34,7 @@ namespace Alexa.NET.Management.Internals
                 filters?.MaxResults);
         }
 
-        public Task<EvaluationStatus> Get(string skillId, string evaluationId)
+        public Task<EvaluationStatusWithLinks> Get(string skillId, string evaluationId)
         {
             return Client.Get(skillId, evaluationId);
         }

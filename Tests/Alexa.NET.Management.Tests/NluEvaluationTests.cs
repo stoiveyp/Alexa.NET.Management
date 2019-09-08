@@ -70,7 +70,7 @@ namespace Alexa.NET.Management.Tests
                 Assert.Equal("/v1/skills/skillId/nluEvaluations/abcdef", req.RequestUri.PathAndQuery);
 
 
-            }, Utility.ExampleFileContent<EvaluationStatus>("EvaluationStatus.json")));
+            }, Utility.ExampleFileContent<EvaluationStatusWithLinks>("EvaluationStatus.json")));
 
             var status = await management.Nlu.Evaluations.Get("skillId", "abcdef");
 
@@ -81,17 +81,21 @@ namespace Alexa.NET.Management.Tests
         [Fact]
         public async Task ResultsEvaluationCreatesCorrectRequestAndResponse()
         {
-            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            var management = new ManagementApi("xxx", new ActionHandler( req =>
             {
                 Assert.Equal(HttpMethod.Get, req.Method);
-                Assert.Equal("/v1/skills/skillId/nluEvaluations/abcdef/results", req.RequestUri.PathAndQuery);
+                Assert.Equal("/v1/skills/skillId/nluEvaluations/abcdef/results?sort.field=STATUS&expectedIntentName=test", req.RequestUri.PathAndQuery);
 
 
-            }, Utility.ExampleFileContent<EvaluationStatus>("EvaluationResults.json")));
+            }, Utility.ExampleFileContent<EvaluationResults>("EvaluationResults.json")));
 
-            var status = await management.Nlu.Evaluations.Results("skillId", "abcdef");
+            var status = await management.Nlu.Evaluations.Results("skillId", "abcdef",new EvaluationResultRequest
+            {
+                SortField = EvaluationSortField.Status,
+                ExpectedIntentName = "test"
+            });
 
-            Assert.True(Utility.CompareJson(status, "EvaluationStatus.json", "referenceTimestamp"));
+            Assert.True(Utility.CompareJson(status, "EvaluationResults.json", "referenceTimestamp"));
 
         }
     }

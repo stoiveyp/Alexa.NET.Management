@@ -1,7 +1,7 @@
 {
   "paginationContext": {
     "nextToken": "string",
-    "totalCount": "string"
+    "totalCount": "2"
   },
   "_links": {
     "self": {
@@ -32,18 +32,18 @@
               "resolutions": {
                 "resolutionsPerAuthority": [
                   {
-                    "resolution1": {
-                      "authority": "string",
-                      "status": {
-                        "code": "ER_SUCCESS_MATCH"
-                      },
-                      "values": [
-                        {
+                    "authority": "string",
+                    "status": {
+                      "code": "ER_SUCCESS_MATCH"
+                    },
+                    "values": [
+                      {
+                        "value": {
                           "name": "string",
                           "id": "string"
                         }
-                      ]
-                    }
+                      }
+                    ]
                   }
                 ]
               }
@@ -55,9 +55,11 @@
         {
           "domain": "string",
           "intent": {
+            "confirmationStatus": "NONE",
             "name": "string",
             "slots": {
               "slot1": {
+                "name": "slot1", 
                 "value": "string"
               }
             }

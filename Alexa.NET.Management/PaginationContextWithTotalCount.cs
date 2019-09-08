@@ -5,6 +5,6 @@ namespace Alexa.NET.Management
     public class PaginationContextWithTotalCount:PaginationContext
     {
         [JsonProperty("totalCount")]
-        public int TotalCount { get; set; }
+        public string TotalCount { get; set; }
     }
 }

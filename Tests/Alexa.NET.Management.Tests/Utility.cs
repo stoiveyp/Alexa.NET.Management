@@ -24,7 +24,37 @@ namespace Alexa.NET.Management.Tests
                 RemoveFrom(expectedJObject, item);
             }
 
-            return JToken.DeepEquals(expectedJObject, actualJObject);
+            var result = JToken.DeepEquals(expectedJObject, actualJObject);
+
+            if (!result)
+            {
+                OutputTrimEqual(expectedJObject, actualJObject);
+            }
+
+            return result;
+        }
+
+        private static void OutputTrimEqual(JObject expectedJObject, JObject actualJObject, bool output = true)
+        {
+            foreach (var prop in actualJObject.Properties().ToArray())
+            {
+                if (JToken.DeepEquals(actualJObject[prop.Name], expectedJObject[prop.Name]))
+                {
+                    actualJObject.Remove(prop.Name);
+                    expectedJObject.Remove(prop.Name);
+                }
+            }
+
+            foreach (var prop in actualJObject.Properties().Where(p => p.Value is JObject).Select(p => new{name=p.Name,value=p.Value as JObject}).ToArray())
+            {
+                OutputTrimEqual(prop.value,expectedJObject[prop.name].Value<JObject>(),false);
+            }
+
+            if (output)
+            {
+                Console.WriteLine(expectedJObject.ToString());
+                Console.WriteLine(actualJObject.ToString());
+            }
         }
 
         private static void RemoveFrom(JObject exclude, string item)

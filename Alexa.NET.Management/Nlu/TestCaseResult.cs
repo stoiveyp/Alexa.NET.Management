@@ -8,6 +8,7 @@ namespace Alexa.NET.Management.Nlu.Evaluation
         [JsonProperty("domain")]
         public string Domain { get; set; }
 
+        [JsonProperty("intent")]
         public Intent Intent { get; set; }
     }
 }

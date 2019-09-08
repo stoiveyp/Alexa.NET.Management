@@ -15,7 +15,7 @@ namespace Alexa.NET.Management.Internals
         Task<ListEvaluationResponse> List(string skillId, string nextToken, string locale, SkillStage? stage, string annotationId, int? maxResults);
 
         [Get("/skills/{skillId}/nluEvaluations/{evaluationId}")]
-        Task<EvaluationStatus> Get(string skillId, string evaluationId);
+        Task<EvaluationStatusWithLinks> Get(string skillId, string evaluationId);
 
         [Get("/skills/{skillId}/nluEvaluations/{evaluationId}/results")]
         Task<EvaluationResults> Results(string skillId, string evaluationId, string nextToken, 
