@@ -1,0 +1,34 @@
+name: Build and Test
+on:
+  push:
+    branches:
+    - master
+jobs:
+  runner:
+    name: Package Pipeline
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+      - name: Build Solution
+        run:  dotnet build -c Release
+      - name: Test Solution
+        run:  dotnet test
+      - name: Setup Mono
+        run: |
+          sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+          sudo apt install apt-transport-https ca-certificates
+          echo "deb https://download.mono-project.com/repo/ubuntu stable-xenial main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
+          sudo apt update
+      - name: Setup NuGet
+        run: |
+          mkdir ~/tmp
+          sudo curl -o ~/tmp/nuget.exe https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
+          sudo chmod 777 ~/tmp/nuget.exe
+      - name: GH Deploy
+        run: |
+          ~/tmp/nuget.exe source Add -Name "GitHub" -Source "https://nuget.pkg.github.com/stoiveyp/index.json" -UserName stoiveyp -Password ${{ secrets.GH_KEY }}
+          ~/tmp/nuget.exe push ./Alexa.NET.Gadgets/bin/Release/Alexa.NET*.nupkg -Source "GitHub" -ApiKey stoiveyp:${{ secrets.GH_KEY }}
+      - name: Deploy to NuGet
+        run:  dotnet nuget push ./Alexa.NET.Gadgets/bin/Release/Alexa.NET*.nupkg -k ${{ secrets.NUGET_KEY }} -s https://api.nuget.org/v3/index.json
