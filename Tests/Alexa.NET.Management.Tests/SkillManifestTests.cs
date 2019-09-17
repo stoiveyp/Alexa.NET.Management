@@ -52,7 +52,7 @@ namespace Alexa.NET.Management.Tests
         [Fact]
         public void InteractionModelDeserializesCorrectly()
         {
-            var model = Utility.ExampleFileContent<SkillInteractionContainer>("InteractionModel.json");
+            var model = Utility.ExampleFileContent<SkillInteractionContainer>("interactionModel.json");
             var slotType = model.InteractionModel.Language.SlotTypes.First(st => st.Name == "TechNottsEvent");
             Assert.Equal("tech-nottingham",slotType.Values.First().Id);
 

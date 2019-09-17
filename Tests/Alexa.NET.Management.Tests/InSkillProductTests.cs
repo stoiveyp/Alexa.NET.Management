@@ -73,13 +73,13 @@ namespace Alexa.NET.Management.Tests
                 TestingInstructions = "Sample testing instructions.",
                 PurchasableState = PurchasableState.Purchasable
             };
-            Assert.True(Utility.CompareJson(sub,"subscription.json"));
+            Assert.True(Utility.CompareJson(sub,"Subscription.json"));
         }
 
         [Fact]
         public void SubscriptionDeserializesCorrectly()
         {
-            var sub = Utility.ExampleFileContent<SubscriptionProduct>("subscription.json");
+            var sub = Utility.ExampleFileContent<SubscriptionProduct>("Subscription.json");
             Assert.Equal("1.0",sub.Version);
             Assert.Equal(PurchasableState.Purchasable,sub.PurchasableState);
             Assert.Equal("Sample testing instructions.",sub.TestingInstructions);
