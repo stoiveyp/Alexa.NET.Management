@@ -30,7 +30,7 @@ jobs:
         run: |
           export REPO_NAME=$(echo ${GITHUB_REPOSITORY} | sed 's/stoiveyp\///')
           ~/tmp/nuget.exe source Add -Name "GitHub" -Source "https://nuget.pkg.github.com/stoiveyp/index.json" -UserName stoiveyp -Password ${{ secrets.GITHUB_TOKEN }}
-          ~/tmp/nuget.exe setapikey stoiveyp:${{ secrets.GH_KEY }} -Source "https://nuget.pkg.github.com/stoiveyp/index.json"
+          ~/tmp/nuget.exe setapikey stoiveyp:${{ secrets.GITHUB_TOKEN }} -Source "https://nuget.pkg.github.com/stoiveyp/index.json"
           ~/tmp/nuget.exe push ./${REPO_NAME}/bin/Release/Alexa.NET*.nupkg -Source "GitHub"
         continue-on-error: true
       - name: Deploy to NuGet
