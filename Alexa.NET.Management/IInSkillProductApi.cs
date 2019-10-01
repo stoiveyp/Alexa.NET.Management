@@ -8,19 +8,19 @@ namespace Alexa.NET.Management
 {
     public interface IInSkillProductApi
     {
-        [Get("/inSkillProducts/{productId}/stages/{stage}")]
+        [Get("inSkillProducts/{productId}/stages/{stage}")]
         Task<Product> Get(string productId, SkillStage stage);
 
-        [Post("/inSkillProducts")]
+        [Post("inSkillProducts")]
         Task<CreateInSkillProductResponse> Create([Body]Product product);
 
-        [Get("/inSkillProducts/{productId}/stages/{stage}/summary")]
+        [Get("inSkillProducts/{productId}/stages/{stage}/summary")]
         Task<ProductSummary> GetSummary(string productId, SkillStage stage);
 
-        [Put("/inSkillProducts/{productId}/stages/{stage}")]
+        [Put("inSkillProducts/{productId}/stages/{stage}")]
         Task<Product> Update(string productId, SkillStage stage, [Body]Product product);
 
-        [Delete("/inSkillProducts/{productId}/stages/{stage}")]
+        [Delete("inSkillProducts/{productId}/stages/{stage}")]
         Task<bool> Delete(string productId, SkillStage stage);
 
         [Get("inSkillProducts")]

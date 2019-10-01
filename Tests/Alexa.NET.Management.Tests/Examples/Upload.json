@@ -1,0 +1,29 @@
+{
+  "id": "string",
+  "catalogId": "string",
+  "status": "string",
+  "locales": [
+    "string"
+  ],
+  "createdDate": "2019-04-06T23:52:20.528Z",
+  "lastUpdatedDate": "2019-04-06T23:52:20.528Z",
+  "ingestionSteps": [
+    {
+      "name": "UPLOAD",
+      "status": "string",
+      "logUrl": "string",
+      "errors": [
+        {
+          "code": "string",
+          "message": "string"
+        }
+      ]
+    }
+  ],
+  "presignedUploadParts": [
+    {
+      "url": "https://example.com",
+      "partNumber": 1
+    }
+  ]
+}

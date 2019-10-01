@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using Newtonsoft.Json;
 
-namespace Alexa.NET.Management.InteractionModel
+namespace Alexa.NET.Management.CatalogManagement
 {
-    public class InteractionModelVersionsResponse
+    public class UploadListResponse
     {
         [JsonProperty("_links")]
         public Dictionary<string, ApiLink> Links { get; set; }
@@ -14,7 +16,7 @@ namespace Alexa.NET.Management.InteractionModel
         [JsonProperty("isTruncated")]
         public bool IsTruncated { get; set; }
 
-        [JsonProperty("skillModelVersions")]
-        public SkillModelVersionSummary[] SkillModelVersionsSummary { get; set; }
+        [JsonProperty("uploads")]
+        public UploadSummary[] Uploads { get; set; }
     }
 }

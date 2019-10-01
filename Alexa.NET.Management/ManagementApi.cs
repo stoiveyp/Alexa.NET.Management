@@ -45,6 +45,8 @@ namespace Alexa.NET.Management
         public ManagementApi(Uri baseAddress, Func<Task<string>> getToken, HttpMessageHandler handler)
         {
             var client = new HttpClient(new NoSchemeAuthenticationHeaderClient(getToken, handler)) { BaseAddress = baseAddress };
+            var v0Address = string.Join("", baseAddress.Scheme, "://", baseAddress.Host, "/v0");
+            var v0Client = new HttpClient(new NoSchemeAuthenticationHeaderClient(getToken, handler)) { BaseAddress = new Uri(v0Address, UriKind.Absolute) };
 
             Skills = new SkillManagementApi(client);
 
@@ -71,7 +73,11 @@ namespace Alexa.NET.Management
             Nlu = new NluApiContainer(
                 new NluAnnotationSetApi(client),
                 new NluEvaluationApi(client));
+
+            CatalogManagement = new SkillCatalogManagementApi(v0Client);
         }
+
+        public ICatalogManagementApi CatalogManagement { get; set; }
 
         public IIntentRequestHistoryApi IntentRequestHistory { get; set; }
 
