@@ -48,7 +48,7 @@ namespace Alexa.NET.Management.Tests
             var management = new ManagementApi("xxx", new ActionHandler(req =>
             {
                 Assert.Equal(HttpMethod.Get, req.Method);
-                Assert.Equal("/v0/catalogId?vendorId=vendor", req.RequestUri.PathAndQuery);
+                Assert.Equal("/v0/catalogs?vendorId=vendor", req.RequestUri.PathAndQuery);
 
                 var content = Utility.ExampleFileContent("CatalogList.json");
                 var responseMessage = new HttpResponseMessage(HttpStatusCode.OK) { Content = new StringContent(content) };
@@ -81,5 +81,29 @@ namespace Alexa.NET.Management.Tests
             Assert.Equal("test title", catalog.Title);
             Assert.Equal(2018, catalog.LastUpdatedDate.Value.Year);
         }
+
+        [Fact]
+        public async Task Upload()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Post, req.Method);
+                Assert.Equal("/v0/catalogs/catalogId/uploads", req.RequestUri.PathAndQuery);
+
+                var request = JObject.Parse(await req.Content.ReadAsStringAsync());
+                Assert.Equal(2,request.Value<int>("numberOfUploadParts"));
+
+                var content = Utility.ExampleFileContent("Upload.json");
+                var responseMessage = new HttpResponseMessage(HttpStatusCode.Created) { Content = new StringContent(content) };
+                return responseMessage;
+            }));
+
+            var upload = await management.CatalogManagement.CreateUpload("catalogId",2);
+            Assert.Equal("string",upload.Id);
+            var step = Assert.Single(upload.IngestionSteps);
+            Assert.Single(step.Errors);
+        }
+
+
     }
 }
