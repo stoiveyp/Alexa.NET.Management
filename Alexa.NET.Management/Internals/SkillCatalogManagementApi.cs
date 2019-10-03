@@ -64,29 +64,35 @@ namespace Alexa.NET.Management.Internals
             return Client.CreateUpload(catalogId, new CreateUploadRequest {NumberOfUploadParts = numberOfParts});
         }
 
-        public Task<UploadCompleteResponse> CompleteUpload(string catalogId, string uploadId)
+        public async Task CompleteUpload(string catalogId, string uploadId, UploadCompleteRequest request)
         {
-            throw new NotImplementedException();
+            var response = await Client.CompleteUpload(catalogId, uploadId, request);
+            if (response.StatusCode != HttpStatusCode.Accepted)
+            {
+                var body = await response.Content.ReadAsStringAsync();
+                throw new InvalidOperationException(
+                    $"Expected Status Code 202. Received {(int)response.StatusCode}. Response Body: {body}");
+            }
         }
 
         public Task<Upload> GetUpload(string catalogId, string uploadId)
         {
-            throw new NotImplementedException();
+            return Client.GetUpload(catalogId, uploadId);
         }
 
         public Task<UploadListResponse> ListUploads(string catalogId)
         {
-            throw new NotImplementedException();
+            return Client.ListUploads(catalogId);
         }
 
         public Task<UploadListResponse> ListUploads(string catalogId, int maxResults)
         {
-            throw new NotImplementedException();
+            return Client.ListUploads(catalogId, maxResults);
         }
 
         public Task<UploadListResponse> ListUploads(string catalogId, int maxResults, string nextToken)
         {
-            throw new NotImplementedException();
+            return Client.ListUploads(catalogId, maxResults, nextToken);
         }
     }
 }

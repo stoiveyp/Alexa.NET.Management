@@ -104,6 +104,22 @@ namespace Alexa.NET.Management.Tests
             Assert.Single(step.Errors);
         }
 
+        [Fact]
+        public async Task UploadComplete()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Post, req.Method);
+                Assert.Equal("/v0/catalogs/catalogId/uploads/uploadId", req.RequestUri.PathAndQuery);
+                var rawContent = await req.Content.ReadAsStringAsync();
+                var actual = JObject.Parse(rawContent);
 
+                Assert.True(Utility.CompareJson(actual, "UploadComplete.json"));
+                return new HttpResponseMessage(HttpStatusCode.Accepted);
+            }));
+
+            var request = new UploadCompleteRequest(new ETagPart("string",1), new ETagPart("string",2));
+            await management.CatalogManagement.CompleteUpload("catalogId","uploadId",request);
+        }
     }
 }

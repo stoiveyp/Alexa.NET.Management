@@ -20,7 +20,7 @@ namespace Alexa.NET.Management
 
         Task<Upload> CreateUpload(string catalogId, int numberOfParts = 1);
 
-        Task<UploadCompleteResponse> CompleteUpload(string catalogId, string uploadId);
+        Task CompleteUpload(string catalogId, string uploadId, UploadCompleteRequest request);
 
         Task<Upload> GetUpload(string catalogId, string uploadId);
 

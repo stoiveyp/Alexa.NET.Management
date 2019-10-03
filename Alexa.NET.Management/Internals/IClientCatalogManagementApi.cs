@@ -29,7 +29,7 @@ namespace Alexa.NET.Management.Internals
         Task<Upload> CreateUpload(string catalogId, [Body]CreateUploadRequest request);
 
         [Post("/catalogs/{catalogId}/uploads/{uploadId}")]
-        Task<UploadCompleteResponse> CompleteUpload(string catalogId, string uploadId);
+        Task<HttpResponseMessage> CompleteUpload(string catalogId, string uploadId, [Body]UploadCompleteRequest request);
 
         [Get("/catalogs/{catalogId}/uploads/{uploadId}")]
         Task<Upload> GetUpload(string catalogId, string uploadId);
