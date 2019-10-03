@@ -16,7 +16,7 @@ namespace Alexa.NET.Management.CatalogManagement
 
         [JsonProperty("status")]
         [JsonConverter(typeof(StringEnumConverter))]
-        public UploadStatus UploadStatus { get; set; }
+        public UploadStatus Status { get; set; }
 
         [JsonProperty("createdDate")]
         public DateTime CreatedDate { get; set; }

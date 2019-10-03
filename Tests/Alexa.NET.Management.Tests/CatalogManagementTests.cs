@@ -121,5 +121,20 @@ namespace Alexa.NET.Management.Tests
             var request = new UploadCompleteRequest(new ETagPart("string",1), new ETagPart("string",2));
             await management.CatalogManagement.CompleteUpload("catalogId","uploadId",request);
         }
+
+        [Fact]
+        public async Task GetUpload()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal("/v0/catalogs/catalogId/uploads/uploadId", req.RequestUri.PathAndQuery);
+            },Utility.ExampleFileContent<Upload>("Upload.json")));
+
+            var upload = await management.CatalogManagement.GetUpload("catalogId", "uploadId");
+            Assert.Equal(UploadStatus.Pending,upload.Status);
+            var step = Assert.Single(upload.IngestionSteps);
+            Assert.Equal("somelogurl",step.LogUrl.Host);
+        }
     }
 }
