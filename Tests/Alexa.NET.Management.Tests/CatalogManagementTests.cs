@@ -136,5 +136,24 @@ namespace Alexa.NET.Management.Tests
             var step = Assert.Single(upload.IngestionSteps);
             Assert.Equal("somelogurl",step.LogUrl.Host);
         }
+
+        [Fact]
+        public async Task UploadList()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal("/v0/catalogs/catalogId/uploads?maxresults=2&nextToken=token", req.RequestUri.PathAndQuery);
+            }, Utility.ExampleFileContent<UploadListResponse>("UploadList.json")));
+
+            var list = await management.CatalogManagement.ListUploads("catalogId", 2,"token");
+
+            Assert.Equal(2,list.Links.Count);
+            Assert.True(list.IsTruncated);
+            Assert.Equal("string",list.NextToken);
+            var upload = Assert.Single(list.Uploads);
+            Assert.Equal(UploadStatus.Failed, upload.Status);
+
+        }
     }
 }
