@@ -1,0 +1,12 @@
+{
+  "partETags": [
+    {
+      "eTag": "string",
+      "partNumber": 1
+    },
+    {
+      "eTag": "string",
+      "partNumber": 2
+    }
+  ]
+}

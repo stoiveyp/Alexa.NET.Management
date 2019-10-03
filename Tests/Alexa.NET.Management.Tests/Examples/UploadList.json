@@ -1,0 +1,21 @@
+{
+  "_links": {
+    "self": {
+      "href": "string"
+    },
+    "next": {
+      "href": "string"
+    }
+  },
+  "isTruncated": true,
+  "nextToken": "string",
+  "uploads": [
+    {
+      "id": "string",
+      "catalogId": "string",
+      "status": "FAILED",
+      "createdDate": "2018-10-27T05:26:15.811Z",
+      "lastUpdatedDate": "2018-10-27T05:26:15.811Z"
+    }
+  ]
+}

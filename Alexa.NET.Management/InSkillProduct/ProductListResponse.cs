@@ -12,7 +12,7 @@ namespace Alexa.NET.Management.InSkillProduct
         public string NextToken { get; set; }
 
         [JsonProperty("isTruncated")]
-        public string IsTruncated { get; set; }
+        public bool IsTruncated { get; set; }
 
         [JsonProperty("inSkillProducts")]
         public ProductSummary[] InSkillProducts { get; set; }

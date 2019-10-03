@@ -1,0 +1,25 @@
+{
+  "_links": {
+    "self": {
+      "href": "http://example.com"
+    },
+    "next": {
+      "href": "http://example.com"
+    }
+  },
+  "isTruncated": true,
+  "nextToken": "string",
+  "catalogs": [
+    {
+      "id": "string",
+      "title": "test title",
+      "type": "string",
+      "usage": "string",
+      "lastUpdatedDate": "2018-10-25T08:07:27.057Z",
+      "createdDate": "2018-10-25T08:07:27.057Z",
+      "associatedSkillIds": [
+        "string"
+      ]
+    }
+  ]
+}
