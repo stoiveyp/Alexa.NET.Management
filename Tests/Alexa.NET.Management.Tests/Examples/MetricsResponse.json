@@ -1,0 +1,14 @@
+{
+  "metric": "uniqueCustomers",
+  "timestamps": [
+    "2018-11-01T10:45:00Z",
+    "2018-11-01T10:45:00Z",
+    "2018-11-01T10:45:00Z"
+  ],
+  "values": [
+    10,
+    20,
+    30
+  ],
+  "nextToken": "string"
+}

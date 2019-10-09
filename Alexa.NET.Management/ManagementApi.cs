@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using Alexa.NET.Management.Internals;
+using Alexa.NET.Management.Skills;
 using Refit;
 
 namespace Alexa.NET.Management
@@ -75,8 +76,11 @@ namespace Alexa.NET.Management
                 new NluEvaluationApi(client));
 
             CatalogManagement = new SkillCatalogManagementApi(v0Client);
+
+            Metrics = RestService.For<IMetricsApi>(client, ManagementRefitSettings.Create());
         }
 
+        public IMetricsApi Metrics { get; set; }
         public ICatalogManagementApi CatalogManagement { get; set; }
 
         public IIntentRequestHistoryApi IntentRequestHistory { get; set; }

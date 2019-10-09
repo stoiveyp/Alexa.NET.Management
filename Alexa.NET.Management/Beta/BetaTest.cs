@@ -7,7 +7,7 @@ namespace Alexa.NET.Management.Beta
 {
     public class BetaTest
     {
-        [JsonProperty("expiryDAte")]
+        [JsonProperty("expiryDate")]
         public DateTime ExpiryDate { get; set; }
 
         [JsonProperty("status")]
