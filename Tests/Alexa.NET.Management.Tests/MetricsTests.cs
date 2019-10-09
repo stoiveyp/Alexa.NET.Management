@@ -27,7 +27,7 @@ namespace Alexa.NET.Management.Tests
                 startDate,
                 endDate,
                 MetricPeriod.Single,
-                "uniqueCustomers",
+                MetricNames.Custom.UniqueCustomers,
                 SkillStage.Live,
                 SkillType.Custom
                 , null,
@@ -38,7 +38,7 @@ namespace Alexa.NET.Management.Tests
         public void MetricsResponseDeserializesCorrectly()
         {
             var response = Utility.ExampleFileContent<MetricsResponse>("MetricsResponse.json");
-            Assert.Equal("uniqueCustomers", response.Metric);
+            Assert.Equal(MetricNames.Custom.UniqueCustomers, response.Metric);
             Assert.Equal(3, response.Timestamps.Length);
             Assert.True(new[]{10,20,30}.Zip(response.Values,(a,b) => new KeyValuePair<int,int>(a,b)).All(r => r.Key == r.Value));
 
