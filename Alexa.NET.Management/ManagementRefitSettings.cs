@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using Alexa.NET.Management.Api;
+using Alexa.NET.Management.Metrics;
 using Alexa.NET.Management.Nlu.Evaluation;
 using Newtonsoft.Json;
 using Refit;
@@ -35,30 +36,20 @@ namespace Alexa.NET.Management
         private static string ToEnumString(Type enumType, object type)
         {
             var name = Enum.GetName(enumType, type);
-            var enumMemberAttribute = ((EnumMemberAttribute[])enumType.GetTypeInfo().GetField(name).GetCustomAttributes(typeof(EnumMemberAttribute), true)).Single();
-            return enumMemberAttribute.Value;
+            var enumMemberAttribute = ((EnumMemberAttribute[])enumType.GetTypeInfo().GetField(name).GetCustomAttributes(typeof(EnumMemberAttribute), true)).FirstOrDefault();
+            return enumMemberAttribute?.Value ?? type.ToString();
         }
 
         public override string Format(object value, ParameterInfo parameterInfo)
         {
-            if (value is SkillStage stage)
+            if (value is DateTime valueDt)
             {
-                return ToEnumString(typeof(SkillStage), stage);
+                return valueDt.ToString("yyyy-MM-ddTHH:mm:ssZ");
             }
 
-            if (value is SortDirection sortDirection)
+            if (value.GetType().IsEnum)
             {
-                return ToEnumString(typeof(SortDirection), sortDirection);
-            }
-
-            if (value is TestCaseStatus testCaseStatus)
-            {
-                return ToEnumString(typeof(TestCaseStatus), testCaseStatus);
-            }
-
-            if (value is EvaluationSortField sortField)
-            {
-                return ToEnumString(typeof(EvaluationSortField), sortField);
+                return ToEnumString(value.GetType(), value);
             }
 
             return base.Format(value, parameterInfo);
