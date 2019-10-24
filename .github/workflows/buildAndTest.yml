@@ -8,6 +8,10 @@ jobs:
     name: Package Pipeline
     runs-on: ubuntu-latest
     steps:
+      - name: Skip based on commit message
+        uses: veggiemonk/skip-commit@1.0.0
+        env:
+          COMMIT_FILTER: skip-ci
       - uses: actions/checkout@master
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
