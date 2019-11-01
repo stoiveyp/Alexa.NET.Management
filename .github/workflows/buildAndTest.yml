@@ -19,24 +19,10 @@ jobs:
         run:  dotnet build -c Release
       - name: Test Solution
         run:  dotnet test
-      - name: Setup Mono
-        run: |
-          sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-          sudo apt install apt-transport-https ca-certificates
-          echo "deb https://download.mono-project.com/repo/ubuntu stable-xenial main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
-          sudo apt update
-      - name: Setup NuGet
-        run: |
-          mkdir ~/tmp
-          sudo curl -o ~/tmp/nuget.exe https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
-          sudo chmod 777 ~/tmp/nuget.exe
       - name: GH Deploy
         run: |
           export REPO_NAME=$(echo ${GITHUB_REPOSITORY} | sed 's/stoiveyp\///')
-          ~/tmp/nuget.exe spec ./${REPO_NAME}/${REPO_NAME}.csproj -Verbosity detailed
-          ~/tmp/nuget.exe source Add -Name "GitHub" -Source "https://nuget.pkg.github.com/stoiveyp/index.json" -UserName stoiveyp -Password ${{ secrets.GITHUB_TOKEN }}
-          ~/tmp/nuget.exe setapikey ${{ secrets.GITHUB_TOKEN }} -source GitHub
-          dotnet nuget push ./${REPO_NAME}/bin/Release/Alexa.NET*.nupkg --source GitHub --api-key ${{ secrets.GITHUB_TOKEN }}
+          dotnet nuget push ./${REPO_NAME}/bin/Release/Alexa.NET*.nupkg --source "https://nuget.pkg.github.com/stoiveyp/index.json" --api-key ${{ secrets.GITHUB_TOKEN }}
         continue-on-error: true
       - name: Deploy to NuGet
         run: |
