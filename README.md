@@ -25,3 +25,4 @@ var vendors = await manager.Vendors.Get()
 var beta = await manager.Beta.Create(skillId,"feedbackemail@example.com")
 await manager.Beta.AddTesters(skillId,new[]{"test1@example.com","test2@example.com"})
 ```
+ 
