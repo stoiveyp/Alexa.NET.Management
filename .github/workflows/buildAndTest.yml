@@ -22,7 +22,7 @@ jobs:
       - name: GH Deploy
         run: |
           export REPO_NAME=$(echo ${GITHUB_REPOSITORY} | sed 's/stoiveyp\///')
-          dotnet nuget push ./${REPO_NAME}/bin/Release/Alexa.NET*.nupkg --source "https://nuget.pkg.github.com/stoiveyp/index.json" --api-key ${{ secrets.GITHUB_TOKEN }}
+          dotnet nuget push ./${REPO_NAME}/bin/Release/Alexa.NET*.nupkg --source "https://nuget.pkg.github.com/stoiveyp/index.json" --api-key ${{ secrets.GH_PACKAGE }}
         continue-on-error: true
       - name: Deploy to NuGet
         run: |
