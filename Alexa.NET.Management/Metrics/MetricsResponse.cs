@@ -14,7 +14,7 @@ namespace Alexa.NET.Management.Metrics
         public DateTime[] Timestamps { get; set; }
 
         [JsonProperty("values")]
-        public int[] Values { get; set; }
+        public double[] Values { get; set; }
 
         [JsonProperty("nextToken")]
         public string NextToken { get; set; }
