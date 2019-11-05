@@ -40,7 +40,7 @@ namespace Alexa.NET.Management.Tests
             var response = Utility.ExampleFileContent<MetricsResponse>("MetricsResponse.json");
             Assert.Equal(MetricNames.Custom.UniqueCustomers, response.Metric);
             Assert.Equal(3, response.Timestamps.Length);
-            Assert.True(new[]{10,20,30}.Zip(response.Values,(a,b) => new KeyValuePair<int,int>(a,b)).All(r => r.Key == r.Value));
+            Assert.True(new double[]{10,20,30}.Zip(response.Values,(a,b) => new KeyValuePair<double,double>(a,b)).All(r => r.Key == r.Value));
 
             var datetime = new DateTime(2018, 11, 01, 10, 45, 00);
             Assert.True(new[] { datetime,datetime,datetime }.Zip(response.Timestamps, (a, b) => new KeyValuePair<DateTime, DateTime>(a, b)).All(r => r.Key == r.Value));
