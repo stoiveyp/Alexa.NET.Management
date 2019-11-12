@@ -1,7 +1,5 @@
-using System;
 using System.Threading.Tasks;
 using Alexa.NET.Management.Api;
-using Alexa.NET.Management.Internals;
 using Alexa.NET.Management.Skills;
 using Refit;
 
@@ -12,6 +10,9 @@ namespace Alexa.NET.Management
         Task<SkillStatus> Status(string skillId, params string[] resource);
         Task<Skill> Get(string skillId, SkillStage stage);
         Task<SkillId> Create(string vendorId, [Body]Skill skill);
+
+        Task<bool> Delete(string skillId);
+
         Task<SkillId> Update(string skillId, SkillStage stage, [Body] Skill skill);
         Task Submit(string skillId);
         Task Withdraw(string skillId, [Body]WithdrawalRequest request);
