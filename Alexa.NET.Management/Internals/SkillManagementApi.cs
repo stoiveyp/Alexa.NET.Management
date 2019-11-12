@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Alexa.NET.Management.Api;
@@ -32,6 +33,12 @@ namespace Alexa.NET.Management.Internals
         public Task<SkillId> Create(string vendorId, Skill skill)
         {
             return Inner.Create(new SkillCreateRequest { VendorId = vendorId, Manifest = skill.Manifest });
+        }
+
+        public async Task<bool> Delete(string skillId)
+        {
+            var response = await Inner.Delete(skillId);
+            return response.StatusCode == HttpStatusCode.NoContent;
         }
 
         public Task<SkillId> Update(string skillId, SkillStage stage, Skill skill)

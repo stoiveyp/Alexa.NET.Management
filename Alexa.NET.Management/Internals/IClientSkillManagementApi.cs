@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Net.Http;
+using System.Threading.Tasks;
 using Alexa.NET.Management.Api;
 using Alexa.NET.Management.Skills;
 using Refit;
@@ -21,6 +22,9 @@ namespace Alexa.NET.Management.Internals
 
         [Post("/skills/{skillId}/submit")]
         Task Submit(string skillId);
+
+        [Delete("/skills/{skillId}")]
+        Task<HttpResponseMessage> Delete(string skillId);
 
         [Post("/skills/{skillId}/withdraw")]
         Task Withdraw(string skillId, [Body]WithdrawalRequest request);
