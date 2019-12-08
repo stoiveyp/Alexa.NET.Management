@@ -143,7 +143,7 @@ namespace Alexa.NET.Management.Tests
             var management = new ManagementApi("xxx", new ActionHandler(async req =>
             {
                 Assert.Equal(HttpMethod.Get, req.Method);
-                Assert.Equal("/v0/catalogs/catalogId/uploads?maxresults=2&nextToken=token", req.RequestUri.PathAndQuery);
+                Assert.Equal("/v0/catalogs/catalogId/uploads?maxResults=2&nextToken=token", req.RequestUri.PathAndQuery);
             }, Utility.ExampleFileContent<UploadListResponse>("UploadList.json")));
 
             var list = await management.CatalogManagement.ListUploads("catalogId", 2,"token");

@@ -9,9 +9,9 @@
     <PackageProjectUrl>https://github.com/stoiveyp/Alexa.NET.Management/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/stoiveyp/Alexa.NET.Management/</RepositoryUrl>
     <PackageTags>amazon;alexa;echo;dot;echo dot;skills;management</PackageTags>
-    <Version>3.9.0</Version>
+    <Version>4.0.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageReleaseNotes>Delete Skill support in Client Management (thanks @daledev-uk)</PackageReleaseNotes>
+    <PackageReleaseNotes>Manual and scheduled publishing support</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 

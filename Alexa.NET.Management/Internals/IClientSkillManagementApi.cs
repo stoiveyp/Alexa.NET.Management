@@ -21,7 +21,7 @@ namespace Alexa.NET.Management.Internals
         Task<SkillId> Update(string skillId, SkillStage stage, [Body] Skill skill);
 
         [Post("/skills/{skillId}/submit")]
-        Task Submit(string skillId);
+        Task<HttpResponseMessage> Submit(string skillId, [Body]SubmitRequest request);
 
         [Delete("/skills/{skillId}")]
         Task<HttpResponseMessage> Delete(string skillId);
@@ -67,5 +67,11 @@ namespace Alexa.NET.Management.Internals
 
         [Get("/skills/{skillId}/certifications/{certificationId}")]
         Task<Certification> Certification(string skillId, string certificationId, [Header("Accept-Language")]string locale);
+
+        [Post("/skills/{skillId}/publications")]
+        Task<HttpResponseMessage> Publish(string skillId);
+
+        [Post("/skills/{skillId}/publications")]
+        Task<HttpResponseMessage> Publish(string skillId, [Body]PublishRequest request);
     }
 }

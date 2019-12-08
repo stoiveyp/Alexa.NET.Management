@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Alexa.NET.Management.Api;
 using Alexa.NET.Management.Skills;
@@ -14,7 +15,7 @@ namespace Alexa.NET.Management
         Task<bool> Delete(string skillId);
 
         Task<SkillId> Update(string skillId, SkillStage stage, [Body] Skill skill);
-        Task Submit(string skillId);
+        Task<SubmitResponse> Submit(string skillId, bool automaticPublishing = true);
         Task Withdraw(string skillId, [Body]WithdrawalRequest request);
         Task<UnpublishResponse> Unpublish(string skillId, UnpublishType type, UnpublishReason reason);
         Task<InvocationResponse> Invoke(string skillId, [Body]InvocationRequest request);
@@ -29,6 +30,7 @@ namespace Alexa.NET.Management
         Task<CertificationListResponse> ListCertification(string skillId, int maxResults, string nextToken);
         Task<Certification> Certification(string skillId, string certificationId);
         Task<Certification> Certification(string skillId, string certificationId, string locale);
+        Task<PublishResponse> Publish(string skillId, DateTime? publishDate);
     }
 }
 
