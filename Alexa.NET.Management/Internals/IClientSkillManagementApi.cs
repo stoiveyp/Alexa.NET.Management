@@ -21,7 +21,7 @@ namespace Alexa.NET.Management.Internals
         Task<SkillId> Update(string skillId, SkillStage stage, [Body] Skill skill);
 
         [Post("/skills/{skillId}/submit")]
-        Task Submit(string skillId);
+        Task<HttpResponseMessage> Submit(string skillId, [Body]SubmitRequest request);
 
         [Delete("/skills/{skillId}")]
         Task<HttpResponseMessage> Delete(string skillId);

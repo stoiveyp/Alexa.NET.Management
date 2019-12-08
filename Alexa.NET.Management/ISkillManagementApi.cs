@@ -14,7 +14,7 @@ namespace Alexa.NET.Management
         Task<bool> Delete(string skillId);
 
         Task<SkillId> Update(string skillId, SkillStage stage, [Body] Skill skill);
-        Task Submit(string skillId);
+        Task<SubmitResponse> Submit(string skillId, bool automaticPublishing = true);
         Task Withdraw(string skillId, [Body]WithdrawalRequest request);
         Task<UnpublishResponse> Unpublish(string skillId, UnpublishType type, UnpublishReason reason);
         Task<InvocationResponse> Invoke(string skillId, [Body]InvocationRequest request);

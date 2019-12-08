@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -51,9 +52,26 @@ namespace Alexa.NET.Management.Internals
             return Inner.Status(skillId, new SkillResourceContainer(resources));
         }
 
-        public Task Submit(string skillId)
+        public async Task<SubmitResponse> Submit(string skillId, bool automaticPublishing = true)
         {
-            return Inner.Submit(skillId);
+            var request = new SubmitRequest
+            {
+                PublicationMethod = automaticPublishing ? PublicationMethod.Automatic : PublicationMethod.Manual
+            };
+
+            var response = await Inner.Submit(skillId,request);
+
+            if (response.StatusCode != HttpStatusCode.Accepted)
+            {
+                var body = await response.Content.ReadAsStringAsync();
+                throw new InvalidOperationException(
+                    $"Expected Status Code 202. Received {(int)response.StatusCode}. Response Body: {body}");
+            }
+
+            return new SubmitResponse
+            {
+                Location = response.Headers.Location
+            };
         }
 
         public Task Withdraw(string skillId, WithdrawalRequest request)
