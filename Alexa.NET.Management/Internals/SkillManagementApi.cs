@@ -147,5 +147,29 @@ namespace Alexa.NET.Management.Internals
         {
             return Inner.Certification(skillId, certificationId, locale);
         }
+
+        public async Task<PublishResponse> Publish(string skillId, DateTime? publishDate)
+        {
+            Task<HttpResponseMessage> publishTask;
+            if (publishDate.HasValue)
+            {
+                publishTask = Inner.Publish(skillId, new PublishRequest {PublishesAt = publishDate.Value});
+            }
+            else
+            {
+                publishTask = Inner.Publish(skillId);
+            }
+
+            var response = await publishTask;
+
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.StatusCode != HttpStatusCode.Accepted)
+            {
+                throw new InvalidOperationException(
+                    $"Expected Status Code 202. Received {(int)response.StatusCode}. Response Body: {body}");
+            }
+
+            return JsonConvert.DeserializeObject<PublishResponse>(body);
+        }
     }
 }

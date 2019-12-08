@@ -67,5 +67,11 @@ namespace Alexa.NET.Management.Internals
 
         [Get("/skills/{skillId}/certifications/{certificationId}")]
         Task<Certification> Certification(string skillId, string certificationId, [Header("Accept-Language")]string locale);
+
+        [Post("/skills/{skillId}/publications")]
+        Task<HttpResponseMessage> Publish(string skillId);
+
+        [Post("/skills/{skillId}/publications")]
+        Task<HttpResponseMessage> Publish(string skillId, [Body]PublishRequest request);
     }
 }
