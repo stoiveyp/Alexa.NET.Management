@@ -21,6 +21,7 @@ jobs:
         run:  dotnet test
       - name: GH Deploy Workaround
         run: |
+           export REPO_NAME=$(echo ${GITHUB_REPOSITORY} | sed 's/stoiveyp\///')
            for f in ./${REPO_NAME}/bin/Release/Alexa.NET*.nupkg
            do
              curl -vX PUT -u "stoiveyp:${{ secrets.GH_PACKAGE }}" -F package=@$f https://nuget.pkg.github.com/stoiveyp/
