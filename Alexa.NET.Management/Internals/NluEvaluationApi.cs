@@ -53,25 +53,15 @@ namespace Alexa.NET.Management.Internals
         private async Task<CreateEvaluationResponse> Create(string skillId, CreateEvaluationRequest request)
         {
             var response = await Client.Create(skillId, request);
-
-            var body = string.Empty;
-            if (response.Content != null)
+            return await response.BodyOrError(b =>
             {
-                body = await response.Content.ReadAsStringAsync();
-            }
-
-            if (response.StatusCode != HttpStatusCode.OK)
-            {
-                throw new InvalidOperationException(
-                    $"Expected Status Code 200. Received {(int)response.StatusCode}. Response Body: {body}");
-            }
-
-            var json = JObject.Parse(body);
-            return new CreateEvaluationResponse
-            {
-                Id = json.Value<string>("id"),
-                Location = response.Headers.Location
-            };
+                var json = JObject.Parse(b);
+                return new CreateEvaluationResponse
+                {
+                    Id = json.Value<string>("id"),
+                    Location = response.Headers.Location
+                };
+            },HttpStatusCode.OK);
         }
     }
 }

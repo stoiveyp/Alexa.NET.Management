@@ -1,4 +1,5 @@
-﻿using Alexa.NET.Management.SkillDevelopment;
+﻿using System.Threading.Tasks;
+using Alexa.NET.Management.SkillDevelopment;
 using Xunit;
 
 namespace Alexa.NET.Management.Tests
@@ -27,6 +28,12 @@ namespace Alexa.NET.Management.Tests
             Assert.Equal(interactionModelEvent.Payload.Status, PayloadStatus.Succeeded);
             Assert.Equal("en-US", interactionModelEvent.Payload.InteractionModel.Locale);
             Assert.True(Utility.CompareJson(interactionModelEvent, "InteractionModelEvent.json","timestamp"));
+        }
+
+        [Fact]
+        public void CreateSubscriber()
+        {
+            Assert.True(false);
         }
     }
 }

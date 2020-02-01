@@ -60,17 +60,11 @@ namespace Alexa.NET.Management.Internals
             };
 
             var response = await Inner.Submit(skillId,request);
-
-            if (response.StatusCode != HttpStatusCode.Accepted)
-            {
-                var body = await response.Content.ReadAsStringAsync();
-                throw new InvalidOperationException(
-                    $"Expected Status Code 202. Received {(int)response.StatusCode}. Response Body: {body}");
-            }
+            var uri = await response.UriOrError(HttpStatusCode.Accepted);
 
             return new SubmitResponse
             {
-                Location = response.Headers.Location
+                Location = uri
             };
         }
 

@@ -21,14 +21,7 @@ namespace Alexa.NET.Management.Internals
         public async Task<Uri> Create(string skillId, string feedbackEmail)
         {
             var response = await Client.Create(skillId, new BetaTestRequest {FeedbackEmail = feedbackEmail});
-            if (response.StatusCode == HttpStatusCode.Created)
-            {
-                return response.Headers.Location;
-            }
-
-            var body = await response.Content.ReadAsStringAsync();
-            throw new InvalidOperationException(
-                $"Expected Status Code 201. Received {(int) response.StatusCode}. Response Body: {body}");
+            return await response.UriOrError(HttpStatusCode.Created);
         }
 
         public Task<BetaTest> Get(string skillId)
