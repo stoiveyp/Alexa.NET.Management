@@ -83,7 +83,7 @@ namespace Alexa.NET.Management
 
             Metrics = RestService.For<IMetricsApi>(client, ManagementRefitSettings.Create());
 
-            SkillDevelopment = RestService.For<ISkillDevelopmentApi>(v0Client,ManagementRefitSettings.Create());
+            SkillDevelopment = new SkillDevelopmentApi(v0Client);
         }
 
         public ISkillDevelopmentApi SkillDevelopment { get; set; }

@@ -1,5 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using Alexa.NET.Management.SkillDevelopment;
+using Newtonsoft.Json;
 using Xunit;
 
 namespace Alexa.NET.Management.Tests
@@ -31,9 +35,34 @@ namespace Alexa.NET.Management.Tests
         }
 
         [Fact]
-        public void CreateSubscriber()
+        public async Task CreateSubscriber()
         {
-            Assert.True(false);
+            const string responseLocation =
+                "/v0/developmentEvents/subscribers/amzn1.ask-subscriber.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Post, req.Method);
+                Assert.Equal("/v0/developmentEvents/subscribers", req.RequestUri.PathAndQuery);
+                var raw = await req.Content.ReadAsStringAsync();
+                var request = JsonConvert.DeserializeObject<CreateSubscriptionRequest>(raw);
+                Utility.CompareJson(request, "CreateSubscriptionRequest.json");
+
+                var resp = new HttpResponseMessage(HttpStatusCode.Created);
+                resp.Headers.Location = new Uri(responseLocation, UriKind.Relative);
+                return resp;
+            }));
+
+            var subscriptionRequest = new CreateSubscriptionRequest
+            {
+                Name = "Example Development Event Subscriber",
+                VendorId = "M123456EXAMPLE",
+                Endpoint = new CreateSubscriptionRequestEndpoint(
+                    "arn:aws:sns:us-east-2:000011122233:ExampleSNSTopic",
+                    "arn:aws:iam::000011122233:role/ExampleIAMRole")
+            };
+
+            var response = await management.SkillDevelopment.CreateSubscription(subscriptionRequest);
+            Assert.Equal(responseLocation, response.ToString());
         }
     }
 }
