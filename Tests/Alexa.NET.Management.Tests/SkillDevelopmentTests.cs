@@ -44,7 +44,7 @@ namespace Alexa.NET.Management.Tests
                 Assert.Equal(HttpMethod.Post, req.Method);
                 Assert.Equal("/v0/developmentEvents/subscribers", req.RequestUri.PathAndQuery);
                 var raw = await req.Content.ReadAsStringAsync();
-                var request = JsonConvert.DeserializeObject<CreateSubscriptionRequest>(raw);
+                var request = JsonConvert.DeserializeObject<Subscription>(raw);
                 Utility.CompareJson(request, "CreateSubscriptionRequest.json");
 
                 var resp = new HttpResponseMessage(HttpStatusCode.Created);
@@ -52,11 +52,11 @@ namespace Alexa.NET.Management.Tests
                 return resp;
             }));
 
-            var subscriptionRequest = new CreateSubscriptionRequest
+            var subscriptionRequest = new Subscription
             {
                 Name = "Example Development Event Subscriber",
                 VendorId = "M123456EXAMPLE",
-                Endpoint = new CreateSubscriptionRequestEndpoint(
+                Endpoint = new SubscriptionEndpoint(
                     "arn:aws:sns:us-east-2:000011122233:ExampleSNSTopic",
                     "arn:aws:iam::000011122233:role/ExampleIAMRole")
             };
@@ -89,6 +89,12 @@ namespace Alexa.NET.Management.Tests
             }, HttpStatusCode.RequestTimeout));
 
             return Assert.ThrowsAsync<InvalidOperationException>(() => management.SkillDevelopment.DeleteSubscriber(subscriberId));
+        }
+
+        [Fact]
+        public void GetSubscription()
+        {
+            Assert.True(false);
         }
     }
 }

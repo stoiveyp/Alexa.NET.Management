@@ -16,7 +16,7 @@ namespace Alexa.NET.Management.Internals
             Client = RestService.For<IClientSkillDevelopmentApi>(httpClient, ManagementRefitSettings.Create());
         }
 
-        public async Task<Uri> CreateSubscriber(CreateSubscriptionRequest request)
+        public async Task<Uri> CreateSubscriber(Subscription request)
         {
             var response = await Client.CreateSubscriber(request);
             return await response.UriOrError(HttpStatusCode.Created);

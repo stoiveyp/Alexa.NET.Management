@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace Alexa.NET.Management.SkillDevelopment
 {
-    public class CreateSubscriptionRequest
+    public class Subscription
     {
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -15,6 +15,6 @@ namespace Alexa.NET.Management.SkillDevelopment
         public string VendorId { get; set; }
 
         [JsonProperty("endpoint")]
-        public CreateSubscriptionRequestEndpoint Endpoint { get; set; }
+        public SubscriptionEndpoint Endpoint { get; set; }
     }
 }

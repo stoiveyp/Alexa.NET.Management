@@ -2,9 +2,9 @@
 
 namespace Alexa.NET.Management.SkillDevelopment
 {
-    public class CreateSubscriptionRequestEndpointAuthorization
+    public class SubscriptionEndpointAuthorization
     {
-        public CreateSubscriptionRequestEndpointAuthorization(string arn)
+        public SubscriptionEndpointAuthorization(string arn)
         {
             ARN = arn;
         }
