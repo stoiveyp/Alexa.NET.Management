@@ -61,8 +61,34 @@ namespace Alexa.NET.Management.Tests
                     "arn:aws:iam::000011122233:role/ExampleIAMRole")
             };
 
-            var response = await management.SkillDevelopment.CreateSubscription(subscriptionRequest);
+            var response = await management.SkillDevelopment.CreateSubscriber(subscriptionRequest);
             Assert.Equal(responseLocation, response.ToString());
+        }
+
+        [Fact]
+        public Task DeleteSubscriberCorrect()
+        {
+            var subscriberId = "amzn1.ask-subscriber.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            {
+                Assert.Equal(HttpMethod.Delete, req.Method);
+                Assert.Equal($"/v0/developmentEvents/subscribers/{subscriberId}", req.RequestUri.PathAndQuery);
+            },HttpStatusCode.NoContent));
+      
+            return management.SkillDevelopment.DeleteSubscriber(subscriberId);
+        }
+
+        [Fact]
+        public Task DeleteSubscriberIncorrect()
+        {
+            var subscriberId = "amzn1.ask-subscriber.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            {
+                Assert.Equal(HttpMethod.Delete, req.Method);
+                Assert.Equal($"/v0/developmentEvents/subscribers/{subscriberId}", req.RequestUri.PathAndQuery);
+            }, HttpStatusCode.RequestTimeout));
+
+            return Assert.ThrowsAsync<InvalidOperationException>(() => management.SkillDevelopment.DeleteSubscriber(subscriberId));
         }
     }
 }
