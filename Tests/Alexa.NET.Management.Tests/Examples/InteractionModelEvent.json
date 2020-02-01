@@ -1,0 +1,19 @@
+{
+  "requestId": "aaaa-bbbb-cccc-example",
+  "timestamp": "2020-01-07T23:08:13Z",
+  "eventName": "AlexaDevelopmentEvent.InteractionModelUpdate",
+  "payload": {
+    "status": "SUCCEEDED",
+    "actor": {
+      "customerId": "amzn1.account.123456example"
+    },
+    "interactionModel": {
+      "skillId": "amzn1.ask.skill.123456-example",
+      "vendorId": "M123456EXAMPLE",
+      "locale": "en-US"
+    },
+    "subscription": {
+      "subscriptionId": "amzn1.ask-subscription.123456-example"
+    }
+  }
+}

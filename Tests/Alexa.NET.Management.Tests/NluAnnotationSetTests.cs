@@ -44,10 +44,7 @@ namespace Alexa.NET.Management.Tests
         [Fact]
         public async Task ListCreatesCorrectRequestAndResponse()
         {
-            var locale = "en-GB";
-            var name = "testSet";
-
-            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            var management = new ManagementApi("xxx", new ActionHandler( req =>
             {
                 Assert.Equal(HttpMethod.Get, req.Method);
                 Assert.Equal("/v1/skills/skillId/nluAnnotationSets?locale=en-GB&maxResults=2", req.RequestUri.PathAndQuery);

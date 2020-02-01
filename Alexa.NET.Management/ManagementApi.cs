@@ -43,12 +43,16 @@ namespace Alexa.NET.Management
         {
         }
 
-        public ManagementApi(Uri baseAddress, Func<Task<string>> getToken, HttpMessageHandler handler)
+        public ManagementApi(Uri baseAddress, Func<Task<string>> getToken, HttpMessageHandler handler):this(
+            new HttpClient(new NoSchemeAuthenticationHeaderClient(getToken, handler)) { BaseAddress = baseAddress },
+            new HttpClient(new NoSchemeAuthenticationHeaderClient(getToken, handler)) { BaseAddress = new Uri(string.Join("", baseAddress.Scheme, "://", baseAddress.Host, "/v0"), UriKind.Absolute) }
+            )
         {
-            var client = new HttpClient(new NoSchemeAuthenticationHeaderClient(getToken, handler)) { BaseAddress = baseAddress };
-            var v0Address = string.Join("", baseAddress.Scheme, "://", baseAddress.Host, "/v0");
-            var v0Client = new HttpClient(new NoSchemeAuthenticationHeaderClient(getToken, handler)) { BaseAddress = new Uri(v0Address, UriKind.Absolute) };
 
+        }
+
+        public ManagementApi(HttpClient client, HttpClient v0Client)
+        {
             Skills = new SkillManagementApi(client);
 
             AccountLinking = new AccountLinkingApi(client);
@@ -78,7 +82,11 @@ namespace Alexa.NET.Management
             CatalogManagement = new SkillCatalogManagementApi(v0Client);
 
             Metrics = RestService.For<IMetricsApi>(client, ManagementRefitSettings.Create());
+
+            SkillDevelopment = RestService.For<ISkillDevelopmentApi>(v0Client,ManagementRefitSettings.Create());
         }
+
+        public ISkillDevelopmentApi SkillDevelopment { get; set; }
 
         public IMetricsApi Metrics { get; set; }
         public ICatalogManagementApi CatalogManagement { get; set; }
