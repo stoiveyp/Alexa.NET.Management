@@ -1,0 +1,24 @@
+{
+  "_links": {
+    "self": {
+      "href": "string"
+    },
+    "next": {
+      "href": "string"
+    }
+  },
+  "nextToken": "string",
+  "subscribers": [
+    {
+      "name": "Example Development Event Subscriber",
+      "endpoint": {
+        "uri": "arn:aws:sns:us-east-2:000011122233:ExampleSNSTopic",
+        "authorization": {
+          "type": "AWS_IAM",
+          "arn": "arn:aws:iam::000011122233:role/ExampleIAMRole"
+        }
+      },
+      "vendorId": "M123456EXAMPLE"
+    }
+  ]
+}

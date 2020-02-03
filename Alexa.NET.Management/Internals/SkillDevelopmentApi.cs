@@ -16,7 +16,7 @@ namespace Alexa.NET.Management.Internals
             Client = RestService.For<IClientSkillDevelopmentApi>(httpClient, ManagementRefitSettings.Create());
         }
 
-        public async Task<Uri> CreateSubscriber(Subscription request)
+        public async Task<Uri> CreateSubscriber(Subscriber request)
         {
             var response = await Client.CreateSubscriber(request);
             return await response.UriOrError(HttpStatusCode.Created);
@@ -26,6 +26,26 @@ namespace Alexa.NET.Management.Internals
         {
             var response = await Client.DeleteSubscriber(subscriberId);
             await response.CodeOrError(HttpStatusCode.NoContent);
+        }
+
+        public Task<Subscriber> GetSubscriber(string subscriberId)
+        {
+            return Client.GetSubscriber(subscriberId);
+        }
+
+        public Task<ListSubscriberResponse> ListSubscribers(string vendorId)
+        {
+            return Client.ListSubscribers(vendorId);
+        }
+
+        public Task<ListSubscriberResponse> ListSubscribers(string vendorId, int maxResults)
+        {
+            return Client.ListSubscribers(vendorId, maxResults);
+        }
+
+        public Task<ListSubscriberResponse> ListSubscribers(string vendorId, int maxResults, string nextToken)
+        {
+            return Client.ListSubscribers(vendorId, maxResults, nextToken);
         }
     }
 }

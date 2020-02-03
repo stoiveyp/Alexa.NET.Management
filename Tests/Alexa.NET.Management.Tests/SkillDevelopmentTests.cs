@@ -44,7 +44,7 @@ namespace Alexa.NET.Management.Tests
                 Assert.Equal(HttpMethod.Post, req.Method);
                 Assert.Equal("/v0/developmentEvents/subscribers", req.RequestUri.PathAndQuery);
                 var raw = await req.Content.ReadAsStringAsync();
-                var request = JsonConvert.DeserializeObject<Subscription>(raw);
+                var request = JsonConvert.DeserializeObject<Subscriber>(raw);
                 Utility.CompareJson(request, "CreateSubscriptionRequest.json");
 
                 var resp = new HttpResponseMessage(HttpStatusCode.Created);
@@ -52,7 +52,7 @@ namespace Alexa.NET.Management.Tests
                 return resp;
             }));
 
-            var subscriptionRequest = new Subscription
+            var subscriptionRequest = new Subscriber
             {
                 Name = "Example Development Event Subscriber",
                 VendorId = "M123456EXAMPLE",
@@ -92,9 +92,38 @@ namespace Alexa.NET.Management.Tests
         }
 
         [Fact]
-        public void GetSubscription()
+        public async Task GetSubscription()
         {
-            Assert.True(false);
+            const string requestLocation =
+                "/v0/developmentEvents/subscribers/amzn1.ask-subscriber.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal(requestLocation, req.RequestUri.PathAndQuery);
+            },Utility.ExampleFileContent<Subscriber>("CreateSubscriptionRequest.json")));
+
+            var response = await management.SkillDevelopment.GetSubscriber("amzn1.ask-subscriber.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx");
+            Assert.NotNull(response);
         }
+
+        [Fact]
+        public async Task ListSubscriptions()
+        {
+            const string requestLocation =
+                "/v0/developmentEvents/subscribers?vendorId=vid&maxResults=10&nextToken=ABC";
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal(requestLocation, req.RequestUri.PathAndQuery);
+            }, Utility.ExampleFileContent<ListSubscriberResponse>("ListSkillDevelopmentSubscribers.json")));
+
+            var response = await management.SkillDevelopment.ListSubscribers("vid",10,"ABC");
+            Assert.Equal(2,response.Links.Count);
+            Assert.Equal("string",response.NextToken);
+            var subscriber = Assert.Single(response.Subscribers);
+            Assert.True(Utility.CompareJson(subscriber,"CreateSubscriptionRequest.json"));
+        }
+
+
     }
 }

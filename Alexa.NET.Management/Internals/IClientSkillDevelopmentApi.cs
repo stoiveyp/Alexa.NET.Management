@@ -8,9 +8,21 @@ namespace Alexa.NET.Management.Internals
     public interface IClientSkillDevelopmentApi
     {
         [Post("/developmentEvents/subscribers")]
-        Task<HttpResponseMessage> CreateSubscriber([Body]Subscription request);
+        Task<HttpResponseMessage> CreateSubscriber([Body]Subscriber request);
 
         [Delete("/developmentEvents/subscribers/{subscriberId}")]
         Task<HttpResponseMessage> DeleteSubscriber(string subscriberId);
+
+        [Get("/developmentEvents/subscribers/{subscriberId}")]
+        Task<Subscriber> GetSubscriber(string subscriberId);
+
+        [Get("/developmentEvents/subscribers")]
+        Task<ListSubscriberResponse> ListSubscribers(string vendorId);
+
+        [Get("/developmentEvents/subscribers")]
+        Task<ListSubscriberResponse> ListSubscribers(string vendorId, int maxResults);
+
+        [Get("/developmentEvents/subscribers")]
+        Task<ListSubscriberResponse> ListSubscribers(string vendorId, int maxResults, string nextToken);
     }
 }
