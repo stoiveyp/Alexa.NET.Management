@@ -47,5 +47,11 @@ namespace Alexa.NET.Management.Internals
         {
             return Client.ListSubscribers(vendorId, maxResults, nextToken);
         }
+
+        public async Task UpdateSubscriber(string subscriberId, SubscriberUpdate subscriberDetails)
+        {
+            var response = await Client.UpdateSubscriber(subscriberId,subscriberDetails);
+            await response.CodeOrError(HttpStatusCode.NoContent);
+        }
     }
 }

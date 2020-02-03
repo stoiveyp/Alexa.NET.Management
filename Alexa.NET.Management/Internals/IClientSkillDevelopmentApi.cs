@@ -10,6 +10,9 @@ namespace Alexa.NET.Management.Internals
         [Post("/developmentEvents/subscribers")]
         Task<HttpResponseMessage> CreateSubscriber([Body]Subscriber request);
 
+        [Put("/developmentEvents/subscribers/{subscriberId}")]
+        Task<HttpResponseMessage> UpdateSubscriber(string subscriberId, [Body]SubscriberUpdate request);
+
         [Delete("/developmentEvents/subscribers/{subscriberId}")]
         Task<HttpResponseMessage> DeleteSubscriber(string subscriberId);
 

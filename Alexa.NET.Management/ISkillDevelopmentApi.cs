@@ -17,5 +17,7 @@ namespace Alexa.NET.Management
         Task<ListSubscriberResponse> ListSubscribers(string vendorId, int maxResults);
 
         Task<ListSubscriberResponse> ListSubscribers(string vendorId, int maxResults, string nextToken);
+
+        Task UpdateSubscriber(string subscriberId, SubscriberUpdate subscriberDetails);
     }
 }

@@ -66,6 +66,31 @@ namespace Alexa.NET.Management.Tests
         }
 
         [Fact]
+        public async Task UpdateSubscriber()
+        {
+            const string requestLocation =
+                "/v0/developmentEvents/subscribers/amzn1.ask-subscriber.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Put, req.Method);
+                Assert.Equal(requestLocation, req.RequestUri.PathAndQuery);
+                var raw = await req.Content.ReadAsStringAsync();
+                var request = JsonConvert.DeserializeObject<SubscriberUpdate>(raw);
+                Utility.CompareJson(request, "CreateSubscriptionRequest.json","vendorId");
+            },HttpStatusCode.NoContent));
+
+            var subscriptionRequest = new SubscriberUpdate
+            {
+                Name = "Example Development Event Subscriber",
+                Endpoint = new SubscriptionEndpoint(
+                    "arn:aws:sns:us-east-2:000011122233:ExampleSNSTopic",
+                    "arn:aws:iam::000011122233:role/ExampleIAMRole")
+            };
+
+            await management.SkillDevelopment.UpdateSubscriber("amzn1.ask-subscriber.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",subscriptionRequest);
+        }
+
+        [Fact]
         public Task DeleteSubscriberCorrect()
         {
             var subscriberId = "amzn1.ask-subscriber.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
