@@ -27,5 +27,8 @@ namespace Alexa.NET.Management.Internals
 
         [Get("/developmentEvents/subscribers")]
         Task<ListSubscriberResponse> ListSubscribers(string vendorId, int maxResults, string nextToken);
+
+        [Post("/developmentEvents/subscriptions")]
+        Task<HttpResponseMessage> CreateSubscription([Body] Subscription request);
     }
 }

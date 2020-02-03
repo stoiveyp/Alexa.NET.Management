@@ -52,7 +52,7 @@ namespace Alexa.NET.Management.Tests
                 return resp;
             }));
 
-            var subscriptionRequest = new Subscriber
+            var subscriberRequest = new Subscriber
             {
                 Name = "Example Development Event Subscriber",
                 VendorId = "M123456EXAMPLE",
@@ -61,7 +61,7 @@ namespace Alexa.NET.Management.Tests
                     "arn:aws:iam::000011122233:role/ExampleIAMRole")
             };
 
-            var response = await management.SkillDevelopment.Subscriber.Create(subscriptionRequest);
+            var response = await management.SkillDevelopment.Subscriber.Create(subscriberRequest);
             Assert.Equal(responseLocation, response.ToString());
         }
 
@@ -149,6 +149,35 @@ namespace Alexa.NET.Management.Tests
             Assert.True(Utility.CompareJson(subscriber,"CreateSubscriberRequest.json","subscriberId","vendorId"));
         }
 
+        [Fact]
+        public async Task CreateSubscrption()
+        {
+            const string responseLocation =
+                "/v0/developmentEvents/subscriptions/amzn1.ask-subscriber.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Post, req.Method);
+                Assert.Equal("/v0/developmentEvents/subscriptions", req.RequestUri.PathAndQuery);
+                var raw = await req.Content.ReadAsStringAsync();
+                var request = JsonConvert.DeserializeObject<Subscription>(raw);
+                Utility.CompareJson(request, "CreateSubscriptionRequest.json");
+
+                var resp = new HttpResponseMessage(HttpStatusCode.Created);
+                resp.Headers.Location = new Uri(responseLocation, UriKind.Relative);
+                return resp;
+            }));
+
+            var subscriptionRequest = new Subscription
+            {
+                Name = "my subscription request",
+                VendorId = "M123456EXAMPLE",
+                SubscriberId = "ABC",
+                Events = new[] {AlexaDevelopmentEventType.SkillPublish}
+            };
+
+            var response = await management.SkillDevelopment.Subscription.Create(subscriptionRequest);
+            Assert.Equal(responseLocation, response.ToString());
+        }
 
     }
 }

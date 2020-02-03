@@ -1,0 +1,8 @@
+{
+  "name": "my subscription",
+  "events": [
+    "AlexaDevelopmentEvent.SkillPublish"
+  ],
+  "vendorId": "M123456EXAMPLE",
+  "subscriberId": "ABCDEF"
+}

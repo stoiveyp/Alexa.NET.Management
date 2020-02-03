@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Threading.Tasks;
 using Alexa.NET.Management.SkillDevelopment;
 
@@ -13,9 +14,10 @@ namespace Alexa.NET.Management.Internals
 
         private IClientSkillDevelopmentApi Client { get; set; }
 
-        public Task<Uri> Create(Subscription request)
+        public async Task<Uri> Create(Subscription request)
         {
-            throw new NotImplementedException();
+            var response = await Client.CreateSubscription(request);
+            return await response.UriOrError(HttpStatusCode.Created);
         }
     }
 }
