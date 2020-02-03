@@ -12,6 +12,6 @@ namespace Alexa.NET.Management.SkillDevelopment
         public string NextToken { get; set; }
 
         [JsonProperty("subscribers")]
-        public Subscriber[] Subscribers { get; set; }
+        public ListedSubscriber[] Subscribers { get; set; }
     }
 }

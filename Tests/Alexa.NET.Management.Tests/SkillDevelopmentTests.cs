@@ -146,7 +146,7 @@ namespace Alexa.NET.Management.Tests
             Assert.Equal(2,response.Links.Count);
             Assert.Equal("string",response.NextToken);
             var subscriber = Assert.Single(response.Subscribers);
-            Assert.True(Utility.CompareJson(subscriber,"CreateSubscriberRequest.json"));
+            Assert.True(Utility.CompareJson(subscriber,"CreateSubscriberRequest.json","subscriberId","vendorId"));
         }
 
 

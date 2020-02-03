@@ -6,15 +6,9 @@ using Newtonsoft.Json;
 
 namespace Alexa.NET.Management.SkillDevelopment
 {
-    public class Subscriber
+    public class Subscriber:SubscriberUpdate
     {
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
         [JsonProperty("vendorId")]
         public string VendorId { get; set; }
-
-        [JsonProperty("endpoint")]
-        public SubscriptionEndpoint Endpoint { get; set; }
     }
 }

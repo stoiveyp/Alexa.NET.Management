@@ -10,6 +10,7 @@
   "nextToken": "string",
   "subscribers": [
     {
+      "subscriberId": "string",
       "name": "Example Development Event Subscriber",
       "endpoint": {
         "uri": "arn:aws:sns:us-east-2:000011122233:ExampleSNSTopic",
@@ -17,8 +18,7 @@
           "type": "AWS_IAM",
           "arn": "arn:aws:iam::000011122233:role/ExampleIAMRole"
         }
-      },
-      "vendorId": "M123456EXAMPLE"
+      }
     }
   ]
 }
