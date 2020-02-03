@@ -12,7 +12,7 @@
     <None Remove="Examples\ProductSummary.json" />
     <None Remove="Examples\SkillManifest.json" />
     <None Remove="Examples\IntentRequestHistoryResponse.json" />
-    <None Remove="Examples\Subscription.json" />
+    <None Remove="Examples\Subscriber.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -47,7 +47,7 @@
     <None Update="Examples\CertificationList.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Examples\CreateSubscriptionRequest.json">
+    <None Update="Examples\CreateSubscriberRequest.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Examples\CustomSkillManifest.json">
@@ -142,7 +142,7 @@
     <Content Include="Examples\ProductSummary.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Examples\Subscription.json">
+    <Content Include="Examples\Subscriber.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

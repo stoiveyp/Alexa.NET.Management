@@ -45,7 +45,7 @@ namespace Alexa.NET.Management.Tests
                 Assert.Equal("/v0/developmentEvents/subscribers", req.RequestUri.PathAndQuery);
                 var raw = await req.Content.ReadAsStringAsync();
                 var request = JsonConvert.DeserializeObject<Subscriber>(raw);
-                Utility.CompareJson(request, "CreateSubscriptionRequest.json");
+                Utility.CompareJson(request, "CreateSubscriberRequest.json");
 
                 var resp = new HttpResponseMessage(HttpStatusCode.Created);
                 resp.Headers.Location = new Uri(responseLocation, UriKind.Relative);
@@ -61,7 +61,7 @@ namespace Alexa.NET.Management.Tests
                     "arn:aws:iam::000011122233:role/ExampleIAMRole")
             };
 
-            var response = await management.SkillDevelopment.CreateSubscriber(subscriptionRequest);
+            var response = await management.SkillDevelopment.Subscriber.Create(subscriptionRequest);
             Assert.Equal(responseLocation, response.ToString());
         }
 
@@ -76,7 +76,7 @@ namespace Alexa.NET.Management.Tests
                 Assert.Equal(requestLocation, req.RequestUri.PathAndQuery);
                 var raw = await req.Content.ReadAsStringAsync();
                 var request = JsonConvert.DeserializeObject<SubscriberUpdate>(raw);
-                Utility.CompareJson(request, "CreateSubscriptionRequest.json","vendorId");
+                Utility.CompareJson(request, "CreateSubscriberRequest.json","vendorId");
             },HttpStatusCode.NoContent));
 
             var subscriptionRequest = new SubscriberUpdate
@@ -87,7 +87,7 @@ namespace Alexa.NET.Management.Tests
                     "arn:aws:iam::000011122233:role/ExampleIAMRole")
             };
 
-            await management.SkillDevelopment.UpdateSubscriber("amzn1.ask-subscriber.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",subscriptionRequest);
+            await management.SkillDevelopment.Subscriber.Update("amzn1.ask-subscriber.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",subscriptionRequest);
         }
 
         [Fact]
@@ -100,7 +100,7 @@ namespace Alexa.NET.Management.Tests
                 Assert.Equal($"/v0/developmentEvents/subscribers/{subscriberId}", req.RequestUri.PathAndQuery);
             },HttpStatusCode.NoContent));
       
-            return management.SkillDevelopment.DeleteSubscriber(subscriberId);
+            return management.SkillDevelopment.Subscriber.Delete(subscriberId);
         }
 
         [Fact]
@@ -113,7 +113,7 @@ namespace Alexa.NET.Management.Tests
                 Assert.Equal($"/v0/developmentEvents/subscribers/{subscriberId}", req.RequestUri.PathAndQuery);
             }, HttpStatusCode.RequestTimeout));
 
-            return Assert.ThrowsAsync<InvalidOperationException>(() => management.SkillDevelopment.DeleteSubscriber(subscriberId));
+            return Assert.ThrowsAsync<InvalidOperationException>(() => management.SkillDevelopment.Subscriber.Delete(subscriberId));
         }
 
         [Fact]
@@ -125,14 +125,14 @@ namespace Alexa.NET.Management.Tests
             {
                 Assert.Equal(HttpMethod.Get, req.Method);
                 Assert.Equal(requestLocation, req.RequestUri.PathAndQuery);
-            },Utility.ExampleFileContent<Subscriber>("CreateSubscriptionRequest.json")));
+            },Utility.ExampleFileContent<Subscriber>("CreateSubscriberRequest.json")));
 
-            var response = await management.SkillDevelopment.GetSubscriber("amzn1.ask-subscriber.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx");
+            var response = await management.SkillDevelopment.Subscriber.Get("amzn1.ask-subscriber.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx");
             Assert.NotNull(response);
         }
 
         [Fact]
-        public async Task ListSubscriptions()
+        public async Task ListSubscriber()
         {
             const string requestLocation =
                 "/v0/developmentEvents/subscribers?vendorId=vid&maxResults=10&nextToken=ABC";
@@ -142,11 +142,11 @@ namespace Alexa.NET.Management.Tests
                 Assert.Equal(requestLocation, req.RequestUri.PathAndQuery);
             }, Utility.ExampleFileContent<ListSubscriberResponse>("ListSkillDevelopmentSubscribers.json")));
 
-            var response = await management.SkillDevelopment.ListSubscribers("vid",10,"ABC");
+            var response = await management.SkillDevelopment.Subscriber.List("vid",10,"ABC");
             Assert.Equal(2,response.Links.Count);
             Assert.Equal("string",response.NextToken);
             var subscriber = Assert.Single(response.Subscribers);
-            Assert.True(Utility.CompareJson(subscriber,"CreateSubscriptionRequest.json"));
+            Assert.True(Utility.CompareJson(subscriber,"CreateSubscriberRequest.json"));
         }
 
 
