@@ -125,7 +125,7 @@ namespace Alexa.NET.Management.Tests
         [Fact]
         public async Task GetUpload()
         {
-            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
             {
                 Assert.Equal(HttpMethod.Get, req.Method);
                 Assert.Equal("/v0/catalogs/catalogId/uploads/uploadId", req.RequestUri.PathAndQuery);
@@ -140,7 +140,7 @@ namespace Alexa.NET.Management.Tests
         [Fact]
         public async Task UploadList()
         {
-            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            var management = new ManagementApi("xxx", new ActionHandler( req =>
             {
                 Assert.Equal(HttpMethod.Get, req.Method);
                 Assert.Equal("/v0/catalogs/catalogId/uploads?maxResults=2&nextToken=token", req.RequestUri.PathAndQuery);

@@ -17,15 +17,11 @@ namespace Alexa.NET.Management.Skills
             var jObject = JObject.Load(reader);
 
             var type = jObject["type"].Value<string>();
-            object target = null;
-            if (type == "Speech")
+            object target = type switch
             {
-                target = new SimulationSpeechResponse();
-            }
-            else
-            {
-                throw new InvalidOperationException("Unknown simulation response type: " + type);
-            }
+                SimulationSpeechResponse.ResponseType => new SimulationSpeechResponse(),
+                _ => throw new InvalidOperationException("Unknown simulation response type: " + type)
+            };
 
             serializer.Populate(jObject.CreateReader(), target);
 

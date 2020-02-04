@@ -60,8 +60,8 @@ namespace Alexa.NET.Management.Internals
                 throw new ArgumentNullException(nameof(request));
             }
 
-            var response = await Client.CreatePackage(request);
-            return await AcceptedLocationOrError(response);
+            var message = await Client.CreatePackage(request);
+            return await message.UriOrError(HttpStatusCode.Accepted);
         }
 
         public async Task<Uri> CreateSkillPackage(string skillId, string location)
@@ -77,7 +77,7 @@ namespace Alexa.NET.Management.Internals
             }
 
             var message = await Client.CreateSkillPackage(skillId, new CreateSkillPackageRequest {Location = location});
-            return await AcceptedLocationOrError(message);
+            return await message.UriOrError(HttpStatusCode.Accepted);
         }
 
         public Task<ImportStatusResponse> SkillPackageStatus(string importId)
@@ -98,7 +98,7 @@ namespace Alexa.NET.Management.Internals
             }
 
             var message = await Client.CreateExportRequest(skillId, stage);
-            return await AcceptedLocationOrError(message);
+            return await message.UriOrError(HttpStatusCode.Accepted);
         }
 
         public Task<ExportStatusResponse> ExportStatus(string exportId)
@@ -109,24 +109,6 @@ namespace Alexa.NET.Management.Internals
             }
 
             return Client.ExportStatus(exportId);
-        }
-
-        private async Task<Uri> AcceptedLocationOrError(HttpResponseMessage response)
-        {
-            if (response.StatusCode == HttpStatusCode.Accepted)
-            {
-                return response.Headers.Location;
-            }
-
-            var body = string.Empty;
-            if (response.Content != null)
-            {
-                body = await response.Content.ReadAsStringAsync();
-            }
-
-            throw new InvalidOperationException(
-                $"Expected Status Code 202. Received {(int)response.StatusCode}. Response Body: {body}");
-
         }
     }
 }

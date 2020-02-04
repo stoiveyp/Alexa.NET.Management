@@ -2,9 +2,6 @@
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
-using Alexa.NET.Management.Api;
-using Alexa.NET.Management.Metrics;
-using Alexa.NET.Management.Nlu.Evaluation;
 using Newtonsoft.Json;
 using Refit;
 
