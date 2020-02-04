@@ -1,0 +1,22 @@
+{
+  "_links": {
+    "self": {
+      "href": "string"
+    },
+    "next": {
+      "href": "string"
+    }
+  },
+  "nextToken": "string",
+  "subscriptions": [
+    {
+      "subscriptionId": "test", 
+      "name": "my subscription",
+      "events": [
+        "AlexaDevelopmentEvent.SkillPublish"
+      ],
+      "vendorId": "M123456EXAMPLE",
+      "subscriberId": "ABCDEF"
+    }
+  ]
+}

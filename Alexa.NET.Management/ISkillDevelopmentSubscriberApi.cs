@@ -8,7 +8,7 @@ namespace Alexa.NET.Management
     {
         Task<Uri> Create(Subscriber request);
         Task Delete(string subscriberId);
-        Task<Subscriber> Get(string subscriberId);
+        Task<ListedSubscriber> Get(string subscriberId);
 
         Task<ListSubscriberResponse> List(string vendorId);
 

@@ -25,7 +25,7 @@ namespace Alexa.NET.Management.Internals
             await response.CodeOrError(HttpStatusCode.NoContent);
         }
 
-        public Task<Subscriber> Get(string subscriberId)
+        public Task<ListedSubscriber> Get(string subscriberId)
         {
             return Client.GetSubscriber(subscriberId);
         }

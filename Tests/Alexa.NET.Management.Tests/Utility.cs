@@ -71,7 +71,7 @@ namespace Alexa.NET.Management.Tests
             }
 
             foreach (var prop in exclude.Properties().Where(p => p.Value is JArray).Select(p => p.Value).Cast<JArray>().SelectMany(a => a.Children())
-                .Cast<JObject>())
+                .Where(c => c.Type == JTokenType.Object).Cast<JObject>())
             {
                 RemoveFrom(prop, item);
             }

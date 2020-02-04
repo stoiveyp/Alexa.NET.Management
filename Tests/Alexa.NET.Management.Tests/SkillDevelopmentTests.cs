@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -117,7 +118,7 @@ namespace Alexa.NET.Management.Tests
         }
 
         [Fact]
-        public async Task GetSubscription()
+        public async Task GetSubscriber()
         {
             const string requestLocation =
                 "/v0/developmentEvents/subscribers/amzn1.ask-subscriber.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
@@ -125,7 +126,7 @@ namespace Alexa.NET.Management.Tests
             {
                 Assert.Equal(HttpMethod.Get, req.Method);
                 Assert.Equal(requestLocation, req.RequestUri.PathAndQuery);
-            },Utility.ExampleFileContent<Subscriber>("CreateSubscriberRequest.json")));
+            },Utility.ExampleFileContent<ListedSubscriber>("CreateSubscriberRequest.json")));
 
             var response = await management.SkillDevelopment.Subscriber.Get("amzn1.ask-subscriber.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx");
             Assert.NotNull(response);
@@ -191,6 +192,62 @@ namespace Alexa.NET.Management.Tests
             }, HttpStatusCode.NoContent));
 
             return management.SkillDevelopment.Subscription.Delete(subscriptionId);
+        }
+
+        [Fact]
+        public async Task GetSubscription()
+        {
+            const string requestLocation =
+                "/v0/developmentEvents/subscriptions/amzn1.ask-subscriber.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal(requestLocation, req.RequestUri.PathAndQuery);
+            }, Utility.ExampleFileContent<ListedSubscription>("CreateSubscriptionRequest.json")));
+
+            var response = await management.SkillDevelopment.Subscription.Get("amzn1.ask-subscriber.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx");
+            Assert.NotNull(response);
+        }
+
+        [Fact]
+        public async Task ListSubscription()
+        {
+            const string requestLocation =
+                "/v0/developmentEvents/subscriptions?vendorId=vid&maxResults=10&nextToken=ABC";
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal(requestLocation, req.RequestUri.PathAndQuery);
+            }, Utility.ExampleFileContent<ListSubscriptionResponse>("ListSkillDevelopmentSubscriptions.json")));
+
+            var response = await management.SkillDevelopment.Subscription.List("vid", null,10, "ABC");
+            Assert.Equal(2, response.Links.Count);
+            Assert.Equal("string", response.NextToken);
+            var subscriber = Assert.Single(response.Subscriptions);
+            Assert.True(Utility.CompareJson(subscriber, "CreateSubscriptionRequest.json", "subscriptionId"));
+        }
+
+        [Fact]
+        public async Task UpdateSubscription()
+        {
+            const string requestLocation =
+                "/v0/developmentEvents/subscriptions/amzn1.ask-subscriber.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Put, req.Method);
+                Assert.Equal(requestLocation, req.RequestUri.PathAndQuery);
+                var raw = await req.Content.ReadAsStringAsync();
+                var request = JsonConvert.DeserializeObject<SubscriptionUpdate>(raw);
+                Assert.Equal(AlexaDevelopmentEventType.ManifestUpdate,request.Events.Single());
+            }, HttpStatusCode.NoContent));
+
+            var subscriptionUpdate = new SubscriptionUpdate
+            {
+                Name = "Example Development Event Subscriber",
+                Events = new [] {AlexaDevelopmentEventType.ManifestUpdate}
+            };
+
+            await management.SkillDevelopment.Subscription.Update("amzn1.ask-subscriber.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", subscriptionUpdate);
         }
 
     }

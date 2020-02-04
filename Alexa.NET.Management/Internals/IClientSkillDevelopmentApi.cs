@@ -17,7 +17,7 @@ namespace Alexa.NET.Management.Internals
         Task<HttpResponseMessage> DeleteSubscriber(string subscriberId);
 
         [Get("/developmentEvents/subscribers/{subscriberId}")]
-        Task<Subscriber> GetSubscriber(string subscriberId);
+        Task<ListedSubscriber> GetSubscriber(string subscriberId);
 
         [Get("/developmentEvents/subscribers")]
         Task<ListSubscriberResponse> ListSubscribers(string vendorId);
@@ -31,7 +31,40 @@ namespace Alexa.NET.Management.Internals
         [Post("/developmentEvents/subscriptions")]
         Task<HttpResponseMessage> CreateSubscription([Body] Subscription request);
 
+        [Put("/developmentEvents/subscriptions/{subscriptionId}")]
+        Task<HttpResponseMessage> UpdateSubscription(string subscriptionId, [Body]SubscriptionUpdate request);
+
         [Delete("/developmentEvents/subscriptions/{subscriptionId}")]
         Task<HttpResponseMessage> DeleteSubscription(string subscriptionId);
+
+        [Get("/developmentEvents/subscriptions/{subscriptionId}")]
+        Task<ListedSubscription> GetSubscription(string subscriptionId);
+
+        [Get("/developmentEvents/subscriptions")]
+        Task<ListSubscriptionResponse> List(string vendorId, string subscriberId);
+
+        [Get("/developmentEvents/subscriptions")]
+        Task<ListSubscriptionResponse> List(string vendorId, string subscriberId, int maxResults);
+
+        [Get("/developmentEvents/subscriptions")]
+        Task<ListSubscriptionResponse> List(string vendorId, string subscriberId, int maxResults, string nextToken);
+
+        [Get("/developmentEvents/subscriptions")]
+        Task<ListSubscriptionResponse> ListByVendor(string vendorId);
+
+        [Get("/developmentEvents/subscriptions")]
+        Task<ListSubscriptionResponse> ListByVendor(string vendorId, int maxResults);
+
+        [Get("/developmentEvents/subscriptions")]
+        Task<ListSubscriptionResponse> ListByVendor(string vendorId, int maxResults, string nextToken);
+
+        [Get("/developmentEvents/subscriptions")]
+        Task<ListSubscriptionResponse> ListBySubscriber(string subscriberId);
+        
+        [Get("/developmentEvents/subscriptions")]
+        Task<ListSubscriptionResponse> ListBySubscriber(string subscriberId, int maxResults);
+
+        [Get("/developmentEvents/subscriptions")]
+        Task<ListSubscriptionResponse> ListBySubscriber(string subscriberId, int maxResults, string nextToken);
     }
 }
