@@ -30,5 +30,8 @@ namespace Alexa.NET.Management.Internals
 
         [Post("/developmentEvents/subscriptions")]
         Task<HttpResponseMessage> CreateSubscription([Body] Subscription request);
+
+        [Delete("/developmentEvents/subscriptions/{subscriptionId}")]
+        Task<HttpResponseMessage> DeleteSubscription(string subscriptionId);
     }
 }

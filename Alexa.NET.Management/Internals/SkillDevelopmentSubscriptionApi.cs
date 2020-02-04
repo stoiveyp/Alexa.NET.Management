@@ -19,5 +19,11 @@ namespace Alexa.NET.Management.Internals
             var response = await Client.CreateSubscription(request);
             return await response.UriOrError(HttpStatusCode.Created);
         }
+
+        public async Task Delete(string subscriptionId)
+        {
+            var response = await Client.DeleteSubscription(subscriptionId);
+            await response.CodeOrError(HttpStatusCode.NoContent);
+        }
     }
 }

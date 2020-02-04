@@ -179,5 +179,19 @@ namespace Alexa.NET.Management.Tests
             Assert.Equal(responseLocation, response.ToString());
         }
 
+
+        [Fact]
+        public Task DeleteSubscriptionCorrect()
+        {
+            var subscriptionId = "amzn1.ask-subscriber.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            {
+                Assert.Equal(HttpMethod.Delete, req.Method);
+                Assert.Equal($"/v0/developmentEvents/subscriptions/{subscriptionId}", req.RequestUri.PathAndQuery);
+            }, HttpStatusCode.NoContent));
+
+            return management.SkillDevelopment.Subscription.Delete(subscriptionId);
+        }
+
     }
 }

@@ -73,13 +73,13 @@ namespace Alexa.NET.Management.Tests
                 TestingInstructions = "Sample testing instructions.",
                 PurchasableState = PurchasableState.Purchasable
             };
-            Assert.True(Utility.CompareJson(sub,"Subscription.json"));
+            Assert.True(Utility.CompareJson(sub,"InProductSubscription.json"));
         }
 
         [Fact]
         public void SubscriptionDeserializesCorrectly()
         {
-            var sub = Utility.ExampleFileContent<SubscriptionProduct>("Subscription.json");
+            var sub = Utility.ExampleFileContent<SubscriptionProduct>("InProductSubscription.json");
             Assert.Equal("1.0",sub.Version);
             Assert.Equal(PurchasableState.Purchasable,sub.PurchasableState);
             Assert.Equal("Sample testing instructions.",sub.TestingInstructions);
@@ -221,7 +221,7 @@ namespace Alexa.NET.Management.Tests
         public void ConverterGeneratesProduct()
         {
             var entitlement = Utility.ExampleFileContent<EntitlementProduct>("Entitlement.json");
-            var subscription = Utility.ExampleFileContent<SubscriptionProduct>("Subscription.json");
+            var subscription = Utility.ExampleFileContent<SubscriptionProduct>("InProductSubscription.json");
             var consumable = Utility.ExampleFileContent<ConsumableProduct>("Consumable.json");
 
             var serializer = new JsonSerializerSettings {Converters = new List<JsonConverter> {new ProductConverter()}};

@@ -7,5 +7,6 @@ namespace Alexa.NET.Management
     public interface ISkillDevelopmentSubscriptionApi
     {
         Task<Uri> Create(Subscription request);
+        Task Delete(string subscriptionId);
     }
 }
