@@ -84,6 +84,8 @@ namespace Alexa.NET.Management
             Metrics = RestService.For<IMetricsApi>(client, ManagementRefitSettings.Create());
 
             SkillDevelopment = new SkillDevelopmentApi(v0Client);
+
+            SlotType = new SlotTypeApi(client);
         }
 
         public ISkillDevelopmentApi SkillDevelopment { get; set; }
@@ -114,5 +116,7 @@ namespace Alexa.NET.Management
         public IUtteranceProfilerApi UtteranceProfiler { get; set; }
 
         public NluApiContainer Nlu { get; set; }
+
+        public ISlotTypeApi SlotType { get; set; }
     }
 }
