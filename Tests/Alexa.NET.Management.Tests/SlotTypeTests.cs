@@ -10,6 +10,7 @@ using Alexa.NET.Management.Nlu.AnnotationSet;
 using Alexa.NET.Management.SlotType;
 using Newtonsoft.Json;
 using Xunit;
+using Version = Alexa.NET.Management.SlotType.Version;
 
 namespace Alexa.NET.Management.Tests
 {
@@ -92,7 +93,7 @@ namespace Alexa.NET.Management.Tests
             var management = new ManagementApi("xxx", new ActionHandler(async req =>
             {
                 var requestBody = await req.Content.ReadAsStringAsync();
-                var request = JsonConvert.DeserializeObject<CreateVersionRequest>(requestBody);
+                var request = JsonConvert.DeserializeObject<Version>(requestBody);
                 Assert.Equal("testdesc",request.SlotType.Description);
                 var inline = Assert.IsType<InlineValueSupplier>(request.SlotType.Definition.ValueSupplier);
                 Assert.True(Utility.CompareJson(inline,"InlineValueSupplier.json"));
@@ -113,7 +114,7 @@ namespace Alexa.NET.Management.Tests
             var management = new ManagementApi("xxx", new ActionHandler(async req =>
             {
                 var requestBody = await req.Content.ReadAsStringAsync();
-                var request = JsonConvert.DeserializeObject<CreateVersionRequest>(requestBody);
+                var request = JsonConvert.DeserializeObject<Version>(requestBody);
                 Assert.Equal("testdesc", request.SlotType.Description);
                 var catalog = Assert.IsType<CatalogValueSupplier>(request.SlotType.Definition.ValueSupplier);
                 Assert.True(Utility.CompareJson(catalog, "CatalogValueSupplier.json"));
@@ -125,6 +126,12 @@ namespace Alexa.NET.Management.Tests
             }));
             var code = await management.SlotType.CreateVersion("ABC123", supplier, "testdesc");
             Assert.Equal("ABC456",code);
+        }
+
+        [Fact]
+        public async Task GetSlotVersion()
+        {
+            Assert.False(true);
         }
 
     }

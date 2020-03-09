@@ -65,9 +65,9 @@ namespace Alexa.NET.Management.Internals
 
         public async Task<string> CreateVersion(string slotId, ValueSupplier supplier, string description = null)
         {
-            var request = new CreateVersionRequest
+            var request = new Version
             {
-                SlotType = new CreateVersionSlotType
+                SlotType = new VersionSlotType
                 {
                     Description = description,
                     Definition = new VersionDefinition(supplier)

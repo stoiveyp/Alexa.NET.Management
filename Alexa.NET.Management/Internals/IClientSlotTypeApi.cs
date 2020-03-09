@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Alexa.NET.Management.SlotType;
 using Refit;
+using Version = Alexa.NET.Management.SlotType.Version;
 
 namespace Alexa.NET.Management.Internals
 {
@@ -32,6 +33,6 @@ namespace Alexa.NET.Management.Internals
         Task<HttpResponseMessage> Delete(string slotId);
 
         [Post("/skills/api/custom/interactionModel/slotTypes/{slotId}/versions")]
-        Task<HttpResponseMessage> CreateVersion(string slotId, [Body]CreateVersionRequest definition);
+        Task<HttpResponseMessage> CreateVersion(string slotId, [Body]Version definition);
     }
 }

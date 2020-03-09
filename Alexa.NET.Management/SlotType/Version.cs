@@ -5,9 +5,9 @@ using Newtonsoft.Json;
 
 namespace Alexa.NET.Management.SlotType
 {
-    public class CreateVersionRequest
+    public class Version
     {
         [JsonProperty("slotType")]
-        public CreateVersionSlotType SlotType { get; set; }
+        public VersionSlotType SlotType { get; set; }
     }
 }
