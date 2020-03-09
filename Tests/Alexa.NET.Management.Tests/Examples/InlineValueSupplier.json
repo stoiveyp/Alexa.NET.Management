@@ -1,0 +1,14 @@
+{
+  "type": "InlineValueSupplier",
+  "values": [
+    {
+      "id": "seattle",
+      "name": {
+        "value": "seattle",
+        "synonyms": [
+          "sea"
+        ]
+      }
+    }
+  ]
+}

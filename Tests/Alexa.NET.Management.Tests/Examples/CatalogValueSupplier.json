@@ -1,0 +1,7 @@
+{
+  "type": "CatalogValueSupplier",
+  "valueCatalog": {
+    "catalogId": "amzn1.ask.interactionModel.catalog.123",
+    "version": "123"
+  }
+}

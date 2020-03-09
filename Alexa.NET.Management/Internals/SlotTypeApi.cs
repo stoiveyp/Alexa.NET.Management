@@ -63,14 +63,18 @@ namespace Alexa.NET.Management.Internals
             await response.CodeOrError(HttpStatusCode.NoContent);
         }
 
-        public async Task CreateVersion(string slotId, SlotValuesDefinition definition, string description = null)
+        public async Task<string> CreateVersion(string slotId, ValueSupplier supplier, string description = null)
         {
-
-        }
-
-        public async Task CreateVersion(string slotId, CatalogValuesDefinition definition, string description = null)
-        {
-
+            var request = new CreateVersionRequest
+            {
+                SlotType = new CreateVersionSlotType
+                {
+                    Description = description,
+                    Definition = new VersionDefinition(supplier)
+                }
+            };
+            var response = await Client.CreateVersion(slotId, request);
+            return await response.StringOrError(HttpStatusCode.Accepted);
         }
     }
 }

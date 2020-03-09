@@ -4,7 +4,9 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Alexa.NET.Management.InteractionModel;
 using Alexa.NET.Management.Internals;
+using Alexa.NET.Management.Nlu.AnnotationSet;
 using Alexa.NET.Management.SlotType;
 using Newtonsoft.Json;
 using Xunit;
@@ -84,9 +86,46 @@ namespace Alexa.NET.Management.Tests
         }
 
         [Fact]
-        public async Task CreateVersion()
+        public async Task CreateInlineVersion()
         {
-            throw new NotImplementedException();
+            var supplier = new InlineValueSupplier(new SlotTypeValue{Id="seattle",Name = new SlotTypeValueName{Value="seattle",Synonyms = new []{"sea"}}});
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                var requestBody = await req.Content.ReadAsStringAsync();
+                var request = JsonConvert.DeserializeObject<CreateVersionRequest>(requestBody);
+                Assert.Equal("testdesc",request.SlotType.Description);
+                var inline = Assert.IsType<InlineValueSupplier>(request.SlotType.Definition.ValueSupplier);
+                Assert.True(Utility.CompareJson(inline,"InlineValueSupplier.json"));
+                Assert.Equal("/v1/skills/api/custom/interactionModel/slotTypes/ABC123/versions", req.RequestUri.PathAndQuery);
+                Assert.Equal(HttpMethod.Post, req.Method);
+                var resp = new HttpResponseMessage(HttpStatusCode.Accepted);
+                resp.Headers.Add("location","ABC456");
+                return resp;
+            }));
+            var code = await management.SlotType.CreateVersion("ABC123", supplier, "testdesc");
+            Assert.Equal("ABC456", code);
         }
+
+        [Fact]
+        public async Task CreateCatalogVersion()
+        {
+            var supplier = new CatalogValueSupplier("amzn1.ask.interactionModel.catalog.123","123");
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                var requestBody = await req.Content.ReadAsStringAsync();
+                var request = JsonConvert.DeserializeObject<CreateVersionRequest>(requestBody);
+                Assert.Equal("testdesc", request.SlotType.Description);
+                var catalog = Assert.IsType<CatalogValueSupplier>(request.SlotType.Definition.ValueSupplier);
+                Assert.True(Utility.CompareJson(catalog, "CatalogValueSupplier.json"));
+                Assert.Equal("/v1/skills/api/custom/interactionModel/slotTypes/ABC123/versions", req.RequestUri.PathAndQuery);
+                Assert.Equal(HttpMethod.Post, req.Method);
+                var resp = new HttpResponseMessage(HttpStatusCode.Accepted);
+                resp.Headers.Add("location", "ABC456");
+                return resp;
+            }));
+            var code = await management.SlotType.CreateVersion("ABC123", supplier, "testdesc");
+            Assert.Equal("ABC456",code);
+        }
+
     }
 }

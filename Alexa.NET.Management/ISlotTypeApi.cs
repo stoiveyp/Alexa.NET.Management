@@ -18,8 +18,6 @@ namespace Alexa.NET.Management
 
         Task Delete(string slotId);
 
-        Task CreateVersion(string slotId, SlotValuesDefinition definition, string description = null);
-
-        Task CreateVersion(string slotId, CatalogValuesDefinition definition, string description = null);
+        Task<string> CreateVersion(string slotId, ValueSupplier supplier, string description = null);
     }
 }
