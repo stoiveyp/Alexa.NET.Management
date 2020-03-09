@@ -62,5 +62,15 @@ namespace Alexa.NET.Management.Internals
             var response = await Client.Delete(slotId);
             await response.CodeOrError(HttpStatusCode.NoContent);
         }
+
+        public async Task CreateVersion(string slotId, SlotValuesDefinition definition, string description = null)
+        {
+
+        }
+
+        public async Task CreateVersion(string slotId, CatalogValuesDefinition definition, string description = null)
+        {
+
+        }
     }
 }

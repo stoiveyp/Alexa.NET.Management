@@ -30,5 +30,8 @@ namespace Alexa.NET.Management.Internals
 
         [Delete("/skills/api/custom/interactionModel/slotTypes/{slotId}")]
         Task<HttpResponseMessage> Delete(string slotId);
+
+        [Post("/skills/api/custom/interactionModel/slotTypes/{slotId}/versions")]
+        Task<HttpResponseMessage> CreateVersion(string slotId, [Body]CreateVersionRequest definition);
     }
 }

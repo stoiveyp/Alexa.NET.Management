@@ -17,5 +17,9 @@ namespace Alexa.NET.Management
         Task<ListSlotResponse> List(string vendorId, string nextToken);
 
         Task Delete(string slotId);
+
+        Task CreateVersion(string slotId, SlotValuesDefinition definition, string description = null);
+
+        Task CreateVersion(string slotId, CatalogValuesDefinition definition, string description = null);
     }
 }

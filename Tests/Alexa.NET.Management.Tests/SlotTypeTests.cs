@@ -82,5 +82,11 @@ namespace Alexa.NET.Management.Tests
             }, HttpStatusCode.NoContent));
             await management.SlotType.Delete("ABC123");
         }
+
+        [Fact]
+        public async Task CreateVersion()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
