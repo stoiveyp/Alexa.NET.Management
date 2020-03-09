@@ -56,5 +56,11 @@ namespace Alexa.NET.Management.Internals
         {
             return Client.List(vendorId, nextToken);
         }
+
+        public async Task Delete(string slotId)
+        {
+            var response = await Client.Delete(slotId);
+            await response.CodeOrError(HttpStatusCode.NoContent);
+        }
     }
 }

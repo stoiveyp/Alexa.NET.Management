@@ -27,5 +27,8 @@ namespace Alexa.NET.Management.Internals
 
         [Get("/skills/api/custom/interactionModel/slotTypes?vendorId={vendorId}")]
         Task<ListSlotResponse> List(string vendorId, string nextToken);
+
+        [Delete("/skills/api/custom/interactionModel/slotTypes/{slotId}")]
+        Task<HttpResponseMessage> Delete(string slotId);
     }
 }

@@ -15,5 +15,7 @@ namespace Alexa.NET.Management
             SortDirection sortDirection = SortDirection.Descending);
 
         Task<ListSlotResponse> List(string vendorId, string nextToken);
+
+        Task Delete(string slotId);
     }
 }

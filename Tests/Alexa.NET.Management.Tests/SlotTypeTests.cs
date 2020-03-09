@@ -71,5 +71,16 @@ namespace Alexa.NET.Management.Tests
             var linkedSlot = Assert.Single(response.SlotTypes);
             Assert.Single(linkedSlot.Links);
         }
+
+        [Fact]
+        public async Task Delete()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            {
+                Assert.Equal("/v1/skills/api/custom/interactionModel/slotTypes/ABC123", req.RequestUri.PathAndQuery);
+                Assert.Equal(HttpMethod.Delete, req.Method);
+            }, HttpStatusCode.NoContent));
+            await management.SlotType.Delete("ABC123");
+        }
     }
 }
