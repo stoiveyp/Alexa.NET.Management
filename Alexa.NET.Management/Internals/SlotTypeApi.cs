@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Alexa.NET.Management.SlotType;
 using Refit;
@@ -32,6 +33,13 @@ namespace Alexa.NET.Management.Internals
         {
             var response = await Client.Get(slotId);
             return response.SlotType;
+        }
+
+        public async Task Update(string slotId, string description)
+        {
+            var request = new UpdateSlotRequest {SlotType = new SlotDescription {Description = description}};
+            var response = await Client.Update(slotId, request);
+            await response.CodeOrError(HttpStatusCode.NoContent);
         }
     }
 }

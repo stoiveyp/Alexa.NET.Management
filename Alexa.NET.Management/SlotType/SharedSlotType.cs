@@ -10,10 +10,4 @@ namespace Alexa.NET.Management.SlotType
         [JsonProperty("description",NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
     }
-
-    public class GetSlotResponse
-    {
-        [JsonProperty("slotType")]
-        public SharedSlotType SlotType { get; set; }
-    }
 }

@@ -43,5 +43,18 @@ namespace Alexa.NET.Management.Tests
             Assert.Equal("testslot",response.Name);
             Assert.Equal("desc",response.Description);
         }
+
+        public async Task Update()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                var requestBody = await req.Content.ReadAsStringAsync();
+                var request = JsonConvert.DeserializeObject<UpdateSlotRequest>(requestBody);
+                Assert.Equal("desc2", request.SlotType.Description);
+                Assert.Equal(HttpMethod.Post, req.Method);
+                Assert.Equal("/v1/skills/api/custom/interactionModel/slotTypes/testslot/update", req.RequestUri.PathAndQuery);
+            }, new CreateSlotResponse { SlotType = new CreateSlotResponseType { Id = "ABC123" } }));
+            await management.SlotType.Update("testslot", "desc2");
+        }
     }
 }

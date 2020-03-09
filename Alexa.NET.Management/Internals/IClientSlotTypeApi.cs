@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Alexa.NET.Management.SlotType;
@@ -14,5 +15,8 @@ namespace Alexa.NET.Management.Internals
 
         [Get("/skills/api/custom/interactionModel/slotTypes/{slotId}")]
         Task<GetSlotResponse> Get(string slotId);
+
+        [Post("/skills/api/custom/interactionModel/slotTypes/{slotId}/update")]
+        Task<HttpResponseMessage> Update(string slotId, [Body]UpdateSlotRequest request);
     }
 }
