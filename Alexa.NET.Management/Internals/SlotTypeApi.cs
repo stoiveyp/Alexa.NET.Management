@@ -6,7 +6,7 @@ using Refit;
 
 namespace Alexa.NET.Management.Internals
 {
-    public class SlotTypeApi:ISlotTypeApi
+    public class SlotTypeApi : ISlotTypeApi
     {
         private IClientSlotTypeApi Client { get; }
 
@@ -37,9 +37,24 @@ namespace Alexa.NET.Management.Internals
 
         public async Task Update(string slotId, string description)
         {
-            var request = new UpdateSlotRequest {SlotType = new SlotDescription {Description = description}};
+            var request = new UpdateSlotRequest { SlotType = new SlotDescription { Description = description } };
             var response = await Client.Update(slotId, request);
             await response.CodeOrError(HttpStatusCode.NoContent);
+        }
+
+        public Task<ListSlotResponse> List(string vendorId, SortDirection sortDirection = SortDirection.Descending)
+        {
+            return Client.List(vendorId, sortDirection);
+        }
+
+        public Task<ListSlotResponse> List(string vendorId, int maxResults, SortDirection sortDirection = SortDirection.Descending)
+        {
+            return Client.List(vendorId, maxResults, sortDirection);
+        }
+
+        public Task<ListSlotResponse> List(string vendorId, string nextToken)
+        {
+            return Client.List(vendorId, nextToken);
         }
     }
 }
