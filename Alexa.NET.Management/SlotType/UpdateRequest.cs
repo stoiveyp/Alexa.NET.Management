@@ -2,7 +2,7 @@
 
 namespace Alexa.NET.Management.SlotType
 {
-    public class UpdateSlotRequest
+    public class UpdateRequest
     {
         [JsonProperty("slotType")]
         public SlotDescription SlotType { get; set; }

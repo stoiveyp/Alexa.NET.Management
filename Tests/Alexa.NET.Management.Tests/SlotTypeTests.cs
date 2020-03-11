@@ -48,7 +48,7 @@ namespace Alexa.NET.Management.Tests
             var management = new ManagementApi("xxx", new ActionHandler(async req =>
             {
                 var requestBody = await req.Content.ReadAsStringAsync();
-                var request = JsonConvert.DeserializeObject<UpdateSlotRequest>(requestBody);
+                var request = JsonConvert.DeserializeObject<UpdateRequest>(requestBody);
                 Assert.Equal("desc2", request.SlotType.Description);
                 Assert.Equal(HttpMethod.Post, req.Method);
                 Assert.Equal("/v1/skills/api/custom/interactionModel/slotTypes/testslot/update", req.RequestUri.PathAndQuery);
@@ -161,6 +161,20 @@ namespace Alexa.NET.Management.Tests
                 Version = "ABC123"
             }}));
             var code = await management.SlotType.BuildStatus("ABC123","ABC456");
+        }
+
+        [Fact]
+        public async Task UpdateVersion()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                var requestBody = await req.Content.ReadAsStringAsync();
+                var request = JsonConvert.DeserializeObject<UpdateRequest>(requestBody);
+                Assert.Equal("desc2", request.SlotType.Description);
+                Assert.Equal(HttpMethod.Post, req.Method);
+                Assert.Equal("/v1/skills/api/custom/interactionModel/slotTypes/testslot/versions/version/update", req.RequestUri.PathAndQuery);
+            }, HttpStatusCode.NoContent));
+            await management.SlotType.UpdateVersion("testslot", "version","desc2");
         }
 
     }

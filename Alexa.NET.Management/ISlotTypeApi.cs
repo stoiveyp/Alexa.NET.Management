@@ -21,5 +21,6 @@ namespace Alexa.NET.Management
         Task<string> CreateVersion(string slotId, ValueSupplier supplier, string description = null);
         Task<CreatedVersion> GetVersion(string slotId, string version);
         Task<SlotBuildStatus> BuildStatus(string slotId, string updateRequestId);
+        Task UpdateVersion(string slotId, string version, string description);
     }
 }

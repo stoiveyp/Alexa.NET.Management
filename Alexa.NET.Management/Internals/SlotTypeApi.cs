@@ -37,7 +37,7 @@ namespace Alexa.NET.Management.Internals
 
         public async Task Update(string slotId, string description)
         {
-            var request = new UpdateSlotRequest { SlotType = new SlotDescription { Description = description } };
+            var request = new UpdateRequest { SlotType = new SlotDescription { Description = description } };
             var response = await Client.Update(slotId, request);
             await response.CodeOrError(HttpStatusCode.NoContent);
         }
@@ -85,6 +85,18 @@ namespace Alexa.NET.Management.Internals
         public Task<SlotBuildStatus> BuildStatus(string slotId, string updateRequestId)
         {
             return Client.BuildStatus(slotId, updateRequestId);
+        }
+
+        public Task UpdateVersion(string slotId, string version, string description)
+        {
+            var request = new UpdateRequest
+            {
+                SlotType = new SlotDescription
+                {
+                    Description = description
+                }
+            };
+            return Client.UpdateVersion(slotId, version, request);
         }
     }
 }

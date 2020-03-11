@@ -18,7 +18,7 @@ namespace Alexa.NET.Management.Internals
         Task<GetSlotResponse> Get(string slotId);
 
         [Post("/skills/api/custom/interactionModel/slotTypes/{slotId}/update")]
-        Task<HttpResponseMessage> Update(string slotId, [Body]UpdateSlotRequest request);
+        Task<HttpResponseMessage> Update(string slotId, [Body]UpdateRequest request);
 
         [Get("/skills/api/custom/interactionModel/slotTypes?vendorId={vendorId}")]
         Task<ListSlotResponse> List(string vendorId, SortDirection sortDirection);
@@ -40,5 +40,8 @@ namespace Alexa.NET.Management.Internals
 
         [Get("/skills/api/custom/interactionModel/slotTypes/{slotId}/updateRequest/{updateRequestId}")]
         Task<SlotBuildStatus> BuildStatus(string slotId, string updateRequestId);
+
+        [Post("/skills/api/custom/interactionModel/slotTypes/{slotId}/versions/{version}/update")]
+        Task UpdateVersion(string slotId, string version, [Body]UpdateRequest request);
     }
 }
