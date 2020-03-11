@@ -1,0 +1,22 @@
+{
+  "nextToken": "string",
+  "_links": {
+    "next": {
+      "href": "http://next_href"
+    },
+    "self": {
+      "href": "http://current_href"
+    }
+  },
+  "slotTypeVersions": [
+    {
+      "version": "version",
+      "description": "description",
+      "_links": {
+        "self": {
+          "href": "http://current_href"
+        }
+      }
+    }
+  ]
+}

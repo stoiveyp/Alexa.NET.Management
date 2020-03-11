@@ -1,0 +1,23 @@
+{
+  "nextToken": "string",
+  "_links": {
+    "next": {
+      "href": "http://next_href"
+    },
+    "self": {
+      "href": "http://current_href"
+    }
+  },
+  "slotTypes": [
+    {
+      "id": "ABC123",
+      "name": "slot",
+      "description": "description",
+      "_links": {
+        "self": {
+          "href": "http://current_href"
+        }
+      }
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -12,6 +13,24 @@ namespace Alexa.NET.Management
             if (response.StatusCode == expectedCode)
             {
                 return;
+            }
+
+            var body = string.Empty;
+            if (response.Content != null)
+            {
+                body = await response.Content.ReadAsStringAsync();
+            }
+
+            throw new InvalidOperationException(
+                $"Expected Status Code {(int)expectedCode}. Received {(int)response.StatusCode}. Response Body: {body}");
+
+        }
+
+        public static async Task<string> StringOrError(this HttpResponseMessage response, HttpStatusCode expectedCode)
+        {
+            if (response.StatusCode == expectedCode)
+            {
+                return response.Headers.GetValues("location").First();
             }
 
             var body = string.Empty;
