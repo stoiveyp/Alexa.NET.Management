@@ -76,5 +76,15 @@ namespace Alexa.NET.Management.Internals
             var response = await Client.CreateVersion(slotId, request);
             return await response.StringOrError(HttpStatusCode.Accepted);
         }
+
+        public Task<CreatedVersion> GetVersion(string slotId, string version)
+        {
+            return Client.GetVersion(slotId, version);
+        }
+
+        public Task<SlotBuildStatus> BuildStatus(string slotId, string updateRequestId)
+        {
+            return Client.BuildStatus(slotId, updateRequestId);
+        }
     }
 }

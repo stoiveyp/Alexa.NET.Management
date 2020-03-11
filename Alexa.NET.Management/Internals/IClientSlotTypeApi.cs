@@ -34,5 +34,11 @@ namespace Alexa.NET.Management.Internals
 
         [Post("/skills/api/custom/interactionModel/slotTypes/{slotId}/versions")]
         Task<HttpResponseMessage> CreateVersion(string slotId, [Body]Version definition);
+
+        [Get("/skills/api/custom/interactionModel/slotTypes/{slotId}/versions/{versionId}")]
+        Task<CreatedVersion> GetVersion(string slotId, string versionId);
+
+        [Get("/skills/api/custom/interactionModel/slotTypes/{slotId}/updateRequest/{updateRequestId}")]
+        Task<SlotBuildStatus> BuildStatus(string slotId, string updateRequestId);
     }
 }

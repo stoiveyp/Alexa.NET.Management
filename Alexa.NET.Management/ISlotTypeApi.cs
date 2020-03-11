@@ -19,5 +19,7 @@ namespace Alexa.NET.Management
         Task Delete(string slotId);
 
         Task<string> CreateVersion(string slotId, ValueSupplier supplier, string description = null);
+        Task<CreatedVersion> GetVersion(string slotId, string version);
+        Task<SlotBuildStatus> BuildStatus(string slotId, string updateRequestId);
     }
 }
