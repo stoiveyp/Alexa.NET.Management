@@ -57,6 +57,21 @@ namespace Alexa.NET.Management.Internals
             return Client.List(vendorId, nextToken);
         }
 
+        public Task<ListSlotVersionsResponse> ListVersions(string slotId, SortDirection sortDirection = SortDirection.Descending)
+        {
+            return Client.ListVersions(slotId, sortDirection);
+        }
+
+        public Task<ListSlotVersionsResponse> ListVersions(string slotId, int maxResults, SortDirection sortDirection = SortDirection.Descending)
+        {
+            return Client.ListVersions(slotId, maxResults,sortDirection);
+        }
+
+        public Task<ListSlotVersionsResponse> ListVersions(string slotId, string nextToken)
+        {
+            return Client.ListVersions(slotId, nextToken);
+        }
+
         public async Task Delete(string slotId)
         {
             var response = await Client.Delete(slotId);
@@ -77,7 +92,7 @@ namespace Alexa.NET.Management.Internals
             return await response.StringOrError(HttpStatusCode.Accepted);
         }
 
-        public Task<CreatedVersion> GetVersion(string slotId, string version)
+        public Task<CreatedVersion> Get(string slotId, string version)
         {
             return Client.GetVersion(slotId, version);
         }
@@ -87,7 +102,7 @@ namespace Alexa.NET.Management.Internals
             return Client.BuildStatus(slotId, updateRequestId);
         }
 
-        public Task UpdateVersion(string slotId, string version, string description)
+        public async Task Update(string slotId, string version, string description)
         {
             var request = new UpdateRequest
             {
@@ -96,7 +111,13 @@ namespace Alexa.NET.Management.Internals
                     Description = description
                 }
             };
-            return Client.UpdateVersion(slotId, version, request);
+            var response = await Client.UpdateVersion(slotId, version, request);
+            await response.CodeOrError(HttpStatusCode.NoContent);
+        }
+        public async Task Delete(string slotId, string versionId)
+        {
+            var response = await Client.DeleteVersion(slotId,versionId);
+            await response.CodeOrError(HttpStatusCode.NoContent);
         }
     }
 }

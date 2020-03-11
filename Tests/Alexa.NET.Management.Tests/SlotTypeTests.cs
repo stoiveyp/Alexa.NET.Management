@@ -126,7 +126,7 @@ namespace Alexa.NET.Management.Tests
         [Fact]
         public async Task GetSlotVersion()
         {
-            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
             {
                 Assert.Equal("/v1/skills/api/custom/interactionModel/slotTypes/ABC123/versions/~current", req.RequestUri.PathAndQuery);
                 Assert.Equal(HttpMethod.Get,req.Method);
@@ -143,7 +143,7 @@ namespace Alexa.NET.Management.Tests
                     }
                 }
             }));
-            var code = await management.SlotType.GetVersion("ABC123", KnownVersions.Current);
+            var code = await management.SlotType.Get("ABC123", KnownVersions.Current);
             Assert.Equal("random",code.SlotType.Version);
             Assert.True(Utility.CompareJson(code.SlotType.Definition.ValueSupplier,"CatalogValueSupplier.json"));
         }
@@ -151,7 +151,7 @@ namespace Alexa.NET.Management.Tests
         [Fact]
         public async Task GetBuildStatus()
         {
-            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
             {
                 Assert.Equal("/v1/skills/api/custom/interactionModel/slotTypes/ABC123/updateRequest/ABC456", req.RequestUri.PathAndQuery);
                 Assert.Equal(HttpMethod.Get, req.Method);
@@ -174,7 +174,23 @@ namespace Alexa.NET.Management.Tests
                 Assert.Equal(HttpMethod.Post, req.Method);
                 Assert.Equal("/v1/skills/api/custom/interactionModel/slotTypes/testslot/versions/version/update", req.RequestUri.PathAndQuery);
             }, HttpStatusCode.NoContent));
-            await management.SlotType.UpdateVersion("testslot", "version","desc2");
+            await management.SlotType.Update("testslot", "version","desc2");
+        }
+
+        [Fact]
+        public async Task ListVersions()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal("/v1/skills/api/custom/interactionModel/slotTypes/ABC123/versions?maxResults=10&sortDirection=desc", req.RequestUri.PathAndQuery);
+            }, Utility.ExampleFileContent<ListSlotVersionsResponse>("ListSlotVersionResponse.json")));
+            var response = await management.SlotType.ListVersions("ABC123", 10);
+            Assert.Equal(2, response.Links.Count);
+            var linkedSlot = Assert.Single(response.SlotTypeVersions);
+            Assert.Single(linkedSlot.Links);
+            Assert.Equal("version",linkedSlot.Version);
+            Assert.Equal("description",linkedSlot.Description);
         }
 
     }

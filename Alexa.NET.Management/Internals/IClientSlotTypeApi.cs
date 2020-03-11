@@ -29,6 +29,15 @@ namespace Alexa.NET.Management.Internals
         [Get("/skills/api/custom/interactionModel/slotTypes?vendorId={vendorId}")]
         Task<ListSlotResponse> List(string vendorId, string nextToken);
 
+        [Get("/skills/api/custom/interactionModel/slotTypes/{slotId}/versions")]
+        Task<ListSlotVersionsResponse> ListVersions(string slotId, SortDirection sortDirection);
+
+        [Get("/skills/api/custom/interactionModel/slotTypes/{slotId}/versions")]
+        Task<ListSlotVersionsResponse> ListVersions(string slotId, int maxResults, SortDirection sortDirection);
+
+        [Get("/skills/api/custom/interactionModel/slotTypes/{slotId}/versions")]
+        Task<ListSlotVersionsResponse> ListVersions(string slotId, string nextToken);
+
         [Delete("/skills/api/custom/interactionModel/slotTypes/{slotId}")]
         Task<HttpResponseMessage> Delete(string slotId);
 
@@ -42,6 +51,9 @@ namespace Alexa.NET.Management.Internals
         Task<SlotBuildStatus> BuildStatus(string slotId, string updateRequestId);
 
         [Post("/skills/api/custom/interactionModel/slotTypes/{slotId}/versions/{version}/update")]
-        Task UpdateVersion(string slotId, string version, [Body]UpdateRequest request);
+        Task<HttpResponseMessage> UpdateVersion(string slotId, string version, [Body]UpdateRequest request);
+
+        [Delete("/skills/api/custom/interactionModel/slotTypes/{slotId}/versions/{versionId}")]
+        Task<HttpResponseMessage> DeleteVersion(string slotId, string versionId);
     }
 }

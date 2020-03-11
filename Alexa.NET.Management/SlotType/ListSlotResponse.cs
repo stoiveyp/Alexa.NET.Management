@@ -16,4 +16,16 @@ namespace Alexa.NET.Management.SlotType
         [JsonProperty("slotTypes")]
         public LinkedSharedSlotType[] SlotTypes { get; set; }
     }
+
+    public class ListSlotVersionsResponse
+    {
+        [JsonProperty("nextToken", NullValueHandling = NullValueHandling.Ignore)]
+        public string NextToken { get; set; }
+
+        [JsonProperty("_links")]
+        public Dictionary<string, ApiLink> Links { get; set; }
+
+        [JsonProperty("slotTypeVersions")]
+        public LinkedVersion[] SlotTypeVersions { get; set; }
+    }
 }

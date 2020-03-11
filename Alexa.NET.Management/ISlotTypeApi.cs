@@ -16,11 +16,20 @@ namespace Alexa.NET.Management
 
         Task<ListSlotResponse> List(string vendorId, string nextToken);
 
+        Task<ListSlotVersionsResponse> ListVersions(string slotId, SortDirection sortDirection = SortDirection.Descending);
+
+        Task<ListSlotVersionsResponse> ListVersions(string slotId, int maxResults,
+            SortDirection sortDirection = SortDirection.Descending);
+
+        Task<ListSlotVersionsResponse> ListVersions(string slotId, string nextToken);
+
         Task Delete(string slotId);
 
         Task<string> CreateVersion(string slotId, ValueSupplier supplier, string description = null);
-        Task<CreatedVersion> GetVersion(string slotId, string version);
+        Task<CreatedVersion> Get(string slotId, string version);
         Task<SlotBuildStatus> BuildStatus(string slotId, string updateRequestId);
-        Task UpdateVersion(string slotId, string version, string description);
+        Task Update(string slotId, string version, string description);
+
+        Task Delete(string slotId, string version);
     }
 }
