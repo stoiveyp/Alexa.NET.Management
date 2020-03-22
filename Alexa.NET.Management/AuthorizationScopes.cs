@@ -8,5 +8,6 @@
         public const string ReadWriteModels = "alexa::ask:models:readwrite";
         public const string TestingSkills = "alexa::ask:skills:test";
         public const string Subscriptions = "alexa::ask:subscriptions";
+        public const string ReadWriteTimers = "alexa::alerts:timers:skill:readwrite";
     }
 }
