@@ -12,7 +12,7 @@
     <Version>5.0.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageReleaseNotes>Add Audit API
-Update Skill Invocation to v2
+Update Skill Invocation and simulation to v2
 Internal refactoring</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <LangVersion>8</LangVersion>
