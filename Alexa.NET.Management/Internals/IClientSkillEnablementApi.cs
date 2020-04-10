@@ -7,13 +7,13 @@ namespace Alexa.NET.Management.Internals
 {
     public interface IClientSkillEnablementApi
     {
-        [Put("/skills/{skillId}/stages/{stage}/enablement")]
+        [Put("/v1/skills/{skillId}/stages/{stage}/enablement")]
         Task<HttpResponseMessage> Enable(string skillId, SkillStage stage);
 
-        [Get("/skills/{skillId}/stages/{stage}/enablement")]
+        [Get("/v1/skills/{skillId}/stages/{stage}/enablement")]
         Task<HttpResponseMessage> CheckEnablement(string skillId, SkillStage stage);
 
-        [Delete("/skills/{skillId}/stages/{stage}/enablement")]
+        [Delete("/v1/skills/{skillId}/stages/{stage}/enablement")]
         Task<HttpResponseMessage> Disable(string skillId, SkillStage stage);
     }
 }

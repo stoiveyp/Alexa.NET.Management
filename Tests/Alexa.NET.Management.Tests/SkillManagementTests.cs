@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Alexa.NET.Management.Api;
 using Alexa.NET.Management.Internals;
 using Alexa.NET.Management.Skills;
 using Newtonsoft.Json;
@@ -45,6 +46,22 @@ namespace Alexa.NET.Management.Tests
 
             var response = await management.Skills.Submit("skillId", false);
             Assert.Equal("/testresponse",response.Location.ToString());
+        }
+
+        [Fact]
+        public async Task Invoke()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Post, req.Method);
+                Assert.Equal("/v2/skills/skillId/stages/development/invocations", req.RequestUri.PathAndQuery);
+                var raw = await req.Content.ReadAsStringAsync();
+                var request = JsonConvert.DeserializeObject<InvocationRequest>(raw);
+                Assert.Equal(InvocationEndpoint.Default,request.Endpoint);
+                Assert.NotNull(request.Request);
+            },new InvocationResponse()));
+
+            await management.Skills.Invoke("skillId",SkillStage.Development,new InvocationRequest(InvocationEndpoint.Default,null));
         }
 
         [Fact]

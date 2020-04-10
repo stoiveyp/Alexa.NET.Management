@@ -10,7 +10,7 @@ namespace Alexa.NET.Management.Nlu.AnnotationSet
         [JsonProperty("utterance")]
         public string Utterance { get; set; }
         [JsonProperty("referenceTimestamp",NullValueHandling = NullValueHandling.Ignore),
-         JsonConverter(typeof(NluTimestampConverter))]
+         JsonConverter(typeof(Iso8601Converter))]
         public DateTime? ReferenceTimestamp { get; set; }
     }
 }

@@ -6,11 +6,11 @@ namespace Alexa.NET.Management.Nlu.Evaluation
     public class EvaluationStatus
     {
         [JsonProperty("startTimestamp"),
-        JsonConverter(typeof(NluTimestampConverter))]
+        JsonConverter(typeof(Iso8601Converter))]
         public DateTime StartTimestamp { get; set; }
 
         [JsonProperty("endTimestamp",NullValueHandling = NullValueHandling.Ignore),
-         JsonConverter(typeof(NluTimestampConverter))]
+         JsonConverter(typeof(Iso8601Converter))]
         public DateTime? EndTimestamp { get; set; }
 
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]

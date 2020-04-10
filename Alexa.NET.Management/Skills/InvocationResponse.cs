@@ -5,9 +5,6 @@ namespace Alexa.NET.Management.Skills
 {
     public class InvocationResponse
     {
-        [JsonProperty("id")]
-        public string Id { get; set; }
-
         [JsonProperty("status"),JsonConverter(typeof(StringEnumConverter))]
         public InvocationStatus Status { get; set; }
 

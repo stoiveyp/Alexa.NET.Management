@@ -11,13 +11,13 @@ namespace Alexa.NET.Management.Internals
 {
     public interface IClientAccountLinkingApi
     {
-        [Get("/skills/{skillId}/stages/{stage}/accountLinkingClient")]
+        [Get("/v1/skills/{skillId}/stages/{stage}/accountLinkingClient")]
         Task<AccountLinkInformation> Get(string skillId, SkillStage stage);
 
-        [Put("/skills/{skillId}/stages/{stage}/accountLinkingClient")]
+        [Put("/v1/skills/{skillId}/stages/{stage}/accountLinkingClient")]
         Task Update(string skillId, SkillStage stage, [Body]AccountLinkUpdate information);
 
-        [Delete("/skills/{skillId}/stages/{stage}/accountLinkingClient")]
+        [Delete("/v1/skills/{skillId}/stages/{stage}/accountLinkingClient")]
         Task<HttpResponseMessage> Delete(string skillId, SkillStage stage);
     }
 }

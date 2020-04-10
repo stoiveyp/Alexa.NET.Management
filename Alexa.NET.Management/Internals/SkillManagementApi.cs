@@ -82,19 +82,19 @@ namespace Alexa.NET.Management.Internals
             });
         }
 
-        public Task<InvocationResponse> Invoke(string skillId, InvocationRequest request)
+        public Task<InvocationResponse> Invoke(string skillId, SkillStage stage, InvocationRequest request)
         {
-            return Inner.Invoke(skillId, request);
+            return Inner.Invoke(skillId, stage, request);
         }
 
-        public Task<SimulationResponse> Simulate(string skillId, SimulationRequest request)
+        public Task<SimulationResponse> Simulate(string skillId, SkillStage stage, SimulationRequest request)
         {
-            return Inner.Simulate(skillId, request);
+            return Inner.Simulate(skillId, stage, request);
         }
 
-        public Task<SimulationResponse> SimulationResult(string skillId, string simulationId)
+        public Task<SimulationResponse> SimulationResult(string skillId, SkillStage stage, string simulationId)
         {
-            return Inner.SimulationResult(skillId, simulationId);
+            return Inner.SimulationResult(skillId, stage, simulationId);
         }
 
         public Task<SkillListResponse> List(string vendorId)

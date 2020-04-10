@@ -9,24 +9,24 @@ namespace Alexa.NET.Management
 {
     public class ManagementApi
     {
-        public const string V1BaseAddress = "https://api.amazonalexa.com/v1";
+        public const string BaseAddress = "https://api.amazonalexa.com";
 
-        public ManagementApi(string token) : this(new Uri(V1BaseAddress, UriKind.Absolute), token, null)
+        public ManagementApi(string token) : this(new Uri(BaseAddress, UriKind.Absolute), token, null)
         {
 
         }
 
-        public ManagementApi(string token, HttpMessageHandler handler) : this(new Uri(V1BaseAddress, UriKind.Absolute), token, handler)
+        public ManagementApi(string token, HttpMessageHandler handler) : this(new Uri(BaseAddress, UriKind.Absolute), token, handler)
         {
 
         }
 
-        public ManagementApi(Func<Task<string>> getToken) : this(new Uri(V1BaseAddress, UriKind.Absolute), getToken, null)
+        public ManagementApi(Func<Task<string>> getToken) : this(new Uri(BaseAddress, UriKind.Absolute), getToken, null)
         {
 
         }
 
-        public ManagementApi(Func<Task<string>> getToken, HttpMessageHandler handler) : this(new Uri(V1BaseAddress, UriKind.Absolute), getToken, handler)
+        public ManagementApi(Func<Task<string>> getToken, HttpMessageHandler handler) : this(new Uri(BaseAddress, UriKind.Absolute), getToken, handler)
         {
 
         }
@@ -44,14 +44,13 @@ namespace Alexa.NET.Management
         }
 
         public ManagementApi(Uri baseAddress, Func<Task<string>> getToken, HttpMessageHandler handler):this(
-            new HttpClient(new NoSchemeAuthenticationHeaderClient(getToken, handler)) { BaseAddress = baseAddress },
-            new HttpClient(new NoSchemeAuthenticationHeaderClient(getToken, handler)) { BaseAddress = new Uri(string.Join("", baseAddress.Scheme, "://", baseAddress.Host, "/v0"), UriKind.Absolute) }
-            )
+            new HttpClient(new NoSchemeAuthenticationHeaderClient(getToken, handler)) { BaseAddress = baseAddress }
+        )
         {
 
         }
 
-        public ManagementApi(HttpClient client, HttpClient v0Client)
+        public ManagementApi(HttpClient client)
         {
             Skills = new SkillManagementApi(client);
 
@@ -79,13 +78,15 @@ namespace Alexa.NET.Management
                 new NluAnnotationSetApi(client),
                 new NluEvaluationApi(client));
 
-            CatalogManagement = new SkillCatalogManagementApi(v0Client);
+            CatalogManagement = new SkillCatalogManagementApi(client);
 
             Metrics = RestService.For<IMetricsApi>(client, ManagementRefitSettings.Create());
 
-            SkillDevelopment = new SkillDevelopmentApi(v0Client);
+            SkillDevelopment = new SkillDevelopmentApi(client);
 
             SlotType = new SlotTypeApi(client);
+
+            AuditLogs = RestService.For<IAuditLogsApi>(client,ManagementRefitSettings.Create());
         }
 
         public ISkillDevelopmentApi SkillDevelopment { get; set; }
@@ -118,5 +119,7 @@ namespace Alexa.NET.Management
         public NluApiContainer Nlu { get; set; }
 
         public ISlotTypeApi SlotType { get; set; }
+
+        public IAuditLogsApi AuditLogs { get; set; }
     }
 }

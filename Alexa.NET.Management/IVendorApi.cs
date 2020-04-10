@@ -5,7 +5,7 @@ namespace Alexa.NET.Management
 {
     public interface IVendorApi
     {
-        [Get("/vendors")]
+        [Get("/v1/vendors")]
         Task<VendorResponse> Get();
     }
 }

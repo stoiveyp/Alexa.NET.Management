@@ -8,16 +8,16 @@ namespace Alexa.NET.Management.Internals
 {
     internal interface IClientNluEvaluationApi
     {
-        [Post("/skills/{skillId}/nluEvaluations")]
+        [Post("/v1/skills/{skillId}/nluEvaluations")]
         Task<HttpResponseMessage> Create(string skillId, CreateEvaluationRequest request);
 
-        [Get("/skills/{skillId}/nluEvaluations")]
+        [Get("/v1/skills/{skillId}/nluEvaluations")]
         Task<ListEvaluationResponse> List(string skillId, string nextToken, string locale, SkillStage? stage, string annotationId, int? maxResults);
 
-        [Get("/skills/{skillId}/nluEvaluations/{evaluationId}")]
+        [Get("/v1/skills/{skillId}/nluEvaluations/{evaluationId}")]
         Task<EvaluationStatusWithLinks> Get(string skillId, string evaluationId);
 
-        [Get("/skills/{skillId}/nluEvaluations/{evaluationId}/results")]
+        [Get("/v1/skills/{skillId}/nluEvaluations/{evaluationId}/results")]
         Task<EvaluationResults> Results(string skillId, string evaluationId, string nextToken, 
             [AliasAs("sort.field")]EvaluationSortField? requestSortField, 
             TestCaseStatus? testCaseStatus,

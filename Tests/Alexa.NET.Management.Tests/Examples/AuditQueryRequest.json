@@ -1,0 +1,38 @@
+{
+  "vendorId": "ABC123",
+  "requestFilters": {
+    "resources": [
+      {
+        "id": "amzn1.ask.skill.1234",
+        "type": "Skill"
+      }
+    ],
+    "requesters": [
+      {
+        "userId": "amzn1.account.LWAUserId"
+      }
+    ],
+    "httpResponseCodes": [
+      "200",
+      "202"
+    ],
+    "operations": [
+      {
+        "name": "getSkillManifest",
+        "version": "v1"
+      },
+      {
+        "name": "getUtteranceData",
+        "version": "v1"
+      }
+    ],
+    "startTime": "2019-06-01T22:58:24.000Z",
+    "endTime": "2019-06-08T22:58:24.000Z"
+  },
+  "sortDirection": "DESC",
+  "sortField": "timestamp",
+  "paginationContext": {
+    "nextToken": "Vxjbbbbbbbbaa",
+    "maxResults": 2
+  }
+}
