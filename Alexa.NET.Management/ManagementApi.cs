@@ -86,6 +86,8 @@ namespace Alexa.NET.Management
             SkillDevelopment = new SkillDevelopmentApi(v0Client);
 
             SlotType = new SlotTypeApi(client);
+
+            AuditLogs = RestService.For<IAuditLogsApi>(client,ManagementRefitSettings.Create());
         }
 
         public ISkillDevelopmentApi SkillDevelopment { get; set; }
@@ -118,5 +120,7 @@ namespace Alexa.NET.Management
         public NluApiContainer Nlu { get; set; }
 
         public ISlotTypeApi SlotType { get; set; }
+
+        public IAuditLogsApi AuditLogs { get; set; }
     }
 }

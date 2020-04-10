@@ -7,7 +7,7 @@ namespace Alexa.NET.Management
 {
     public class PaginationContext
     {
-        [JsonProperty("nextToken")]
+        [JsonProperty("nextToken",NullValueHandling = NullValueHandling.Ignore)]
         public string NextToken { get; set; }
     }
 }

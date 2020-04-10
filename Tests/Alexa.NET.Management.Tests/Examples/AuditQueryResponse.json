@@ -1,0 +1,56 @@
+{
+  "paginationContext": {
+    "nextToken": "VXjbbbbbbbbb"
+  },
+  "auditLogs": [
+    {
+      "xAmznRequestId": "a53cbaa5-f64b-11e7-94e4-e7de641ed24a",
+      "timestamp": "2019-06-03T22:58:24.0Z",
+      "operation": {
+        "name": "associateSkillWithCatalog",
+        "version": "v1"
+      },
+      "resources": [
+        {
+          "id": "amzn1.ask.skill.1234",
+          "type": "Skill"
+        },
+        {
+          "id": "amzn1.ask.cat.1234",
+          "type": "SkillCatalog"
+        }
+      ],
+      "requester": {
+        "userId": "amzn1.oauth.LWAUserId"
+      },
+      "client": {
+        "id": "amzn1.application-oa2-client.aad322b5faab44b980c8f87f94fbac56",
+        "name": "Alexa Skills Kit Command Line Interface"
+      },
+      "httpResponseCode": 200
+    },
+    {
+      "xAmznRequestId": "a53cbaa5-f64b-11e7-94e4-e7de641ed24a",
+      "timestamp": "2019-06-03T22:58:24.0Z",
+      "operation": {
+        "name": "publishSkill",
+        "version": "v1"
+      },
+      "userAgent": "cfn-skill-handler",
+      "resources": [
+        {
+          "id": "amzn1.ask.skill.1234",
+          "type": "Skill"
+        }
+      ],
+      "requester": {
+        "userId": "amzn1.oauth.LWAUserId"
+      },
+      "client": {
+        "id": "amzn1.application-oa2-client.aad322b5faab44b980c8f87f94fbac56",
+        "name": "ASK-CLI"
+      },
+      "httpResponseCode": 200
+    }
+  ]
+}
