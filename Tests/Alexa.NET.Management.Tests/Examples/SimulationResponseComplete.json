@@ -1,71 +1,222 @@
 {
-"id": "34b178945-6ec3-1749-a123-3cbd123456ab",
+  "id": "34b178945-6...3456ab",
   "status": "SUCCESSFUL",
   "result": {
-    "alexaExecutionInfo": {
-      "alexaResponses": [
+    "skillExecutionInfo": {
+      "invocations": [
         {
-          "type":"Speech",
-          "content":{
-            "caption":"hello world"
+          "invocationRequest": {
+            "endpoint": "arn:aws:lambda:us-east-1:032174894474:function:TRIPSCHEDULER",
+            "body": {
+              "version": "1.0",
+              "session": {
+                "new": false,
+                "attributes": null, 
+                "sessionId": "amzn1.echo-api.session.bff866a1-ddeb-4e08-94c1-33dfe06fc090",
+                "application": {
+                  "applicationId": "amzn1.ask.skill.ceed0aea-6715-4188-9bcd-018fbc2cbb33"
+                },
+                "user": {
+                  "userId": "amzn..DKTRAPY",
+                  "accessToken": null,
+                  "permissions": null 
+                }
+              },
+              "context": {
+                "AudioPlayer": {
+                  "offsetInMilliseconds": 0,
+                  "playerActivity": "IDLE",
+                  "token": null
+                },
+                "Geolocation": null,
+                "System": {
+                  "application": {
+                    "applicationId": "amzn1.ask.skill.ceed0aea-6715-4188-9bcd-018fbc2cbb33"
+                  },
+                  "user": {
+                    "userId": "amzn1.ask.accoun..",
+                    "accessToken": null,
+                    "permissions": null
+                  },
+                  "device": {
+                    "deviceId": "amzn1.ask.device...",
+                    "supportedInterfaces": {
+                      "AudioPlayer": {},
+                      "Display": {
+                        "templateVersion": "1.0",
+                        "markupVersion": "1.0"
+                      }
+                    }
+                  },
+                  "apiEndpoint": "https://api.amazonalexa.com",
+                  "apiAccessToken": ""
+                }
+              },
+              "request": {
+                "type": "IntentRequest",
+                "requestId": "amzn1.echo-api.request.a2d2714b-e92f-4bdb-a722-9a5cd37fcfa8",
+                "timestamp": "2018-05-08T19:13:59Z",
+                "locale": "en-US",
+                "Intent": {
+                  "name": "BookFlightIntent",
+                  "confirmationStatus": "CONFIRMED",
+                  "slots": {
+                    "fromCity": {
+                      "name": "fromCity",
+                      "confirmationStatus": "CONFIRMED",
+                      "value": null
+                    },
+                    "toCity": {
+                      "name": "toCity",
+                      "confirmationStatus": "CONFIRMED",
+                      "value": null
+                    },
+                    "travelDate": {
+                      "name": "travelDate",
+                      "confirmationStatus": "NONE",
+                      "value": null
+                    },
+                    "airline": {
+                      "name": "airline",
+                      "confirmationStatus": "NONE",
+                      "value": null
+                    }
+                  }
+                },
+                "dialogState": "STARTED"
+              }
+            }
+          },
+          "invocationResponse": {
+            "body": {
+              "version": "1.0",
+              "response": {
+                "directives": [
+                  {
+                    "type": "Dialog.Delegate"
+                  }
+                ],
+                "shouldEndSession": false
+              },
+              "sessionAttributes": {}
+            }
+          },
+          "metrics": {
+            "skillExecutionTimeInMilliseconds": 32
           }
         }
       ]
     },
-    "skillExecutionInfo": {
-      "invocationRequest": {
-        "endpoint": "arn:aws:lambda:us-east-1:123456789:function:HelloWorld",
-        "body": {
-          "version": "1.0",
-          "session": {
-            "new": true,
-            "sessionId": "aaf7b112-434c-11e7-2563-6bbd1672c748",
-            "application": {
-              "applicationId": "amzn1.ask.skill.12345678-12d1-5b2b-a012-1d1f33311123"
+    "alexaExecutionInfo": {
+      "alexaResponses": [
+        {
+          "type": "Speech",
+          "content": {
+            "caption": "You flight has been booked."
+          }
+        }
+      ],
+      "consideredIntents": [
+        {
+          "name": "BookFlightIntent",
+          "confirmationStatus": "CONFIRMED",
+          "slots": {
+            "fromCity": {
+              "name": "fromCity",
+              "value": "Seattle",
+              "confirmationStatus": "CONFIRMED",
+              "resolutions": {
+                "resolutionsPerAuthority": [
+                  {
+                    "authority": "skillId + AMAZON.US_CITY",
+                    "status": {
+                      "code": "ER_SUCCESS_MATCH"
+                    },
+                    "values": [
+                      {
+                        "value": {
+                          "name": "Seattle",
+                          "id": "UID"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
             },
-            "attributes": {},
-            "user": {
-              "userId": "amzn1.ask.account.12345ABCDEFGH"
-            }
-          },
-          "context": {
-            "System": {
-              "application": {
-                "applicationId": "amzn1.ask.skill.12345678-12d1-5b2b-a012-1d1f33311123"
-              },
-              "user": {
-                "userId": "amzn1.ask.account.12345ABCDEFGH"
+            "toCity": {
+              "name": "toCity",
+              "value": "Los Angles",
+              "confirmationStatus": "CONFIRMED",
+              "resolutions": {
+                "resolutionsPerAuthority": [
+                  {
+                    "authority": "skillId + AMAZON.US_CITY",
+                    "status": {
+                      "code": "ER_SUCCESS_MATCH"
+                    },
+                    "values": [
+                      {
+                        "value": {
+                          "name": "Los Angeles",
+                          "id": "UID"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            "travelDate": {
+              "name": "travelDate",
+              "value": "February ninth",
+              "confirmationStatus": "NONE",
+              "resolutions": {
+                "resolutionsPerAuthority": [
+                  {
+                    "authority": "skillId + AMAZON_DATE",
+                    "status": {
+                      "code": "ER_SUCCESS_MATCH"
+                    },
+                    "values": [
+                      {
+                        "value": {
+                          "name": "February ninth",
+                          "id": "UID"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            "airline": {
+              "name": "airline",
+              "value": "MyOwn",
+              "confirmationStatus": "NONE",
+              "resolutions": {
+                "resolutionsPerAuthority": [
+                  {
+                    "authority": "skillId + myAirlines",
+                    "status": {
+                      "code": "ER_SUCCESS_MATCH"
+                    },
+                    "values": [
+                      {
+                        "value": {
+                          "name": "MyOwn",
+                          "id": "UID"
+                        }
+                      }
+                    ]
+                  }
+                ]
               }
             }
-          },
-          "request": {
-            "type": "IntentRequest",
-            "requestId": "c03faf54-684d-11e7-6249-6bbd1825c634",
-            "timestamp": "2017-08-14T04:20:20Z",
-            "locale": "en-US",
-            "intent": {
-              "name": "SayHello"
-            }
           }
         }
-      },
-      "invocationResponse": {
-        "body": {
-          "version": "1.0",
-          "sessionAttributes": {},
-          "response": {
-            "outputSpeech": {
-              "type": "PlainText",
-              "text": "hello, world"
-            },
-            "shouldEndSession": true
-          }
-        }
-      },
-      "metrics": {
-        "skillExecutionTimeInMilliseconds": 100
-      }
+      ]
     },
     "error": null
   }
-}
+} 

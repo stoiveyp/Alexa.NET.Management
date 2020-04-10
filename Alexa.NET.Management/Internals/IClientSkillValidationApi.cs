@@ -7,13 +7,13 @@ namespace Alexa.NET.Management.Internals
 {
     public interface IClientSkillValidationApi
     {
-        [Post("/skills/{skillId}/stage/{stage}/validations")]
+        [Post("/v1/skills/{skillId}/stage/{stage}/validations")]
         Task<SkillValidationResponse> Submit(string skillId, SkillStage stage);
 
-        [Post("/skills/{skillId}/stage/{stage}/validations")]
+        [Post("/v1/skills/{skillId}/stage/{stage}/validations")]
         Task<SkillValidationResponse> Submit(string skillId, SkillStage stage, [Body]SkillValidationRequest request);
 
-        [Get("/skills/{skillId}/stages/{stage}/validations/{validationId}")]
+        [Get("/v1/skills/{skillId}/stages/{stage}/validations/{validationId}")]
         Task<SkillValidationResponse> Get(string skillId, SkillStage stage, string validationId);
     }
 }

@@ -9,7 +9,7 @@ namespace Alexa.NET.Management.Internals
 {
     internal interface IClientIntentRequestHistoryApi
     {
-        [Get("/skills/{skillId}/history/intentRequests")]
+        [Get("/v1/skills/{skillId}/history/intentRequests")]
         Task<IntentRequestHistoryResponse> Get(string skillId, ClientIntentRequestHistoryRequest request);
     }
 }

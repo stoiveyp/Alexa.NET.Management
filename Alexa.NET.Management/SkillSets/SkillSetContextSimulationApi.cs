@@ -30,7 +30,7 @@ namespace Alexa.NET.Management.SkillSets
             while (response.Status == InvocationStatus.InProgress)
             {
                 await Task.Delay(TimeSpan.FromSeconds(pollSeconds));
-                response = await _api.Skills.SimulationResult(_locale.SkillID, response.Id);
+                response = await _api.Skills.SimulationResult(_locale.SkillID, _locale.Stage.Stage.Value,response.Id);
             }
 
             return response.Result;
@@ -38,7 +38,7 @@ namespace Alexa.NET.Management.SkillSets
 
         private Task<SimulationResponse> SendMessage(string message, SimulationSession session)
         {
-            return _api.Skills.Simulate(_locale.SkillID, new SimulationRequest
+            return _api.Skills.Simulate(_locale.SkillID, _locale.Stage.Stage.Value, new SimulationRequest
             {
                 Device = new SimulationRequestDevice
                 {

@@ -9,7 +9,7 @@ namespace Alexa.NET.Management
 {
     public interface IAuditLogsApi
     {
-        [Post("/developmentAuditLogs/query")]
+        [Post("/v1/developmentAuditLogs/query")]
         Task<QueryResponse> Query([Body]QueryRequest request);
     }
 }

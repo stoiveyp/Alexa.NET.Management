@@ -7,7 +7,7 @@ namespace Alexa.NET.Management.Internals
 {
     interface IClientUtteranceProfilerApi
     {
-        [Post("/skills/{skillId}/stages/{stage}/interactionModel/locales/{locale}/profileNlu")]
+        [Post("/v1/skills/{skillId}/stages/{stage}/interactionModel/locales/{locale}/profileNlu")]
         Task<UtteranceProfilerResponse> Analyze(string skillId, SkillStage stage, string locale, UtteranceProfilerRequest request);
     }
 }

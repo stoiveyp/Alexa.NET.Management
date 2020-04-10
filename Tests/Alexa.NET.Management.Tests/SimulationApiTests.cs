@@ -24,6 +24,7 @@ namespace Alexa.NET.Management.Tests
         public void InProgressResponseDeserializesCorrectly()
         {
             var inProgress = Utility.ExampleFileContent<SimulationResponse>("SimulationResponseProgress.json");
+            Assert.True(Utility.CompareJson(inProgress, "SimulationResponseProgress.json"));
             Assert.Equal(InvocationStatus.InProgress,inProgress.Status);
             Assert.Null(inProgress.Result);
         }
@@ -32,6 +33,7 @@ namespace Alexa.NET.Management.Tests
         public void CompletedResponseDeserializesCorrectly()
         {
             var complete = Utility.ExampleFileContent<SimulationResponse>("SimulationResponseComplete.json");
+            Assert.True(Utility.CompareJson(complete,"SimulationResponseComplete.json"));
             Assert.Equal(InvocationStatus.Successful,complete.Status);
             Assert.Null(complete.Result.Error);
             Assert.NotNull(complete.Result.AlexaExecutionInfo);

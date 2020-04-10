@@ -43,7 +43,7 @@ namespace Alexa.NET.Management.Tests
                 return message;
             }));
             var response = await management.Beta.Create("skillId", Email);
-            Assert.NotEqual(default(Uri),response);
+            Assert.NotEqual(default,response);
         }
 
         [Fact]

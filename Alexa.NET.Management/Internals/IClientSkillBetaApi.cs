@@ -10,40 +10,40 @@ namespace Alexa.NET.Management.Internals
 {
     public interface IClientSkillBetaApi
     {
-        [Post("/skills/{skillId}/betaTest")]
+        [Post("/v1/skills/{skillId}/betaTest")]
         Task<HttpResponseMessage> Create(string skillId, BetaTestRequest request);
 
-        [Get("/skills/{skillId}/betaTest")]
+        [Get("/v1/skills/{skillId}/betaTest")]
         Task<BetaTest> Get(string skillId);
 
-        [Put("/skills/{skillId}/betaTest")]
+        [Put("/v1/skills/{skillId}/betaTest")]
         Task<HttpResponseMessage> Update(string skillId, BetaTestRequest request);
 
-        [Post("/skills/{skillId}/betaTest/start")]
+        [Post("/v1/skills/{skillId}/betaTest/start")]
         Task<HttpResponseMessage> Start(string skillId);
 
-        [Post("/skills/{skillId}/betaTest/end")]
+        [Post("/v1/skills/{skillId}/betaTest/end")]
         Task<HttpResponseMessage> End(string skillId);
 
-        [Get("/skills/{skillId}/betaTest/testers")]
+        [Get("/v1/skills/{skillId}/betaTest/testers")]
         Task<BetaTestersResponse> Testers(string skillId);
 
-        [Get("/skills/{skillId}/betaTest/testers")]
+        [Get("/v1/skills/{skillId}/betaTest/testers")]
         Task<BetaTestersResponse> Testers(string skillId, int maxResults);
 
-        [Get("/skills/{skillId}/betaTest/testers")]
+        [Get("/v1/skills/{skillId}/betaTest/testers")]
         Task<BetaTestersResponse> Testers(string skillId, int maxResults, string nextToken);
 
-        [Post("/skills/{skillId}/betaTest/testers/add")]
+        [Post("/v1/skills/{skillId}/betaTest/testers/add")]
         Task<HttpResponseMessage> AddTesters(string skillId, TesterRequest request);
 
-        [Post("/skills/{skillId}/betaTest/testers/remove")]
+        [Post("/v1/skills/{skillId}/betaTest/testers/remove")]
         Task<HttpResponseMessage> RemoveTesters(string skillId, TesterRequest request);
 
-        [Post("/skills/{skillId}/betaTest/testers/sendReminder")]
+        [Post("/v1/skills/{skillId}/betaTest/testers/sendReminder")]
         Task<HttpResponseMessage> SendReminders(string skillId, TesterRequest request);
 
-        [Post("/skills/{skillId}/betaTest/testers/requestFeedback")]
+        [Post("/v1/skills/{skillId}/betaTest/testers/requestFeedback")]
         Task<HttpResponseMessage> RequestFeedback(string skillId, TesterRequest request);
 
     }
