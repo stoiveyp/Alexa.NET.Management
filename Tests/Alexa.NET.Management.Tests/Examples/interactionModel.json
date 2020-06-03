@@ -118,7 +118,12 @@
           ],
           "name": "TechNottsEvent"
         }
-      ]
+      ],
+      "modelConfiguration": {
+        "fallbackIntentSensitivity": {
+          "level": "HIGH"
+        }
+      }
     },
     "dialog": {
       "intents": [

@@ -15,5 +15,8 @@ namespace Alexa.NET.Management.InteractionModel
 
         [JsonProperty("types",NullValueHandling = NullValueHandling.Ignore)]
         public SlotType[] SlotTypes { get; set; }
+
+        [JsonProperty("modelConfiguration",NullValueHandling = NullValueHandling.Ignore)]
+        public ModelConfiguration ModelConfiguration { get; set; }
     }
 }

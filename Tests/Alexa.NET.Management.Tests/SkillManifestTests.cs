@@ -53,15 +53,7 @@ namespace Alexa.NET.Management.Tests
         public void InteractionModelDeserializesCorrectly()
         {
             var model = Utility.ExampleFileContent<SkillInteractionContainer>("interactionModel.json");
-            var slotType = model.InteractionModel.Language.SlotTypes.First(st => st.Name == "TechNottsEvent");
-            Assert.Equal("tech-nottingham",slotType.Values.First().Id);
-
-            var dialogIntent = model.InteractionModel.Dialog.Intents.First();
-            Assert.Equal(dialogIntent.Name, "NextSpecificEvent");
-            Assert.Equal(true,dialogIntent.ConfirmationRequired);
-            var firstSlot = dialogIntent.Slots.First();
-            Assert.IsType<HasEntityResolutionMatch>(firstSlot.Validations.Skip(1).First());
-            Assert.IsType<IsNotInSet>(firstSlot.Validations.First());
+            Assert.True(Utility.CompareJson(model, "interactionModel.json"));
         }
 
         [Fact]

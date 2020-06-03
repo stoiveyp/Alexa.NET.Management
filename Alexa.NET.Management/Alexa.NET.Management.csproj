@@ -9,11 +9,9 @@
     <PackageProjectUrl>https://github.com/stoiveyp/Alexa.NET.Management/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/stoiveyp/Alexa.NET.Management/</RepositoryUrl>
     <PackageTags>amazon;alexa;echo;dot;echo dot;skills;management</PackageTags>
-    <Version>5.0.0</Version>
+    <Version>5.1.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageReleaseNotes>Add Audit API
-Update Skill Invocation and simulation to v2
-Internal refactoring</PackageReleaseNotes>
+    <PackageReleaseNotes>Add FallbackIntent Sensitivity to the interaction model</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <LangVersion>8</LangVersion>
   </PropertyGroup>
