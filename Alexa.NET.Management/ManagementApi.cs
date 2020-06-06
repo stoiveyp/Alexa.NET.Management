@@ -87,7 +87,11 @@ namespace Alexa.NET.Management
             SlotType = new SlotTypeApi(client);
 
             AuditLogs = RestService.For<IAuditLogsApi>(client,ManagementRefitSettings.Create());
+
+            Asr = new AsrApi(client);
         }
+
+        public IAsrApi Asr { get; set; }
 
         public ISkillDevelopmentApi SkillDevelopment { get; set; }
 

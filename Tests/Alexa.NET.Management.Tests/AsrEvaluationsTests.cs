@@ -1,0 +1,45 @@
+﻿using System;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Alexa.NET.Management.Api;
+using Alexa.NET.Management.Asr.Evaluations;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Xunit;
+
+namespace Alexa.NET.Management.Tests
+{
+    public class AsrEvaluationsTests
+    {
+        [Fact]
+        public async Task RunGeneratesCorrectRequestAndResponse()
+        {
+            var locale = "en-GB";
+            var annotationsetId = "abcdef";
+
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Post, req.Method);
+                Assert.Equal("/v1/skills/skillId/asrEvaluations", req.RequestUri.PathAndQuery);
+                var requestcontent = await req.Content.ReadAsStringAsync();
+                var request = JsonConvert.DeserializeObject<RunEvaluationsRequest>(requestcontent);
+                Assert.Equal(annotationsetId, request.AnnotationSetId);
+                Assert.Equal(SkillStage.Development,request.Skill.Stage);
+                Assert.Equal(locale,request.Skill.Locale);
+
+                var json = new JObject(new JProperty("id", "abcdef")).ToString();
+                var response = new HttpResponseMessage(HttpStatusCode.OK)
+                {
+                    Content = new StringContent(json)
+                };
+                response.Headers.Location = new Uri("http://test.com/example", UriKind.Absolute);
+                return response;
+            }));
+
+            var setresponse = await management.Asr.Evaluations.Run("skillId", SkillStage.Development,locale,annotationsetId);
+            Assert.Equal("http://test.com/example", setresponse.Location.ToString());
+            Assert.Equal("abcdef", setresponse.Id);
+        }
+    }
+}
