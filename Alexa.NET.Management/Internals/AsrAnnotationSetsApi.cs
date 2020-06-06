@@ -38,5 +38,11 @@ namespace Alexa.NET.Management.Internals
                 Location = response.Headers.Location
             };
         }
+
+        public async Task Delete(string skillId, string annotationSetId)
+        {
+            var response = await Client.Delete(skillId, annotationSetId);
+            await response.CodeOrError(HttpStatusCode.NoContent);
+        }
     }
 }

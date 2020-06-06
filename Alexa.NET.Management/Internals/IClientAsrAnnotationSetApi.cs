@@ -8,5 +8,8 @@ namespace Alexa.NET.Management.Internals
     {
         [Post("/v1/skills/{skillId}/asrAnnotationSets")]
         Task<HttpResponseMessage> Create(string skillId, [Body] Asr.AnnotationSet.CreateAnnotationSetRequest request);
+
+        [Delete("/v1/skills/{skillId}/asrAnnotationSets/{annotationSetId}")]
+        Task<HttpResponseMessage> Delete(string skillId, string annotationSetId);
     }
 }

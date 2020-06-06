@@ -12,7 +12,7 @@ namespace Alexa.NET.Management.Tests
     public class AsrAnnotationSetTests
     {
         [Fact]
-        public async Task CreateGeneratesCorrectRequestAndResponse()
+        public async Task Create()
         {
             var name = "testSet";
 
@@ -36,6 +36,22 @@ namespace Alexa.NET.Management.Tests
             var setresponse = await management.Asr.AnnotationSets.Create("skillId", name);
             Assert.Equal("http://test.com/example", setresponse.Location.ToString());
             Assert.Equal("abcdef", setresponse.Id);
+        }
+
+        [Fact]
+        public async Task Delete()
+        {
+            var annotationSetId = "testSet";
+
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Delete, req.Method);
+                Assert.Equal("/v1/skills/skillId/asrAnnotationSets/testSet", req.RequestUri.PathAndQuery);
+
+                return new HttpResponseMessage(HttpStatusCode.NoContent);
+            }));
+
+            await management.Asr.AnnotationSets.Delete("skillId", annotationSetId);
         }
     }
 }

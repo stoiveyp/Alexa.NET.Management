@@ -6,5 +6,7 @@ namespace Alexa.NET.Management
     public interface IAsrAnnotationSetsApi
     {
         Task<CreateAnnotationSetResponse> Create(string skillId, string name);
+
+        Task Delete(string skillId, string annotationSetId);
     }
 }

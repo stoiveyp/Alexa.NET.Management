@@ -7,5 +7,6 @@ namespace Alexa.NET.Management
     public interface IAsrEvaluationsApi
     {
         Task<RunEvaluationsResponse> Run(string skillId, SkillStage stage, string locale, string annotationSetId);
+        Task Delete(string skillId, string evaluationId);
     }
 }

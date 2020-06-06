@@ -13,7 +13,7 @@ namespace Alexa.NET.Management.Tests
     public class AsrEvaluationsTests
     {
         [Fact]
-        public async Task RunGeneratesCorrectRequestAndResponse()
+        public async Task Run()
         {
             var locale = "en-GB";
             var annotationsetId = "abcdef";
@@ -40,6 +40,22 @@ namespace Alexa.NET.Management.Tests
             var setresponse = await management.Asr.Evaluations.Run("skillId", SkillStage.Development,locale,annotationsetId);
             Assert.Equal("http://test.com/example", setresponse.Location.ToString());
             Assert.Equal("abcdef", setresponse.Id);
+        }
+
+        [Fact]
+        public async Task Delete()
+        {
+            var evaluationId = "testSet";
+
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Delete, req.Method);
+                Assert.Equal("/v1/skills/skillId/asrEvaluations/testSet", req.RequestUri.PathAndQuery);
+
+                return new HttpResponseMessage(HttpStatusCode.NoContent);
+            }));
+
+            await management.Asr.Evaluations.Delete("skillId", evaluationId);
         }
     }
 }
