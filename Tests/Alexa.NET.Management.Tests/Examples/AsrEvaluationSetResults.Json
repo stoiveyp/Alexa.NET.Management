@@ -1,0 +1,83 @@
+{
+  "results": [
+    {
+      "status": "PASSED",
+
+      "annotation": {
+
+        "evaluationWeight": 1,
+
+        "expectedTranscription": "hello world",
+
+        "filePathInUpload": "hello world.wav",
+
+        "uploadId": "1234-1234-12341234",
+
+        "audioAsset": {
+
+          "downloadUrl": "https://presign.s3.aws.amazon/123412341234-hello.wav",
+
+          "expiryTime": "2018-10-25T08:25:04.679Z"
+
+        }
+
+      },
+
+      "output": {
+        "transcription": "hello world"
+      }
+    },
+
+    {
+      "status": "FAILED",
+
+      "annotation": {
+
+        "evaluationWeight": 8,
+        "expectedTranscription": "alexa what is the weather now",
+        "filePathInUpload": "weather.wav",
+        "uploadId": "1234-1234-12341234",
+
+        "audioAsset": {
+          "downloadUrl": "https://presign.s3.aws.amazon/123412341234-weather.wav",
+
+          "expiryTime": "2018-10-25T08:25:04.679Z"
+
+        }
+      },
+
+      "output": {
+
+        "transcription": "alexa what is the weather noon"
+
+      }
+    },
+    {
+      "status": "PASSED",
+
+      "annotation": {
+
+        "evaluationWeight": 1,
+
+        "expectedTranscription": "alexa good job",
+        "filePathInUpload": "good.mp3",
+        "uploadId": "1234-1234-12341234",
+
+        "audioAsset": {
+
+          "downloadUrl": "https://presign.s3.aws.amazon/123412341234-good.wav",
+
+          "expiryTime": "2018-10-25T08:25:04.679Z"
+
+        }
+
+      },
+
+      "output": {
+
+        "transcription": "alexa good job"
+
+      }
+    }
+  ]
+}

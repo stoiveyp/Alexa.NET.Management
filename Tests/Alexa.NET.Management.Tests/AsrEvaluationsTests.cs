@@ -25,8 +25,8 @@ namespace Alexa.NET.Management.Tests
                 var requestcontent = await req.Content.ReadAsStringAsync();
                 var request = JsonConvert.DeserializeObject<RunEvaluationsRequest>(requestcontent);
                 Assert.Equal(annotationsetId, request.AnnotationSetId);
-                Assert.Equal(SkillStage.Development,request.Skill.Stage);
-                Assert.Equal(locale,request.Skill.Locale);
+                Assert.Equal(SkillStage.Development, request.Skill.Stage);
+                Assert.Equal(locale, request.Skill.Locale);
 
                 var json = new JObject(new JProperty("id", "abcdef")).ToString();
                 var response = new HttpResponseMessage(HttpStatusCode.OK)
@@ -37,7 +37,7 @@ namespace Alexa.NET.Management.Tests
                 return response;
             }));
 
-            var setresponse = await management.Asr.Evaluations.Run("skillId", SkillStage.Development,locale,annotationsetId);
+            var setresponse = await management.Asr.Evaluations.Run("skillId", SkillStage.Development, locale, annotationsetId);
             Assert.Equal("http://test.com/example", setresponse.Location.ToString());
             Assert.Equal("abcdef", setresponse.Id);
         }
@@ -56,6 +56,21 @@ namespace Alexa.NET.Management.Tests
             }));
 
             await management.Asr.Evaluations.Delete("skillId", evaluationId);
+        }
+
+        [Fact]
+        public async Task GetResults()
+        {
+            var evaluationId = "testSet";
+
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal("/v1/skills/skillId/asrEvaluations/testSet/results?status=FAILED&maxResults=10&nextToken=ABCDEF", req.RequestUri.PathAndQuery);
+            }, Utility.ExampleFileContent<EvaluationResults>("AsrEvaluationSetResults.json")));
+
+            var response = await management.Asr.Evaluations.GetResults("skillId", evaluationId, EvaluationResultStatus.Failed, 10, "ABCDEF");
+            Assert.True(Utility.CompareJson(response, "AsrEvaluationSetResults.json", "expiryTime"));
         }
     }
 }

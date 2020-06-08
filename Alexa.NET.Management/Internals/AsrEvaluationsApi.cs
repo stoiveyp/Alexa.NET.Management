@@ -52,5 +52,45 @@ namespace Alexa.NET.Management.Internals
             var response = await Client.Delete(skillId, evaluationId);
             await response.CodeOrError(HttpStatusCode.NoContent);
         }
+
+        public Task<EvaluationResults> GetResults(string skillId, string evaluationId)
+        {
+            return Client.GetResults(skillId, evaluationId);
+        }
+
+        public Task<EvaluationResults> GetResults(string skillId, string evaluationId, EvaluationResultStatus status)
+        {
+            return Client.GetResults(skillId, evaluationId);
+        }
+
+        public Task<EvaluationResults> GetResults(string skillId, string evaluationId, int maxResults)
+        {
+            return Client.GetResults(skillId, evaluationId, maxResults);
+        }
+
+        public Task<EvaluationResults> GetResults(string skillId, string evaluationId, EvaluationResultStatus status, int maxResults)
+        {
+            return Client.GetResults(skillId, evaluationId, status, maxResults);
+        }
+
+        public Task<EvaluationResults> GetResults(string skillId, string evaluationId, string nextToken)
+        {
+            return Client.GetResults(skillId, evaluationId, nextToken);
+        }
+
+        public Task<EvaluationResults> GetResults(string skillId, string evaluationId, EvaluationResultStatus status, string nextToken)
+        {
+            return Client.GetResults(skillId, evaluationId, status, nextToken);
+        }
+
+        public Task<EvaluationResults> GetResults(string skillId, string evaluationId, int maxResults, string nextToken)
+        {
+            return Client.GetResults(skillId, evaluationId, maxResults, nextToken);
+        }
+
+        public Task<EvaluationResults> GetResults(string skillId, string evaluationId, EvaluationResultStatus status, int maxResults, string nextToken)
+        {
+            return Client.GetResults(skillId, evaluationId, status, maxResults, nextToken);
+        }
     }
 }
