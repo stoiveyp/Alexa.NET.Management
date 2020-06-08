@@ -53,5 +53,20 @@ namespace Alexa.NET.Management.Tests
 
             await management.Asr.AnnotationSets.Delete("skillId", annotationSetId);
         }
+
+        [Fact]
+        public async Task GetJson()
+        {
+            var annotationSetId = "testSet";
+
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal("/v1/skills/skillId/asrAnnotationSets/testSet/annotations?maxResults=10&nextToken=next", req.RequestUri.PathAndQuery);
+            },Utility.ExampleFileContent<AnnotationSetResponse>("AsrAnnotationSet.json")));
+
+            var response = await management.Asr.AnnotationSets.Get("skillId", annotationSetId, 10, "next");
+            Assert.True(Utility.CompareJson(response,"AsrAnnotationSet.json"));
+        }
     }
 }

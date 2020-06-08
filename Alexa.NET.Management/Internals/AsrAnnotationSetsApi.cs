@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Alexa.NET.Management.Asr.AnnotationSet;
 using Newtonsoft.Json.Linq;
 using Refit;
 
@@ -43,6 +44,31 @@ namespace Alexa.NET.Management.Internals
         {
             var response = await Client.Delete(skillId, annotationSetId);
             await response.CodeOrError(HttpStatusCode.NoContent);
+        }
+
+        public Task<AnnotationSetResponse> Get(string skillId, string annotationSetId)
+        {
+            return Client.Get(skillId, annotationSetId);
+        }
+
+        public Task<AnnotationSetResponse> Get(string skillId, string annotationSetId, int maxResults)
+        {
+            return Client.Get(skillId, annotationSetId, maxResults);
+        }
+
+        public Task<AnnotationSetResponse> Get(string skillId, string annotationSetId, string nextToken)
+        {
+            return Client.Get(skillId, annotationSetId, nextToken);
+        }
+
+        public Task<AnnotationSetResponse> Get(string skillId, string annotationSetId, int maxResults, string nextToken)
+        {
+            return Client.Get(skillId, annotationSetId, maxResults, nextToken);
+        }
+
+        public Task<string> GetCsv(string skillId, string annotationSetId)
+        {
+            throw new NotImplementedException();
         }
     }
 }
