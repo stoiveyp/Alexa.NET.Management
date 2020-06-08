@@ -2,7 +2,7 @@
 
 namespace Alexa.NET.Management.Asr.Evaluations
 {
-    public class EvaluationResultError
+    public class EvaluationError
     {
         [JsonProperty("code")]
         public string Code { get; set; }

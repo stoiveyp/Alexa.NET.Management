@@ -72,5 +72,22 @@ namespace Alexa.NET.Management.Tests
             var response = await management.Asr.Evaluations.GetResults("skillId", evaluationId, EvaluationResultStatus.Failed, 10, "ABCDEF");
             Assert.True(Utility.CompareJson(response, "AsrEvaluationSetResults.json", "expiryTime"));
         }
+
+        [Fact]
+        public async Task GetStatus()
+        {
+            var evaluationId = "testSet";
+
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal("/v1/skills/skillId/asrEvaluations/testSet/status", req.RequestUri.PathAndQuery);
+            }, Utility.ExampleFileContent<EvaluationStatus>("AsrEvaluationSetStatus.json")));
+
+            var response = await management.Asr.Evaluations.GetStatus("skillId", evaluationId);
+            Assert.True(Utility.CompareJson(response, "AsrEvaluationSetStatus.json", "startTimestamp"));
+        }
+
+
     }
 }

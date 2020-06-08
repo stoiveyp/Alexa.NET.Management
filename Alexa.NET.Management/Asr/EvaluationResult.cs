@@ -15,6 +15,6 @@ namespace Alexa.NET.Management.Asr.Evaluations
         public EvaluationResultOutput Output { get; set; }
 
         [JsonProperty("error",NullValueHandling = NullValueHandling.Ignore)]
-        public EvaluationResultError Error { get; set; }
+        public EvaluationError Error { get; set; }
     }
 }

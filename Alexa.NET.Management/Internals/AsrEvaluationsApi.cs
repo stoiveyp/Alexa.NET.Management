@@ -92,5 +92,10 @@ namespace Alexa.NET.Management.Internals
         {
             return Client.GetResults(skillId, evaluationId, status, maxResults, nextToken);
         }
+
+        public Task<EvaluationStatus> GetStatus(string skillId, string evaluationId)
+        {
+            return Client.GetStatus(skillId, evaluationId);
+        }
     }
 }

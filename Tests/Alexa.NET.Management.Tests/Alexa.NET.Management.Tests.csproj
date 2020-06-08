@@ -44,7 +44,10 @@
     <None Update="Examples\AsrAnnotationSetMetadata.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Examples\AsrEvaluationSetResults.Json">
+    <None Update="Examples\AsrEvaluationSetStatus.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Examples\AsrEvaluationSetResults.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Examples\AuditQueryRequest.json">

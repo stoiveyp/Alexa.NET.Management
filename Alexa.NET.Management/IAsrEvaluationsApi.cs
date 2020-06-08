@@ -2,6 +2,7 @@
 using Alexa.NET.Management.Api;
 using Alexa.NET.Management.Asr.Evaluations;
 
+
 namespace Alexa.NET.Management
 {
     public interface IAsrEvaluationsApi
@@ -18,5 +19,7 @@ namespace Alexa.NET.Management
         Task<EvaluationResults> GetResults(string skillId, string evaluationId, EvaluationResultStatus status, string nextToken);
         Task<EvaluationResults> GetResults(string skillId, string evaluationId, int maxResults, string nextToken);
         Task<EvaluationResults> GetResults(string skillId, string evaluationId, EvaluationResultStatus status, int maxResults, string nextToken);
+
+        Task<EvaluationStatus> GetStatus(string skillId, string evaluationId);
     }
 }

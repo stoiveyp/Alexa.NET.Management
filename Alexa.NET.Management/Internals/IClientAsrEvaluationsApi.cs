@@ -35,5 +35,8 @@ namespace Alexa.NET.Management.Internals
 
         [Get("/v1/skills/{skillId}/asrEvaluations/{evaluationId}/results")]
         Task<Asr.Evaluations.EvaluationResults> GetResults(string skillId, string evaluationId, Asr.Evaluations.EvaluationResultStatus status, int maxResults, string nextToken);
+
+        [Get("/v1/skills/{skillId}/asrEvaluations/{evaluationId}/status")]
+        Task<Asr.Evaluations.EvaluationStatus> GetStatus(string skillId, string evaluationId);
     }
 }
