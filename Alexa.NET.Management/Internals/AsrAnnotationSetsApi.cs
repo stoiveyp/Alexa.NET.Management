@@ -47,31 +47,36 @@ namespace Alexa.NET.Management.Internals
             await response.CodeOrError(HttpStatusCode.NoContent);
         }
 
-        public async Task<AnnotationSetResponse> Get(string skillId, string annotationSetId)
+        public async Task<AnnotationSetResponse> GetContent(string skillId, string annotationSetId)
         {
-            var response = await Client.Get(skillId, annotationSetId, "application/json");
+            var response = await Client.GetContent(skillId, annotationSetId, "application/json");
             return await response.BodyOrError(JsonConvert.DeserializeObject<AnnotationSetResponse>, HttpStatusCode.OK);
         }
 
-        public Task<AnnotationSetResponse> Get(string skillId, string annotationSetId, int maxResults)
+        public Task<AnnotationSetResponse> GetContent(string skillId, string annotationSetId, int maxResults)
         {
-            return Client.Get(skillId, annotationSetId, maxResults, "application/json");
+            return Client.GetContent(skillId, annotationSetId, maxResults, "application/json");
         }
 
-        public Task<AnnotationSetResponse> Get(string skillId, string annotationSetId, string nextToken)
+        public Task<AnnotationSetResponse> GetContent(string skillId, string annotationSetId, string nextToken)
         {
-            return Client.Get(skillId, annotationSetId, nextToken, "application/json");
+            return Client.GetContent(skillId, annotationSetId, nextToken, "application/json");
         }
 
-        public Task<AnnotationSetResponse> Get(string skillId, string annotationSetId, int maxResults, string nextToken)
+        public Task<AnnotationSetResponse> GetContent(string skillId, string annotationSetId, int maxResults, string nextToken)
         {
-            return Client.Get(skillId, annotationSetId, maxResults, nextToken, "application/json");
+            return Client.GetContent(skillId, annotationSetId, maxResults, nextToken, "application/json");
         }
 
-        public async Task<string> GetCsv(string skillId, string annotationSetId)
+        public async Task<string> GetContentCsv(string skillId, string annotationSetId)
         {
-            var response = await Client.Get(skillId, annotationSetId, "text/csv");
+            var response = await Client.GetContent(skillId, annotationSetId, "text/csv");
             return await response.BodyOrError(s => s, HttpStatusCode.OK);
+        }
+
+        public Task<AnnotationSetMetadata> GetMetadata(string skillId, string annotationSetId)
+        {
+            return Client.GetMetadata(skillId, annotationSetId);
         }
     }
 }

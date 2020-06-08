@@ -56,7 +56,7 @@ namespace Alexa.NET.Management.Tests
         }
 
         [Fact]
-        public async Task GetJson()
+        public async Task GetContentJson()
         {
             var annotationSetId = "testSet";
 
@@ -67,12 +67,12 @@ namespace Alexa.NET.Management.Tests
                 Assert.Equal("/v1/skills/skillId/asrAnnotationSets/testSet/annotations?maxResults=10&nextToken=next", req.RequestUri.PathAndQuery);
             },Utility.ExampleFileContent<AnnotationSetResponse>("AsrAnnotationSet.json")));
 
-            var response = await management.Asr.AnnotationSets.Get("skillId", annotationSetId, 10, "next");
+            var response = await management.Asr.AnnotationSets.GetContent("skillId", annotationSetId, 10, "next");
             Assert.True(Utility.CompareJson(response,"AsrAnnotationSet.json"));
         }
 
         [Fact]
-        public async Task GetCsv()
+        public async Task GeContentCsv()
         {
             var annotationSetId = "testSet";
 
@@ -85,8 +85,25 @@ namespace Alexa.NET.Management.Tests
                     {Content = new StringContent(Utility.ExampleFileContent("AsrAnnotationSet.csv"))};
             }));
 
-            var response = await management.Asr.AnnotationSets.GetCsv("skillId", annotationSetId);
+            var response = await management.Asr.AnnotationSets.GetContentCsv("skillId", annotationSetId);
             Assert.Equal(response, Utility.ExampleFileContent("AsrAnnotationSet.csv"));
+        }
+
+        [Fact]
+        public async Task GetMetadata()
+        {
+            var annotationSetId = "1234-1234123-1234";
+
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal("/v1/skills/skillId/asrAnnotationSets/1234-1234123-1234", req.RequestUri.PathAndQuery);
+                return new HttpResponseMessage(HttpStatusCode.OK)
+                    { Content = new StringContent(Utility.ExampleFileContent("AsrAnnotationSetMetadata.json")) };
+            }));
+
+            var response = await management.Asr.AnnotationSets.GetMetadata("skillId", annotationSetId);
+            Assert.True(Utility.CompareJson(response,"AsrAnnotationSetMetadata.json","lastUpdatedTimestamp"));
         }
     }
 }

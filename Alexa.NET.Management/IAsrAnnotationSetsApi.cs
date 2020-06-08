@@ -9,11 +9,12 @@ namespace Alexa.NET.Management
 
         Task Delete(string skillId, string annotationSetId);
 
-        Task<AnnotationSetResponse> Get(string skillId, string annotationSetId);
-        Task<AnnotationSetResponse> Get(string skillId, string annotationSetId, int maxResults);
-        Task<AnnotationSetResponse> Get(string skillId, string annotationSetId, string nextToken);
-        Task<AnnotationSetResponse> Get(string skillId, string annotationSetId, int maxResults, string nextToken);
+        Task<AnnotationSetResponse> GetContent(string skillId, string annotationSetId);
+        Task<AnnotationSetResponse> GetContent(string skillId, string annotationSetId, int maxResults);
+        Task<AnnotationSetResponse> GetContent(string skillId, string annotationSetId, string nextToken);
+        Task<AnnotationSetResponse> GetContent(string skillId, string annotationSetId, int maxResults, string nextToken);
 
-        Task<string> GetCsv(string skillId, string annotationSetId);
+        Task<string> GetContentCsv(string skillId, string annotationSetId);
+        Task<AnnotationSetMetadata> GetMetadata(string skillId, string annotationSetId);
     }
 }
