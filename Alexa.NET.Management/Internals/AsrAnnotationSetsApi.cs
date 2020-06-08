@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Alexa.NET.Management.Asr.AnnotationSet;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Refit;
 
@@ -46,29 +47,31 @@ namespace Alexa.NET.Management.Internals
             await response.CodeOrError(HttpStatusCode.NoContent);
         }
 
-        public Task<AnnotationSetResponse> Get(string skillId, string annotationSetId)
+        public async Task<AnnotationSetResponse> Get(string skillId, string annotationSetId)
         {
-            return Client.Get(skillId, annotationSetId);
+            var response = await Client.Get(skillId, annotationSetId, "application/json");
+            return await response.BodyOrError(JsonConvert.DeserializeObject<AnnotationSetResponse>, HttpStatusCode.OK);
         }
 
         public Task<AnnotationSetResponse> Get(string skillId, string annotationSetId, int maxResults)
         {
-            return Client.Get(skillId, annotationSetId, maxResults);
+            return Client.Get(skillId, annotationSetId, maxResults, "application/json");
         }
 
         public Task<AnnotationSetResponse> Get(string skillId, string annotationSetId, string nextToken)
         {
-            return Client.Get(skillId, annotationSetId, nextToken);
+            return Client.Get(skillId, annotationSetId, nextToken, "application/json");
         }
 
         public Task<AnnotationSetResponse> Get(string skillId, string annotationSetId, int maxResults, string nextToken)
         {
-            return Client.Get(skillId, annotationSetId, maxResults, nextToken);
+            return Client.Get(skillId, annotationSetId, maxResults, nextToken, "application/json");
         }
 
-        public Task<string> GetCsv(string skillId, string annotationSetId)
+        public async Task<string> GetCsv(string skillId, string annotationSetId)
         {
-            throw new NotImplementedException();
+            var response = await Client.Get(skillId, annotationSetId, "text/csv");
+            return await response.BodyOrError(s => s, HttpStatusCode.OK);
         }
     }
 }

@@ -14,12 +14,12 @@ namespace Alexa.NET.Management.Internals
         Task<HttpResponseMessage> Delete(string skillId, string annotationSetId);
 
         [Get("/v1/skills/{skillId}/asrAnnotationSets/{annotationSetId}/annotations")]
-        Task<AnnotationSetResponse> Get(string skillId, string annotationSetId);
+        Task<HttpResponseMessage> Get(string skillId, string annotationSetId, [Header("Accept")] string contentType);
         [Get("/v1/skills/{skillId}/asrAnnotationSets/{annotationSetId}/annotations")]
-        Task<AnnotationSetResponse> Get(string skillId, string annotationSetId, int maxResults);
+        Task<AnnotationSetResponse> Get(string skillId, string annotationSetId, int maxResults, [Header("Accept")] string contentType);
         [Get("/v1/skills/{skillId}/asrAnnotationSets/{annotationSetId}/annotations")]
-        Task<AnnotationSetResponse> Get(string skillId, string annotationSetId, string nextToken);
+        Task<AnnotationSetResponse> Get(string skillId, string annotationSetId, string nextToken, [Header("Accept")] string contentType);
         [Get("/v1/skills/{skillId}/asrAnnotationSets/{annotationSetId}/annotations")]
-        Task<AnnotationSetResponse> Get(string skillId, string annotationSetId, int maxResults, string nextToken);
+        Task<AnnotationSetResponse> Get(string skillId, string annotationSetId, int maxResults, string nextToken, [Header("Accept")] string contentType);
     }
 }

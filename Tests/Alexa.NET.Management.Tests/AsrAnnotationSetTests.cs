@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -62,11 +63,30 @@ namespace Alexa.NET.Management.Tests
             var management = new ManagementApi("xxx", new ActionHandler(async req =>
             {
                 Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal("application/json", req.Headers.Accept.First().MediaType);
                 Assert.Equal("/v1/skills/skillId/asrAnnotationSets/testSet/annotations?maxResults=10&nextToken=next", req.RequestUri.PathAndQuery);
             },Utility.ExampleFileContent<AnnotationSetResponse>("AsrAnnotationSet.json")));
 
             var response = await management.Asr.AnnotationSets.Get("skillId", annotationSetId, 10, "next");
             Assert.True(Utility.CompareJson(response,"AsrAnnotationSet.json"));
+        }
+
+        [Fact]
+        public async Task GetCsv()
+        {
+            var annotationSetId = "testSet";
+
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal("text/csv",req.Headers.Accept.First().MediaType);
+                Assert.Equal("/v1/skills/skillId/asrAnnotationSets/testSet/annotations", req.RequestUri.PathAndQuery);
+                return new HttpResponseMessage(HttpStatusCode.OK)
+                    {Content = new StringContent(Utility.ExampleFileContent("AsrAnnotationSet.csv"))};
+            }));
+
+            var response = await management.Asr.AnnotationSets.GetCsv("skillId", annotationSetId);
+            Assert.Equal(response, Utility.ExampleFileContent("AsrAnnotationSet.csv"));
         }
     }
 }
