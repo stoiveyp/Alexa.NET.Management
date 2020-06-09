@@ -105,5 +105,20 @@ namespace Alexa.NET.Management.Tests
             var response = await management.Asr.AnnotationSets.GetMetadata("skillId", annotationSetId);
             Assert.True(Utility.CompareJson(response,"AsrAnnotationSetMetadata.json","lastUpdatedTimestamp"));
         }
+
+        [Fact]
+        public async Task GetList()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal("/v1/skills/skillId/asrAnnotationSets?maxResults=10&nextToken=abcdef", req.RequestUri.PathAndQuery);
+                return new HttpResponseMessage(HttpStatusCode.OK)
+                    { Content = new StringContent(Utility.ExampleFileContent("AsrAnnotationSetList.json")) };
+            }));
+
+            var response = await management.Asr.AnnotationSets.List("skillId", 10,"abcdef");
+            Assert.True(Utility.CompareJson(response, "AsrAnnotationSetList.json", "lastUpdatedTimestamp"));
+        }
     }
 }

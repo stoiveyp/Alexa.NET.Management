@@ -24,6 +24,18 @@ namespace Alexa.NET.Management.Internals
 
         [Get("/v1/skills/{skillId}/asrAnnotationSets/{annotationSetId}")]
         Task<AnnotationSetMetadata> GetMetadata(string skillId, string annotationSetId);
-        
+
+        [Get("/v1/skills/{skillId}/asrAnnotationSets")]
+        Task<AnnotationSetListResponse> List(string skillId);
+
+        [Get("/v1/skills/{skillId}/asrAnnotationSets")]
+        Task<AnnotationSetListResponse> List(string skillId, int maxResults);
+
+        [Get("/v1/skills/{skillId}/asrAnnotationSets")]
+        Task<AnnotationSetListResponse> List(string skillId, string nextToken);
+
+        [Get("/v1/skills/{skillId}/asrAnnotationSets")]
+        Task<AnnotationSetListResponse> List(string skillId, int maxResults, string nextToken);
+
     }
 }

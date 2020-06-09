@@ -78,5 +78,25 @@ namespace Alexa.NET.Management.Internals
         {
             return Client.GetMetadata(skillId, annotationSetId);
         }
+
+        public Task<AnnotationSetListResponse> List(string skillId)
+        {
+            return Client.List(skillId);
+        }
+
+        public Task<AnnotationSetListResponse> List(string skillId, int maxResults)
+        {
+            return Client.List(skillId, maxResults);
+        }
+
+        public Task<AnnotationSetListResponse> List(string skillId, string nextToken)
+        {
+            return Client.List(skillId, nextToken);
+        }
+
+        public Task<AnnotationSetListResponse> List(string skillId, int maxResults, string nextToken)
+        {
+            return Client.List(skillId, maxResults, nextToken);
+        }
     }
 }
