@@ -99,19 +99,23 @@ namespace Alexa.NET.Management.Internals
             return Client.List(skillId, maxResults, nextToken);
         }
 
-        public Task Update(string skillid, string annotationSetId, AnnotationUpdate[] annotationUpdates)
+        public  async Task Update(string skillId, string annotationSetId, AnnotationUpdate[] annotationUpdates)
         {
-            throw new NotImplementedException();
+            var response = await Client.Update(skillId, annotationSetId, "application/json",
+                new UpdateAnnotationsRequest {Annotations = annotationUpdates});
+            await response.CodeOrError(HttpStatusCode.NoContent);
         }
 
-        public Task Update(string skillid, string annotationSetId, string[] annotationUpdates)
+        public async Task Update(string skillId, string annotationSetId, string csvWithHeaders)
         {
-            throw new NotImplementedException();
+            var response = await Client.Update(skillId, annotationSetId, "text/csv",csvWithHeaders);
+            await response.CodeOrError(HttpStatusCode.NoContent);
         }
 
-        public Task ChangeName(string skillId, string annotationSetId, string name)
+        public async Task ChangeName(string skillId, string annotationSetId, string name)
         {
-            return Client.UpdateName(skillId, annotationSetId,new NameChangeRequest{Name=name});
+            var response = await Client.UpdateName(skillId, annotationSetId,new NameChangeRequest{Name=name});
+            await response.CodeOrError(HttpStatusCode.NoContent);
         }
     }
 }

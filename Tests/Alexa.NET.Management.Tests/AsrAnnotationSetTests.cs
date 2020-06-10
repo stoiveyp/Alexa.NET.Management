@@ -126,31 +126,51 @@ namespace Alexa.NET.Management.Tests
         {
             var annotationSetId = "testSet";
 
-            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
             {
                 Assert.Equal(HttpMethod.Put, req.Method);
                 Assert.Equal("/v1/skills/skillId/asrAnnotationSets/testSet/annotations", req.RequestUri.PathAndQuery);
-
-                return new HttpResponseMessage(HttpStatusCode.NoContent).AsTask();
+                Assert.Equal("application/json",req.Content.Headers.ContentType.MediaType);
+                var body = JsonConvert.DeserializeObject<UpdateAnnotationsRequest>(
+                    await req.Content.ReadAsStringAsync());
+                var annotation = Assert.Single(body.Annotations);
+                Assert.Equal("ABC",annotation.UploadId);
+                Assert.Equal("DEF",annotation.ExpectedTranscription);
+                Assert.Equal("stuff.txt",annotation.FilePathInUpload);
+                Assert.Equal(400,annotation.EvaluationWeight);
+                return new HttpResponseMessage(HttpStatusCode.NoContent);
             }));
 
-            await management.Asr.AnnotationSets.Update("skillId", annotationSetId, new AnnotationUpdate[]{});
+            await management.Asr.AnnotationSets.Update("skillId", annotationSetId, new []
+            {
+                new AnnotationUpdate
+                {
+                    UploadId = "ABC",
+                    ExpectedTranscription = "DEF",
+                    FilePathInUpload = "stuff.txt",
+                    EvaluationWeight = 400
+                }
+            });
         }
 
         [Fact]
         public async Task UpdateCsv()
         {
+            var csvWithHeaders = @"uploadId,filePathInUpload,evaluationWeight,expectedTranscription
+string,string,integer,string";
             var annotationSetId = "testSet";
 
-            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
             {
+                Assert.Equal(csvWithHeaders, await req.Content.ReadAsStringAsync());
                 Assert.Equal(HttpMethod.Put, req.Method);
                 Assert.Equal("/v1/skills/skillId/asrAnnotationSets/testSet/annotations", req.RequestUri.PathAndQuery);
+                Assert.Equal("text/csv", req.Content.Headers.ContentType.MediaType);
 
-                return new HttpResponseMessage(HttpStatusCode.NoContent).AsTask();
+                return new HttpResponseMessage(HttpStatusCode.NoContent);
             }));
 
-            await management.Asr.AnnotationSets.Update("skillId", annotationSetId, new string[]{});
+            await management.Asr.AnnotationSets.Update("skillId", annotationSetId, csvWithHeaders);
         }
 
         [Fact]

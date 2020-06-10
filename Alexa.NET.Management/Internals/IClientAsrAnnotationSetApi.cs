@@ -38,7 +38,13 @@ namespace Alexa.NET.Management.Internals
         Task<AnnotationSetListResponse> List(string skillId, int maxResults, string nextToken);
 
         [Put("/v1/skills/{skillId}/asrAnnotationSets/{annotationSetId}")]
-        Task<AnnotationSetListResponse> UpdateName(string skillId, string annotationSetId, [Body]NameChangeRequest request);
+        Task<HttpResponseMessage> UpdateName(string skillId, string annotationSetId, [Body]NameChangeRequest request);
+
+        [Put("/v1/skills/{skillId}/asrAnnotationSets/{annotationSetId}/annotations")]
+        Task<HttpResponseMessage> Update(string skillId, string annotationSetId, [Header("Content-Type")] string contentType, [Body]UpdateAnnotationsRequest request);
+
+        [Put("/v1/skills/{skillId}/asrAnnotationSets/{annotationSetId}/annotations")]
+        Task<HttpResponseMessage> Update(string skillId, string annotationSetId, [Header("Content-Type")] string contentType, [Body] string request);
 
     }
 }
