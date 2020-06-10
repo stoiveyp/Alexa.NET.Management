@@ -1,0 +1,74 @@
+{
+  "annotations": [
+    {
+
+      "uploadId": "1234-12314-12314",
+      "filePathInUpload": "hello_world.mp3",
+      "evaluationWeight": 5,
+      "expectedTranscription": "alexa hello world",
+
+      "audioAsset": {
+
+        "downloadUrl": "https://s3.amazon.com/asdfasdfasdf/fasdf",
+
+        "expiryTime": "2019-10-12 10:23:32AM"
+
+      }
+    },
+    {
+
+      "uploadId": "1234-12314-12315",
+
+      "filePathInUpload": "ask say hello.wav",
+
+      "evaluationWeight": 10,
+      "expectedTranscription": "ask hello world skill say hello",
+
+      "audioAsset": {
+
+        "downloadUrl": "https://s3.amazon.com/asdfasdfasdf/fasdf",
+
+        "expiryTime": "2019-10-12 10:23:32AM"
+
+      }
+
+    },
+
+    {
+
+      "uploadId": "1234-12314-12348",
+
+      "filePathInUpload": "ask say hello.wav",
+
+      "evaluationWeight": 10,
+      "expectedTranscription": "ask hello world skill say hello",
+
+      "audioAsset": {
+
+        "downloadUrl": "https://s3.amazon.com/asdfasdfasdf/fasdf",
+
+        "expiryTime": "2019-10-12 10:23:32AM"
+
+      }
+
+    },
+
+    {
+
+      "uploadId": "1234-12314-12348",
+
+      "filePathInUpload": "something.wav",
+
+      "evaluationWeight": 10,
+      "expectedTranscription": "ask hello world skill say hello",
+
+      "audioAsset": {
+
+        "downloadUrl": "https://s3.amazon.com/asdfasdfasdf/fasdf",
+
+        "expiryTime": "2019-10-12 10:23:32AM"
+
+      }
+    }
+  ]
+}

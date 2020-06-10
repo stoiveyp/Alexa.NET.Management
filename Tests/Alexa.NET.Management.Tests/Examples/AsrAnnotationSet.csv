@@ -1,0 +1,5 @@
+﻿filePathInUpload,uploadId,evaluationWeight,expectedTranscription,audioAssetDownloadUrl,audioAssetDownloadUrlExpiryTime
+hello_world.mp3,amazn.catalog.upid.12341234,5,alexa hello world, https://audio.s3.amazon.com/XXXYYYA, 2020-04-013 13:23PM TZ
+ask say hello.wav,amazn.catalog.upid.12341234,10,ask hello world skill say hello, https://audio.s3.amazon.com/XXXYYYA,2020-04-013 13:23PM TZ
+ask say hello.wav,amazn.catalog.upid.12341234,10,ask hello world skill say hello, https://audio.s3.amazon.com/XXXYYYA, 2020-04-013 13:23PM TZ
+something.wav,amazn.catalog.upid.12341234,10,ask hello world skill say hello, https://audio.s3.amazon.com/XXXYYYA, 2020-04-013 13:23PM TZ

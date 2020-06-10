@@ -1,0 +1,111 @@
+{
+  "evaluations": [
+    {
+      "id": "1234-1234-54321",
+      "status": "COMPLETED",
+
+      "startTimestamp": "2018-10-25T08:25:04.679Z",
+
+      "totalEvaluationCount": 10,
+
+      "completedEvaluationCount": 10,
+
+      "request": {
+        "skill": {
+          "stage": "development",
+          "locale": "en-US"
+        },
+        "annotationSetId": "1234-1234-1234"
+      },
+      "result": {
+        "status": "PASSED",
+        "metrics": {
+
+          "overallErrorRate": 0.5
+
+        }
+      }
+    },
+
+    {
+      "id": "1234-1234-54325",
+      "status": "COMPLETED",
+
+      "totalEvaluationCount": 10,
+
+      "completedEvaluationCount": 10,
+
+      "startTimestamp": "2018-10-24T08:25:04.679Z",
+
+      "request": {
+        "skill": {
+          "stage": "live",
+          "locale": "en-GB"
+        },
+        "annotationSetId": "1234-1234-1234"
+      },
+      "result": {
+        "status": "FAILED",
+
+        "metrics": {
+          "overallErrorRate": 0.5
+
+        }
+      }
+    },
+
+    {
+      "id": "1234-1234-54322",
+      "status": "COMPLETED",
+
+      "startTimestamp": "2018-10-24T08:25:04.679Z",
+
+      "totalEvaluationCount": 10,
+
+      "completedEvaluationCount": 10,
+
+      "request": {
+        "skill": {
+          "stage": "development",
+          "locale": "en-GB"
+        },
+        "annotationSetId": "1234-1234-1234"
+      },
+      "result": {
+        "status": "FAILED",
+
+        "metrics": {
+
+          "overallErrorRate": 0.5
+
+        }
+      }
+    },
+
+    {
+      "id": "1234-1234-54323",
+      "status": "FAILED",
+
+      "totalEvaluationCount": 10,
+
+      "completedEvaluationCount": 10,
+
+      "startTimestamp": "2018-10-24T08:25:04.679Z",
+
+      "request": {
+        "skill": {
+          "stage": "development",
+          "locale": "en-GB"
+        },
+        "annotationSetId": "1234-1234-1234"
+      },
+      "error": {
+
+        "message": "An unexpected error occurred",
+
+        "code": "INTERNAL_SERVER_ERROR"
+
+      }
+    }
+  ]
+}

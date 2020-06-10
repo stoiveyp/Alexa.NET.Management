@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -12,6 +14,10 @@ namespace Alexa.NET.Management.Tests
     {
         private const string ExamplesPath = "Examples";
 
+        public static Task<HttpResponseMessage> AsTask(this HttpResponseMessage message)
+        {
+            return Task.FromResult(message);
+        }
         public static bool CompareJson(object actual, string expectedFile, params string[] exclude)
         {
             var actualJObject = JObject.FromObject(actual);

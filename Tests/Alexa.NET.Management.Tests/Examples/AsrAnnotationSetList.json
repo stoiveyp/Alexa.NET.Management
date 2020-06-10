@@ -1,0 +1,17 @@
+{
+  "annotationSets": [
+
+    {
+      "id": "amzn1.ask-asr-evaluation.asid.1234-123-1234",
+      "name": "my annotation set 2",
+      "annotationCount": 5,
+      "lastUpdatedTimestamp": "2019-08-12T18:46:31.674Z"
+    }
+  ],
+
+  "paginationContext": {
+
+    "nextToken": "ABC123454"
+
+  }
+}
