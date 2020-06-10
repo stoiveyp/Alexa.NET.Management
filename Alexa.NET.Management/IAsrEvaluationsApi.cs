@@ -21,5 +21,7 @@ namespace Alexa.NET.Management
         Task<EvaluationResults> GetResults(string skillId, string evaluationId, EvaluationResultStatus status, int maxResults, string nextToken);
 
         Task<EvaluationStatus> GetStatus(string skillId, string evaluationId);
+
+        Task<EvaluationListResponse> List(string skillId, EvaluationListRequest request);
     }
 }

@@ -37,5 +37,8 @@ namespace Alexa.NET.Management.Internals
         [Get("/v1/skills/{skillId}/asrAnnotationSets")]
         Task<AnnotationSetListResponse> List(string skillId, int maxResults, string nextToken);
 
+        [Put("/v1/skills/{skillId}/asrAnnotationSets/{annotationSetId}")]
+        Task<AnnotationSetListResponse> UpdateName(string skillId, string annotationSetId, [Body]NameChangeRequest request);
+
     }
 }

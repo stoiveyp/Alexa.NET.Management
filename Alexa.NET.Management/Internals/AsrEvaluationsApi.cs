@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using Alexa.NET.Management.Api;
 using Alexa.NET.Management.Asr.Evaluations;
@@ -96,6 +94,11 @@ namespace Alexa.NET.Management.Internals
         public Task<EvaluationStatus> GetStatus(string skillId, string evaluationId)
         {
             return Client.GetStatus(skillId, evaluationId);
+        }
+
+        public Task<EvaluationListResponse> List(string skillId, EvaluationListRequest request)
+        {
+            return Client.List(skillId, request);
         }
     }
 }

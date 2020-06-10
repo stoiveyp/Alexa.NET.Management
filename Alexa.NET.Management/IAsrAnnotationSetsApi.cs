@@ -24,5 +24,8 @@ namespace Alexa.NET.Management
         Task<AnnotationSetListResponse> List(string skillId, string nextToken);
 
         Task<AnnotationSetListResponse> List(string skillId, int maxResults, string nextToken);
+        Task Update(string skillid, string annotationSetId, AnnotationUpdate[] annotationUpdates);
+        Task Update(string skillid, string annotationSetId, string[] annotationUpdates);
+        Task ChangeName(string skillId, string annotationSetId, string name);
     }
 }

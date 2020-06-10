@@ -47,12 +47,12 @@ namespace Alexa.NET.Management.Tests
         {
             var evaluationId = "testSet";
 
-            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
             {
                 Assert.Equal(HttpMethod.Delete, req.Method);
                 Assert.Equal("/v1/skills/skillId/asrEvaluations/testSet", req.RequestUri.PathAndQuery);
 
-                return new HttpResponseMessage(HttpStatusCode.NoContent);
+                return new HttpResponseMessage(HttpStatusCode.NoContent).AsTask();
             }));
 
             await management.Asr.Evaluations.Delete("skillId", evaluationId);
@@ -63,7 +63,7 @@ namespace Alexa.NET.Management.Tests
         {
             var evaluationId = "testSet";
 
-            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
             {
                 Assert.Equal(HttpMethod.Get, req.Method);
                 Assert.Equal("/v1/skills/skillId/asrEvaluations/testSet/results?status=FAILED&maxResults=10&nextToken=ABCDEF", req.RequestUri.PathAndQuery);
@@ -78,7 +78,7 @@ namespace Alexa.NET.Management.Tests
         {
             var evaluationId = "testSet";
 
-            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
             {
                 Assert.Equal(HttpMethod.Get, req.Method);
                 Assert.Equal("/v1/skills/skillId/asrEvaluations/testSet/status", req.RequestUri.PathAndQuery);
@@ -86,6 +86,24 @@ namespace Alexa.NET.Management.Tests
 
             var response = await management.Asr.Evaluations.GetStatus("skillId", evaluationId);
             Assert.True(Utility.CompareJson(response, "AsrEvaluationSetStatus.json", "startTimestamp"));
+        }
+
+        [Fact]
+        public async Task GetList()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal("/v1/skills/skillId/asrEvaluations?annotationSetId=abcdef&locale=en-GB&maxResults=10", req.RequestUri.PathAndQuery);
+            }, Utility.ExampleFileContent<EvaluationListResponse>("AsrEvaluationList.json")));
+
+            var response = await management.Asr.Evaluations.List("skillId", new EvaluationListRequest
+            {
+                AnnotationSetId="abcdef",
+                Locale="en-GB",
+                MaxResults=10
+            });
+            Assert.True(Utility.CompareJson(response, "AsrEvaluationList.json", "startTimestamp"));
         }
 
 

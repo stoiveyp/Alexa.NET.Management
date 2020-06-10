@@ -44,12 +44,12 @@ namespace Alexa.NET.Management.Tests
         {
             var annotationSetId = "testSet";
 
-            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
             {
                 Assert.Equal(HttpMethod.Delete, req.Method);
                 Assert.Equal("/v1/skills/skillId/asrAnnotationSets/testSet", req.RequestUri.PathAndQuery);
 
-                return new HttpResponseMessage(HttpStatusCode.NoContent);
+                return new HttpResponseMessage(HttpStatusCode.NoContent).AsTask();
             }));
 
             await management.Asr.AnnotationSets.Delete("skillId", annotationSetId);
@@ -60,7 +60,7 @@ namespace Alexa.NET.Management.Tests
         {
             var annotationSetId = "testSet";
 
-            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
             {
                 Assert.Equal(HttpMethod.Get, req.Method);
                 Assert.Equal("application/json", req.Headers.Accept.First().MediaType);
@@ -76,13 +76,13 @@ namespace Alexa.NET.Management.Tests
         {
             var annotationSetId = "testSet";
 
-            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
             {
                 Assert.Equal(HttpMethod.Get, req.Method);
                 Assert.Equal("text/csv",req.Headers.Accept.First().MediaType);
                 Assert.Equal("/v1/skills/skillId/asrAnnotationSets/testSet/annotations", req.RequestUri.PathAndQuery);
-                return new HttpResponseMessage(HttpStatusCode.OK)
-                    {Content = new StringContent(Utility.ExampleFileContent("AsrAnnotationSet.csv"))};
+                return Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK)
+                    {Content = new StringContent(Utility.ExampleFileContent("AsrAnnotationSet.csv"))});
             }));
 
             var response = await management.Asr.AnnotationSets.GetContentCsv("skillId", annotationSetId);
@@ -94,12 +94,12 @@ namespace Alexa.NET.Management.Tests
         {
             var annotationSetId = "1234-1234123-1234";
 
-            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
             {
                 Assert.Equal(HttpMethod.Get, req.Method);
                 Assert.Equal("/v1/skills/skillId/asrAnnotationSets/1234-1234123-1234", req.RequestUri.PathAndQuery);
                 return new HttpResponseMessage(HttpStatusCode.OK)
-                    { Content = new StringContent(Utility.ExampleFileContent("AsrAnnotationSetMetadata.json")) };
+                    { Content = new StringContent(Utility.ExampleFileContent("AsrAnnotationSetMetadata.json")) }.AsTask();
             }));
 
             var response = await management.Asr.AnnotationSets.GetMetadata("skillId", annotationSetId);
@@ -109,16 +109,68 @@ namespace Alexa.NET.Management.Tests
         [Fact]
         public async Task GetList()
         {
-            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
             {
                 Assert.Equal(HttpMethod.Get, req.Method);
                 Assert.Equal("/v1/skills/skillId/asrAnnotationSets?maxResults=10&nextToken=abcdef", req.RequestUri.PathAndQuery);
                 return new HttpResponseMessage(HttpStatusCode.OK)
-                    { Content = new StringContent(Utility.ExampleFileContent("AsrAnnotationSetList.json")) };
+                    {Content = new StringContent(Utility.ExampleFileContent("AsrAnnotationSetList.json"))}.AsTask();
             }));
 
             var response = await management.Asr.AnnotationSets.List("skillId", 10,"abcdef");
             Assert.True(Utility.CompareJson(response, "AsrAnnotationSetList.json", "lastUpdatedTimestamp"));
+        }
+
+        [Fact]
+        public async Task UpdateJson()
+        {
+            var annotationSetId = "testSet";
+
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            {
+                Assert.Equal(HttpMethod.Put, req.Method);
+                Assert.Equal("/v1/skills/skillId/asrAnnotationSets/testSet/annotations", req.RequestUri.PathAndQuery);
+
+                return new HttpResponseMessage(HttpStatusCode.NoContent).AsTask();
+            }));
+
+            await management.Asr.AnnotationSets.Update("skillId", annotationSetId, new AnnotationUpdate[]{});
+        }
+
+        [Fact]
+        public async Task UpdateCsv()
+        {
+            var annotationSetId = "testSet";
+
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            {
+                Assert.Equal(HttpMethod.Put, req.Method);
+                Assert.Equal("/v1/skills/skillId/asrAnnotationSets/testSet/annotations", req.RequestUri.PathAndQuery);
+
+                return new HttpResponseMessage(HttpStatusCode.NoContent).AsTask();
+            }));
+
+            await management.Asr.AnnotationSets.Update("skillId", annotationSetId, new string[]{});
+        }
+
+        [Fact]
+        public async Task ChangeName()
+        {
+            var annotationSetId = "testSet";
+
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Put, req.Method);
+                var body = JObject.Parse(await req.Content.ReadAsStringAsync());
+                var prop = Assert.Single(body.Properties());
+                Assert.Equal("name",prop.Name);
+                Assert.Equal("wibble",prop.Value.Value<string>());
+                Assert.Equal("/v1/skills/skillId/asrAnnotationSets/testSet", req.RequestUri.PathAndQuery);
+
+                return new HttpResponseMessage(HttpStatusCode.NoContent);
+            }));
+
+            await management.Asr.AnnotationSets.ChangeName("skillId", annotationSetId, "wibble");
         }
     }
 }

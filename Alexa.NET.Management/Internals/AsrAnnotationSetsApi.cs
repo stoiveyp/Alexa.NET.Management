@@ -98,5 +98,20 @@ namespace Alexa.NET.Management.Internals
         {
             return Client.List(skillId, maxResults, nextToken);
         }
+
+        public Task Update(string skillid, string annotationSetId, AnnotationUpdate[] annotationUpdates)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Update(string skillid, string annotationSetId, string[] annotationUpdates)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task ChangeName(string skillId, string annotationSetId, string name)
+        {
+            return Client.UpdateName(skillId, annotationSetId,new NameChangeRequest{Name=name});
+        }
     }
 }
