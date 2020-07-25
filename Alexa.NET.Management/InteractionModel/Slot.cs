@@ -12,5 +12,8 @@ namespace Alexa.NET.Management.InteractionModel
 
         [JsonProperty("samples",NullValueHandling = NullValueHandling.Ignore)]
         public string[] Samples { get; set; }
+
+        [JsonProperty("multipleValues",NullValueHandling = NullValueHandling.Ignore)]
+        public MultipleSlotValues MultipleValues { get; set; }
     }
 }
