@@ -4,7 +4,7 @@ namespace Alexa.NET.Management.SlotType
 {
     public class SharedSlotType
     {
-        [JsonProperty("id")]
+        [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
         public string Id { get; set; }
 
         [JsonProperty("name")]
