@@ -11,5 +11,7 @@ namespace Alexa.NET.Management
         public Task<ReferenceCatalogCreationResponse> Create(string vendorId, string name, string description = null);
 
         public Task<Uri> CreateVersion(string catalogId, string url, string description = null);
+
+        public Task<ReferenceCatalogUpdateStatus> GetUpdateStatus(string catalogId, string updateRequestId);
     }
 }

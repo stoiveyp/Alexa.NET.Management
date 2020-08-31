@@ -13,7 +13,10 @@ namespace Alexa.NET.Management.Internals
         [Post("/v1/skills/api/custom/interactionModel/catalogs")]
         public Task<ReferenceCatalogCreationResponse> Create(ReferenceCatalogCreationRequest request);
 
-        [Post("/skills/api/custom/interactionModel/catalogs/{catalogId}/versions")]
+        [Post("/v1/skills/api/custom/interactionModel/catalogs/{catalogId}/versions")]
         public Task<HttpResponseMessage> CreateVersion(string catalogId, ReferenceCatalogCreateVersionRequest request);
+
+        [Get("/v1/skills/api/custom/interactionModel/catalogs/{catalogId}/updateRequest/{updateRequestId}")]
+        public Task<ReferenceCatalogUpdateStatus> GetUpdateStatus(string catalogId, string updateRequestId);
     }
 }

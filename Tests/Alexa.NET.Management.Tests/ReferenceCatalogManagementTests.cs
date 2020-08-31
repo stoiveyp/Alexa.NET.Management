@@ -31,7 +31,7 @@ namespace Alexa.NET.Management.Tests
             {
                 Assert.Equal(HttpMethod.Post, req.Method);
                 Utility.CompareJson(JsonConvert.DeserializeObject<ReferenceCatalogCreateVersionRequest>(await req.Content.ReadAsStringAsync()), "ReferenceCatalogCreateVersion.json");
-                Assert.Equal("/skills/api/custom/interactionModel/catalogs/ABC123/versions", req.RequestUri.PathAndQuery);
+                Assert.Equal("/v1/skills/api/custom/interactionModel/catalogs/ABC123/versions", req.RequestUri.PathAndQuery);
                 var resp = new HttpResponseMessage(HttpStatusCode.Accepted);
                 resp.Headers.Location = new Uri("https://example.com",UriKind.Absolute);
                 return resp;
@@ -42,9 +42,16 @@ namespace Alexa.NET.Management.Tests
         }
 
         [Fact]
-        public void UpdateStatus()
+        public async Task UpdateStatus()
         {
-            Assert.False(true);
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal("/v1/skills/api/custom/interactionModel/catalogs/ABC123/updateRequest/requestABC", req.RequestUri.PathAndQuery);
+            },Utility.ExampleFileContent<ReferenceCatalogUpdateStatus>("ReferenceCatalogUpdateStatus.json")));
+
+            var response = await management.ReferenceCatalogManagement.GetUpdateStatus("ABC123", "requestABC");
+            Utility.CompareJson(response, "ReferenceCatalogUpdateStatus.json");
         }
 
         [Fact]

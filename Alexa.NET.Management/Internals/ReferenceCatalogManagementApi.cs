@@ -42,5 +42,10 @@ namespace Alexa.NET.Management
 
             return await response.UriOrError(HttpStatusCode.Accepted);
         }
+
+        public Task<ReferenceCatalogUpdateStatus> GetUpdateStatus(string catalogId, string updateRequestId)
+        {
+            return Client.GetUpdateStatus(catalogId, updateRequestId);
+        }
     }
 }
