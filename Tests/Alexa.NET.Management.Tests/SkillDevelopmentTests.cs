@@ -46,7 +46,7 @@ namespace Alexa.NET.Management.Tests
                 Assert.Equal("/v0/developmentEvents/subscribers", req.RequestUri.PathAndQuery);
                 var raw = await req.Content.ReadAsStringAsync();
                 var request = JsonConvert.DeserializeObject<Subscriber>(raw);
-                Utility.CompareJson(request, "CreateSubscriberRequest.json");
+                Assert.True(Utility.CompareJson(request, "CreateSubscriberRequest.json"));
 
                 var resp = new HttpResponseMessage(HttpStatusCode.Created);
                 resp.Headers.Location = new Uri(responseLocation, UriKind.Relative);
@@ -77,7 +77,7 @@ namespace Alexa.NET.Management.Tests
                 Assert.Equal(requestLocation, req.RequestUri.PathAndQuery);
                 var raw = await req.Content.ReadAsStringAsync();
                 var request = JsonConvert.DeserializeObject<SubscriberUpdate>(raw);
-                Utility.CompareJson(request, "CreateSubscriberRequest.json","vendorId");
+                Assert.True(Utility.CompareJson(request, "CreateSubscriberRequest.json","vendorId"));
             },HttpStatusCode.NoContent));
 
             var subscriptionRequest = new SubscriberUpdate
@@ -161,7 +161,7 @@ namespace Alexa.NET.Management.Tests
                 Assert.Equal("/v0/developmentEvents/subscriptions", req.RequestUri.PathAndQuery);
                 var raw = await req.Content.ReadAsStringAsync();
                 var request = JsonConvert.DeserializeObject<Subscription>(raw);
-                Utility.CompareJson(request, "CreateSubscriptionRequest.json");
+                Assert.True(Utility.CompareJson(request, "CreateSubscriptionRequest.json"));
 
                 var resp = new HttpResponseMessage(HttpStatusCode.Created);
                 resp.Headers.Location = new Uri(responseLocation, UriKind.Relative);
@@ -170,9 +170,9 @@ namespace Alexa.NET.Management.Tests
 
             var subscriptionRequest = new Subscription
             {
-                Name = "my subscription request",
+                Name = "my subscription",
                 VendorId = "M123456EXAMPLE",
-                SubscriberId = "ABC",
+                SubscriberId = "ABCDEF",
                 Events = new[] {AlexaDevelopmentEventType.SkillPublish}
             };
 
