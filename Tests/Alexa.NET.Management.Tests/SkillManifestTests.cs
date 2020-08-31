@@ -52,8 +52,8 @@ namespace Alexa.NET.Management.Tests
         [Fact]
         public void InteractionModelDeserializesCorrectly()
         {
-            var model = Utility.ExampleFileContent<SkillInteractionContainer>("interactionModel.json");
-            Assert.True(Utility.CompareJson(model, "interactionModel.json"));
+            var model = Utility.ExampleFileContent<SkillInteractionContainer>("InteractionModel.json");
+            Assert.True(Utility.CompareJson(model, "InteractionModel.json"));
         }
 
         [Fact]
