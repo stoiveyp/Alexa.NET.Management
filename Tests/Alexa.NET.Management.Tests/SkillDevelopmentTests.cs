@@ -170,9 +170,9 @@ namespace Alexa.NET.Management.Tests
 
             var subscriptionRequest = new Subscription
             {
-                Name = "my subscription request",
+                Name = "my subscription",
                 VendorId = "M123456EXAMPLE",
-                SubscriberId = "ABC",
+                SubscriberId = "ABCDEF",
                 Events = new[] {AlexaDevelopmentEventType.SkillPublish}
             };
 
