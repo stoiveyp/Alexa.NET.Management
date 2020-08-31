@@ -1,0 +1,7 @@
+{
+  "vendorId": "ABC123",
+  "catalog": {
+    "name": "test",
+    "description": "test desc"
+  }
+}

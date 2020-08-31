@@ -1,6 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
+using Alexa.NET.Management.ReferenceCatalogManagement;
+using Newtonsoft.Json;
 using Xunit;
 
 namespace Alexa.NET.Management.Tests
@@ -8,9 +13,17 @@ namespace Alexa.NET.Management.Tests
     public class ReferenceCatalogManagementTests
     {
         [Fact]
-        public void Create()
+        public async Task Create()
         {
-            Assert.False(true);
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Post, req.Method);
+                Utility.CompareJson(JsonConvert.DeserializeObject<ReferenceCatalogCreationRequest>(await req.Content.ReadAsStringAsync()),"ReferenceCatalogCreate.json");
+                Assert.Equal("/v1/skills/api/custom/interactionModel/catalogs", req.RequestUri.PathAndQuery);
+            }, new ReferenceCatalogCreationResponse{CatalogId="testabc"}));
+
+            var response = await management.ReferenceCatalogManagement.Create("ABC123","test","test desc");
+            Assert.Equal("testabc", response.CatalogId);
         }
 
         [Fact]
