@@ -1,4 +1,6 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Alexa.NET.Management.Internals;
 using Alexa.NET.Management.ReferenceCatalogManagement;
@@ -25,6 +27,20 @@ namespace Alexa.NET.Management
                     Description = description
                 }
             });
+        }
+
+        public async Task<Uri> CreateVersion(string catalogId, string url, string description = null)
+        {
+            var response = await Client.CreateVersion(catalogId, new ReferenceCatalogCreateVersionRequest
+            {
+                Source = new ReferenceCatalogCreateVersionRequestSource
+                {
+                    Url = url
+                },
+                Description = description
+            });
+
+            return await response.UriOrError(HttpStatusCode.Accepted);
         }
     }
 }

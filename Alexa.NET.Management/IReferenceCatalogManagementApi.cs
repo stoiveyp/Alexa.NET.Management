@@ -9,5 +9,7 @@ namespace Alexa.NET.Management
     public interface IReferenceCatalogManagementApi
     {
         public Task<ReferenceCatalogCreationResponse> Create(string vendorId, string name, string description = null);
+
+        public Task<Uri> CreateVersion(string catalogId, string url, string description = null);
     }
 }

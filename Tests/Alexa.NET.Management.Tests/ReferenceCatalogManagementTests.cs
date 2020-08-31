@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using Alexa.NET.Management.ReferenceCatalogManagement;
 using Newtonsoft.Json;
@@ -27,9 +25,20 @@ namespace Alexa.NET.Management.Tests
         }
 
         [Fact]
-        public void CreateVersion()
+        public async Task CreateVersion()
         {
-            Assert.False(true);
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Post, req.Method);
+                Utility.CompareJson(JsonConvert.DeserializeObject<ReferenceCatalogCreateVersionRequest>(await req.Content.ReadAsStringAsync()), "ReferenceCatalogCreateVersion.json");
+                Assert.Equal("/skills/api/custom/interactionModel/catalogs/ABC123/versions", req.RequestUri.PathAndQuery);
+                var resp = new HttpResponseMessage(HttpStatusCode.Accepted);
+                resp.Headers.Location = new Uri("https://example.com",UriKind.Absolute);
+                return resp;
+            }));
+
+            var response = await management.ReferenceCatalogManagement.CreateVersion("ABC123", "https://exampledata.com", "test desc");
+            Assert.Equal("https://example.com/", response.ToString());
         }
 
         [Fact]
