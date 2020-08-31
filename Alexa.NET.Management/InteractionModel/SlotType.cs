@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Alexa.NET.Management.SlotType;
+using Newtonsoft.Json;
 
 namespace Alexa.NET.Management.InteractionModel
 {
@@ -7,7 +8,10 @@ namespace Alexa.NET.Management.InteractionModel
         [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonProperty("values")]
+        [JsonProperty("values", NullValueHandling = NullValueHandling.Ignore)]
         public SlotTypeValue[] Values { get; set; }
+
+        [JsonProperty("valueSupplier", NullValueHandling = NullValueHandling.Ignore)]
+        public ValueSupplier ValueSupplier { get; set; }
     }
 }

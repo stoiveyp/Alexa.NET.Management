@@ -9,9 +9,9 @@
     <PackageProjectUrl>https://github.com/stoiveyp/Alexa.NET.Management/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/stoiveyp/Alexa.NET.Management/</RepositoryUrl>
     <PackageTags>amazon;alexa;echo;dot;echo dot;skills;management</PackageTags>
-    <Version>5.4.0</Version>
+    <Version>5.4.1</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageReleaseNotes>Slots in Slot API now have Id (thank you @shinya-terasaki!)</PackageReleaseNotes>
+    <PackageReleaseNotes>Add value supplier to interaction model slot type (thanks @dennis-kuypers-gcx!)</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <LangVersion>8</LangVersion>
   </PropertyGroup>
