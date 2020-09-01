@@ -13,5 +13,13 @@ namespace Alexa.NET.Management
         public Task<Uri> CreateVersion(string catalogId, string url, string description = null);
 
         public Task<ReferenceCatalogUpdateStatus> GetUpdateStatus(string catalogId, string updateRequestId);
+
+        Task<ReferenceCatalogListResponse> List(string vendorId);
+
+        Task<ReferenceCatalogListResponse> List(string vendorId, SortDirection sortDirection);
+
+        Task<ReferenceCatalogListResponse> List(string vendorId, string nextToken, int maxResults);
+
+        Task<ReferenceCatalogListResponse> List(string vendorId, SortDirection sortDirection, string nextToken, int maxResults);
     }
 }

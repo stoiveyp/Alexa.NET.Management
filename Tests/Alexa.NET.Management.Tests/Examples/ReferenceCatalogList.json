@@ -1,0 +1,28 @@
+{
+  "isTruncated": true,
+  "nextToken": "ABC123Token",
+  "totalCount": 10,
+  "_links": {
+    "next": {
+      "href": "https://example.com/next"
+    },
+    "self": {
+      "href": "https://example.com/self"
+    }
+  },
+  "catalogs": [
+    {
+      "catalogId": "ABC123",
+      "description": "test desc",
+      "name": "test name",
+      "_links": {
+        "next": {
+          "href": "https://example.com/next"
+        },
+        "self": {
+          "href": "https://example.com/self"
+        }
+      }
+    }
+  ]
+}

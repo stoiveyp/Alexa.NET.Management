@@ -21,7 +21,7 @@ namespace Alexa.NET.Management
             return Client.Create(new ReferenceCatalogCreationRequest
             {
                 VendorId = vendorId,
-                Catalog = new ReferenceCatalog
+                Catalog = new ReferenceCatalogBase
                 {
                     Name = name,
                     Description = description
@@ -46,6 +46,26 @@ namespace Alexa.NET.Management
         public Task<ReferenceCatalogUpdateStatus> GetUpdateStatus(string catalogId, string updateRequestId)
         {
             return Client.GetUpdateStatus(catalogId, updateRequestId);
+        }
+
+        public Task<ReferenceCatalogListResponse> List(string vendorId)
+        {
+            return Client.List(vendorId);
+        }
+
+        public Task<ReferenceCatalogListResponse> List(string vendorId, SortDirection sortDirection)
+        {
+            return Client.List(vendorId, sortDirection);
+        }
+
+        public Task<ReferenceCatalogListResponse> List(string vendorId, string nextToken, int maxResults)
+        {
+            return Client.List(vendorId, nextToken, maxResults);
+        }
+
+        public Task<ReferenceCatalogListResponse> List(string vendorId, SortDirection sortDirection, string nextToken, int maxResults)
+        {
+            return Client.List(vendorId, sortDirection, nextToken, maxResults);
         }
     }
 }

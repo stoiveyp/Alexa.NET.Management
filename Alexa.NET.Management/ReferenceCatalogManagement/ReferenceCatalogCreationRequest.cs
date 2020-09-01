@@ -11,6 +11,6 @@ namespace Alexa.NET.Management.ReferenceCatalogManagement
         public string VendorId { get; set; }
 
         [JsonProperty("catalog")]
-        public ReferenceCatalog Catalog { get; set; }
+        public ReferenceCatalogBase Catalog { get; set; }
     }
 }

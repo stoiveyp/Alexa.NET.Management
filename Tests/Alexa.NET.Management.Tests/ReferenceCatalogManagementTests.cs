@@ -51,13 +51,26 @@ namespace Alexa.NET.Management.Tests
             },Utility.ExampleFileContent<ReferenceCatalogUpdateStatus>("ReferenceCatalogUpdateStatus.json")));
 
             var response = await management.ReferenceCatalogManagement.GetUpdateStatus("ABC123", "requestABC");
-            Utility.CompareJson(response, "ReferenceCatalogUpdateStatus.json");
+            Assert.True(Utility.CompareJson(response, "ReferenceCatalogUpdateStatus.json"));
         }
 
         [Fact]
-        public void List()
+        public async Task List()
         {
-            Assert.False(true);
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal("/v1/skills/api/custom/interactionModel/catalogs?vendorId=vendorId&sortDirection=asc&nextToken=wibble&maxResults=10", req.RequestUri.PathAndQuery);
+
+                var message = new HttpResponseMessage(HttpStatusCode.OK)
+                {
+                    Content = new StringContent(Utility.ExampleFileContent("ReferenceCatalogList.json"))
+                };
+                return Task.FromResult(message);
+            }));
+            var response = await management.ReferenceCatalogManagement.List("vendorId", SortDirection.Ascending, "wibble", 10);
+            Assert.NotNull(response);
+            Assert.True(Utility.CompareJson(response, "ReferenceCatalogList.json"));
         }
 
         [Fact]
