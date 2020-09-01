@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace Alexa.NET.Management.ReferenceCatalogManagement
 {
-    public class ReferenceCatalogBase
+    public class ReferenceCatalog
     {
         [JsonProperty("name")]
         public string Name { get; set; }

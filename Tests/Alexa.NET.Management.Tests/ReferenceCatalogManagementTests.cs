@@ -93,9 +93,16 @@ namespace Alexa.NET.Management.Tests
         }
 
         [Fact]
-        public void Get()
+        public async Task Get()
         {
-            Assert.False(true);
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal("/v1/skills/api/custom/interactionModel/catalogs/ABC123", req.RequestUri.PathAndQuery);
+            }, Utility.ExampleFileContent<ReferenceCatalogDefinition>("ReferenceCatalogGet.json")));
+
+            var response = await management.ReferenceCatalogManagement.Get("ABC123");
+            Assert.True(Utility.CompareJson(response, "ReferenceCatalogGet.json"));
         }
 
         [Fact]
