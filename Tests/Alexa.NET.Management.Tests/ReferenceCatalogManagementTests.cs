@@ -42,9 +42,9 @@ namespace Alexa.NET.Management.Tests
         }
 
         [Fact]
-        public async Task UpdateStatus()
+        public async void UpdateStatus()
         {
-            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
             {
                 Assert.Equal(HttpMethod.Get, req.Method);
                 Assert.Equal("/v1/skills/api/custom/interactionModel/catalogs/ABC123/updateRequest/requestABC", req.RequestUri.PathAndQuery);
@@ -106,9 +106,16 @@ namespace Alexa.NET.Management.Tests
         }
 
         [Fact]
-        public void GetVersion()
+        public async Task GetVersion()
         {
-            Assert.False(true);
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal("/v1/skills/api/custom/interactionModel/catalogs/ABC123/versions/v1", req.RequestUri.PathAndQuery);
+            }, Utility.ExampleFileContent<ReferenceCatalogVersionDefinition>("ReferenceCatalogGetVersion.json")));
+
+            var response = await management.ReferenceCatalogManagement.GetVersion("ABC123", "v1");
+            Assert.True(Utility.CompareJson(response, "ReferenceCatalogGetVersion.json"));
         }
 
         [Fact]

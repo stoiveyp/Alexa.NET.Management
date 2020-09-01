@@ -33,8 +33,9 @@ namespace Alexa.NET.Management
         {
             var response = await Client.CreateVersion(catalogId, new ReferenceCatalogCreateVersionRequest
             {
-                Source = new ReferenceCatalogCreateVersionRequestSource
+                Source = new ReferenceCatalogSource
                 {
+                    Type = "URL",
                     Url = url
                 },
                 Description = description
@@ -91,6 +92,11 @@ namespace Alexa.NET.Management
         public Task<ReferenceCatalogDefinition> Get(string catalogId)
         {
             return Client.Get(catalogId);
+        }
+
+        public Task<ReferenceCatalogVersionDefinition> GetVersion(string catalogId, string version)
+        {
+            return Client.GetVersion(catalogId, version);
         }
     }
 }

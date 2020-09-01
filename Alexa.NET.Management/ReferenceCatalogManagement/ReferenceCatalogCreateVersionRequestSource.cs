@@ -2,9 +2,10 @@
 
 namespace Alexa.NET.Management.ReferenceCatalogManagement
 {
-    public class ReferenceCatalogCreateVersionRequestSource
+    public class ReferenceCatalogSource
     {
-        [JsonProperty("type")] public string Type => "URL";
+        [JsonProperty("type")] 
+        public string Type { get; set; }
 
         [JsonProperty("url")]
         public string Url { get; set; }
