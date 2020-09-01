@@ -74,9 +74,22 @@ namespace Alexa.NET.Management.Tests
         }
 
         [Fact]
-        public void ListVersions()
+        public async Task ListVersions()
         {
-            Assert.False(true);
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal("/v1/skills/api/custom/interactionModel/catalogs/catalogId/versions?sortDirection=asc&nextToken=wibble&maxResults=10", req.RequestUri.PathAndQuery);
+
+                var message = new HttpResponseMessage(HttpStatusCode.OK)
+                {
+                    Content = new StringContent(Utility.ExampleFileContent("ReferenceCatalogListVersions.json"))
+                };
+                return Task.FromResult(message);
+            }));
+            var response = await management.ReferenceCatalogManagement.ListVersions("catalogId", SortDirection.Ascending, "wibble", 10);
+            Assert.NotNull(response);
+            Assert.True(Utility.CompareJson(response, "ReferenceCatalogListVersions.json"));
         }
 
         [Fact]

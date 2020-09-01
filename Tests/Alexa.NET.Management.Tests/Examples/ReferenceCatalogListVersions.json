@@ -1,0 +1,28 @@
+{
+  "isTruncated": true,
+  "nextToken": "wibble",
+  "totalCount": 10,
+  "_links": {
+    "next": {
+      "href": "https://example.com/next"
+    },
+    "self": {
+      "href": "https://example.com/self"
+    }
+  },
+  "catalogVersions": [
+    {
+      "version": "v1",
+      "description": "desc",
+      "creationTime": "creationTime",
+      "_links": {
+        "next": {
+          "href": "https://example.com/next"
+        },
+        "self": {
+          "href": "https://example.com/self"
+        }
+      }
+    }
+  ]
+}

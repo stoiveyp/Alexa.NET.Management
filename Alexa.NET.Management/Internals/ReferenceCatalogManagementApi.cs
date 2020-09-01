@@ -67,5 +67,25 @@ namespace Alexa.NET.Management
         {
             return Client.List(vendorId, sortDirection, nextToken, maxResults);
         }
+
+        public Task<ReferenceCatalogListVersionsResponse> ListVersions(string catalogId)
+        {
+            return Client.ListVersions(catalogId);
+        }
+
+        public Task<ReferenceCatalogListVersionsResponse> ListVersions(string catalogId, SortDirection sortDirection)
+        {
+            return Client.ListVersions(catalogId, sortDirection);
+        }
+
+        public Task<ReferenceCatalogListVersionsResponse> ListVersions(string catalogId, string nextToken, int maxResults)
+        {
+            return Client.ListVersions(catalogId, nextToken, maxResults);
+        }
+
+        public Task<ReferenceCatalogListVersionsResponse> ListVersions(string catalogId, SortDirection sortDirection, string nextToken, int maxResults)
+        {
+            return Client.ListVersions(catalogId, sortDirection, nextToken, maxResults);
+        }
     }
 }
