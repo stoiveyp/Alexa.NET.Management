@@ -132,9 +132,15 @@ namespace Alexa.NET.Management.Tests
         }
 
         [Fact]
-        public void Update()
+        public async Task Update()
         {
-            Assert.False(true);
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            {
+                Assert.Equal(HttpMethod.Post, req.Method);
+                Assert.Equal("/v1/skills/api/custom/interactionModel/catalogs/ABC123/update", req.RequestUri.PathAndQuery);
+            },HttpStatusCode.NoContent));
+
+            await management.ReferenceCatalogManagement.Update("ABC123",null, "test");
         }
 
         [Fact]

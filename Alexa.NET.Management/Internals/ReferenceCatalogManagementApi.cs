@@ -113,5 +113,16 @@ namespace Alexa.NET.Management
         {
             return Client.GetValues(catalogId, version, nextToken, maxResults);
         }
+
+        public async Task Update(string catalogId, string name = null, string description = null)
+        {
+            if (string.IsNullOrWhiteSpace(name) && description == null)
+            {
+                throw new InvalidOperationException("Either name or description must be supplied");
+            }
+
+            var response = await Client.Update(catalogId, new ReferenceCatalog {Name = name, Description = description});
+            await response.CodeOrError(HttpStatusCode.NoContent);
+        }
     }
 }

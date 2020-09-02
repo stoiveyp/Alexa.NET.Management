@@ -11,7 +11,7 @@
     <PackageTags>amazon;alexa;echo;dot;echo dot;skills;management</PackageTags>
     <Version>5.5.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageReleaseNotes>Add Reference based catalog management (thanks @dennis-kuypers-gcx!)</PackageReleaseNotes>
+    <PackageReleaseNotes>Add Reference based catalog management</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <LangVersion>8</LangVersion>
   </PropertyGroup>

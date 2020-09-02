@@ -57,5 +57,8 @@ namespace Alexa.NET.Management.Internals
 
         [Get("/v1/skills/api/custom/interactionModel/catalogs/{catalogId}/versions/{version}/values")]
         Task<ReferenceCatalogValuesResponse> GetValues(string catalogId, string version, int nextToken, int maxResults);
+
+        [Post("/v1/skills/api/custom/interactionModel/catalogs/{catalogId}/update")]
+        Task<HttpResponseMessage> Update(string catalogId, ReferenceCatalog catalog);
     }
 }
