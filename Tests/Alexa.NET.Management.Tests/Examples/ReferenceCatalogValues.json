@@ -1,0 +1,24 @@
+{
+  "values": [
+    {
+      "id": "string",
+      "name": {
+        "value": "string",
+        "synonyms": [
+          "string"
+        ]
+      }
+    }
+  ],
+  "isTruncated": true,
+  "nextToken": "string",
+  "totalCount": 10,
+  "_links": {
+    "next": {
+      "href": "https://example.com/next"
+    },
+    "self": {
+      "href": "https://example.com/self"
+    }
+  }
+}

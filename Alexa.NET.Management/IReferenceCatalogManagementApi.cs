@@ -33,5 +33,11 @@ namespace Alexa.NET.Management
         Task<ReferenceCatalogDefinition> Get(string catalogId);
 
         Task<ReferenceCatalogVersionDefinition> GetVersion(string catalogId, string version);
+
+        Task<ReferenceCatalogValuesResponse> GetValues(string catalogId, string version);
+
+        Task<ReferenceCatalogValuesResponse> GetValues(string catalogId, string version, int maxResults);
+
+        Task<ReferenceCatalogValuesResponse> GetValues(string catalogId, string version, int nextToken, int maxResults);
     }
 }

@@ -48,5 +48,14 @@ namespace Alexa.NET.Management.Internals
 
         [Get("/v1/skills/api/custom/interactionModel/catalogs/{catalogId}/versions/{version}")]
         Task <ReferenceCatalogVersionDefinition> GetVersion(string catalogId, string version);
+
+        [Get("/v1/skills/api/custom/interactionModel/catalogs/{catalogId}/versions/{version}/values")]
+        Task<ReferenceCatalogValuesResponse> GetValues(string catalogId, string version);
+
+        [Get("/v1/skills/api/custom/interactionModel/catalogs/{catalogId}/versions/{version}/values")]
+        Task<ReferenceCatalogValuesResponse> GetValues(string catalogId, string version, int maxResults);
+
+        [Get("/v1/skills/api/custom/interactionModel/catalogs/{catalogId}/versions/{version}/values")]
+        Task<ReferenceCatalogValuesResponse> GetValues(string catalogId, string version, int nextToken, int maxResults);
     }
 }

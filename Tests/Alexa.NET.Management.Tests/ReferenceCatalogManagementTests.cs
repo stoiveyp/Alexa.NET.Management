@@ -119,9 +119,16 @@ namespace Alexa.NET.Management.Tests
         }
 
         [Fact]
-        public void GetValues()
+        public async Task GetValues()
         {
-            Assert.False(true);
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal("/v1/skills/api/custom/interactionModel/catalogs/ABC123/versions/v1/values", req.RequestUri.PathAndQuery);
+            }, Utility.ExampleFileContent<ReferenceCatalogValuesResponse>("ReferenceCatalogValues.json")));
+
+            var response = await management.ReferenceCatalogManagement.GetValues("ABC123", "v1");
+            Assert.True(Utility.CompareJson(response, "ReferenceCatalogValues.json"));
         }
 
         [Fact]

@@ -98,5 +98,20 @@ namespace Alexa.NET.Management
         {
             return Client.GetVersion(catalogId, version);
         }
+
+        public Task<ReferenceCatalogValuesResponse> GetValues(string catalogId, string version)
+        {
+            return Client.GetValues(catalogId, version);
+        }
+
+        public Task<ReferenceCatalogValuesResponse> GetValues(string catalogId, string version, int maxResults)
+        {
+            return Client.GetValues(catalogId, version, maxResults);
+        }
+
+        public Task<ReferenceCatalogValuesResponse> GetValues(string catalogId, string version, int nextToken, int maxResults)
+        {
+            return Client.GetValues(catalogId, version, nextToken, maxResults);
+        }
     }
 }
