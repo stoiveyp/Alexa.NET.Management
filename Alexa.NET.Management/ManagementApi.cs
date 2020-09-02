@@ -89,7 +89,11 @@ namespace Alexa.NET.Management
             AuditLogs = RestService.For<IAuditLogsApi>(client,ManagementRefitSettings.Create());
 
             Asr = new AsrApi(client);
+
+            ReferenceCatalogManagement = new ReferenceCatalogManagementApi(client);
         }
+
+        public IReferenceCatalogManagementApi ReferenceCatalogManagement { get; set; }
 
         public IAsrApi Asr { get; set; }
 

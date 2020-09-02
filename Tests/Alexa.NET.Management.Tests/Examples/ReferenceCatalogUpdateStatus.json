@@ -1,0 +1,12 @@
+{
+  "lastUpdateRequest": {
+    "status": "failed",
+    "version": "1",
+    "error": [
+      {
+        "code": "ABC123",
+        "message": "test message"
+      }
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "source": {
+    "type": "URL",
+    "url": "https://exampledata.com"
+  },
+  "description": "test desc",
+  "version": "v1"
+}
