@@ -41,5 +41,7 @@ namespace Alexa.NET.Management
         Task<ReferenceCatalogValuesResponse> GetValues(string catalogId, string version, int nextToken, int maxResults);
 
         Task Update(string catalogId, string name = null, string description = null);
+
+        Task UpdateVersion(string catalogId, string version, string description);
     }
 }

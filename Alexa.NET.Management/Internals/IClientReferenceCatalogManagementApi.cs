@@ -60,5 +60,8 @@ namespace Alexa.NET.Management.Internals
 
         [Post("/v1/skills/api/custom/interactionModel/catalogs/{catalogId}/update")]
         Task<HttpResponseMessage> Update(string catalogId, ReferenceCatalog catalog);
+
+        [Post("/v1/skills/api/custom/interactionModel/catalogs/{catalogId}/versions/{version}/update")]
+        Task<HttpResponseMessage> UpdateVersion(string catalogId, string version, ReferenceCatalogVersionUpdate update);
     }
 }

@@ -124,5 +124,12 @@ namespace Alexa.NET.Management
             var response = await Client.Update(catalogId, new ReferenceCatalog {Name = name, Description = description});
             await response.CodeOrError(HttpStatusCode.NoContent);
         }
+
+        public async Task UpdateVersion(string catalogId, string version, string description)
+        {
+            var response = await Client.UpdateVersion(catalogId, version,
+                new ReferenceCatalogVersionUpdate {Description = description});
+            await response.CodeOrError(HttpStatusCode.NoContent);
+        }
     }
 }
