@@ -43,5 +43,9 @@ namespace Alexa.NET.Management
         Task Update(string catalogId, string name = null, string description = null);
 
         Task UpdateVersion(string catalogId, string version, string description);
+
+        Task Delete(string catalogId);
+
+        Task DeleteVersion(string catalogId, string version);
     }
 }

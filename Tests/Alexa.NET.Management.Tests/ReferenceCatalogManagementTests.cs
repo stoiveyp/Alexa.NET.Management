@@ -156,15 +156,27 @@ namespace Alexa.NET.Management.Tests
         }
 
         [Fact]
-        public void Delete()
+        public async Task Delete()
         {
-            Assert.False(true);
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            {
+                Assert.Equal(HttpMethod.Delete, req.Method);
+                Assert.Equal("/v1/skills/api/custom/interactionModel/catalogs/ABC123", req.RequestUri.PathAndQuery);
+            }, HttpStatusCode.NoContent));
+
+            await management.ReferenceCatalogManagement.Delete("ABC123");
         }
 
         [Fact]
-        public void DeleteVersion()
+        public async Task DeleteVersion()
         {
-            Assert.False(true);
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            {
+                Assert.Equal(HttpMethod.Delete, req.Method);
+                Assert.Equal("/v1/skills/api/custom/interactionModel/catalogs/ABC123/versions/v1", req.RequestUri.PathAndQuery);
+            }, HttpStatusCode.NoContent));
+
+            await management.ReferenceCatalogManagement.DeleteVersion("ABC123", "v1");
         }
     }
 }

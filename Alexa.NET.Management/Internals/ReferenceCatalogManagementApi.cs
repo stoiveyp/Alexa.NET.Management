@@ -131,5 +131,17 @@ namespace Alexa.NET.Management
                 new ReferenceCatalogVersionUpdate {Description = description});
             await response.CodeOrError(HttpStatusCode.NoContent);
         }
+
+        public async Task Delete(string catalogId)
+        {
+            var response = await Client.Delete(catalogId);
+            await response.CodeOrError(HttpStatusCode.NoContent);
+        }
+
+        public async Task DeleteVersion(string catalogId, string version)
+        {
+            var response = await Client.DeleteVersion(catalogId, version);
+            await response.CodeOrError(HttpStatusCode.NoContent);
+        }
     }
 }
