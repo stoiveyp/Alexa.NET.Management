@@ -1,10 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using Alexa.NET.Management.Internals;
+using Newtonsoft.Json;
 
 namespace Alexa.NET.Management.Api
 {
-    public class CustomApiInterface
+    [JsonConverter(typeof(CustomApiInterfaceConverter))]
+    public abstract class CustomApiInterface
     {
         [JsonProperty("type")]
-        public string Type { get; set; }
+        public abstract string Type { get; }
     }
 }

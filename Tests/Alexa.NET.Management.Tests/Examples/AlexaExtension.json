@@ -1,0 +1,27 @@
+{
+  "apis": {
+    "custom": {
+      "interfaces": [
+        {
+          "type": "ALEXA_EXTENSION",
+          "requestedExtensions": [
+            {
+              "uri": "alexaext:smartmotion:10"
+            },
+            {
+              "uri": "alexaext:entitysensing:10"
+            }
+          ],
+          "autoInitializedExtensions": [
+            {
+              "uri": "alexaext:smartmotion:10",
+              "settings": {
+                "wakeWordResponse": "turnToWakeWord"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

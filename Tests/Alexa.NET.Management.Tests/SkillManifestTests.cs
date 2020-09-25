@@ -100,5 +100,36 @@ namespace Alexa.NET.Management.Tests
             Assert.Equal("2", response.Version);
             Assert.NotNull(response.InteractionModel);
         }
+
+
+        [Fact]
+        public void CustomApi()
+        {
+            //var manifest = new SkillManifest {Apis = new List<IApi>()};
+            //manifest.Apis.Add(new CustomApi
+            //{
+            //    Interfaces = new []{new ExtensionInterface
+            //    {
+            //        RequestedExtensions = new []
+            //        {
+            //            new ExtensionUri{Uri = "alexaext:smartmotion:10"},
+            //            new ExtensionUri{Uri = "alexaext:entitysensing:10"}
+            //        },
+            //        AutoInitializedExtensions = new[]
+            //        {
+            //            new InitalisedExtensionUri
+            //            {
+            //                Uri = "alexaext:smartmotion:10",
+            //                Settings = new Dictionary<string, string>
+            //                {
+            //                    {"wakeWordResponse", "turnToWakeWord"}
+            //                }
+            //            }
+            //        }
+            //    } }
+            //});
+            var manifest = Utility.ExampleFileContent<SkillManifest>("AlexaExtension.json");
+            Assert.True(Utility.CompareJson(manifest, "AlexaExtension.json"));
+        }
     }
 }

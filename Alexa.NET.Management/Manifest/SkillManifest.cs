@@ -9,22 +9,22 @@ namespace Alexa.NET.Management.Manifest
 {
     public class SkillManifest
     {
-        [JsonProperty("publishingInformation")]
+        [JsonProperty("publishingInformation", NullValueHandling = NullValueHandling.Ignore)]
         public PublishingInformation PublishingInformation { get; set; }
 
         [JsonProperty("apis"),JsonConverter(typeof(ApiConverter))]
         public List<Api.IApi> Apis { get; set; }
 
-        [JsonProperty("manifestVersion")]
+        [JsonProperty("manifestVersion", NullValueHandling = NullValueHandling.Ignore)]
         public string Version { get; set; }
 
-        [JsonProperty("permissions")]
+        [JsonProperty("permissions", NullValueHandling = NullValueHandling.Ignore)]
         public Permission[] Permissions { get; set; }
 
-        [JsonProperty("privacyAndCompliance")]
+        [JsonProperty("privacyAndCompliance", NullValueHandling = NullValueHandling.Ignore)]
         public PrivacyAndCompliance PrivacyAndCompliance { get; set; }
 
-        [JsonProperty("events")]
+        [JsonProperty("events", NullValueHandling = NullValueHandling.Ignore)]
         public Events Events { get; set; }
     }
 
