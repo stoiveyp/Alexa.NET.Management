@@ -2,7 +2,7 @@
 
 namespace Alexa.NET.Management.ReferenceCatalogManagement
 {
-    public class CatalogScheduleTrigger
+    public class CatalogScheduleTrigger:IUpdateJobTrigger
     {
         [JsonProperty("type")] public string Type => "Schedule";
         [JsonProperty("hour")]

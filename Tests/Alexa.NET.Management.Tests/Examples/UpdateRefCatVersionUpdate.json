@@ -1,0 +1,20 @@
+{
+  "vendorId": "ABC123",
+  "jobDefinition": {
+    "type": "CatalogAutoRefresh",
+    "resource": {
+      "id": "ABCXXX",
+      "type": "Catalog"
+    },
+    "references": [
+      {
+        "id": "ABCXXX",
+        "type": "Catalog"
+      }
+    ], 
+    "trigger": {
+      "type": "ReferencedResourceJobsComplete"
+    },
+    "status": "ENABLED"
+  }
+}

@@ -12,7 +12,7 @@ namespace Alexa.NET.Management.ReferenceCatalogManagement
         public CatalogResource Resource { get; set; }
 
         [JsonProperty("trigger")]
-        public CatalogScheduleTrigger Trigger { get; set; }
+        public IUpdateJobTrigger Trigger { get; set; }
 
         [JsonProperty("status")]
         public UpdateJobStatus? Status { get; set; }
