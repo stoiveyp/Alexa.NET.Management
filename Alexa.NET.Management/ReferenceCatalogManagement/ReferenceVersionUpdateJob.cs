@@ -2,6 +2,6 @@
 {
     public class ReferenceVersionUpdateJob : IUpdateJobDefinition
     {
-
+        public string Type => "ReferenceVersionUpdate";
     }
 }

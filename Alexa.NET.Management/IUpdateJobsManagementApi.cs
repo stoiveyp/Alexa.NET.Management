@@ -6,7 +6,7 @@ namespace Alexa.NET.Management
 {
     public interface IUpdateJobsManagementApi
     {
-        Task<Uri> Create(string vendorId, IUpdateJobDefinition job);
+        Task<string> Create(string vendorId, IUpdateJobDefinition job);
 
         Task<IUpdateJobDefinition> Get(string jobId);
 
@@ -24,16 +24,14 @@ namespace Alexa.NET.Management
 
         Task<UpdateJobExecutionHistoryResponse> ListExecutionHistory(string jobId, SortDirection sortDirection);
 
-        Task<UpdateJobExecutionHistoryResponse> ListVersions(string jobId, string nextToken, int maxResults);
+        Task<UpdateJobExecutionHistoryResponse> ListExecutionHistory(string jobId, string nextToken, int maxResults);
 
-        Task<UpdateJobExecutionHistoryResponse> ListVersions(string jobId, SortDirection sortDirection,
+        Task<UpdateJobExecutionHistoryResponse> ListExecutionHistory(string jobId, SortDirection sortDirection,
             string nextToken, int maxResults);
 
 
         Task CancelNextExecution(string jobId, string executionId);
 
-        Task EnableJob(string jobId);
-
-        Task DisableJob(string jobId);
+        Task SetJobStatus(string jobId, UpdateJobStatus status);
     }
 }

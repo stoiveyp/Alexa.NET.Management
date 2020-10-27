@@ -16,10 +16,10 @@ namespace Alexa.NET.Management.Internals
             Client = RestService.For<IClientUpdateJobsRefManagementApi>(client, ManagementRefitSettings.Create());
         }
 
-        public async Task<Uri> Create(string vendorId, IUpdateJobDefinition job)
+        public async Task<string> Create(string vendorId, IUpdateJobDefinition job)
         {
             var response = await Client.Create(new CreateUpdateJobRequest {VendorId = vendorId, JobDefinition = job});
-            return await response.UriOrError(HttpStatusCode.OK);
+            return await response.BodyOrError(s => s, HttpStatusCode.OK);
         }
 
         public Task<IUpdateJobDefinition> Get(string jobId)
@@ -62,12 +62,12 @@ namespace Alexa.NET.Management.Internals
             return Client.ListExecutionHistory(jobId, sortDirection);
         }
 
-        public Task<UpdateJobExecutionHistoryResponse> ListVersions(string jobId, string nextToken, int maxResults)
+        public Task<UpdateJobExecutionHistoryResponse> ListExecutionHistory(string jobId, string nextToken, int maxResults)
         {
             return Client.ListExecutionHistory(jobId, nextToken, maxResults);
         }
 
-        public Task<UpdateJobExecutionHistoryResponse> ListVersions(string jobId, SortDirection sortDirection, string nextToken, int maxResults)
+        public Task<UpdateJobExecutionHistoryResponse> ListExecutionHistory(string jobId, SortDirection sortDirection, string nextToken, int maxResults)
         {
             return Client.ListExecutionHistory(jobId, sortDirection, nextToken, maxResults);
         }
@@ -77,14 +77,9 @@ namespace Alexa.NET.Management.Internals
             return Client.CancelNextExecution(jobId, executionId);
         }
 
-        public Task EnableJob(string jobId)
+        public async Task SetJobStatus(string jobId, UpdateJobStatus status)
         {
-            return Client.ChangeStatus(jobId, new ChangeStateRequest {Status = "ENABLED"});
-        }
-
-        public Task DisableJob(string jobId)
-        {
-            return Client.ChangeStatus(jobId, new ChangeStateRequest { Status = "DISABLED" });
+            var response = await Client.ChangeStatus(jobId, new ChangeStatusRequest { Status = status });
         }
     }
 }

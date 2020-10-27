@@ -13,11 +13,11 @@ namespace Alexa.NET.Management
         public ReferenceCatalogManagementApi(HttpClient httpClient)
         {
             Client = RestService.For<IClientReferenceCatalogManagementApi>(httpClient, ManagementRefitSettings.Create());
-            UpdateJobsManagementApi = new UpdateJobManagementApi(httpClient);
+            UpdateJobs = new UpdateJobManagementApi(httpClient);
         }
 
         public IClientReferenceCatalogManagementApi Client { get; set; }
-        public IUpdateJobsManagementApi UpdateJobsManagementApi { get; }
+        public IUpdateJobsManagementApi UpdateJobs { get; }
 
         public Task<ReferenceCatalogCreationResponse> Create(string vendorId, string name, string description = null)
         {
