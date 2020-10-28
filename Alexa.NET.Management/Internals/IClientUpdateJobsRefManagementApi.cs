@@ -31,16 +31,16 @@ namespace Alexa.NET.Management.Internals
         [Post("/v1/skills/api/custom/interactionModel/jobs/{jobId}/status")]
         Task<HttpResponseMessage> ChangeStatus(string jobId, [Body]ChangeStatusRequest request);
 
-        [Get("/v1/skills/api/custom/interactionModel/jobs/{jobId}/execution")]
+        [Get("/v1/skills/api/custom/interactionModel/jobs/{jobId}/executions")]
         Task<UpdateJobExecutionHistoryResponse> ListExecutionHistory(string jobId);
 
-        [Get("/v1/skills/api/custom/interactionModel/jobs/{jobId}/execution")]
+        [Get("/v1/skills/api/custom/interactionModel/jobs/{jobId}/executions")]
         Task<UpdateJobExecutionHistoryResponse> ListExecutionHistory(string jobId, SortDirection sortDirection);
 
-        [Get("/v1/skills/api/custom/interactionModel/jobs/{jobId}/execution")]
+        [Get("/v1/skills/api/custom/interactionModel/jobs/{jobId}/executions")]
         Task<UpdateJobExecutionHistoryResponse> ListExecutionHistory(string jobId, string nextToken, int maxCount);
 
-        [Get("/v1/skills/api/custom/interactionModel/jobs/{jobId}/execution")]
+        [Get("/v1/skills/api/custom/interactionModel/jobs/{jobId}/executions")]
         Task<UpdateJobExecutionHistoryResponse> ListExecutionHistory(string jobId, SortDirection sortDirection, string nextToken, int maxCount);
 
         [Delete("/v1/skills/api/custom/interactionModel/jobs/{jobId}/executions/{executionId}")]
