@@ -82,6 +82,7 @@ namespace Alexa.NET.Management.Internals
         public async Task SetJobStatus(string jobId, UpdateJobStatus status)
         {
             var response = await Client.ChangeStatus(jobId, new ChangeStatusRequest { Status = status });
+            await response.SuccessOrError();
         }
     }
 }

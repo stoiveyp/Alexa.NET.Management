@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Alexa.NET.Management.ReferenceCatalogManagement
 {
     internal class ChangeStatusRequest
     {
-        [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("status")]
+        [JsonConverter(typeof(StringEnumConverter))]
         public UpdateJobStatus Status { get; set; }
     }
 }

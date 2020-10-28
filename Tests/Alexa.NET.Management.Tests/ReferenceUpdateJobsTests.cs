@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Alexa.NET.Management.ReferenceCatalogManagement;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Xunit;
 
 namespace Alexa.NET.Management.Tests
@@ -121,6 +122,21 @@ namespace Alexa.NET.Management.Tests
             }, HttpStatusCode.NoContent));
 
             await management.ReferenceCatalogManagement.UpdateJobs.CancelNextExecution("ABC123","123ABC");
+        }
+
+        [Fact]
+        public async Task ChangeStatus()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Post, req.Method);
+                Assert.Equal("/v1/skills/api/custom/interactionModel/jobs/ABC123/status", req.RequestUri.PathAndQuery);
+                var jo = JObject.Parse(await req.Content.ReadAsStringAsync());
+                Assert.Single(jo);
+                Assert.Equal("DISABLED",jo.Value<string>("status"));
+            }, HttpStatusCode.NoContent));
+
+            await management.ReferenceCatalogManagement.UpdateJobs.SetJobStatus("ABC123", UpdateJobStatus.Disabled);
         }
 
     }
