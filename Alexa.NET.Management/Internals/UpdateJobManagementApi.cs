@@ -47,9 +47,10 @@ namespace Alexa.NET.Management.Internals
             return Client.List(vendorId, maxCount, nextToken);
         }
 
-        public Task Delete(string jobId)
+        public async Task Delete(string jobId)
         {
-            return Client.Delete(jobId);
+            var response = await Client.Delete(jobId);
+            await response.CodeOrError(HttpStatusCode.NoContent);
         }
 
         public Task<UpdateJobExecutionHistoryResponse> ListExecutionHistory(string jobId)

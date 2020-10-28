@@ -85,5 +85,17 @@ namespace Alexa.NET.Management.Tests
             var response = await management.ReferenceCatalogManagement.UpdateJobs.List("ABC123",10,"token");
             Assert.True(Utility.CompareJson(response,"UpdateRefCatList.json"));
         }
+
+        [Fact]
+        public async Task Delete()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            {
+                Assert.Equal(HttpMethod.Delete, req.Method);
+                Assert.Equal("/v1/skills/api/custom/interactionModel/jobs/ABC123", req.RequestUri.PathAndQuery);
+            },HttpStatusCode.NoContent));
+
+            await management.ReferenceCatalogManagement.UpdateJobs.Delete("ABC123");
+        }
     }
 }
