@@ -1,0 +1,20 @@
+{
+  "jobs": [
+    {
+      "jobId": "ABC123",
+      "jobType": "CatalogAutoRefresh",
+      "status": "ENABLED"
+    }
+  ],
+  "paginationContext": {
+    "nextToken": "String"
+  },
+  "_links": {
+    "next": {
+      "href": "/next"
+    },
+    "self": {
+      "href": "/self"
+    }
+  }
+}

@@ -72,5 +72,18 @@ namespace Alexa.NET.Management.Tests
             var response = await management.ReferenceCatalogManagement.UpdateJobs.Create("ABC123", job);
             Assert.Equal(jobUrl, response);
         }
+
+        [Fact]
+        public async Task List()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal("/v1/skills/api/custom/interactionModel/jobs?vendorId=ABC123&maxCount=10&nextToken=token", req.RequestUri.PathAndQuery);
+            },Utility.ExampleFileContent<UpdateJobListResponse>("UpdateRefCatList.json")));
+
+            var response = await management.ReferenceCatalogManagement.UpdateJobs.List("ABC123",10,"token");
+            Assert.True(Utility.CompareJson(response,"UpdateRefCatList.json"));
+        }
     }
 }

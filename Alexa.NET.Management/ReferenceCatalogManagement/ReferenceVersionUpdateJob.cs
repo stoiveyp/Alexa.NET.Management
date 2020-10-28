@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Alexa.NET.Management.ReferenceCatalogManagement
 {
@@ -19,6 +20,7 @@ namespace Alexa.NET.Management.ReferenceCatalogManagement
         public bool PublishToLive { get; set; }
 
         [JsonProperty("status")]
+        [JsonConverter(typeof(StringEnumConverter))]
         public UpdateJobStatus? Status { get; set; }
     }
 }

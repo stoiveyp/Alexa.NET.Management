@@ -16,13 +16,13 @@ namespace Alexa.NET.Management.Internals
         [Post("/v1/skills/api/custom/interactionModel/jobs")]
         Task<UpdateJobListResponse> List(string vendorId);
 
-        [Post("/v1/skills/api/custom/interactionModel/jobs")]
+        [Get("/v1/skills/api/custom/interactionModel/jobs")]
         Task<UpdateJobListResponse> List(string vendorId, int maxCount);
 
-        [Post("/v1/skills/api/custom/interactionModel/jobs")]
+        [Get("/v1/skills/api/custom/interactionModel/jobs")]
         Task<UpdateJobListResponse> List(string vendorId, string nextToken);
 
-        [Post("/v1/skills/api/custom/interactionModel/jobs")]
+        [Get("/v1/skills/api/custom/interactionModel/jobs")]
         Task<UpdateJobListResponse> List(string vendorId, int maxCount, string nextToken);
 
         [Delete("/v1/skills/api/custom/interactionModel/jobs/{jobId}")]
