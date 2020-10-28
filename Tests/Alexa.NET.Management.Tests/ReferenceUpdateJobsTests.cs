@@ -110,5 +110,18 @@ namespace Alexa.NET.Management.Tests
             var response = await management.ReferenceCatalogManagement.UpdateJobs.ListExecutionHistory("ABC123",SortDirection.Ascending, "token",10);
             Assert.True(Utility.CompareJson(response, "UpdateRefCatListHistory.json", "executionTimestamp"));
         }
+
+        [Fact]
+        public async Task CancelExecution()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            {
+                Assert.Equal(HttpMethod.Delete, req.Method);
+                Assert.Equal("/v1/skills/api/custom/interactionModel/jobs/ABC123/executions/123ABC", req.RequestUri.PathAndQuery);
+            }, HttpStatusCode.NoContent));
+
+            await management.ReferenceCatalogManagement.UpdateJobs.CancelNextExecution("ABC123","123ABC");
+        }
+
     }
 }

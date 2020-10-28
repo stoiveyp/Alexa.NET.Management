@@ -73,9 +73,10 @@ namespace Alexa.NET.Management.Internals
             return Client.ListExecutionHistory(jobId, sortDirection, nextToken, maxResults);
         }
 
-        public Task CancelNextExecution(string jobId, string executionId)
+        public async Task CancelNextExecution(string jobId, string executionId)
         {
-            return Client.CancelNextExecution(jobId, executionId);
+            var response = await Client.CancelNextExecution(jobId, executionId);
+            await response.SuccessOrError();
         }
 
         public async Task SetJobStatus(string jobId, UpdateJobStatus status)

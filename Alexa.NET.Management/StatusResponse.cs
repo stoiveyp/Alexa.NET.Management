@@ -8,6 +8,24 @@ namespace Alexa.NET.Management
 {
     public static class StatusResponse
     {
+        public static async Task SuccessOrError(this HttpResponseMessage response)
+        {
+            if (response.IsSuccessStatusCode)
+            {
+                return;
+            }
+
+            var body = string.Empty;
+            if (response.Content != null)
+            {
+                body = await response.Content.ReadAsStringAsync();
+            }
+
+            throw new InvalidOperationException(
+                $"Expected Successful Code. Received {(int)response.StatusCode}. Response Body: {body}");
+
+        }
+
         public static async Task CodeOrError(this HttpResponseMessage response, HttpStatusCode expectedCode)
         {
             if (response.StatusCode == expectedCode)

@@ -44,6 +44,6 @@ namespace Alexa.NET.Management.Internals
         Task<UpdateJobExecutionHistoryResponse> ListExecutionHistory(string jobId, SortDirection sortDirection, string nextToken, int maxCount);
 
         [Delete("/v1/skills/api/custom/interactionModel/jobs/{jobId}/executions/{executionId}")]
-        Task CancelNextExecution(string jobId, string executionId);
+        Task<HttpResponseMessage> CancelNextExecution(string jobId, string executionId);
     }
 }
