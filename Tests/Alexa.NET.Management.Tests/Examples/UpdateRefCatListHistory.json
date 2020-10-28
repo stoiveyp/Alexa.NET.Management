@@ -1,0 +1,35 @@
+{
+  "executions": [
+    {
+      "executionId": "String",
+      "executionTimestamp": "2019-01-06T05:26:02.430Z", //ISO-8601
+      "errorCode": "String",
+      "status": "IN_PROGRESS",
+      "errorDetails": {
+        "executionMetadata": [
+          {
+            "jobId": "String",
+            "errorCode": "String",
+            "status": "SUCCESS"
+          },
+          {
+            "jobId": "String",
+            "errorCode": "String",
+            "status": "FAILURE"
+          }
+        ]
+      }
+    }
+  ],
+  "paginationContext": {
+    "nextToken": "String"
+  },
+  "_links": {
+    "next": {
+      "href": "/next"
+    },
+    "self": {
+      "href": "/self"
+    }
+  }
+}

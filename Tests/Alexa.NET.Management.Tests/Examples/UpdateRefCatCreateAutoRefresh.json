@@ -1,0 +1,16 @@
+{
+  "vendorId": "ABC123",
+  "jobDefinition": {
+    "type": "CatalogAutoRefresh",
+    "resource": {
+      "id": "ABCXXX",
+      "type": "Catalog"
+    },
+    "trigger": {
+      "type": "Schedule",
+      "hour": 20,
+      "dayOfWeek": 0
+    },
+    "status": "ENABLED"
+  }
+}
