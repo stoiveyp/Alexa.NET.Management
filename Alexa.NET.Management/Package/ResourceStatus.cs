@@ -8,6 +8,7 @@ namespace Alexa.NET.Management.Package
     {
         FAILED,
         IN_PROGRESS,
+        SKIPPED,
         SUCCEEDED,
         ROLLBACK_IN_PROGRESS,
         ROLLBACK_SUCCEEDED,
