@@ -132,6 +132,8 @@ namespace Alexa.NET.Management.Tests
         public void ImportStatusDeserializesCorrectly()
         {
             var importStatus = Utility.ExampleFileContent<ImportStatusResponse>("ImportStatus.json");
+            Assert.True(Utility.CompareJson(importStatus, "ImportStatus.json"));
+
             Assert.Equal(ImportStatus.FAILED,importStatus.Status);
             Assert.NotNull(importStatus.Skill);
 
@@ -142,7 +144,7 @@ namespace Alexa.NET.Management.Tests
 
             var resource = skill.Resources.First();
             Assert.Equal("resourceId",resource.Name);
-            Assert.Equal(ResourceStatus.FAILED,resource.Status);
+            Assert.Equal(ResourceStatus.SKIPPED,resource.Status);
             Assert.Single(resource.Errors);
             Assert.Single(resource.Warnings);
 

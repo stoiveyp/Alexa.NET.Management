@@ -6,7 +6,13 @@
     "resources": [
       {
         "name": "resourceId",
-        "status": "FAILED",
+        "status": "SKIPPED",
+        "action": "CREATE",
+        "info": [
+          {
+            "message": "string"
+          }
+        ],
         "errors": [
           {
             "message": "error 1"
@@ -14,7 +20,8 @@
         ],
         "warnings": [
           {
-            "message": "warning 1"
+            "message": "warning 1",
+            "code": "code1" 
           }
         ]
       }
