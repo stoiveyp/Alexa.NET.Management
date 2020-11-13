@@ -8,6 +8,6 @@ namespace Alexa.NET.Management.Package
     {
         FAILED,
         IN_PROGRESS,
-        SUCCEEEDED
+        SUCCEEDED
     }
 }
