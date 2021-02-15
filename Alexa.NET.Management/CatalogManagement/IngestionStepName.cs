@@ -7,6 +7,8 @@ namespace Alexa.NET.Management.CatalogManagement
         [EnumMember(Value = "UPLOAD")]
         Upload,
         [EnumMember(Value = "SCHEMA_VALIDATION")]
-        SchemaValidation
+        SchemaValidation,
+        [EnumMember(Value="INGESTION")]
+        Ingestion
     }
 }
