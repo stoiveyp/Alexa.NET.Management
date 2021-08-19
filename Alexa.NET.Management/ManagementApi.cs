@@ -91,10 +91,12 @@ namespace Alexa.NET.Management
             Asr = new AsrApi(client);
 
             ReferenceCatalogManagement = new ReferenceCatalogManagementApi(client);
+
+            KnowledgeSkill = new KnowledgeSkillApi(client);
         }
 
         public IReferenceCatalogManagementApi ReferenceCatalogManagement { get; set; }
-
+        public IKnowledgeSkillApi KnowledgeSkill { get; }
         public IAsrApi Asr { get; set; }
 
         public ISkillDevelopmentApi SkillDevelopment { get; set; }

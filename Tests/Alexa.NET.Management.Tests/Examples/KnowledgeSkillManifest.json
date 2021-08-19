@@ -1,0 +1,50 @@
+{
+  "publishingInformation": {
+    "locales": {
+      "en-US": {
+        "summary": "This is a sample Alexa custom skill.",
+        "examplePhrases": [
+          "Alexa, open sample custom skill.",
+          "Alexa, play sample custom skill."
+        ],
+        "keywords": [
+          "Descriptive_Phrase_1",
+          "Descriptive_Phrase_2",
+          "Descriptive_Phrase_3"
+        ],
+        "smallIconUri": "https://smallUri.com",
+        "largeIconUri": "https://largeUri.com",
+        "name": "Sample custom skill name.",
+        "description": "This skill does interesting things."
+      }
+    },
+    "isAvailableWorldwide": false,
+    "testingInstructions": "1) Say 'Alexa, hello world'",
+    "category": "HEALTH_AND_FITNESS",
+    "distributionCountries": [
+      "US"
+    ]
+  },
+  "apis": {
+    "knowledge": {
+      "locales": {
+        "en-US": {
+          "answerAttribution": "Insert optional attribution phrase."
+        }
+      }
+    }
+  },
+  "privacyAndCompliance": {
+    "allowsPurchases": false,
+    "isExportCompliant": true,
+    "isChildDirected": false,
+    "usesPersonalInfo": false,
+    "containsAds": false,
+    "locales": {
+      "en-US": {
+        "privacyPolicyUrl": "https://url-to-privacy-policy/",
+        "termsOfUseUrl": "https://url-to-privacy-policy/"
+      }
+    }
+  }
+}

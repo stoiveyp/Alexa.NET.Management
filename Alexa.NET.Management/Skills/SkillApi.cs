@@ -8,5 +8,6 @@
         public const string SmartHome = "smartHome";
         public const string HouseholdList = "householdList";
         public const string Health = "health";
+        public const string Knowledge = "knowledge";
     }
 }

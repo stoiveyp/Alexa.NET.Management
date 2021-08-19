@@ -16,7 +16,8 @@ namespace Alexa.NET.Management.Internals
             {SkillApi.Video, typeof(VideoApi)},
             {SkillApi.SmartHome, typeof(SmartHomeApi)},
             {SkillApi.HouseholdList, typeof(HouseholdListApi)},
-            {SkillApi.Health, typeof(HealthApi) }
+            {SkillApi.Health, typeof(HealthApi) },
+            {SkillApi.Knowledge, typeof(KnowledgeApi)}
         };
 
         private readonly Dictionary<string, Type> Mapping;

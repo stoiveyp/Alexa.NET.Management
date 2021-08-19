@@ -49,6 +49,10 @@ namespace Alexa.NET.Management.Tests
                     actualJObject.Remove(prop.Name);
                     expectedJObject.Remove(prop.Name);
                 }
+                else
+                {
+                    Console.WriteLine("mismatch: " + prop.Name);
+                }
             }
 
             foreach (var prop in actualJObject.Properties().Where(p => p.Value is JObject).Select(p => new{name=p.Name,value=p.Value as JObject}).ToArray())
