@@ -131,5 +131,12 @@ namespace Alexa.NET.Management.Tests
             var manifest = Utility.ExampleFileContent<SkillManifest>("AlexaExtension.json");
             Assert.True(Utility.CompareJson(manifest, "AlexaExtension.json"));
         }
+
+        [Fact]
+        public void KnowledgeApi()
+        {
+            var manifest = Utility.ExampleFileContent<SkillManifest>("KnowledgeSkillManifest.json");
+            Assert.True(Utility.CompareJson(manifest, "KnowledgeSkillManifest.json","smallIconUri", "largeIconUri"));
+        }
     }
 }
