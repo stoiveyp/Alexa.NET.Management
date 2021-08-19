@@ -75,22 +75,22 @@ namespace Alexa.NET.Management.Internals
 
         public Task<KnowledgeTemplateIdResults> GetTemplateIds(string skillId)
         {
-            throw new NotImplementedException();
+            return Client.GetTemplateIds(skillId);
         }
 
         public Task<KnowledgeTemplateIdResults> GetTemplateIds(string skillId, string nextToken)
         {
-            throw new NotImplementedException();
+            return Client.GetTemplateIds(skillId, nextToken);
         }
 
         public Task<KnowledgeTemplateIdResults> GetTemplateIds(string skillId, int maxResults)
         {
-            throw new NotImplementedException();
+            return Client.GetTemplateIds(skillId, maxResults);
         }
 
         public Task<KnowledgeTemplateIdResults> GetTemplateIds(string skillId, string nextToken, int maxResults)
         {
-            throw new NotImplementedException();
+            return Client.GetTemplateIds(skillId, nextToken, maxResults);
         }
     }
 }

@@ -6,5 +6,8 @@ namespace Alexa.NET.Management.KnowledgeSkill
     {
         [JsonProperty("id")]
         public string Id { get; set; }
+
+        [JsonProperty("name",NullValueHandling = NullValueHandling.Ignore)]
+        public string Name { get; set; }
     }
 }
