@@ -39,5 +39,18 @@ namespace Alexa.NET.Management.Tests
             var response = await management.KnowledgeSkill.GetImport("ABC123", "ABC456");
             Assert.True(Utility.CompareJson(response, "KnowledgeImportStatus.json"));
         }
+
+        [Fact]
+        public async Task GetImports()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal("/v1/skills/ABC123/knowledge/imports?status=IN_PROGRESS&maxResults=10&nextToken=nextToken", req.RequestUri.PathAndQuery);
+            }, Utility.ExampleFileContent<KnowledgeImportStatusResults>("KnowledgeImportStatusList.json")));
+
+            var response = await management.KnowledgeSkill.GetImports("ABC123",KnowledgeImportDescription.InProgress, 10, "nextToken");
+            Assert.True(Utility.CompareJson(response, "KnowledgeImportStatusList.json"));
+        }
     }
 }

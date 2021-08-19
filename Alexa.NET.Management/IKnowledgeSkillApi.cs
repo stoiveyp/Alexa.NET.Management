@@ -11,19 +11,19 @@ namespace Alexa.NET.Management
 
         Task<KnowledgeImportStatusResults> GetImports(string skillId);
 
-        Task<KnowledgeImportStatusResults> GetImports(string skillId, EvaluationResultStatus status);
+        Task<KnowledgeImportStatusResults> GetImports(string skillId, KnowledgeImportDescription status);
 
         Task<KnowledgeImportStatusResults> GetImports(string skillId, int maxResults);
 
-        Task<KnowledgeImportStatusResults> GetImports(string skillId, EvaluationResultStatus status, int maxResults);
+        Task<KnowledgeImportStatusResults> GetImports(string skillId, KnowledgeImportDescription status, int maxResults);
 
         Task<KnowledgeImportStatusResults> GetImports(string skillId, string nextToken);
 
-        Task<KnowledgeImportStatusResults> GetImports(string skillId, EvaluationResultStatus status, string nextToken);
+        Task<KnowledgeImportStatusResults> GetImports(string skillId, KnowledgeImportDescription status, string nextToken);
 
         Task<KnowledgeImportStatusResults> GetImports(string skillId, int maxResults, string nextToken);
 
-        Task<KnowledgeImportStatusResults> GetImports(string skillId, EvaluationResultStatus status, int maxResults, string nextToken);
+        Task<KnowledgeImportStatusResults> GetImports(string skillId, KnowledgeImportDescription status, int maxResults, string nextToken);
 
         Task<KnowledgeImportStatusResult> GetImport(string skillId, string importId);
 

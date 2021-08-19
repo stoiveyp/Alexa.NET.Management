@@ -33,39 +33,39 @@ namespace Alexa.NET.Management.Internals
             throw new NotImplementedException();
         }
 
-        public Task<KnowledgeImportStatusResults> GetImports(string skillId, EvaluationResultStatus status)
+        public Task<KnowledgeImportStatusResults> GetImports(string skillId, KnowledgeImportDescription status)
         {
-            throw new NotImplementedException();
+            return Client.GetImports(skillId, status);
         }
 
         public Task<KnowledgeImportStatusResults> GetImports(string skillId, int maxResults)
         {
-            throw new NotImplementedException();
+            return Client.GetImports(skillId, maxResults);
         }
 
-        public Task<KnowledgeImportStatusResults> GetImports(string skillId, EvaluationResultStatus status, int maxResults)
+        public Task<KnowledgeImportStatusResults> GetImports(string skillId, KnowledgeImportDescription status, int maxResults)
         {
-            throw new NotImplementedException();
+            return Client.GetImports(skillId, status, maxResults);
         }
 
         public Task<KnowledgeImportStatusResults> GetImports(string skillId, string nextToken)
         {
-            throw new NotImplementedException();
+            return Client.GetImports(skillId, nextToken);
         }
 
-        public Task<KnowledgeImportStatusResults> GetImports(string skillId, EvaluationResultStatus status, string nextToken)
+        public Task<KnowledgeImportStatusResults> GetImports(string skillId, KnowledgeImportDescription status, string nextToken)
         {
-            throw new NotImplementedException();
+            return Client.GetImports(skillId, status, nextToken);
         }
 
         public Task<KnowledgeImportStatusResults> GetImports(string skillId, int maxResults, string nextToken)
         {
-            throw new NotImplementedException();
+            return Client.GetImports(skillId, maxResults, nextToken);
         }
 
-        public Task<KnowledgeImportStatusResults> GetImports(string skillId, EvaluationResultStatus status, int maxResults, string nextToken)
+        public Task<KnowledgeImportStatusResults> GetImports(string skillId, KnowledgeImportDescription status, int maxResults, string nextToken)
         {
-            throw new NotImplementedException();
+            return Client.GetImports(skillId,status, maxResults, nextToken);
         }
 
         public Task<KnowledgeImportStatusResult> GetImport(string skillId, string importId)

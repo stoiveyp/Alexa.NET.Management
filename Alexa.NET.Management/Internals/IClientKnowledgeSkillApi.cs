@@ -16,25 +16,25 @@ namespace Alexa.NET.Management.Internals
         Task<KnowledgeImportStatusResults> GetImports(string skillId);
 
         [Get("/v1/skills/{skillId}/knowledge/imports")]
-        Task<KnowledgeImportStatusResults> GetImports(string skillId, EvaluationResultStatus status);
+        Task<KnowledgeImportStatusResults> GetImports(string skillId, KnowledgeImportDescription status);
 
         [Get("/v1/skills/{skillId}/knowledge/imports")]
         Task<KnowledgeImportStatusResults> GetImports(string skillId, int maxResults);
 
         [Get("/v1/skills/{skillId}/knowledge/imports")]
-        Task<KnowledgeImportStatusResults> GetImports(string skillId, EvaluationResultStatus status, int maxResults);
+        Task<KnowledgeImportStatusResults> GetImports(string skillId, KnowledgeImportDescription status, int maxResults);
 
         [Get("/v1/skills/{skillId}/knowledge/imports")]
         Task<KnowledgeImportStatusResults> GetImports(string skillId, string nextToken);
 
         [Get("/v1/skills/{skillId}/knowledge/imports")]
-        Task<KnowledgeImportStatusResults> GetImports(string skillId, EvaluationResultStatus status, string nextToken);
+        Task<KnowledgeImportStatusResults> GetImports(string skillId, KnowledgeImportDescription status, string nextToken);
 
         [Get("/v1/skills/{skillId}/knowledge/imports")]
         Task<KnowledgeImportStatusResults> GetImports(string skillId, int maxResults, string nextToken);
 
         [Get("/v1/skills/{skillId}/knowledge/imports")]
-        Task<KnowledgeImportStatusResults> GetImports(string skillId, EvaluationResultStatus status, int maxResults, string nextToken);
+        Task<KnowledgeImportStatusResults> GetImports(string skillId, KnowledgeImportDescription status, int maxResults, string nextToken);
 
         [Get("/v1/skills/{skillId}/knowledge/imports/{importId}")]
         Task<KnowledgeImportStatusResult> GetImport(string skillId, string importId);

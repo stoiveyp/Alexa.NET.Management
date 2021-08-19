@@ -1,0 +1,14 @@
+{
+  "knowledgeImports": [
+    {
+      "errors": [ "error here" ],
+      "progress": 60,
+      "status": "IN_PROGRESS"
+    }
+  ],
+  "paginationContext": {
+    "nextToken": "string",
+    "previousToken": "string",
+    "totalCount": "100"
+  }
+}
