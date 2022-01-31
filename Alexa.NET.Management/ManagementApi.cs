@@ -91,6 +91,8 @@ namespace Alexa.NET.Management
             Asr = new AsrApi(client);
 
             ReferenceCatalogManagement = new ReferenceCatalogManagementApi(client);
+
+            Experiments = new ExperimentApi(client);
         }
 
         public IReferenceCatalogManagementApi ReferenceCatalogManagement { get; set; }
@@ -129,5 +131,7 @@ namespace Alexa.NET.Management
         public ISlotTypeApi SlotType { get; set; }
 
         public IAuditLogsApi AuditLogs { get; set; }
+
+        public IExperimentApi Experiments { get; set; }
     }
 }
