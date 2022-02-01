@@ -1,0 +1,18 @@
+﻿{
+  "experiment": {
+    "name": "ISP_OFFER_PER_SALE",
+    "description": "experiment_1",
+    "type": "ENDPOINT_BASED",
+    "plannedDuration": "P3W",
+    "exposurePercentage": 0,
+    "metricConfigurations": [
+      {
+        "name": "ISP_OFFER_PER_SALE",
+        "metricTypes": [
+          "KEY"
+        ],
+        "expectedChange": "INCREASE"
+      }
+    ]
+  }
+}

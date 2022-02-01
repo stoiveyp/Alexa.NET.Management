@@ -1,0 +1,14 @@
+﻿{
+  "experiments": [
+    {
+      "experimentId": "<experiment-id>",
+      "name": "my_first-experiment",
+      "state": "CREATED",
+      "experimentHistory": {
+        "creationTime": "2021-04-29T18:20:50.671Z",
+        "startTime": "2021-04-29T18:20:50.671Z",
+        "stoppedReason": "string"
+      }
+    }
+  ]
+}
