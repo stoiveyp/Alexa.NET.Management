@@ -9,12 +9,12 @@ namespace Alexa.NET.Management.Experiments
     {
         public CreateExperimentRequest(){}
 
-        public CreateExperimentRequest(CreateExperimentDetails experiment)
+        public CreateExperimentRequest(Experiment experiment)
         {
             Experiment = experiment;
         }
 
         [JsonProperty("experiment")]
-        public CreateExperimentDetails Experiment { get; set; }
+        public Experiment Experiment { get; set; }
     }
 }

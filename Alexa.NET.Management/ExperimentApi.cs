@@ -22,5 +22,10 @@ namespace Alexa.NET.Management
             var response = await Client.Create(skillId, request);
             return await response.UriOrError(HttpStatusCode.Created);
         }
+
+        public Task<ExperimentDetailResponse> Get(string skillId, string experimentId)
+        {
+            return Client.Get(skillId, experimentId);
+        }
     }
 }

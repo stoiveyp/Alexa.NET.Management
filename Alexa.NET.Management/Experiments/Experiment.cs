@@ -4,7 +4,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Alexa.NET.Management.Experiments
 {
-    public class CreateExperimentDetails
+    public class Experiment
     {
         [JsonProperty("name")]
         public string Name { get; set; }

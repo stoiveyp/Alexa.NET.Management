@@ -8,5 +8,6 @@ namespace Alexa.NET.Management
     public interface IExperimentApi
     {
         Task<Uri> Create(string skillId, [Body]CreateExperimentRequest request);
+        Task<ExperimentDetailResponse> Get(string skillId, string experimentId);
     }
 }

@@ -10,5 +10,8 @@ namespace Alexa.NET.Management.Internals
     {
         [Post("/v1/skills/{skillId}/experiments")]
         Task<HttpResponseMessage> Create(string skillId, CreateExperimentRequest request);
+
+        [Get("/v1/skills/{skillId}/experiments/{experimentId}")]
+        Task<ExperimentDetailResponse> Get(string skillId, string experimentId);
     }
 }
