@@ -3,10 +3,10 @@ using Newtonsoft.Json;
 
 namespace Alexa.NET.Management.Experiments
 {
-    public class ExperimentListResponse
+    public class MetricSnapshotResponse
     {
-        [JsonProperty("experiments",NullValueHandling = NullValueHandling.Ignore)]
-        public ExperimentSummary[] Experiments { get; set; }
+        [JsonProperty("metricSnapshots",NullValueHandling = NullValueHandling.Ignore)]
+        public MetricSnapshot[] MetricSnapshots { get; set; }
 
         [JsonProperty("_links", NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, ApiLink> Links { get; set; }

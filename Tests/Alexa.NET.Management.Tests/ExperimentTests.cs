@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Alexa.NET.Management.Experiments;
 using Newtonsoft.Json;
@@ -147,6 +148,31 @@ namespace Alexa.NET.Management.Tests
             }, HttpStatusCode.Accepted));
 
             await management.Experiments.State("ABC123", "Experiment1", ExperimentUpdateState.Stopped);
+        }
+
+        [Fact]
+        public async Task MetricSnapshots()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal("/v1/skills/ABC123/experiments/Experiment1/metricSnapshots", req.RequestUri.PathAndQuery);
+            }, Utility.ExampleFileContent<MetricSnapshotResponse>("ExperimentMetricSnapshotResponse.json")));
+
+            await management.Experiments.MetricSnapshots("ABC123", "Experiment1");
+        }
+
+        [Fact]
+        public async Task MetricSnapshotData()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal("/v1/skills/ABC123/experiments/Experiment1/metricSnapshots/snapshot", req.RequestUri.PathAndQuery);
+            }, Utility.ExampleFileContent<MetricSnapshotData>("ExperimentMetricSnapshotData.json")));
+
+            var response = await management.Experiments.MetricSnapshotData("ABC123", "Experiment1", "snapshot");
+            Assert.True(Utility.CompareJson(response, "ExperimentMetricSnapshotData.json"));
         }
     }
 }

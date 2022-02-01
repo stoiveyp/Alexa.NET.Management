@@ -1,0 +1,18 @@
+﻿{
+  "status": "RELIABLE",
+  "statusReason": "[\"TAA Alarm\",\"Message\"]",
+  "metrics": [
+    {
+      "name": "ISP_OFFER_PER_SALE",
+      "treatmentId": "C",
+      "values": {
+        "mean": 0.0,
+        "percentDiff": 0.0,
+        "confidenceIntervalLower": 0.0,
+        "confidenceIntervalUpper": 0.0,
+        "pValue": 0.0,
+        "userCount": 0
+      }
+    }
+  ]
+}

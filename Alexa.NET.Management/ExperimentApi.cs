@@ -81,5 +81,25 @@ namespace Alexa.NET.Management
         {
             return Client.State(skillId, experimentId, new UpdateStateRequest { TargetState = targetState });
         }
+
+        public Task<MetricSnapshotResponse> MetricSnapshots(string skillId, string experimentId)
+        {
+            return Client.MetricSnapshots(skillId, experimentId);
+        }
+
+        public Task<MetricSnapshotResponse> MetricSnapshots(string skillId, string experimentId, int maxResults)
+        {
+            return Client.MetricSnapshots(skillId, experimentId, maxResults);
+        }
+
+        public Task<MetricSnapshotResponse> MetricSnapshots(string skillId, string experimentId, int maxResults, string nextToken)
+        {
+            return Client.MetricSnapshots(skillId, experimentId, maxResults, nextToken);
+        }
+
+        public Task<MetricSnapshotData> MetricSnapshotData(string skillId, string experimentId, string snapshotId)
+        {
+            return Client.MetricSnapshotData(skillId, experimentId, snapshotId);
+        }
     }
 }

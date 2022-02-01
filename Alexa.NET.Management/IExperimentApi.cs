@@ -28,5 +28,13 @@ namespace Alexa.NET.Management
         Task<StateResponse> State(string skillId, string experimentId);
 
         Task State(string skillId, string experimentId, ExperimentUpdateState targetState);
+
+        Task<MetricSnapshotResponse> MetricSnapshots(string skillId, string experimentId);
+
+        Task<MetricSnapshotResponse> MetricSnapshots(string skillId, string experimentId, int maxResults);
+
+        Task<MetricSnapshotResponse> MetricSnapshots(string skillId, string experimentId, int maxResults, string nextToken);
+
+        Task<MetricSnapshotData> MetricSnapshotData(string skillId, string experimentId, string snapshotId);
     }
 }

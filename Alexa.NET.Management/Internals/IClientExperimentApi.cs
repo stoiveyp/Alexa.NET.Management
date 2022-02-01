@@ -42,5 +42,17 @@ namespace Alexa.NET.Management.Internals
 
         [Post("/v1/skills/{skillId}/experiments/{experimentId}/state")]
         Task<HttpResponseMessage> State(string skillId, string experimentId, UpdateStateRequest request);
+
+        [Get("/v1/skills/{skillId}/experiments/{experimentId}/metricSnapshots")]
+        Task<MetricSnapshotResponse> MetricSnapshots(string skillId, string experimentId);
+
+        [Get("/v1/skills/{skillId}/experiments/{experimentId}/metricSnapshots")]
+        Task<MetricSnapshotResponse> MetricSnapshots(string skillId, string experimentId, int maxResults);
+
+        [Get("/v1/skills/{skillId}/experiments/{experimentId}/metricSnapshots")]
+        Task<MetricSnapshotResponse> MetricSnapshots(string skillId, string experimentId, int maxResults, string nextToken);
+
+        [Get("/v1/skills/{skillId}/experiments/{experimentId}/metricSnapshots/{snapshotId}")]
+        Task<MetricSnapshotData> MetricSnapshotData(string skillId, string experimentId, string snapshotId);
     }
 }
