@@ -17,13 +17,13 @@ namespace Alexa.NET.Management
             Client = RestService.For<IClientExperimentApi>(httpClient, ManagementRefitSettings.Create());
         }
 
-        public async Task<Uri> Create(string skillId, CreateExperimentRequest request)
+        public async Task<Uri> Create(string skillId, Experiment request)
         {
-            var response = await Client.Create(skillId, request);
+            var response = await Client.Create(skillId, new ExperimentRequest<Experiment>(request));
             return await response.UriOrError(HttpStatusCode.Created);
         }
 
-        public Task<ExperimentDetailResponse> Get(string skillId, string experimentId)
+        public Task<ExperimentResponse<ExperimentDetail>> Get(string skillId, string experimentId)
         {
             return Client.Get(skillId, experimentId);
         }
@@ -41,6 +41,11 @@ namespace Alexa.NET.Management
         public Task<ExperimentListResponse> List(string skillId, int maxResults, string nextToken)
         {
             return Client.List(skillId, maxResults, nextToken);
+        }
+
+        public Task<ExperimentResponse<Experiment>> Update(string skillId, string experimentId, ExperimentUpdate request)
+        {
+            return Client.Update(skillId, experimentId, new ExperimentRequest<ExperimentUpdate>(request));
         }
     }
 }

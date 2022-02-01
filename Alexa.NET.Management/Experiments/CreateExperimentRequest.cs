@@ -5,16 +5,16 @@ using Newtonsoft.Json;
 
 namespace Alexa.NET.Management.Experiments
 {
-    public class CreateExperimentRequest
+    public class ExperimentRequest<T> where T:ExperimentBase
     {
-        public CreateExperimentRequest(){}
+        public ExperimentRequest() { }
 
-        public CreateExperimentRequest(Experiment experiment)
+        public ExperimentRequest(T experiment)
         {
             Experiment = experiment;
         }
 
         [JsonProperty("experiment")]
-        public Experiment Experiment { get; set; }
+        public T Experiment { get; set; }
     }
 }
