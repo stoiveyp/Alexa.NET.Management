@@ -9,5 +9,8 @@ namespace Alexa.NET.Management
     {
         [JsonProperty("nextToken",NullValueHandling = NullValueHandling.Ignore)]
         public string NextToken { get; set; }
+
+        [JsonProperty("previousToken",NullValueHandling = NullValueHandling.Ignore)]
+        public string PreviousToken { get; set; }
     }
 }

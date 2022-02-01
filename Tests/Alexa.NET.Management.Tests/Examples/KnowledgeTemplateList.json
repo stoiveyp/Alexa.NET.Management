@@ -1,0 +1,13 @@
+{
+  "paginationContext": {
+    "previousToken": "string",
+    "nextToken": "string",
+    "totalCount": "integer"
+  },
+  "templates": [
+    {
+      "id": "string",
+      "name": "string"
+    }
+  ]
+}
