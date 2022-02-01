@@ -27,5 +27,20 @@ namespace Alexa.NET.Management
         {
             return Client.Get(skillId, experimentId);
         }
+
+        public Task<ExperimentListResponse> List(string skillId)
+        {
+            return Client.List(skillId);
+        }
+
+        public Task<ExperimentListResponse> List(string skillId, int maxResults)
+        {
+            return Client.List(skillId, maxResults);
+        }
+
+        public Task<ExperimentListResponse> List(string skillId, int maxResults, string nextToken)
+        {
+            return Client.List(skillId, maxResults, nextToken);
+        }
     }
 }

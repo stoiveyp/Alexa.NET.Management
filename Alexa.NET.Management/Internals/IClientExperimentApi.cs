@@ -13,5 +13,14 @@ namespace Alexa.NET.Management.Internals
 
         [Get("/v1/skills/{skillId}/experiments/{experimentId}")]
         Task<ExperimentDetailResponse> Get(string skillId, string experimentId);
+
+        [Get("/v1/skills/{skillId}/experiments")]
+        Task<ExperimentListResponse> List(string skillId);
+
+        [Get("/v1/skills/{skillId}/experiments")]
+        Task<ExperimentListResponse> List(string skillId, int maxResults);
+
+        [Get("/v1/skills/{skillId}/experiments")]
+        Task<ExperimentListResponse> List(string skillId, int maxResults, string nextToken);
     }
 }

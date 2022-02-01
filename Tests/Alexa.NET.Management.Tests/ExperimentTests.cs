@@ -41,5 +41,18 @@ namespace Alexa.NET.Management.Tests
             var response = await management.Experiments.Get("ABC123", "Experiment1");
             Assert.True(Utility.CompareJson(response,"ExperimentDetails.json"));
         }
+
+        [Fact]
+        public async Task List()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal("/v1/skills/ABC123/experiments?maxResults=10&nextToken=token", req.RequestUri.PathAndQuery);
+            }, Utility.ExampleFileContent<ExperimentListResponse>("ExperimentList.json")));
+
+            var response = await management.Experiments.List("ABC123", 10, "token");
+            Assert.True(Utility.CompareJson(response, "ExperimentList.json"));
+        }
     }
 }
