@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Alexa.NET.Management.Experiments;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Xunit;
 
 namespace Alexa.NET.Management.Tests
@@ -68,6 +69,84 @@ namespace Alexa.NET.Management.Tests
             var request = Utility.ExampleFileContent<ExperimentRequest<ExperimentUpdate>>("ExperimentUpdateRequest.json");
             var response = await management.Experiments.Update("ABC123", "Experiment1", request.Experiment);
             Assert.True(Utility.CompareJson(response, "ExperimentUpdateResponse.json"));
+        }
+
+        [Fact]
+        public async Task Delete()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Delete, req.Method);
+                Assert.Equal("/v1/skills/ABC123/experiments/Experiment1", req.RequestUri.PathAndQuery);
+            },HttpStatusCode.NoContent));
+
+            await management.Experiments.Delete("ABC123", "Experiment1");
+        }
+
+        [Fact]
+        public async Task UpdateExposure()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Post, req.Method);
+                Assert.Equal("/v1/skills/ABC123/experiments/Experiment1/exposurePercentage", req.RequestUri.PathAndQuery);
+                var jo = JObject.Parse(await req.Content.ReadAsStringAsync());
+                Assert.Equal(30, jo.Value<int>("exposurePercentage"));
+            }, HttpStatusCode.NoContent));
+
+            await management.Experiments.UpdateExposure("ABC123", "Experiment1",30);
+        }
+
+        [Fact]
+        public async Task GetTreatmentOverrides()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal("/v1/skills/ABC123/experiments/Experiment1/treatmentOverrides/~current", req.RequestUri.PathAndQuery);
+            }, new {treatmentId="T1", treatmentOverrideCount=5}));
+
+            var response = await management.Experiments.GetTreatmentOverride("ABC123", "Experiment1");
+            Assert.Equal(TreatmentId.Treatment, response.TreatmentId);
+            Assert.Equal(5, response.TreatmentOverrideCount);
+        }
+
+        [Fact]
+        public async Task SetTreatmentOverrides()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Post, req.Method);
+                Assert.Equal("/v1/skills/ABC123/experiments/Experiment1/treatmentOverrides/~current", req.RequestUri.PathAndQuery);
+            }, HttpStatusCode.NoContent));
+
+            await management.Experiments.SetTreatmentOverride("ABC123", "Experiment1", TreatmentId.Treatment);
+        }
+
+        [Fact]
+        public async Task State()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal("/v1/skills/ABC123/experiments/Experiment1/state", req.RequestUri.PathAndQuery);
+            }, new{state=ExperimentState.Failed}));
+
+            var response = await management.Experiments.State("ABC123", "Experiment1");
+            Assert.Equal(ExperimentState.Failed, response.State);
+        }
+
+
+        [Fact]
+        public async Task SetState()
+        {
+            var management = new ManagementApi("xxx", new ActionHandler(async req =>
+            {
+                Assert.Equal(HttpMethod.Post, req.Method);
+                Assert.Equal("/v1/skills/ABC123/experiments/Experiment1/state", req.RequestUri.PathAndQuery);
+            }, HttpStatusCode.Accepted));
+
+            await management.Experiments.State("ABC123", "Experiment1", ExperimentUpdateState.Stopped);
         }
     }
 }

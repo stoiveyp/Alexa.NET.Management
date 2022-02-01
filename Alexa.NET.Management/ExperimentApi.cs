@@ -47,5 +47,39 @@ namespace Alexa.NET.Management
         {
             return Client.Update(skillId, experimentId, new ExperimentRequest<ExperimentUpdate>(request));
         }
+
+        public async Task Delete(string skillId, string experimentId)
+        {
+            var response = await Client.Delete(skillId, experimentId);
+            await response.CodeOrError(HttpStatusCode.NoContent);
+        }
+
+        public async Task UpdateExposure(string skillId, string experimentId, int exposurePercentage)
+        {
+            var response = await Client.UpdateExposure(skillId, experimentId, new UpdateExposureRequest{ExposurePercentage = exposurePercentage});
+            await response.CodeOrError(HttpStatusCode.NoContent);
+        }
+
+        public Task<GetTreatmentOverrideResponse> GetTreatmentOverride(string skillId, string experimentId)
+        {
+            return Client.GetTreatmentOverride(skillId, experimentId);
+        }
+
+        public async Task SetTreatmentOverride(string skillId, string experimentId, TreatmentId treatmentId)
+        {
+            var response = await Client.SetTreatmentOverride(skillId, experimentId,
+                new SetTreatmentOverrideRequest { TreatmentId = treatmentId });
+            await response.CodeOrError(HttpStatusCode.NoContent);
+        }
+
+        public Task<StateResponse> State(string skillId, string experimentId)
+        {
+            return Client.State(skillId, experimentId);
+        }
+
+        public Task State(string skillId, string experimentId, ExperimentUpdateState targetState)
+        {
+            return Client.State(skillId, experimentId, new UpdateStateRequest { TargetState = targetState });
+        }
     }
 }
