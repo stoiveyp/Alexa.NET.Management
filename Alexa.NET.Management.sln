@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alexa.NET.Management", "Alexa.NET.Management\Alexa.NET.Management.csproj", "{60672D47-3538-4552-A90E-E50178A06B05}"
 EndProject
@@ -9,6 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alexa.NET.Management.Tests"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1098E99A-F1D9-47F2-970E-262B70DE56E6}"
 	ProjectSection(SolutionItems) = preProject
+		.github\workflows\buildAndTest.yml = .github\workflows\buildAndTest.yml
 		README.md = README.md
 	EndProjectSection
 EndProject
