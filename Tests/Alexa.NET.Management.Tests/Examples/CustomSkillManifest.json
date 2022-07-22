@@ -70,6 +70,9 @@
       "isChildDirected": false,
       "isExportCompliant": true,
       "containsAds": false,
+      "shoppingKit": {
+        "isShoppingActionsEnabled": false
+      },
       "locales": {
         "en-US": {
           "privacyPolicyUrl": "http://www.myprivacypolicy.sampleskill.com",

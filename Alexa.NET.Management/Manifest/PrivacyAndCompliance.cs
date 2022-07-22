@@ -22,5 +22,8 @@ namespace Alexa.NET.Management.Manifest
 
         [JsonProperty("locales")]
         public Dictionary<string,PrivacyAndCompliantLocale> Locales { get; set; }
+
+        [JsonProperty("shoppingKit",NullValueHandling = NullValueHandling.Ignore)]
+        public ShoppingKit ShoppingKit { get; set; }
     }
 }
