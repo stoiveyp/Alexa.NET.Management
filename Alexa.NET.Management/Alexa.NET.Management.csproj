@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <PackageReference Include="Alexa.NET" Version="1.13.0" />
-    <PackageReference Include="Refit" Version="4.7.51" />
+    <PackageReference Include="Refit" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
