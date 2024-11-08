@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using System.Runtime;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Refit;
@@ -13,7 +14,8 @@ namespace Alexa.NET.Management
         {
             return new RefitSettings
             {
-                UrlParameterFormatter = new DefaultWithEnumUrlParamFormatter()
+                UrlParameterFormatter = new DefaultWithEnumUrlParamFormatter(),
+                ContentSerializer = new NewtonsoftJsonContentSerializer()
             };
         }
 
@@ -22,7 +24,7 @@ namespace Alexa.NET.Management
             return new RefitSettings
             {
                 UrlParameterFormatter = new DefaultWithEnumUrlParamFormatter(),
-                ContentSerializer = new JsonContentSerializer(settings)
+                ContentSerializer = new NewtonsoftJsonContentSerializer(settings)
             };
         }
     }
@@ -37,7 +39,7 @@ namespace Alexa.NET.Management
             return enumMemberAttribute?.Value ?? type.ToString();
         }
 
-        public override string Format(object value, ParameterInfo parameterInfo)
+        public override string Format(object value, ICustomAttributeProvider attributeProvider, Type type)
         {
             if (value is DateTime valueDt)
             {
@@ -49,7 +51,7 @@ namespace Alexa.NET.Management
                 return ToEnumString(value.GetType(), value);
             }
 
-            return base.Format(value, parameterInfo);
+            return base.Format(value, attributeProvider, type);
         }
     }
 }

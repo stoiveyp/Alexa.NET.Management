@@ -18,8 +18,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Alexa.NET" Version="1.13.0" />
-    <PackageReference Include="Refit" Version="7.2.22" />
+    <PackageReference Include="Alexa.NET" Version="1.22.0" />
+    <PackageReference Include="Refit" Version="8.0.0" />
+    <PackageReference Include="Refit.Newtonsoft.Json" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
