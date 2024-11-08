@@ -57,29 +57,25 @@
                 "requestId": "amzn1.echo-api.request.a2d2714b-e92f-4bdb-a722-9a5cd37fcfa8",
                 "timestamp": "2018-05-08T19:13:59Z",
                 "locale": "en-US",
-                "Intent": {
+                "intent": {
                   "name": "BookFlightIntent",
                   "confirmationStatus": "CONFIRMED",
                   "slots": {
                     "fromCity": {
                       "name": "fromCity",
-                      "confirmationStatus": "CONFIRMED",
-                      "value": null
+                      "confirmationStatus": "CONFIRMED"
                     },
                     "toCity": {
                       "name": "toCity",
-                      "confirmationStatus": "CONFIRMED",
-                      "value": null
+                      "confirmationStatus": "CONFIRMED"
                     },
                     "travelDate": {
                       "name": "travelDate",
-                      "confirmationStatus": "NONE",
-                      "value": null
+                      "confirmationStatus": "NONE"
                     },
                     "airline": {
                       "name": "airline",
-                      "confirmationStatus": "NONE",
-                      "value": null
+                      "confirmationStatus": "NONE"
                     }
                   }
                 },
