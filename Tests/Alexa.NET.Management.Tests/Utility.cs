@@ -62,8 +62,6 @@ namespace Alexa.NET.Management.Tests
 
             if (output)
             {
-                var expstr = expectedJObject.ToString();
-                var actstr = actualJObject.ToString();
                 Console.WriteLine(expectedJObject.ToString());
                 Console.WriteLine(actualJObject.ToString());
             }
