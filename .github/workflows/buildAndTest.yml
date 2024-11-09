@@ -19,18 +19,11 @@ jobs:
         run:  dotnet build -c Release
       - name: Test Solution
         run:  dotnet test
-      - name: GH Deploy Workaround
-        run: |
-           export REPO_NAME=$(echo ${GITHUB_REPOSITORY} | sed 's/stoiveyp\///')
-           for f in ./${REPO_NAME}/bin/Release/Alexa.NET*.nupkg
-           do
-             curl -vX PUT -u "stoiveyp:${{ secrets.GH_PACKAGE }}" -F package=@$f https://nuget.pkg.github.com/stoiveyp/
-           done
-        shell: bash
       - name: GH Deploy
         run: |
           export REPO_NAME=$(echo ${GITHUB_REPOSITORY} | sed 's/stoiveyp\///')
-          dotnet nuget push ./${REPO_NAME}/bin/Release/Alexa.NET*.nupkg --source "https://nuget.pkg.github.com/stoiveyp/index.json" --api-key stoiveyp:${{ secrets.GH_PACKAGE }}
+          dotnet nuget add source --username stoiveyp --password ${{ secrets.GH_PACKAGE }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/stoiveyp/index.json"
+          dotnet nuget push ./${REPO_NAME}/bin/Release/Alexa.NET*.nupkg --source github
         continue-on-error: true
       - name: Deploy to NuGet
         run: |
